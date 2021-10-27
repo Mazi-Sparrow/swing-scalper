@@ -24,6 +24,7 @@ import ConfirmForgotPassword from "./Components/ConfirmForgotPassword/Index";
 import { withAuthenticator } from '@aws-amplify/ui-react'
 
 Amplify.configure(awsconfig);
+Auth.configure(awsconfig);
 
 function Root() {
   const { state } = React.useContext(AuthContext);
