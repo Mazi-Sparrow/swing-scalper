@@ -5,44 +5,40 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Logo from "../../assets/images/logo.png";
+import Card1 from "../../assets/images/card1.png";
 import ConfirmForgotPassword from "./ConfirmForgotPassword";
 
 export default function Hero() {
   return (
     <div className="hero-section">
-      <Container>
+       <Container>
         <Grid container justifyContent="center">
           <Grid item lg={6} md={6} sm={8} xs={10}>
-            <Card sx={{ maxWidth: 450 }} className="card-main">
+          <Card sx={{ maxWidth: 720 }} className="card-main">
               <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Header
-                </Typography>
-                <Typography variant="body2">Subheader</Typography>
+              <img src={Card1} width="100%" height="auto" />
                 <ConfirmForgotPassword />
               </CardContent>
-            </Card>
+              <CardContent>
+              <Typography variant="body2" className="RELIABLE3">
+              For A Limited Time, Get 14 Days of Unlimited Access to SwingScalp For Only 12.99!
+              </Typography>
+              <Typography variant="body2" className="RELIABLE3">
+              An Incredible Value With Proven Results
+              </Typography>
+              </CardContent>
+              </Card>
           </Grid>
           <Grid item lg={6} md={6} sm={8} xs={10}>
             <Box className="hero-reliable">
-              <Typography variant="body2" className="RELIABLE">
-                1. Build a trading <span className="plan"> PLAN </span> based on{" "}
-                <span className="plan">RELIABLE INFORMATION. </span>
-              </Typography>
-              <Typography variant="body2" className="RELIABLE">
-                2. Develop the <span className="plan"> DISCIPLINE</span> to stick to your{" "}
-                <span className="plan">PLAN. </span>
-              </Typography>
-              <Typography variant="body2" className="RELIABLE">
-                3. <span className="plan"> EXECUTE</span> your plan without delay.
-              </Typography>
-              <Typography variant="body2" className="RELIABLE">
-                4. Always <span className="plan2"> RISK</span> before{" "}
+            
+            </Box>
+            <img src={Logo} width="100%" height="auto" />
+            <Box className="hero-reliable"></Box>
+              <Typography variant="body2" className="RELIABLE2">
+                Always evaluate <span className="plan3"> RISK</span> before{" "}
                 <span className="plan">REWARD.</span>
               </Typography>
-            </Box>
-
-            <img src={Logo} width="100%" height="auto" />
           </Grid>
         </Grid>
       </Container>
