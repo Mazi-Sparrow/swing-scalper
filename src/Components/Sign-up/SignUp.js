@@ -46,7 +46,7 @@ export default function SignUp() {
 
     if (isSignedIn) goToPage("confirm");
   };
-
+ 
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
