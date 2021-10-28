@@ -24,6 +24,16 @@ export default function ForgotPassword() {
   const goToPage = React.useCallback((page) => history.push(`/${page}`), [history]);
 
   const { forgotPassword, clearErrorMessage, state } = React.useContext(AuthContext);
+
+  React.useEffect(() => {
+    let isMounted = true;
+    if (isMounted) clearErrorMessage();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -45,7 +55,7 @@ export default function ForgotPassword() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 1,
+            marginTop: 8,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -57,6 +67,10 @@ export default function ForgotPassword() {
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
+
+          <Typography component="h1" variant="h5">
+            Forgot Password
+          </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"

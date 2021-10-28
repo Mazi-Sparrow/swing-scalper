@@ -1,17 +1,22 @@
 import React, { useContext } from "react";
 import Navbar from "../Dashboard/navbar";
 import { Box } from "@mui/system";
-import Footer from "./Footer";
 import { Grid, GridColumn as Column, GridToolbar } from "@progress/kendo-react-grid";
+import Footer from "./Footer";
 import { process } from "@progress/kendo-data-query";
+import { filterBy } from "@progress/kendo-data-query";
+import { DatePicker } from "@progress/kendo-react-dateinputs";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+
 import { MyCommandCell } from "./myCommandCell";
+import { DateRangeFilter } from "../filters/DateRangeFilter";
+
 import { CustomDate } from "./CutomDate";
 import { insertItem, getItems, updateItem, deleteItem } from "./services";
+
 import { Context as JournalContext } from "../../context/JournalContext";
 import { Context as AuthContext } from "../../context/AuthContext";
-
 const initialDataState = {
   sort: [
     {
@@ -38,6 +43,10 @@ export default function Index() {
   const [data, setData] = React.useState(journals);
   const [dataState, setDataState] = React.useState(initialDataState);
 
+  const [filter, setFilter] = React.useState([]);
+
+  const [dateRange, setDateRange] = React.useState({ minDateFilter: null, maxDateFilter: null });
+
   React.useEffect(() => {
     let isMounted = true;
     listJournals({ token }).then((res) => {
@@ -52,6 +61,7 @@ export default function Index() {
     <MyCommandCell
       {...props}
       edit={enterEdit}
+      remove={remove}
       add={add}
       discard={discard}
       update={update}
@@ -60,7 +70,66 @@ export default function Index() {
     />
   );
 
- const add = async (dataItem) => {
+  const filterChange = (event) => {
+    console.log(event);
+    // setFilter({ ...event.filter });
+  };
+  const handleClearDateFilter = () => {
+    let currentFilters = { ...filter };
+    let newFilter = currentFilters.filters.filter((filter) => {
+      return filter.field !== "createdAt";
+    });
+    currentFilters.filters = newFilter;
+    setDateRange({ minDateFilter: null, maxDateFilter: null });
+    setFilter({ ...currentFilters });
+  };
+
+  const handleDateFilterChange = (event) => {
+    let currentFilters = { ...filter };
+
+    if (event.operator === "gt") {
+      setDateRange({ ...dateRange, minDateFilter: event.value });
+    } else {
+      setDateRange({ ...dateRange, maxDateFilter: event.value });
+    }
+    if (currentFilters.filters) {
+      let newFilter = currentFilters.filters.filter((filter) => {
+        return !(filter.field === "createdAt" && filter.operator === event.operator);
+      });
+      currentFilters.filters = newFilter;
+      currentFilters.filters.push({
+        field: "createdAt",
+        operator: event.operator,
+        value: event.value,
+      });
+    } else {
+      currentFilters.filters = [];
+      currentFilters.logic = "and";
+      currentFilters.filters.push({
+        field: "createdAt",
+        operator: event.operator,
+        value: event.value,
+      });
+    }
+    setFilter({ ...currentFilters });
+  };
+
+  const MyDateFilterCell = (props) => (
+    <DateRangeFilter
+      {...props}
+      min={dateRange.minDateFilter}
+      max={dateRange.maxDateFilter}
+      onDateFilterChange={handleDateFilterChange}
+      onDateFilterClear={handleClearDateFilter}
+    />
+  );
+
+  const remove = (dataItem) => {
+    const newData = deleteItem(data, dataItem);
+    setData(newData);
+  };
+
+  const add = async (dataItem) => {
     dataItem.inEdit = true;
 
     if (
@@ -68,18 +137,20 @@ export default function Index() {
       !isNaN(dataItem.priceTargets) &&
       !isNaN(dataItem.quantity) &&
       dataItem.ticker &&
+      dataItem.strategy &&
       !isNaN(dataItem.stopLoss)
     ) {
       const newData = insertItem(data, dataItem);
-      setData(newData);
+      setData([...newData]);
 
       const isSucess = await createJournal({
         token,
         quantity: parseInt(dataItem.quantity),
-        buyPrice: parseFloat(dataItem.buyPrice),
-        priceTargets: [parseFloat(dataItem.priceTargets)],
+        buyPrice: parseInt(dataItem.buyPrice),
+        pTarget: [parseInt(dataItem.priceTargets)],
         ticker: dataItem.ticker,
-        stopLoss: parseFloat(dataItem.stopLoss),
+        stopLoss: parseInt(dataItem.stopLoss),
+        strategy: dataItem.strategy,
       });
     }
   };
@@ -159,6 +230,8 @@ export default function Index() {
             width: "100%",
           }}
           data={process(data, dataState)}
+          // filter={filter}
+          // onFilterChange={filterChange}
           onDataStateChange={(e) => {
             setDataState(e.dataState);
           }}
@@ -167,21 +240,95 @@ export default function Index() {
           dataItemKey={"id"}
         >
           <GridToolbar>
-            <Button title="Add new" className="k-primary k-button k-grid-edit-command" style={{ padding: "5px 10px" }} onClick={addNew} > New Trade </Button>
+            <Button
+              title="Add new"
+              className="k-primary k-button k-grid-edit-command"
+              style={{ padding: "5px 10px" }}
+              onClick={addNew}
+            >
+              Add new
+            </Button>
           </GridToolbar>
-          <Column cell={CommandCell} width="80px" filterable={false} />
-          <Column field="createdAt" title="Date Openned" editor="date" format="{0:d}" cell={CustomDate} width="150px" filterable={false} editable={false} />
-          <Column field="ticker" title="Ticker" filterable={false} editable={true} />
-          <Column field="quantity" title="Qty" editor="numeric" filterable={false} editable={true} sortable={false} filter="numeric" />
-          <Column field="buyPrice" title="Avg Price $" filterable={false} editable={true} sortable={false} />
-          <Column field="stopLoss" title="Stop Loss $" filterable={false} editable={true} sortable={false} />
-          <Column field="priceTargets" title="Price Target $" filterable={false} editable={true} sortable={false} />
-          <Column field="tradeRisk" title="Risk $" editable={false} filterable={false} sortable={false} />
-          <Column field="tradeReward" title="Reward $" editable={false} filterable={false} sortable={false} />
+          <Column cell={CommandCell} width="180px" filterable={false} />
+
+          <Column
+            field="createdAt"
+            title="Created At"
+            editor="date"
+            filter="date"
+            cell={CustomDate}
+            width={300}
+            filterCell={MyDateFilterCell}
+            filter="date"
+            filterable={true}
+            editable={false}
+          />
+          <Column field="ticker" title="Ticker" filterable={true} filter="text" editable={true} />
+          <Column field="quantity" title="Qty" filterable={false} editable={true} />
+          <Column
+            field="buyPrice"
+            title="Avg Price $"
+            filterable={false}
+            filter="numeric"
+            editable={true}
+          />
+          <Column field="stopLoss" title="Stop Loss $" filterable={false} editable={true} />
+          <Column field="priceTargets" title="Price Target $" filterable={false} editable={true} />
+          <Column
+            field="tradeRisk"
+            title="Risk $"
+            editable={false}
+            filterable={false}
+            width="100px"
+          />
+          <Column
+            field="tradeReward"
+            title="Reward $"
+            editable={false}
+            filterable={false}
+            filter="numeric"
+          />
           <Column field="profitLossPercentage" title="P/L %" editable={false} filterable={false} />
-          <Column field="tradeStatus" title="Status" width="100px" editable={false} filterable={false} />
-          <Column field="sellPrice" title="Sell Price $" filterable={false} editable={setEditable()} sortable={false} />
-          <Column field="updatedAt" title="Date Sold" editor="date" format="{0:d}" cell={CustomDate} filterable={false} editable={false} width="150px" />
+          <Column
+            field="tradeStatus"
+            title="Status"
+            width="100px"
+            editable={false}
+            filterable={false}
+          />
+          <Column
+            field="sellPrice"
+            title="Sell Price $"
+            editor="numeric"
+            filterable={false}
+            editable={setEditable()}
+          />
+          <Column
+            field="updatedAt"
+            title="Updated At"
+            editor="date"
+            format="{0:d}"
+            cell={CustomDate}
+            filterable={false}
+            editable={false}
+          />
+          <Column
+            field="sellDate"
+            title="Sell Date"
+            editor="date"
+            format="{0:d}"
+            cell={CustomDate}
+            filterable={true}
+            filter="date"
+            editable={false}
+          />
+          <Column
+            field="strategy"
+            title="Strategy"
+            width="150px"
+            editable={true}
+            filterable={false}
+          />
         </Grid>
       </Box>
 
