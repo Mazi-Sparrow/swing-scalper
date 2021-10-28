@@ -25,7 +25,7 @@ const authReducers = (state, action) => {
       return { ...state, errorMessage: "", token: action.payload };
 
     case "logout":
-      return { errorMessage: "", token: null };
+      return { ...state, errorMessage: "", token: null };
 
     case "clear_errorMessage":
       return { ...state, errorMessage: "" };

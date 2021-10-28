@@ -21,7 +21,16 @@ const theme = createTheme();
 export default function SignUp() {
   const history = useHistory();
   const goToPage = React.useCallback((page) => history.push(`/${page}`), [history]);
-  const { signup, state } = React.useContext(AuthContext);
+  const { signup, state, clearErrorMessage } = React.useContext(AuthContext);
+
+  React.useEffect(() => {
+    let isMounted = true;
+    if (isMounted) clearErrorMessage();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -46,7 +55,7 @@ export default function SignUp() {
 
     if (isSignedIn) goToPage("confirm");
   };
- 
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -65,7 +74,7 @@ export default function SignUp() {
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
-        
+
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>

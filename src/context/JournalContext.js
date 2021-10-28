@@ -5,7 +5,7 @@ import { gql } from "graphql-request";
 import createDataContext from "./createDataContext";
 import { client as graphqlClient } from "../api/axios";
 
-const authReducers = (state, action) => {
+const journalReducers = (state, action) => {
   switch (action.type) {
     case "list_journals":
       return {
@@ -50,7 +50,7 @@ const listJournals =
     try {
       const response = await graphqlClient.request(
         gql`
-          query {
+          query listJournals {
             listJournals {
               items {
                 id
@@ -65,6 +65,7 @@ const listJournals =
                 profitLossPercentage
                 tradeStatus
                 updatedAt
+                strategy
               }
               success
               errors
@@ -133,13 +134,13 @@ const updateJournal =
 
 const createJournal =
   (dispatch) =>
-  async ({ token, ticker, quantity, buyPrice, stopLoss, priceTargets }) => {
-    console.log(token, ticker, quantity, buyPrice, stopLoss, priceTargets );
+  async ({ token, ticker, quantity, buyPrice, stopLoss, pTarget, strategy }) => {
     try {
       const response = await graphqlClient.request(
         gql`
           mutation createJournal(
             $ticker: String!
+            $strategy: String
             $quantity: Int!
             $buyPrice: Float!
             $priceTargets: [Float!]
@@ -147,6 +148,7 @@ const createJournal =
           ) {
             createJournal(
               input: {
+                strategy: $strategy
                 ticker: $ticker
                 quantity: $quantity
                 buyPrice: $buyPrice
@@ -159,7 +161,7 @@ const createJournal =
             }
           }
         `,
-        { ticker, quantity, buyPrice, stopLoss, priceTargets },
+        { ticker, quantity, buyPrice, stopLoss, pTarget, strategy },
         { Authorization: `Bearer ${token}` }
       );
 
@@ -181,7 +183,7 @@ const createJournal =
   };
 
 export const { Context, Provider } = createDataContext(
-  authReducers,
+  journalReducers,
   { listJournals, updateJournal, createJournal },
   { journals: [], errorMessage: "", isLoading: true }
 );
