@@ -1,5 +1,5 @@
-import Amplify, { Auth } from "aws-amplify";
-import awsconfig from "./aws-exports";
+// import Amplify, { Auth } from "aws-amplify";
+// import awsconfig from "./aws-exports";
 
 import * as React from "react";
 import logo from "./logo.svg";
@@ -21,14 +21,17 @@ import TryToLogin from "./Components/TryToLogin/Index";
 import ConfirmUser from "./Components/ConfirmUser/Index";
 import ForgotPassword from "./Components/ForgotPassword/Index";
 import ConfirmForgotPassword from "./Components/ConfirmForgotPassword/Index";
+import Checkout from "./Components/Checkout/Index";
 import Subscription from "./Components/Subscription/Index";
 
-Amplify.configure(awsconfig);
+// Amplify.configure(awsconfig);
 
 window.Chargebee.init({
-  site: "honeycomics-v3-test",
-  publishableKey: "test_qoH22RugUvm5IcxoqUD5Svdcu9mX5figf",
+  site: process.env.REACT_APP_CHARGEBEE_SITE,
+  publishableKey: process.env.REACT_APP_CHARGEBEE_KEY,
 });
+
+console.log(window.Chargebee.getPortalSections());
 
 function Root() {
   const { state } = React.useContext(AuthContext);

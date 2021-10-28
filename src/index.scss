@@ -10,10 +10,8 @@
   src: url("../src/assets/font-family/Roboto-Regular.ttf");
 }
 
-
 $white: #fff;
-$primary: #9C1265;
-
+$primary: #9c1265;
 
 $extra-larger-desktop-width: 1400px;
 $larger-desktop-width: 1200px;
@@ -75,7 +73,6 @@ $small-phone-width: 480px;
   }
 }
 
-
 .white {
   color: $white;
 }
@@ -89,11 +86,10 @@ $small-phone-width: 480px;
 .primary-bg {
   background: $primary;
 }
-.pad{
+.pad {
   padding: 4px;
-
 }
-.mar{
+.mar {
   margin: 2px;
 }
 
@@ -101,254 +97,235 @@ body {
   @extend .pad, .mar;
 }
 
-.appbar-setting{
+.appbar-setting {
   @extend .white-bg;
-border-bottom: 2px solid $primary;
-  .appbar-btn{
+  border-bottom: 2px solid $primary;
+  .appbar-btn {
     margin-left: auto;
     margin-right: auto;
   }
-  .MuiButton-textInherit{
+  .MuiButton-textInherit {
     @extend .primary;
     font-family: Roboto-Regular;
     font-size: 20px;
-line-height: 23px;
-top: -28px;
+    line-height: 23px;
+    top: -28px;
     position: relative;
     margin-right: 15px;
-    @include desktop{
+    @include desktop {
       font-size: 15px;
       margin-right: 8px;
-
     }
   }
-  .MuiButton-containedInherit{
+  .MuiButton-containedInherit {
     @extend .primary-bg;
     font-family: Roboto;
-font-style: normal;
-font-family: Roboto-Regular;
-font-size: 18px;
-line-height: 20px;
-position: relative;
-top: -40px;
-@include desktop{
-  font-size: 15px;
-
-}
+    font-style: normal;
+    font-family: Roboto-Regular;
+    font-size: 18px;
+    line-height: 20px;
+    position: relative;
+    top: -40px;
+    @include desktop {
+      font-size: 15px;
+    }
   }
-  .signup-appbar{
+  .signup-appbar {
     margin-left: auto;
   }
-  .mobmenuicon{
+  .mobmenuicon {
     @extend .primary;
   }
- 
-
 }
- .mob-btn{
-  .MuiTypography-root{
-@extend .primary;
+.mob-btn {
+  .MuiTypography-root {
+    @extend .primary;
   }
- 
 }
-.hero-section{
-  .card-main{
+.hero-section {
+  .card-main {
     margin-top: 140px;
-    @include tablet{
+    @include tablet {
       margin-top: 100px;
     }
   }
-  .MuiTypography-h5{
+  .MuiTypography-h5 {
     font-family: Roboto;
     font-style: italic;
     font-weight: bold;
     font-size: 14px;
     line-height: 24px;
     /* or 171% */
-  
   }
-  .MuiTypography-h6{
+  .MuiTypography-h6 {
     font-family: Roboto;
-font-style: normal;
-font-weight: 500;
-font-size: 20px;
-line-height: 24px;
-/* or 120% */
-
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    /* or 120% */
   }
-  .MuiTypography-h4{
+  .MuiTypography-h4 {
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 34px;
     line-height: 36px;
     /* or 106% */
-  
   }
-  .MuiTypography-h3{
+  .MuiTypography-h3 {
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 48px;
     line-height: 56px;
     /* or 117% */
-  
   }
-  .MuiButton-textPrimary{
+  .MuiButton-textPrimary {
     font-family: Roboto-Regular;
-font-style: normal;
-font-size: 18px;
-line-height: 20px;
-color: #3F51B5;
-padding: 8px 16px;
-&:hover{
-  background: linear-gradient(0deg, rgba(63, 81, 181, 0.16), rgba(63, 81, 181, 0.16)), #FFFFFF;;
-}
+    font-style: normal;
+    font-size: 18px;
+    line-height: 20px;
+    color: #3f51b5;
+    padding: 8px 16px;
+    &:hover {
+      background: linear-gradient(0deg, rgba(63, 81, 181, 0.16), rgba(63, 81, 181, 0.16)), #ffffff;
+    }
   }
-  .RELIABLE{
+  .RELIABLE {
     font-family: Roboto-bold;
     font-style: normal;
-font-size: 34px;
-line-height: 36px;
-color: $primary;
-text-align: center;
-letter-spacing: 0.15px;
-
+    font-size: 34px;
+    line-height: 36px;
+    color: $primary;
+    text-align: center;
+    letter-spacing: 0.15px;
   }
-  .RELIABLE2{
+  .RELIABLE2 {
     font-family: Roboto;
     font-style: normal;
-font-size: 20px;
-line-height: 24px;
-color: $primary;
-text-align: center;
-letter-spacing: 0.15px;
-
+    font-size: 20px;
+    line-height: 24px;
+    color: $primary;
+    text-align: center;
+    letter-spacing: 0.15px;
   }
-  .RELIABLE3{
+  .RELIABLE3 {
     font-family: Roboto Condensed;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
     line-height: 20px;
     /* or 143% */
-    
+
     text-align: center;
     letter-spacing: 0.25px;
-    
-    color: #9C1265;
-    
-    
+
+    color: #9c1265;
+
     /* Inside Auto Layout */
-    
+
     flex: none;
     order: 0;
     align-self: stretch;
     flex-grow: 0;
     margin: 0px 0px;
-
   }
-  .plan{
-    color:  #37B400;;
+  .plan {
+    color: #37b400;
   }
-  .plan2{
-    color:  #9C1265;;
+  .plan2 {
+    color: #9c1265;
   }
-  .plan3{
-    color:  #ff0000;;
+  .plan3 {
+    color: #ff0000;
   }
-  .hero-reliable{
+  .hero-reliable {
     margin-top: 70px;
   }
 }
-.dilog-box{
-  .MuiDialog-paper{
+.dilog-box {
+  .MuiDialog-paper {
     background: $primary;
     max-width: 700px;
   }
-  .close-icon{
+  .close-icon {
     color: black;
   }
-  
 }
-.privcybtn{
+.privcybtn {
   font-family: Roboto-Regular;
-font-style: normal;
-margin-left: auto;
-font-size: 18px;
-line-height: 20px;
-color: white;
+  font-style: normal;
+  margin-left: auto;
+  font-size: 18px;
+  line-height: 20px;
+  color: white;
 }
-.fab-setting{
+.fab-setting {
   background: transparent;
-    border: 1px solid  #37B400;
+  border: 1px solid #37b400;
+  box-shadow: none;
+  color: #37b400;
+  margin-left: 20px;
+  &:hover {
+    background: transparent;
+    border: 1px solid #37b400;
     box-shadow: none;
-    color:  #37B400;
-    margin-left: 20px;
-    &:hover{
-      background: transparent;
-    border: 1px solid  #37B400;
-    box-shadow: none;
-    color:  #37B400;
-    }
-    @include tablet{
-      margin-left: -21px;
-    }
+    color: #37b400;
+  }
+  @include tablet {
+    margin-left: -21px;
+  }
 }
-.trial-btn{
+.trial-btn {
   padding: 6px 14px;
   font-family: Roboto-Regular;
-font-style: normal;
-font-size: 14px;
-line-height: 18px;
-color: #FFC000;
-border: 1px solid #FFC000;
-margin-left: 10px;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 18px;
+  color: #ffc000;
+  border: 1px solid #ffc000;
+  margin-left: 10px;
 }
-.privacy{
+.privacy {
   margin-left: auto !important;
   text-align: end !important;
 }
 
-
-.ffflex{
-display: grid;
-grid-template-columns: 1fr 1fr;
-margin-bottom: 130px;
-margin-right: 100px;
-background-color: white !important;
+.ffflex {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 130px;
+  margin-right: 100px;
+  background-color: white !important;
 }
 
-.asdasd{
-
+.asdasd {
   width: 100% !important;
 }
 
-@media (max-width:1047px){
-  .ffflex{
+@media (max-width: 1047px) {
+  .ffflex {
     margin-right: 0px !important;
-    }
+  }
 }
 
-
-@media (max-width:855px){
-  .ffflex{
+@media (max-width: 855px) {
+  .ffflex {
     display: grid;
     grid-template-columns: 1fr;
     margin-bottom: 80px;
     gap: 80px;
   }
 
-  .asdasd{
-
+  .asdasd {
     width: 100% !important;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .asdasd *{
+  .asdasd * {
     width: 100%;
   }
-  
 }
