@@ -6,12 +6,9 @@ import { Grid, GridColumn as Column, GridToolbar } from "@progress/kendo-react-g
 import { process } from "@progress/kendo-data-query";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-
 import { MyCommandCell } from "./myCommandCell";
-
 import { CustomDate } from "./CutomDate";
 import { insertItem, getItems, updateItem, deleteItem } from "./services";
-
 import { Context as JournalContext } from "../../context/JournalContext";
 import { Context as AuthContext } from "../../context/AuthContext";
 
@@ -71,7 +68,6 @@ export default function Index() {
       !isNaN(dataItem.priceTargets) &&
       !isNaN(dataItem.quantity) &&
       dataItem.ticker &&
-      dataItem.strategy &&
       !isNaN(dataItem.stopLoss)
     ) {
       const newData = insertItem(data, dataItem);
@@ -83,7 +79,6 @@ export default function Index() {
         buyPrice: parseFloat(dataItem.buyPrice),
         priceTargets: [parseFloat(dataItem.priceTargets)],
         ticker: dataItem.ticker,
-        strategy: dataItem.strategy,
         stopLoss: parseFloat(dataItem.stopLoss),
       });
     }
@@ -175,7 +170,7 @@ export default function Index() {
             <Button title="Add new" className="k-primary k-button k-grid-edit-command" style={{ padding: "5px 10px" }} onClick={addNew} > New Trade </Button>
           </GridToolbar>
           <Column cell={CommandCell} width="80px" filterable={false} />
-          <Column field="createdAt" title="Date Openned" editor="date" format="{0:d}" cell={CustomDate} width="100px" filterable={false} editable={false} />
+          <Column field="createdAt" title="Date Openned" editor="date" format="{0:d}" cell={CustomDate} width="150px" filterable={false} editable={false} />
           <Column field="ticker" title="Ticker" filterable={false} editable={true} />
           <Column field="quantity" title="Qty" editor="numeric" filterable={false} editable={true} sortable={false} filter="numeric" />
           <Column field="buyPrice" title="Avg Price $" filterable={false} editable={true} sortable={false} />
@@ -186,7 +181,7 @@ export default function Index() {
           <Column field="profitLossPercentage" title="P/L %" editable={false} filterable={false} />
           <Column field="tradeStatus" title="Status" width="100px" editable={false} filterable={false} />
           <Column field="sellPrice" title="Sell Price $" filterable={false} editable={setEditable()} sortable={false} />
-          <Column field="updatedAt" title="Date Sold" editor="date" format="{0:d}" cell={CustomDate} filterable={false} editable={false} width="100px" />
+          <Column field="updatedAt" title="Date Sold" editor="date" format="{0:d}" cell={CustomDate} filterable={false} editable={false} width="150px" />
         </Grid>
       </Box>
 
