@@ -18,10 +18,10 @@ import { Provider as JournalProvider } from "./context/JournalContext";
 import { Provider as WatchListProvider } from "./context/WatchListContext";
 
 import TryToLogin from "./Components/TryToLogin/Index";
+import TryToGetToken from "./Components/TryToGetToken/Index";
 import ConfirmUser from "./Components/ConfirmUser/Index";
 import ForgotPassword from "./Components/ForgotPassword/Index";
 import ConfirmForgotPassword from "./Components/ConfirmForgotPassword/Index";
-import Checkout from "./Components/Checkout/Index";
 import Subscription from "./Components/Subscription/Index";
 
 // Amplify.configure(awsconfig);
@@ -36,27 +36,39 @@ console.log(window.Chargebee.getPortalSections());
 function Root() {
   const { state } = React.useContext(AuthContext);
   const authFlow = (
-    <Switch>
-      <Route exact path="/" component={Signin} />
-      <Route path="/signup" component={Signup} />
-      <Route path="/confirm" component={ConfirmUser} />
-      <Route path="/forgotPassword" component={ForgotPassword} />
-      <Route path="/confirmForgotPassword" component={ConfirmForgotPassword} />
-      <Route path="*" exact component={Signin} />
-    </Switch>
+    <>
+      {state.errorMessage ? <TryToGetToken></TryToGetToken> : null}
+      <Switch>
+        <Route exact path="/" component={Signin} />
+        <Route path="/signup" component={Signup} />
+        <Route path="/confirm" component={ConfirmUser} />
+        <Route path="/forgotPassword" component={ForgotPassword} />
+        <Route path="/confirmForgotPassword" component={ConfirmForgotPassword} />
+        <Route path="*" exact component={Signin} />
+        <Route path="*" exact>
+          <Redirect to="/" />
+        </Route>
+      </Switch>
+    </>
   );
 
   const appFlow = (
-    <Switch>
-      <Route path="/" exact>
-        <Redirect to="/dashboard" />
-      </Route>
-      <Route path="/dashboard" component={Dashboard} />
-      <Route path="/journal" component={Journal} />
-      <Route path="/trade" component={Trade} />
-      <Route path="/watchlist" component={Watchlist} />
-      <Route path="/subscription" component={Subscription} />
-    </Switch>
+    <>
+      {state.errorMessage ? <TryToGetToken></TryToGetToken> : null}
+      <Switch>
+        <Route path="/" exact>
+          <Redirect to="/dashboard" />
+        </Route>
+        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/journal" component={Journal} />
+        <Route path="/trade" component={Trade} />
+        <Route path="/watchlist" component={Watchlist} />
+        <Route path="/subscription" component={Subscription} />
+        <Route path="*" exact>
+          <Redirect to="/dashboard" />
+        </Route>
+      </Switch>
+    </>
   );
 
   return state.token ? appFlow : authFlow;

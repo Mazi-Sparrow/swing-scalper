@@ -133,7 +133,6 @@ export default function SignUp() {
 
               <Grid item xs={12}>
                 <TextField
-                  required
                   fullWidth
                   name="phone"
                   label="phone"

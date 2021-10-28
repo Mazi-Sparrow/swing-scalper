@@ -23,7 +23,17 @@ export default function SignIn() {
   const history = useHistory();
   const goToPage = React.useCallback((page) => history.push(`/${page}`), [history]);
 
-  const { confirmEmail, state } = React.useContext(AuthContext);
+  const { confirmEmail, state, clearErrorMessage } = React.useContext(AuthContext);
+
+  React.useEffect(() => {
+    let isMounted = true;
+    if (isMounted) clearErrorMessage();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);

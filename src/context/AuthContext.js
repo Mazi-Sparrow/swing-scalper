@@ -20,12 +20,20 @@ const authReducers = (state, action) => {
       };
     case "add_error":
       return { ...state, errorMessage: action.payload };
-    case "signup":
+
     case "signin":
-      return { ...state, errorMessage: "", token: action.payload };
+      return {
+        ...state,
+        errorMessage: "",
+        token: action.payload.token,
+        email: action.payload.email,
+        refreshToken: action.payload.refreshToken,
+      };
+    case "set_token":
+      return { ...state, token: action.payload };
 
     case "logout":
-      return { ...state, errorMessage: "", token: null };
+      return { ...state, errorMessage: "", token: null, refreshToken: null, email: null };
 
     case "clear_errorMessage":
       return { ...state, errorMessage: "" };
@@ -41,8 +49,7 @@ const signin = (dispatch) => async (username, password) => {
         query login($username: String!, $password: String!) {
           logIn(username: $username, password: $password) {
             idToken
-            # refreshToken
-            # expiresIn
+            refreshToken
             success
             errors
           }
@@ -59,13 +66,18 @@ const signin = (dispatch) => async (username, password) => {
     }
     if (!response.logIn.errors && response.logIn.idToken) {
       console.log(response.logIn.idToken);
-      dispatch({ type: "signin", payload: response.logIn.idToken });
+      dispatch({
+        type: "signin",
+        payload: { token: response.logIn.idToken, refreshToken: response.logIn.idToken },
+      });
       await localStorage.setItem("token", response.logIn.idToken);
+      await localStorage.setItem("refreshToken", response.logIn.refreshToken);
+      await localStorage.setItem("email", username);
     }
   } catch (error) {
     dispatch({
       type: "add_error",
-      payload: "Error when trying to register, Please try agian later.",
+      payload: "Error when trying to login, invalid credentials .",
     });
   }
 };
@@ -80,7 +92,7 @@ const signup =
             $email: String!
             $password: String!
             $confirm: String!
-            $phone: String!
+            $phone: String
             $firstName: String!
             $lastName: String!
           ) {
@@ -124,6 +136,59 @@ const signup =
       });
     }
   };
+
+const getToken = (dispatch) => async () => {
+  try {
+    const refreshToken = await localStorage.getItem("refreshToken");
+    const email = await localStorage.getItem("email");
+
+    if (refreshToken && email) {
+      return false;
+    }
+    const response = await graphqlClient.request(
+      gql`
+        mutation refreshToken($email: String!, $refreshToken: String!) {
+          refreshToken(email: $email, refreshToken: $refreshToken) {
+            success
+            errors
+            idToken
+          }
+        }
+      `,
+      { email, refreshToken },
+      {}
+    );
+
+    if (
+      !response.refreshToken.success &&
+      response.refreshToken.errors &&
+      response.refreshToken.errors[0]
+    ) {
+      dispatch({
+        type: "add_error",
+        payload: response.refreshToken.errors[0],
+      });
+
+      return false;
+    }
+
+    if (!response.refreshToken.errors && response.refreshToken.idToken) {
+      dispatch({
+        type: "set_token",
+        payload: response.refreshToken.idToken,
+      });
+
+      await localStorage.setItem("token", response.refreshToken.idToken);
+    }
+
+    return true;
+  } catch (error) {
+    dispatch({
+      type: "add_error",
+      payload: "Error when trying to register, Please try agian later.",
+    });
+  }
+};
 
 const confirmEmail =
   (dispatch) =>
@@ -253,6 +318,8 @@ const confirmForgotPassword =
 
 const logout = (dispatch) => async () => {
   await localStorage.removeItem("token");
+  await localStorage.removeItem("email");
+  await localStorage.removeItem("refreshToken");
 
   dispatch({ type: "logout" });
 };
@@ -263,9 +330,10 @@ const clearErrorMessage = (dispatch) => () => {
 
 const tryLocalSignin = (dispatch) => async () => {
   const token = await localStorage.getItem("token");
+  const refreshToken = await localStorage.getItem("refreshToken");
 
   if (token) {
-    dispatch({ type: "signin", payload: token });
+    dispatch({ type: "signin", payload: { token, refreshToken } });
   }
   dispatch({ type: "remove_loading" });
 };
@@ -281,6 +349,7 @@ export const { Context, Provider } = createDataContext(
     confirmEmail,
     forgotPassword,
     confirmForgotPassword,
+    getToken,
   },
-  { token: null, errorMessage: "", isLoading: true }
+  { token: null, refreshToken: null, errorMessage: "", isLoading: true }
 );

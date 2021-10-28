@@ -25,7 +25,7 @@ export default function Index() {
       <Navbar />
 
       {planId ? (
-        <Checkout planId={plan} />
+        <Checkout planId={planId} />
       ) : (
         <div className="app-wrapper">
           {cardsData.map((props) => {
@@ -98,23 +98,23 @@ function PricingCard(props) {
 
 const cardsData = [
   {
-    id: 1,
+    id: "SwingScalp-Trial",
     type: "trial",
-    title: "Trial Plan",
-    description: "Lorem ipsum",
-    price: 0.0,
-    recurrency: 0.0,
+    title: "SwingScalp Trial",
+    description: "SwingScalp Trial - $12.99 for 14 Days",
+    price: 12.99,
+    recurrency: 12.99,
     mostPopular: false,
-    data: ["2TB Storage", "100 E-mails"],
+    data: [],
   },
   {
-    id: 2,
+    id: "SwingScalper",
     type: "basic",
-    title: "Basic Plan",
-    description: "Lorem ipsum",
-    price: 29.99,
-    recurrency: 24.99,
-    mostPopular: false,
-    data: ["2TB Storage", "200 E-mails", "10 Accounts"],
+    title: "SwingScalper",
+    description: "SwingScalper - $33.00 a Month",
+    price: 33.0,
+    recurrency: 33.0,
+    mostPopular: true,
+    data: [],
   },
 ];

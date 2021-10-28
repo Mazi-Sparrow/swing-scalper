@@ -161,7 +161,7 @@ const createJournal =
             }
           }
         `,
-        { ticker, quantity, buyPrice, stopLoss, pTarget, strategy },
+        { ticker, quantity, buyPrice, stopLoss, priceTargets: pTarget, strategy },
         { Authorization: `Bearer ${token}` }
       );
 
