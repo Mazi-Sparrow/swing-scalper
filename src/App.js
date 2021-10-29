@@ -1,5 +1,5 @@
-// import Amplify, { Auth } from "aws-amplify";
-// import awsconfig from "./aws-exports";
+import Amplify from "aws-amplify";
+import awsconfig from "./aws-exports";
 
 import * as React from "react";
 import logo from "./logo.svg";
@@ -24,7 +24,7 @@ import ForgotPassword from "./Components/ForgotPassword/Index";
 import ConfirmForgotPassword from "./Components/ConfirmForgotPassword/Index";
 import Subscription from "./Components/Subscription/Index";
 
-// Amplify.configure(awsconfig);
+Amplify.configure(awsconfig);
 
 window.Chargebee.init({
   site: process.env.REACT_APP_CHARGEBEE_SITE,
