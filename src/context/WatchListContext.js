@@ -74,11 +74,12 @@ const getWatchlist =
       }
       return false;
     } catch (error) {
+      dispatch({ type: "remove_loading" });
+
       dispatch({
         type: "add_error",
         payload: `Error When Fetching Watch List with ticker ${ticker}`,
       });
-      console.log(error);
     }
   };
 

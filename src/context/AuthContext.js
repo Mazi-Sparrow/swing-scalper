@@ -44,7 +44,6 @@ const authReducers = (state, action) => {
 
 const signin = (dispatch) => async (username, password) => {
   try {
-    dispatch({ type: "add_loading" });
     const response = await graphqlClient.request(
       gql`
         query login($username: String!, $password: String!) {
@@ -59,6 +58,9 @@ const signin = (dispatch) => async (username, password) => {
       { username: username, password },
       {}
     );
+
+    dispatch({ type: "remove_loading" });
+
     if (!response.logIn.success && response.logIn.errors && response.logIn.errors[0]) {
       dispatch({
         type: "add_error",
@@ -70,13 +72,14 @@ const signin = (dispatch) => async (username, password) => {
         type: "signin",
         payload: { token: response.logIn.idToken, refreshToken: response.logIn.idToken },
       });
-      await localStorage.setItem("token", response.logIn.idToken);
-      await localStorage.setItem("refreshToken", response.logIn.refreshToken);
-      await localStorage.setItem("email", username);
+      await Promise.all([
+        localStorage.setItem("token", response.logIn.idToken),
+        localStorage.setItem("refreshToken", response.logIn.refreshToken),
+        localStorage.setItem("email", username),
+      ]);
     }
-
-    dispatch({ type: "remove_loading" });
   } catch (error) {
+    dispatch({ type: "remove_loading" });
     dispatch({
       type: "add_error",
       payload: "Error when trying to login, invalid credentials .",
@@ -134,6 +137,8 @@ const signup =
 
       return true;
     } catch (error) {
+      dispatch({ type: "remove_loading" });
+
       dispatch({
         type: "add_error",
         payload: "Error when trying to register, Please try agian later.",
@@ -163,6 +168,8 @@ const getToken = (dispatch) => async () => {
       {}
     );
 
+    dispatch({ type: "remove_loading" });
+
     if (
       !response.refreshToken.success &&
       response.refreshToken.errors &&
@@ -187,9 +194,11 @@ const getToken = (dispatch) => async () => {
 
     return true;
   } catch (error) {
+    dispatch({ type: "remove_loading" });
+
     dispatch({
       type: "add_error",
-      payload: "Error when trying to register, Please try agian later.",
+      payload: "Error when trying to refresh the token, Please try agian later.",
     });
   }
 };
@@ -227,7 +236,8 @@ const confirmEmail =
 
       return true;
     } catch (error) {
-      console.log(error);
+      dispatch({ type: "remove_loading" });
+
       dispatch({
         type: "add_error",
         payload: "Error when trying to confirm email, Please try agian later.",
@@ -266,7 +276,8 @@ const forgotPassword =
 
       return true;
     } catch (error) {
-      console.log(error);
+      dispatch({ type: "remove_loading" });
+
       dispatch({
         type: "add_error",
         payload: "Error when trying to confirm email, Please try agian later.",
@@ -315,7 +326,7 @@ const confirmForgotPassword =
 
       return true;
     } catch (error) {
-      console.log(error);
+      dispatch({ type: "remove_loading" });
       dispatch({
         type: "add_error",
         payload: "Error when trying to confirm email, Please try agian later.",
@@ -324,12 +335,10 @@ const confirmForgotPassword =
   };
 
 const logout = (dispatch) => async () => {
-  dispatch({ type: "add_loading" });
   await localStorage.removeItem("token");
   await localStorage.removeItem("email");
   await localStorage.removeItem("refreshToken");
 
-  dispatch({ type: "remove_loading" });
   dispatch({ type: "logout" });
 };
 
@@ -338,14 +347,12 @@ const clearErrorMessage = (dispatch) => () => {
 };
 
 const tryLocalSignin = (dispatch) => async () => {
-  dispatch({ type: "add_loading" });
   const token = await localStorage.getItem("token");
   const refreshToken = await localStorage.getItem("refreshToken");
 
   if (token) {
     dispatch({ type: "signin", payload: { token, refreshToken } });
   }
-  dispatch({ type: "remove_loading" });
 };
 
 export const { Context, Provider } = createDataContext(
@@ -361,5 +368,5 @@ export const { Context, Provider } = createDataContext(
     confirmForgotPassword,
     getToken,
   },
-  { token: null, refreshToken: null, errorMessage: "", isLoading: true }
+  { token: null, refreshToken: null, errorMessage: "", isLoading: false }
 );
