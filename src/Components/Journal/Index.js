@@ -256,10 +256,10 @@ export default function Index() {
             editor="date"
             filter="date"
             cell={CustomDate}
-            width="120px"
+            width="100%"
             filterCell={MyDateFilterCell}
             filter="date"
-            filterable={true}
+            filterable={false}
             editable={false}
           />
           <Column field="ticker" title="Ticker" filterable={false} filter="text" editable={true} />
@@ -296,7 +296,7 @@ export default function Index() {
             editor="date"
             format="{0:d}"
             cell={CustomDate}
-            width="120px"
+            width="100%"
             filterable={false}
             editable={false}
           />

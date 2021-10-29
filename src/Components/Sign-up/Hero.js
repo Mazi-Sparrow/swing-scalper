@@ -19,7 +19,7 @@ export default function Hero() {
             <Card sx={{ maxWidth: 720, minWidth: 550 }} className="card-main">
               <CardContent>
                 <Typography variant="body1" className="RELIABLE">
-                  SWINGSCLAP
+                  SWINGSCALP
                 </Typography>
 
                 <Typography variant="body1" className="RELIABLE2">
