@@ -1,15 +1,11 @@
 import * as React from "react";
 import { RadialGauge } from "@progress/kendo-react-gauges";
 
-export const RadialGaugeComponent = () => {
-  const [value, setValue] = React.useState(0);
-  React.useEffect(() => {
-    setInterval(() => {
-      setValue(Math.ceil(Math.random() * 100));
-    }, 1000);
-  }, []);
+export const RadialGaugeComponent = (props) => {
+  const { watchList } = props;
+  console.log(watchList.rsi14);
   const radialOptions = {
-    value: value,
+    value: watchList.rsi14,
     shape: "arrow",
     scale: {
       minorUnit: 5,

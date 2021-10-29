@@ -47,12 +47,8 @@ export default function Index() {
   const handleSearch = async () => {
     const response = await getWatchlist({ token, ticker });
     if (response) setStateWatchList(response);
-    setTicker("");
   };
 
-  console.log("sm20: ", stateWatchList.sma20);
-  console.log("buy price ", stateWatchList.buyPrice);
-  console.log("sma200: ", stateWatchList.sma200);
   return (
     <>
       <Navbar />
@@ -74,6 +70,7 @@ export default function Index() {
               sx={{ p: "10px", alignSelf: "center" }}
               aria-label="search"
               onClick={() => handleSearch()}
+              disabled={ticker.length == 0}
             >
               <Button
                 style={{ backgroundColor: "#9F3D65", color: "white" }}
@@ -118,19 +115,19 @@ export default function Index() {
               </MaterialGrid>
             ) : null}
 
-            {stateWatchList.buyZone ? (
+            {/* {stateWatchList.buyZone ? (
               <MaterialGrid item sx={{ maxWidth: 345, flexBasis: 300 }} className="guage">
                 <CardHeader title="Buy Zone" />
                 <MyLinearGaugeComponent watchList={stateWatchList} />
               </MaterialGrid>
-            ) : null}
+            ) : null} */}
 
-            {stateWatchList.buyTrigger ? (
+            {/* {stateWatchList.buyTrigger ? (
               <MaterialGrid item sx={{ maxWidth: 345, flexBasis: 300 }} className="guage">
                 <CardHeader title="Buy Tigger" />
                 <MyArcGaugeComponent watchList={stateWatchList} />
               </MaterialGrid>
-            ) : null}
+            ) : null} */}
           </MaterialGrid>
         </MaterialGrid>
       </MaterialGrid>
