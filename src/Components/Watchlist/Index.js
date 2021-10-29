@@ -124,19 +124,19 @@ export default function Index() {
               </MaterialGrid>
             ) : null}
 
-            {/* {stateWatchList.buyZone ? (
+            {stateWatchList.buyZone ? (
               <MaterialGrid item sx={{ maxWidth: 345, flexBasis: 300 }} className="guage">
                 <CardHeader title="Buy Zone" />
                 <MyLinearGaugeComponent watchList={stateWatchList} />
               </MaterialGrid>
-            ) : null} */}
+            ) : null}
 
-            {/* {stateWatchList.buyTrigger ? (
+            {stateWatchList.buyTrigger ? (
               <MaterialGrid item sx={{ maxWidth: 345, flexBasis: 300 }} className="guage">
                 <CardHeader title="Buy Tigger" />
                 <MyArcGaugeComponent watchList={stateWatchList} />
               </MaterialGrid>
-            ) : null} */}
+            ) : null}
           </MaterialGrid>
         </MaterialGrid>
       </MaterialGrid>

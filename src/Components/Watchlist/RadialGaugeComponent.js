@@ -3,12 +3,17 @@ import { RadialGauge } from "@progress/kendo-react-gauges";
 
 export const RadialGaugeComponent = (props) => {
   const { watchList } = props;
+
+  const [value, setValue] = React.useState(0);
+
+  React.useEffect(() => {}, []);
+
   console.log(watchList.rsi14);
   const radialOptions = {
     value: watchList.rsi14,
     shape: "arrow",
     scale: {
-      minorUnit: 0,
+      minorUnit: 1,
       majorUnit: 20,
       max: 100,
       ranges: [
