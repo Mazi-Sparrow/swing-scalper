@@ -1,29 +1,12 @@
 :root {
   /* --main-bg: #262e3a; */
-  --secondary-bg: #3e4b5b;
+  --secondary-bg: #702e49;
   --main-text: #fff;
   --placeholder: #939aa3;
   --placeholder-focused: #ccc;
-  --primary-btn: #6eedb6;
-  --btn-text: #1c2026;
+  --primary-btn: #b95e83;
+  --btn-text: #ffffff;
   --primary-btn-focus: rgb(70, 203, 145);
-}
-
-body {
-  color: #252857;
-  font-family: "Raleway", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue",
-    sans-serif;
-  font-size: 16px;
-  line-height: 1.4;
-  font-weight: 300;
-  -webkit-font-smoothing: antialiased;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  outline: none;
 }
 
 a {
@@ -41,7 +24,7 @@ a {
 }
 
 .ex2-wrap {
-  max-width: 480px;
+  max-width: 40%;
   margin: auto;
 }
 
@@ -55,11 +38,11 @@ a {
 }
 
 .ex2-label {
+  width: 20%;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 700;
   color: var(--main-text);
-  flex-basis: 80px;
-  padding: 4px 0 4px 16px;
+  padding: 4px 0 4px 10px;
 }
 
 .ex2-input {
@@ -106,10 +89,10 @@ a {
   transition: 0.2s;
   cursor: pointer;
 }
-.ex2-button:hover,
+/* .ex2-button:hover,
 .ex2-button:focus {
   background: var(--primary-btn-focus);
-}
+} */
 
 .ex2-button.submit {
   background-image: url(data:image/svg+xml;base64,PHN2ZyBjbGFzcz0ic3ZnLWxvYWRlciIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTUiIGhlaWdodD0iNTUiIHZpZXdCb3g9IjAgMCA4MCA4MCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTQwIDcyQzIyLjQgNzIgOCA1Ny42IDggNDBTMjIuNCA4IDQwIDhzMzIgMTQuNCAzMiAzMmMwIDEuMS0uOSAyLTIgMnMtMi0uOS0yLTJjMC0xNS40LTEyLjYtMjgtMjgtMjhTMTIgMjQuNiAxMiA0MHMxMi42IDI4IDI4IDI4YzEuMSAwIDIgLjkgMiAycy0uOSAyLTIgMnoiPjxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZVR5cGU9InhtbCIgYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIGZyb209IjAgNDAgNDAiIHRvPSIzNjAgNDAgNDAiIGR1cj0iMC42cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz48L3BhdGg+PC9zdmc+);

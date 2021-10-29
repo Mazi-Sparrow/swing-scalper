@@ -92,7 +92,7 @@ const getIframeStyles = (theme) => {
 };
 
 export default function Index(props) {
-  const { planId } = props;
+  const { plan } = props;
 
   const themes = THEMES;
   const cardRef = React.createRef();
@@ -101,6 +101,7 @@ export default function Index(props) {
     error: "",
     loading: false,
     firstName: "",
+    lastName: "",
     email: "",
     phone: "",
     // To change styles dynamically
@@ -149,13 +150,24 @@ export default function Index(props) {
         <div className="ex2-wrap">
           <div className="ex2-fieldset">
             <label className="ex2-field">
-              <span className="ex2-label">Name</span>
+              <span className="ex2-label">First Name</span>
               <input
                 name="firstName"
                 className={state.firstName ? "ex2-input val" : "ex2-input"}
                 type="text"
-                placeholder="John Doe"
+                placeholder="John"
                 value={state.firstName}
+                onChange={handleChange}
+              />
+            </label>
+            <label className="ex2-field">
+              <span className="ex2-label">Last Name</span>
+              <input
+                name="lastName"
+                className={state.lastName ? "ex2-input val" : "ex2-input"}
+                type="text"
+                placeholder="Doe"
+                value={state.lastName}
                 onChange={handleChange}
               />
             </label>
@@ -198,7 +210,7 @@ export default function Index(props) {
             className={state.loading ? "submit ex2-button" : "ex2-button"}
             onClick={tokenize}
           >
-            Pay $100 & Tokenize
+            Pay ${plan.price}
           </button>
           {state.error && (
             <div className="error" role="alert">

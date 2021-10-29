@@ -10,13 +10,17 @@
   column-gap: 5rem;
 }
 
+.card:hover {
+  box-shadow: 5px 5px 10px 5px #ddd;
+}
 .card {
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 5px;
   box-shadow: 1px 1px 10px 1px #ddd;
   margin-bottom: 1rem;
-  max-width: 300px;
+  height: 500px;
+  max-width: 350px;
   padding: 1rem 0;
   position: relative;
   width: 100%;

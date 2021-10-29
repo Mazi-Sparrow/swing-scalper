@@ -50,70 +50,68 @@ export default function ForgotPassword() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <Box
+        sx={{
+          marginTop: 8,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        {state.errorMessage ? (
+          <Typography style={{ color: "red" }}>{state.errorMessage}</Typography>
+        ) : null}
+        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <LockOutlinedIcon />
+        </Avatar>
+
+        <Typography component="h1" variant="h5">
+          Forgot Password
+        </Typography>
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            autoFocus
+          />
+
+          <CardActions>
+            <Button size="small" color="primary" type="submit">
+              Forgot Password
+            </Button>
+          </CardActions>
+
+          <Grid container>
+            <Grid item>
+              <Link href="/" variant="body2">
+                {"Sign In"}
+              </Link>
+            </Grid>
+
+            <Grid item style={{ marginLeft: 10 }}>
+              <Link href="/confirmForgotPassword" variant="body2">
+                {"Confirm Forgot Password"}
+              </Link>
+            </Grid>
+          </Grid>
+        </Box>
+
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 2,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
           }}
-        >
-          {state.errorMessage ? (
-            <Typography style={{ color: "red" }}>{state.errorMessage}</Typography>
-          ) : null}
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-
-          <Typography component="h1" variant="h5">
-            Forgot Password
-          </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-
-            <CardActions>
-              <Button size="small" color="primary" type="submit">
-                Forgot Password
-              </Button>
-            </CardActions>
-
-            <Grid container>
-              <Grid item>
-                <Link href="/" variant="body2">
-                  {"Sign In"}
-                </Link>
-              </Grid>
-
-              <Grid item style={{ marginLeft: 10 }}>
-                <Link href="/confirmForgotPassword" variant="body2">
-                  {"Confirm Forgot Password"}
-                </Link>
-              </Grid>
-            </Grid>
-          </Box>
-
-          <Box
-            sx={{
-              marginTop: 2,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          ></Box>
-        </Box>
-      </Container>
-    </ThemeProvider>
+        ></Box>
+      </Box>
+    </Container>
   );
 }

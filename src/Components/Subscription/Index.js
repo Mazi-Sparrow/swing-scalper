@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "@mui/material/Button";
 
 import Navbar from "../Dashboard/navbar";
 import Footer from "./Footer";
@@ -14,22 +15,22 @@ export default function Index() {
     state: { token },
   } = React.useContext(AuthContext);
 
-  const [planId, setPlanId] = React.useState(null);
+  const [plan, setPlan] = React.useState(null);
 
   function handleClick(id) {
-    setPlanId(id);
+    setPlan(id);
   }
 
   return (
     <div>
       <Navbar />
 
-      {planId ? (
-        <Checkout planId={planId} />
+      {plan ? (
+        <Checkout plan={plan} />
       ) : (
         <div className="app-wrapper">
           {cardsData.map((props) => {
-            return <PricingCard {...props} key={props.id} clickMe={() => handleClick(props.id)} />;
+            return <PricingCard {...props} key={props.id} clickMe={() => handleClick(props)} />;
           })}
         </div>
       )}
@@ -77,7 +78,15 @@ function CardFeatures({ data }) {
 function CardAction({ clickMe }) {
   return (
     <div className="card-action">
-      <button onClick={clickMe}>BUY NOW</button>
+      <Button
+        style={{ backgroundColor: "#9F3D65", color: "white", width: "150px", fontSize: "1.2rem" }}
+        variant="contained"
+        href="#"
+        onClick={clickMe}
+      >
+        Buy Now
+      </Button>
+      {/* <button onClick={clickMe}>BUY NOW</button> */}
     </div>
   );
 }

@@ -118,12 +118,10 @@ export default function Index() {
       <MaterialGrid sx={{ marginTop: "5rem" }} container>
         <MaterialGrid item xs={12}>
           <MaterialGrid container justifyContent="space-around" spacing={0} style={{ padding: 10 }}>
-            {stateWatchList.rsi14 <= stateWatchList.sma200 ? (
-              <MaterialGrid className="guage" item sx={{ maxWidth: 345, flexBasis: 350 }}>
-                <CardHeader title="RSI" />
-                <MyRadialGaugeComponent watchList={stateWatchList} />
-              </MaterialGrid>
-            ) : null}
+            <MaterialGrid className="guage" item sx={{ maxWidth: 345, flexBasis: 350 }}>
+              <CardHeader title="RSI" />
+              <MyRadialGaugeComponent watchList={stateWatchList} />
+            </MaterialGrid>
 
             {stateWatchList.buyZone ? (
               <MaterialGrid item sx={{ maxWidth: 345, flexBasis: 300 }} className="guage">

@@ -45,70 +45,68 @@ export default function SignIn() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <Box
+        sx={{
+          marginTop: 1,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        {state.errorMessage ? (
+          <Typography style={{ color: "red" }}>{state.errorMessage}</Typography>
+        ) : null}
+        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            autoFocus
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            name="code"
+            label="Code"
+            type="text"
+            id="code"
+            autoComplete="confirm-code"
+          />
+
+          <CardActions>
+            <Button size="small" color="primary" type="submit">
+              Confirm Email
+            </Button>
+          </CardActions>
+
+          <Grid container>
+            <Grid item>
+              <Link href="/" variant="body2">
+                {"Sign In"}
+              </Link>
+            </Grid>
+          </Grid>
+        </Box>
+
         <Box
           sx={{
-            marginTop: 1,
+            marginTop: 2,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
           }}
-        >
-          {state.errorMessage ? (
-            <Typography style={{ color: "red" }}>{state.errorMessage}</Typography>
-          ) : null}
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="code"
-              label="Code"
-              type="text"
-              id="code"
-              autoComplete="confirm-code"
-            />
-
-            <CardActions>
-              <Button size="small" color="primary" type="submit">
-                Confirm Email
-              </Button>
-            </CardActions>
-
-            <Grid container>
-              <Grid item>
-                <Link href="/" variant="body2">
-                  {"Sign In"}
-                </Link>
-              </Grid>
-            </Grid>
-          </Box>
-
-          <Box
-            sx={{
-              marginTop: 2,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          ></Box>
-        </Box>
-      </Container>
-    </ThemeProvider>
+        ></Box>
+      </Box>
+    </Container>
   );
 }
