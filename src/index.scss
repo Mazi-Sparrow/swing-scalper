@@ -144,9 +144,9 @@ body {
 }
 .hero-section {
   .card-main {
-    margin-top: 140px;
+    margin-top: 50px;
     @include tablet {
-      margin-top: 100px;
+      margin-top: 30px;
     }
   }
   .MuiTypography-h5 {
@@ -193,17 +193,21 @@ body {
     }
   }
   .RELIABLE {
+    text-overflow: ellipsis;
     font-family: Roboto-bold;
+    font-weight: 700;
     font-style: normal;
     font-size: 34px;
-    line-height: 36px;
+    line-height: 40px;
     color: $primary;
     text-align: center;
     letter-spacing: 0.15px;
   }
   .RELIABLE2 {
+    text-overflow: ellipsis;
     font-family: Roboto;
     font-style: normal;
+    font-weight: 700;
     font-size: 20px;
     line-height: 24px;
     color: $primary;
@@ -211,9 +215,10 @@ body {
     letter-spacing: 0.15px;
   }
   .RELIABLE3 {
+    text-overflow: ellipsis;
     font-family: Roboto Condensed;
     font-style: normal;
-    font-weight: normal;
+    font-weight: 600;
     font-size: 14px;
     line-height: 20px;
     /* or 143% */
@@ -231,6 +236,7 @@ body {
     flex-grow: 0;
     margin: 0px 0px;
   }
+
   .plan {
     color: #37b400;
   }

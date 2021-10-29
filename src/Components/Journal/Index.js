@@ -264,12 +264,7 @@ export default function Index() {
           />
           <Column field="ticker" title="Ticker" filterable={false} filter="text" editable={true} />
           <Column field="quantity" title="Qty" filterable={false} editable={true} />
-          <Column
-            field="buyPrice"
-            title="Avg Price $"
-            filterable={false}
-            editable={true}
-          />
+          <Column field="buyPrice" title="Avg Price $" filterable={false} editable={true} />
           <Column field="stopLoss" title="Stop Loss $" filterable={false} editable={true} />
           <Column field="priceTargets" title="Price Target $" filterable={false} editable={true} />
           <Column
@@ -279,12 +274,7 @@ export default function Index() {
             filterable={false}
             width="100%"
           />
-          <Column
-            field="tradeReward"
-            title="Reward $"
-            editable={false}
-            filterable={false}
-          />
+          <Column field="tradeReward" title="Reward $" editable={false} filterable={false} />
           <Column field="profitLossPercentage" title="P/L %" editable={false} filterable={false} />
           <Column
             field="tradeStatus"
@@ -309,14 +299,6 @@ export default function Index() {
             width="120px"
             filterable={false}
             editable={false}
-          />
-
-          <Column
-            field="strategy"
-            title="Strategy"
-            width="100px"
-            editable={true}
-            filterable={false}
           />
         </Grid>
       </Box>
