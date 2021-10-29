@@ -61,6 +61,12 @@ export default function ButtonAppBar() {
                 TRADE STREAMS
               </Button>
             </li>
+
+            <li>
+              <Button color="inherit" href="/subscription">
+                Subscription
+              </Button>
+            </li>
           </ul>
         </AppBarSection>
 
