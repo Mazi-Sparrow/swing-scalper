@@ -7,11 +7,15 @@
   height: 100vh;
   padding: 2rem;
   overflow: auto;
-  column-gap: 5rem;
+  column-gap: 3rem;
 }
 
 .card:hover {
   box-shadow: 5px 5px 10px 5px #ddd;
+}
+
+.card-action {
+  margin-top: 50px;
 }
 .card {
   background-color: #fff;
@@ -69,7 +73,7 @@
   }
 
   &-billing {
-    background-color: #ecf0f1;
+    background-color: #cbc3e3;
 
     p {
       margin-bottom: 0.5rem;

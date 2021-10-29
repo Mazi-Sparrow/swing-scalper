@@ -49,12 +49,12 @@ function CardDescription({ title, description }) {
   );
 }
 
-function CardBilling({ price, recurrency }) {
+function CardBilling({ price, recurrency, duration }) {
   return (
     <div className="card-billing">
       <p>
         <strong className="price">$ {price}</strong>
-        <strong> / mo.</strong>
+        <strong> / {duration}.</strong>
       </p>
       <p>
         <span className="recurrency">Billed Anually or $ {recurrency}/monthly</span>
@@ -79,27 +79,31 @@ function CardAction({ clickMe }) {
   return (
     <div className="card-action">
       <Button
-        style={{ backgroundColor: "#9F3D65", color: "white", width: "150px", fontSize: "1.2rem" }}
+        style={{
+          backgroundColor: "#9F3D65",
+          color: "white",
+          width: "150px",
+          fontSize: "1.2rem",
+        }}
         variant="contained"
         href="#"
         onClick={clickMe}
       >
         Buy Now
       </Button>
-      {/* <button onClick={clickMe}>BUY NOW</button> */}
     </div>
   );
 }
 
 function PricingCard(props) {
-  const { type, title, description, price, recurrency, mostPopular, data, clickMe, id } = props;
+  const { type, title, description, price, recurrency, duration, mostPopular, data, clickMe, id } =
+    props;
 
   return (
     <div className={`card pricing-card ${type}`}>
       {mostPopular ? <span className="most-popular">Most Popular</span> : null}
       <CardDescription title={title} description={description} />
-      <CardBilling price={price} recurrency={recurrency} />
-      <CardFeatures data={data} />
+      <CardBilling price={price} recurrency={recurrency} duration={duration} />
       <CardAction clickMe={clickMe} />
     </div>
   );
@@ -114,6 +118,7 @@ const cardsData = [
     price: 12.99,
     recurrency: 12.99,
     mostPopular: false,
+    duration: "month",
     data: [],
   },
   {
@@ -123,7 +128,19 @@ const cardsData = [
     description: "SwingScalper - $33.00 a Month",
     price: 33.0,
     recurrency: 33.0,
-    mostPopular: true,
+    mostPopular: false,
+    duration: "month",
+    data: [],
+  },
+  {
+    id: "SwingScalper-USD-Yearly",
+    type: "basic",
+    title: "SwingScalper",
+    description: "SwingScalper USD Yearly",
+    price: 360.0,
+    recurrency: 360.0,
+    mostPopular: false,
+    duration: "year",
     data: [],
   },
 ];
