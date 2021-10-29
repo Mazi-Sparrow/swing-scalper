@@ -146,10 +146,10 @@ export default function Index() {
       const isSucess = await createJournal({
         token,
         quantity: parseInt(dataItem.quantity),
-        buyPrice: parseInt(dataItem.buyPrice),
-        pTarget: [parseInt(dataItem.priceTargets)],
+        buyPrice: parseFloat(dataItem.buyPrice),
+        priceTargets: [parseFloat(dataItem.priceTargets)],
         ticker: dataItem.ticker,
-        stopLoss: parseInt(dataItem.stopLoss),
+        stopLoss: parseFloat(dataItem.stopLoss),
         strategy: dataItem.strategy,
       });
     }

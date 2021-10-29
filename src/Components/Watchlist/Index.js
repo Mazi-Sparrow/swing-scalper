@@ -19,6 +19,7 @@ import { ArcGaugeComponent } from "./ArcGaugeComponent";
 import { Context as AuthContext } from "../../context/AuthContext";
 import { Context as WatchListContext } from "../../context/WatchListContext";
 
+
 const MyLinearGaugeComponent = (props) => {
   return <LinearGaugeComponent {...props} />;
 };
@@ -51,7 +52,7 @@ export default function Index() {
   };
 
   console.log("sm20: ", stateWatchList.sma20);
-  console.log("buy price ", stateWatchList.buyPrice);
+  console.log("rsi14: ", stateWatchList.rsi14);
   console.log("sma200: ", stateWatchList.sma200);
   return (
     <>
@@ -100,10 +101,14 @@ export default function Index() {
             data={[{ ...stateWatchList }]}
           >
             <Column field="ticker" title="Ticker" filterable={false} editable={false} />
-            <Column field="buyPrice" title="Price" filterable={false} editable={false} />
-            <Column field="stopLoss" title="Stop Loss" filterable={false} editable={false} />
-            <Column field="priceTargets" title="Price Target" filterable={false} editable={false} />
-            <Column field="rsi14" title="Risk/Reward" filterable={false} editable={false} />
+            <Column field="buyPrice" title="Price $" filterable={false} editable={false} />
+            <Column field="stopLoss" title="Stop Loss $" filterable={false} editable={false} />
+            <Column field="priceTargets" title="Price Target $" filterable={false} editable={false} />
+            <Column field="rsi14" title="RSI" filterable={false} editable={false} />
+            <Column field="tradeRisk" title="Risk $" filterable={false} editable={false} />
+            <Column field="tradeReward" title="Reward $" filterable={false} editable={false} />
+            <Column field="buyZone" title="Buy Zone" filterable={false} editable={false} />
+            <Column field="buyTrigger" title="Buy Trigger" filterable={false} editable={false} />
           </Grid>
         </Box>
       </div>
@@ -111,9 +116,9 @@ export default function Index() {
       <MaterialGrid sx={{ marginTop: "5rem" }} container>
         <MaterialGrid item xs={12}>
           <MaterialGrid container justifyContent="space-around" spacing={0} style={{ padding: 10 }}>
-            {stateWatchList.buyPrice <= stateWatchList.sma200 ? (
+            {stateWatchList.rsi14 <= stateWatchList.sma200 ? (
               <MaterialGrid className="guage" item sx={{ maxWidth: 345, flexBasis: 350 }}>
-                <CardHeader title="Buy Price" />
+                <CardHeader title="RSI" />
                 <MyRadialGaugeComponent watchList={stateWatchList} />
               </MaterialGrid>
             ) : null}

@@ -53,6 +53,8 @@ const getWatchlist =
               buyZone
               ticker
               stopLoss
+              tradeRisk
+              tradeReward
               buyTrigger
               sma20
               sma200

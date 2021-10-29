@@ -134,8 +134,9 @@ const updateJournal =
 
 const createJournal =
   (dispatch) =>
-  async ({ token, ticker, quantity, buyPrice, stopLoss, pTarget, strategy }) => {
-    try {
+  async ({ token, ticker, quantity, buyPrice, stopLoss, priceTargets, strategy }) => {
+    console.log(token, ticker, quantity, buyPrice, stopLoss, priceTargets, strategy);  
+      try {
       const response = await graphqlClient.request(
         gql`
           mutation createJournal(
@@ -161,7 +162,7 @@ const createJournal =
             }
           }
         `,
-        { ticker, quantity, buyPrice, stopLoss, pTarget, strategy },
+        { ticker, quantity, buyPrice, stopLoss, priceTargets, strategy },
         { Authorization: `Bearer ${token}` }
       );
 
