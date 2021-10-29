@@ -36,7 +36,7 @@ export default function Index() {
     state: { token },
   } = React.useContext(AuthContext);
   const {
-    state: { watchList, errorMessage, isLoading },
+    state: { errorMessage, isLoading },
     getWatchlist,
   } = React.useContext(WatchListContext);
 

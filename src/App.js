@@ -31,8 +31,6 @@ window.Chargebee.init({
   publishableKey: process.env.REACT_APP_CHARGEBEE_KEY,
 });
 
-console.log(window.Chargebee.getPortalSections());
-
 function Root() {
   const { state } = React.useContext(AuthContext);
   const authFlow = (

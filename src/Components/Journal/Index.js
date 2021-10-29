@@ -165,7 +165,6 @@ export default function Index() {
         sellPrice: dataItem.sellPrice,
         token,
       });
-      console.log(isUpdated);
     }
     setData(newData);
   };
@@ -312,7 +311,7 @@ export default function Index() {
             filterable={false}
             editable={false}
           />
-          
+
           <Column
             field="strategy"
             title="Strategy"

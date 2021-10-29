@@ -44,6 +44,7 @@ const authReducers = (state, action) => {
 
 const signin = (dispatch) => async (username, password) => {
   try {
+    dispatch({ type: "add_loading" });
     const response = await graphqlClient.request(
       gql`
         query login($username: String!, $password: String!) {
@@ -65,7 +66,6 @@ const signin = (dispatch) => async (username, password) => {
       });
     }
     if (!response.logIn.errors && response.logIn.idToken) {
-      console.log(response.logIn.idToken);
       dispatch({
         type: "signin",
         payload: { token: response.logIn.idToken, refreshToken: response.logIn.idToken },
@@ -74,6 +74,8 @@ const signin = (dispatch) => async (username, password) => {
       await localStorage.setItem("refreshToken", response.logIn.refreshToken);
       await localStorage.setItem("email", username);
     }
+
+    dispatch({ type: "remove_loading" });
   } catch (error) {
     dispatch({
       type: "add_error",
@@ -86,6 +88,7 @@ const signup =
   (dispatch) =>
   async ({ email, phone, firstName, lastName, password, confirmPassword }) => {
     try {
+      dispatch({ type: "add_loading" });
       const response = await graphqlClient.request(
         gql`
           mutation createUser(
@@ -115,6 +118,7 @@ const signup =
         {}
       );
 
+      dispatch({ type: "remove_loading" });
       if (
         !response.createUser.success &&
         response.createUser.errors &&
@@ -193,6 +197,7 @@ const getToken = (dispatch) => async () => {
 const confirmEmail =
   (dispatch) =>
   async ({ email, code }) => {
+    dispatch({ type: "add_loading" });
     try {
       const response = await graphqlClient.request(
         gql`
@@ -206,6 +211,8 @@ const confirmEmail =
         { email, code },
         {}
       );
+
+      dispatch({ type: "remove_loading" });
       if (
         !response.confirmUser.success &&
         response.confirmUser.errors &&
@@ -317,10 +324,12 @@ const confirmForgotPassword =
   };
 
 const logout = (dispatch) => async () => {
+  dispatch({ type: "add_loading" });
   await localStorage.removeItem("token");
   await localStorage.removeItem("email");
   await localStorage.removeItem("refreshToken");
 
+  dispatch({ type: "remove_loading" });
   dispatch({ type: "logout" });
 };
 
@@ -329,6 +338,7 @@ const clearErrorMessage = (dispatch) => () => {
 };
 
 const tryLocalSignin = (dispatch) => async () => {
+  dispatch({ type: "add_loading" });
   const token = await localStorage.getItem("token");
   const refreshToken = await localStorage.getItem("refreshToken");
 

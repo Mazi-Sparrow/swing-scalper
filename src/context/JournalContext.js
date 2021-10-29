@@ -185,5 +185,5 @@ const createJournal =
 export const { Context, Provider } = createDataContext(
   journalReducers,
   { listJournals, updateJournal, createJournal },
-  { journals: [], errorMessage: "", isLoading: true }
+  { journals: [], errorMessage: "", isLoading: false }
 );

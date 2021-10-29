@@ -1,8 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import { CardComponent } from "@chargebee/chargebee-js-react-wrapper";
 
-import Navbar from "../Dashboard/navbar";
-import Footer from "./Footer";
 import "./checkout.css";
 
 import { Context as AuthContext } from "../../context/AuthContext";
@@ -96,10 +94,6 @@ const getIframeStyles = (theme) => {
 export default function Index(props) {
   const { planId } = props;
 
-  const {
-    state: { token },
-  } = React.useContext(AuthContext);
-
   const themes = THEMES;
   const cardRef = React.createRef();
   const [state, setState] = React.useState({
@@ -126,23 +120,21 @@ export default function Index(props) {
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
 
-    console.log(name, value);
     setState({
       [name]: value,
     });
   };
 
   const tokenize = () => {
-    console.log(planId);
     setState({ loading: true });
     // Call tokenize method using card component's ref
     cardRef.current
       .tokenize({})
       .then((data) => {
-        console.log(data);
         setState({ loading: false, token: data.token, error: "" });
       })
       .catch((error) => {
+        console.log(error);
         setState({
           loading: false,
           token: "",

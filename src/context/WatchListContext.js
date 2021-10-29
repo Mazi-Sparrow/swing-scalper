@@ -66,9 +66,9 @@ const getWatchlist =
         { ticker },
         { Authorization: `Bearer ${token}` }
       );
+      dispatch({ type: "remove_loading" });
       if (response.getWatchlist && response.getWatchlist.success && !response.getWatchlist.errors) {
         dispatch({ action: "add_watchList", payload: response.getWatchlist });
-        dispatch({ type: "remove_loading" });
         dispatch({ type: "clear_errorMessage" });
         return response.getWatchlist;
       }
@@ -92,5 +92,5 @@ export const { Context, Provider } = createDataContext(
     clearErrorMessage,
     getWatchlist,
   },
-  { watchList: null, errorMessage: "", isLoading: true }
+  { watchList: null, errorMessage: "", isLoading: false }
 );
