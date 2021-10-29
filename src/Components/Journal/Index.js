@@ -246,14 +246,14 @@ export default function Index() {
               style={{ padding: "5px 10px" }}
               onClick={addNew}
             >
-              Add new
+              New Trade
             </Button>
           </GridToolbar>
-          <Column cell={CommandCell} width="180px" filterable={false} />
+          <Column cell={CommandCell} width="120px" filterable={false} />
 
           <Column
             field="createdAt"
-            title="Created At"
+            title="Date Openned"
             editor="date"
             filter="date"
             cell={CustomDate}
@@ -263,7 +263,7 @@ export default function Index() {
             filterable={true}
             editable={false}
           />
-          <Column field="ticker" title="Ticker" filterable={true} filter="text" editable={true} />
+          <Column field="ticker" title="Ticker" filterable={false} filter="text" editable={true} />
           <Column field="quantity" title="Qty" filterable={false} editable={true} />
           <Column
             field="buyPrice"
@@ -305,23 +305,14 @@ export default function Index() {
           />
           <Column
             field="updatedAt"
-            title="Updated At"
+            title="Date Closed"
             editor="date"
             format="{0:d}"
             cell={CustomDate}
             filterable={false}
             editable={false}
           />
-          <Column
-            field="sellDate"
-            title="Sell Date"
-            editor="date"
-            format="{0:d}"
-            cell={CustomDate}
-            filterable={true}
-            filter="date"
-            editable={false}
-          />
+          
           <Column
             field="strategy"
             title="Strategy"
