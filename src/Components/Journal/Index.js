@@ -248,7 +248,7 @@ export default function Index() {
               New Trade
             </Button>
           </GridToolbar>
-          <Column cell={CommandCell} width="120px" filterable={false} />
+          <Column cell={CommandCell} width="100px" filterable={false} />
 
           <Column
             field="createdAt"
@@ -256,7 +256,7 @@ export default function Index() {
             editor="date"
             filter="date"
             cell={CustomDate}
-            width={300}
+            width="120px"
             filterCell={MyDateFilterCell}
             filter="date"
             filterable={true}
@@ -268,7 +268,6 @@ export default function Index() {
             field="buyPrice"
             title="Avg Price $"
             filterable={false}
-            filter="numeric"
             editable={true}
           />
           <Column field="stopLoss" title="Stop Loss $" filterable={false} editable={true} />
@@ -278,20 +277,19 @@ export default function Index() {
             title="Risk $"
             editable={false}
             filterable={false}
-            width="100px"
+            width="100%"
           />
           <Column
             field="tradeReward"
             title="Reward $"
             editable={false}
             filterable={false}
-            filter="numeric"
           />
           <Column field="profitLossPercentage" title="P/L %" editable={false} filterable={false} />
           <Column
             field="tradeStatus"
             title="Status"
-            width="100px"
+            width="100%"
             editable={false}
             filterable={false}
           />
@@ -308,6 +306,7 @@ export default function Index() {
             editor="date"
             format="{0:d}"
             cell={CustomDate}
+            width="120px"
             filterable={false}
             editable={false}
           />
@@ -315,7 +314,7 @@ export default function Index() {
           <Column
             field="strategy"
             title="Strategy"
-            width="150px"
+            width="100px"
             editable={true}
             filterable={false}
           />
