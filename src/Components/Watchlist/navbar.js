@@ -35,8 +35,8 @@ export default function ButtonAppBar() {
               <Button color="inherit" href="/watchlist">
                 WATCHLIST
               </Button>
-              <Button color="inherit" href="/trade">
-                TRADE STREAMS
+              <Button color="inherit" href="/information">
+                Information
               </Button>
               <Button color="inherit" href="/subscription">
                 Subscription

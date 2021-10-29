@@ -57,8 +57,8 @@ export default function ButtonAppBar() {
             </li>
 
             <li>
-              <Button color="inherit" href="/trade">
-                TRADE STREAMS
+              <Button color="inherit" href="/information">
+                Information
               </Button>
             </li>
 

@@ -8,7 +8,6 @@ import Signin from "./Components/Sign-in/Index";
 import Signup from "./Components/Sign-up/Index";
 import Dashboard from "./Components/Dashboard/Index";
 import Journal from "./Components/Journal/Index";
-import Trade from "./Components/Trade/Index";
 import Watchlist from "./Components/Watchlist/Index";
 import { Redirect, Route, Switch } from "react-router-dom";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -23,6 +22,7 @@ import ConfirmUser from "./Components/ConfirmUser/Index";
 import ForgotPassword from "./Components/ForgotPassword/Index";
 import ConfirmForgotPassword from "./Components/ConfirmForgotPassword/Index";
 import Subscription from "./Components/Subscription/Index";
+import Information from "./Components/Information/Index";
 
 Amplify.configure(awsconfig);
 
@@ -59,7 +59,7 @@ function Root() {
         </Route>
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/journal" component={Journal} />
-        <Route path="/trade" component={Trade} />
+        <Route path="/information" component={Information} />
         <Route path="/watchlist" component={Watchlist} />
         <Route path="/subscription" component={Subscription} />
         <Route path="*" exact>

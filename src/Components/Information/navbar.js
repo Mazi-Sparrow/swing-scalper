@@ -35,8 +35,8 @@ export default function ButtonAppBar() {
               <Button color="inherit" href="/watchlist">
                 WATCHLIST
               </Button>
-              <Button color="inherit" href="/information">
-                Information
+              <Button color="inherit" href="/trade">
+                TRADE STREAMS
               </Button>
               <Button color="inherit" href="/subscription">
                 Subscription
@@ -47,11 +47,8 @@ export default function ButtonAppBar() {
               <Button className="trial-btn"> Trial</Button>
             </div>
 
-            <Button size="medium" color="primary">
-              Support
-            </Button>
-            <Button size="medium" color="primary">
-              Logout
+            <Button color="inherit" variant="contained" href="/signup">
+              signup
             </Button>
           </Hidden>
           <Hidden mdUp>
