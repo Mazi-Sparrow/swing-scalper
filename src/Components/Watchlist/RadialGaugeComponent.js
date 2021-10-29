@@ -8,23 +8,33 @@ export const RadialGaugeComponent = (props) => {
     value: watchList.rsi14,
     shape: "arrow",
     scale: {
-      minorUnit: 5,
+      minorUnit: 0,
       majorUnit: 20,
-      max: 180,
+      max: 100,
       ranges: [
         {
-          from: 80,
-          to: 120,
+          from: 0,
+          to: 15,
+          color: "#c20000",
+        },
+        {
+          from: 15,
+          to: 30,
           color: "#ffc700",
         },
         {
-          from: 120,
-          to: 150,
-          color: "#ff7a00",
+          from: 30,
+          to: 70,
+          color: "#33cc33",
         },
         {
-          from: 150,
-          to: 180,
+          from: 70,
+          to: 85,
+          color: "#ffc700",
+        },
+        {
+          from: 85,
+          to: 100,
           color: "#c20000",
         },
       ],
