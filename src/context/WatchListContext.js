@@ -40,6 +40,7 @@ const getWatchlist =
   (dispatch) =>
   async ({ token, ticker }) => {
     try {
+      dispatch({ type: "add_loading" });
       const response = await graphqlClient.request(
         gql`
           query getWatchlist($ticker: String!) {

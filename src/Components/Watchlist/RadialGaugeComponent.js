@@ -6,11 +6,14 @@ export const RadialGaugeComponent = (props) => {
 
   const [value, setValue] = React.useState(0);
 
-  React.useEffect(() => {}, []);
+  React.useEffect(() => {
+    setTimeout(() => {
+      setValue(watchList.rsi14);
+    }, 0);
+  }, []);
 
-  console.log(watchList.rsi14);
   const radialOptions = {
-    value: watchList.rsi14,
+    value: value,
     shape: "arrow",
     scale: {
       minorUnit: 1,

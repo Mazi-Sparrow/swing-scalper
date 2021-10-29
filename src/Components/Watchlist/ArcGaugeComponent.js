@@ -21,13 +21,17 @@ const colors = [
   },
 ];
 
-export const ArcGaugeComponent = () => {
-  const [value, setValue] = React.useState(8);
+export const ArcGaugeComponent = (props) => {
+  const { watchList } = props;
+
+  const [value, setValue] = React.useState(0);
+
   React.useEffect(() => {
-    setInterval(() => {
-      setValue(Math.ceil(Math.random() * 100));
-    }, 1000);
+    setTimeout(() => {
+      setValue(watchList.buyPrice);
+    }, 0);
   }, []);
+
   const arcOptions = {
     value: value,
     colors,

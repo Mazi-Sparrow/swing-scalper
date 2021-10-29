@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 
 import { Grid, GridColumn as Column } from "@progress/kendo-react-grid";
-import { CardHeader } from "@mui/material";
+import { CardHeader, CircularProgress } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import { Grid as MaterialGrid } from "@mui/material";
 
@@ -36,7 +36,7 @@ export default function Index() {
     state: { token },
   } = React.useContext(AuthContext);
   const {
-    state: { watchList, errorMessage },
+    state: { watchList, errorMessage, isLoading },
     getWatchlist,
   } = React.useContext(WatchListContext);
 
@@ -77,6 +77,7 @@ export default function Index() {
                 variant="contained"
                 href="#"
               >
+                {isLoading ? <CircularProgress size={20} /> : null}
                 Search
               </Button>
             </IconButton>
@@ -133,7 +134,7 @@ export default function Index() {
 
             {stateWatchList.buyTrigger ? (
               <MaterialGrid item sx={{ maxWidth: 345, flexBasis: 300 }} className="guage">
-                <CardHeader title="Buy Tigger" />
+                <CardHeader title="Buy Trigger" />
                 <MyArcGaugeComponent watchList={stateWatchList} />
               </MaterialGrid>
             ) : null}

@@ -4,8 +4,16 @@ import { LinearGauge } from "@progress/kendo-react-gauges";
 export const LinearGaugeComponent = (props) => {
   const { watchList } = props;
 
+  const [value, setValue] = React.useState(0);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setValue(watchList.buyPrice);
+    }, 0);
+  }, []);
+
   const linearOptions = {
-    value: watchList.buyPrice || 0,
+    value: value,
     shape: "arrow",
     scale: {
       minorUnit: 5,
