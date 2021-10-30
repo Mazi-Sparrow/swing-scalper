@@ -58,6 +58,7 @@ const listJournals =
                 ticker
                 quantity
                 buyPrice
+                sellPrice
                 stopLoss
                 priceTargets
                 tradeRisk
