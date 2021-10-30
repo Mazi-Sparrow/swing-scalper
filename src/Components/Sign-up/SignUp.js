@@ -47,7 +47,6 @@ export default function SignUp() {
       email,
       password,
       confirmPassword,
-      phone,
       firstName,
       lastName,
     });
