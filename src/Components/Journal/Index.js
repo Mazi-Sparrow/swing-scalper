@@ -223,7 +223,6 @@ export default function Index() {
         <Grid
           pageable={true}
           sortable={true}
-          filterable={true}
           style={{
             height: "100%",
             width: "100%",
