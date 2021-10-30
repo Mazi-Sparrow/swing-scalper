@@ -89,7 +89,7 @@ const signin = (dispatch) => async (username, password) => {
 
 const signup =
   (dispatch) =>
-  async ({ email, phone, firstName, lastName, password, confirmPassword }) => {
+  async ({ email, firstName, lastName, password, confirmPassword }) => {
     try {
       dispatch({ type: "add_loading" });
       const response = await graphqlClient.request(
@@ -98,7 +98,6 @@ const signup =
             $email: String!
             $password: String!
             $confirm: String!
-            $phone: String
             $firstName: String!
             $lastName: String!
           ) {
@@ -107,7 +106,6 @@ const signup =
                 email: $email
                 password: $password
                 confirm: $confirm
-                phone: $phone
                 firstname: $firstName
                 lastname: $lastName
               }
@@ -117,7 +115,7 @@ const signup =
             }
           }
         `,
-        { email, password, confirm: confirmPassword, phone, firstName, lastName },
+        { email, password, confirm: confirmPassword, firstName, lastName },
         {}
       );
 

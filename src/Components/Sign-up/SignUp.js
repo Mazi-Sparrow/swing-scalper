@@ -39,7 +39,6 @@ export default function SignUp() {
 
     const email = data.get("email");
     const password = data.get("password");
-    const phone = data.get("phone");
     const firstName = data.get("firstName");
     const lastName = data.get("lastName");
     const confirmPassword = data.get("confirmPassword");
@@ -128,18 +127,7 @@ export default function SignUp() {
                 id="confirmPassword"
                 autoComplete="new-password"
               />
-            </Grid>
-
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                name="phone"
-                label="phone"
-                type="phone"
-                id="phone"
-                autoComplete="phone"
-              />
-            </Grid>
+            </Grid>    
           </Grid>
 
           <CardActions>
