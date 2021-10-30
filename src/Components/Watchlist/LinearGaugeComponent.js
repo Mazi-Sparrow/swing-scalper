@@ -16,7 +16,7 @@ export const LinearGaugeComponent = (props) => {
     value: value,
     shape: "arrow",
     scale: {
-      minorUnit: 5,
+      minorUnit: watchList.sma20,
       majorUnit: 20,
       max: watchList.sma200,
       ranges: [
