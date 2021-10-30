@@ -1,9 +1,8 @@
 import React from "react";
 import Navbar from "../Dashboard/navbar";
-import { Box } from "@mui/system";
 import Footer from "./Footer";
-import { Grid, GridColumn as Column } from "@progress/kendo-react-grid";
-import { process } from "@progress/kendo-data-query";
+import { Container, Grid, Typography, Paper } from "@mui/material";
+
 const initialDataState = {
   sort: [
     {
@@ -21,7 +20,50 @@ export default function Index() {
   return (
     <div>
       <Navbar />
-      <div style={{ height: "80vh" }}></div>
+
+      <Grid
+        style={{ marginTop: "2rem", marginBottom: "2rem" }}
+        sx={{ flexGrow: 1 }}
+        container
+        spacing={2}
+      >
+        <Grid item xs={12}>
+          <Grid container justifyContent="center" spacing={1}>
+            <Grid item xs={8} sx={{ height: "45vh", backgroundColor: "grey" }}>
+              <Paper
+                elevation={7}
+                variant="elevation"
+                square
+                sx={{ height: "100%", backgroundColor: "grey" }}
+              />
+              <Grid item xs={12}>
+                <Grid container spacing={1} style={{ marginTop: "2rem", marginBottom: "2rem" }}>
+                  <Grid item xs={6}>
+                    <Paper
+                      elevation={7}
+                      variant="elevation"
+                      square
+                      sx={{ height: "100%", backgroundColor: "grey" }}
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Paper
+                      elevation={7}
+                      variant="elevation"
+                      square
+                      sx={{ height: "20vh", backgroundColor: "grey" }}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Grid>
+
+            <Grid item xs={4}>
+              <Paper variant="elevation" elevation={7} square sx={{ height: "70vh" }} />
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
       <Footer />
     </div>
   );
