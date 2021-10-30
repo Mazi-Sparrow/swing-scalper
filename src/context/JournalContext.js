@@ -139,7 +139,6 @@ const createJournal =
         gql`
           mutation createJournal(
             $ticker: String!
-            $strategy: String
             $quantity: Int!
             $buyPrice: Float!
             $priceTargets: [Float!]
