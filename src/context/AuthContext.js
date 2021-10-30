@@ -82,7 +82,7 @@ const signin = (dispatch) => async (username, password) => {
     dispatch({ type: "remove_loading" });
     dispatch({
       type: "add_error",
-      payload: "Error when trying to login, invalid credentials .",
+      payload: "Invalid Request",
     });
   }
 };
@@ -141,7 +141,7 @@ const signup =
 
       dispatch({
         type: "add_error",
-        payload: "Error when trying to register, Please try agian later.",
+        payload: "Invalid Request",
       });
     }
   };
@@ -198,7 +198,7 @@ const getToken = (dispatch) => async () => {
 
     dispatch({
       type: "add_error",
-      payload: "Error when trying to refresh the token, Please try agian later.",
+      payload: "Invalid Request",
     });
   }
 };
@@ -240,7 +240,7 @@ const confirmEmail =
 
       dispatch({
         type: "add_error",
-        payload: "Error when trying to confirm email, Please try agian later.",
+        payload: "Invalid Request",
       });
     }
   };
@@ -280,7 +280,7 @@ const forgotPassword =
 
       dispatch({
         type: "add_error",
-        payload: "Error when trying to confirm email, Please try agian later.",
+        payload: "Invalid Request",
       });
     }
   };
@@ -329,7 +329,7 @@ const confirmForgotPassword =
       dispatch({ type: "remove_loading" });
       dispatch({
         type: "add_error",
-        payload: "Error when trying to confirm email, Please try agian later.",
+        payload: "Invalid Request",
       });
     }
   };

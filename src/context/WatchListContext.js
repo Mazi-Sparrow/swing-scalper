@@ -78,7 +78,7 @@ const getWatchlist =
 
       dispatch({
         type: "add_error",
-        payload: `Error When Fetching Watch List with ticker ${ticker}`,
+        payload: `Invalid Request`,
       });
     }
   };

@@ -82,6 +82,11 @@ const listJournals =
           payload: response.listJournals.items,
         });
         return response.listJournals.items;
+      } else {
+        dispatch({
+          type: "add_error",
+          payload: response.listJournals.errors[0],
+        });
       }
 
       return [];
@@ -89,7 +94,7 @@ const listJournals =
       console.log(error);
       dispatch({
         type: "add_error",
-        payload: "Error when trying to load journals, Please try agian later.",
+        payload: "Invalid Request",
       });
     }
   };
@@ -127,7 +132,7 @@ const updateJournal =
       console.log(error);
       dispatch({
         type: "add_error",
-        payload: "Error when trying to update journal, Please try agian later.",
+        payload: "Invalid Request",
       });
     }
   };
@@ -177,7 +182,7 @@ const createJournal =
       console.log(error);
       dispatch({
         type: "add_error",
-        payload: "Error when trying to Add a new journal, Please try agian later.",
+        payload: "Invalid Request",
       });
     }
   };
