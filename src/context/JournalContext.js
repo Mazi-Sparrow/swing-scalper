@@ -81,14 +81,14 @@ const listJournals =
           type: "list_journals",
           payload: response.listJournals.items,
         });
-        return response.listJournals.items;
-      } else {
+        return response.listJournals.items || [];
+      } else if (response.listJournals.errors && response.listJournals.errors[0]) {
         dispatch({
           type: "add_error",
           payload: response.listJournals.errors[0],
         });
+        return [];
       }
-
       return [];
     } catch (error) {
       console.log(error);
@@ -96,6 +96,7 @@ const listJournals =
         type: "add_error",
         payload: "Invalid Request",
       });
+      return [];
     }
   };
 
