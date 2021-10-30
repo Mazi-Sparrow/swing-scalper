@@ -58,6 +58,7 @@ const listJournals =
                 ticker
                 quantity
                 buyPrice
+                sellPrice
                 stopLoss
                 priceTargets
                 tradeRisk
@@ -65,7 +66,6 @@ const listJournals =
                 profitLossPercentage
                 tradeStatus
                 updatedAt
-                strategy
               }
               success
               errors
@@ -139,13 +139,12 @@ const updateJournal =
 
 const createJournal =
   (dispatch) =>
-  async ({ token, ticker, quantity, buyPrice, stopLoss, priceTargets, strategy }) => {
+  async ({ token, ticker, quantity, buyPrice, stopLoss, priceTargets }) => {
     try {
       const response = await graphqlClient.request(
         gql`
           mutation createJournal(
             $ticker: String!
-            $strategy: String
             $quantity: Int!
             $buyPrice: Float!
             $priceTargets: [Float!]
@@ -153,7 +152,6 @@ const createJournal =
           ) {
             createJournal(
               input: {
-                strategy: $strategy
                 ticker: $ticker
                 quantity: $quantity
                 buyPrice: $buyPrice
@@ -166,7 +164,7 @@ const createJournal =
             }
           }
         `,
-        { ticker, quantity, buyPrice, stopLoss, priceTargets, strategy },
+        { ticker, quantity, buyPrice, stopLoss, priceTargets },
         { Authorization: `Bearer ${token}` }
       );
 

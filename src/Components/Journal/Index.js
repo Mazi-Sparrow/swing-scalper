@@ -137,7 +137,6 @@ export default function Index() {
       !isNaN(dataItem.priceTargets) &&
       !isNaN(dataItem.quantity) &&
       dataItem.ticker &&
-      dataItem.strategy &&
       !isNaN(dataItem.stopLoss)
     ) {
       const newData = insertItem(data, dataItem);
@@ -150,7 +149,6 @@ export default function Index() {
         priceTargets: [parseFloat(dataItem.priceTargets)],
         ticker: dataItem.ticker,
         stopLoss: parseFloat(dataItem.stopLoss),
-        strategy: dataItem.strategy,
       });
     }
   };
@@ -223,7 +221,6 @@ export default function Index() {
         <Grid
           pageable={true}
           sortable={true}
-          filterable={true}
           style={{
             height: "100%",
             width: "100%",

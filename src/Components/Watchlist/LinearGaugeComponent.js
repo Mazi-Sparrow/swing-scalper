@@ -12,13 +12,16 @@ export const LinearGaugeComponent = (props) => {
     }, 0);
   }, []);
 
-  const linearOptions = {
-    value: value,
-    shape: "arrow",
+  const verticalLinearOptions = {
+    pointer: {
+      value: watchList.buyPrice,
+      shape: "arrow",
+      color: "#9932cc",
+    },
     scale: {
-      minorUnit: 5,
-      majorUnit: 20,
-      max: watchList.sma200,
+      minorUnit: 0,
+      majorUnit: watchList.sma20,
+      max: watchList.sma200 + 1,
       ranges: [
         {
           from: 0,
@@ -28,11 +31,22 @@ export const LinearGaugeComponent = (props) => {
         {
           from: watchList.sma20,
           to: watchList.sma200,
-          color: "#ff7a00",
+          color: "#33cc33",
+        },
+        {
+          from: watchList.sma200,
+          to: watchList.sma200 + 1,
+          color: "#c20000",
         },
       ],
     },
   };
 
-  return <LinearGauge {...linearOptions} />;
+  return (
+    <div className="row">
+      <div className="col-sm-12 col-md-6">
+        <LinearGauge {...verticalLinearOptions} />
+      </div>
+    </div>
+  );
 };

@@ -26,10 +26,7 @@ export default function ButtonAppBar() {
           </Button>
           <Hidden mdDown>
             <div className="appbar-btn">
-              <Typography variant="body2" sx={{ marginTop: "30px" }}>
-                Some quick example text to build on the card title and make up the bulk of the card
-                content.
-              </Typography>
+            
             </div>
 
             <Button color="inherit" variant="contained" href="/">
