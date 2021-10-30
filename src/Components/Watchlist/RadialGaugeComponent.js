@@ -13,9 +13,12 @@ export const RadialGaugeComponent = (props) => {
   }, []);
 
   const radialOptions = {
-    value: value,
-    shape: "arrow",
-    scale: {
+    pointer: {
+      value: watchList.rsi14,
+      shape: "arrow",
+      color: "#9932cc",
+    },
+     scale: {
       minorUnit: 1,
       majorUnit: 20,
       max: 100,
