@@ -12,7 +12,7 @@ import {
     ChartLegend,
   } from "@progress/kendo-react-charts";
   import "hammerjs";
-  const categories = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+  const categories = ['Jan', 'Feb', 'Mar', 'Apr', 'May','Jun', 'Jul', 'Aug', 'Sep', 'Oct','Nov', 'Dec'];
   const series = [
     {
       name: "Profit/Loss",
@@ -60,7 +60,7 @@ export default function Index() {
               height: 350,
             }}
           >
-            <ChartTitle text="TOTAL PROFIT/LOSS" />
+            <ChartTitle text="TOTAL TRADES" />
             <ChartLegend position="top" orientation="horizontal" />
             <ChartSeries>
               <ChartSeriesItem
@@ -89,7 +89,7 @@ export default function Index() {
               height: 350,
             }}
           >
-            <ChartTitle text="P/L per TRADE" />
+            <ChartTitle text="P/L & RISK/REWARD" />
             <ChartLegend position="top" orientation="horizontal" />
             <ChartCategoryAxis>
               <ChartCategoryAxisItem categories={categories} startAngle={45} />
