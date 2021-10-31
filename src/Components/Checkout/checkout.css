@@ -1,12 +1,12 @@
 :root {
   /* --main-bg: #262e3a; */
-  --secondary-bg: #702e49;
-  --main-text: #fff;
-  --placeholder: #939aa3;
+  --secondary-bg: #fab9f1;
+  --main-text: #000000;
+  --placeholder: #000000;
   --placeholder-focused: #ccc;
-  --primary-btn: #b95e83;
+  --primary-btn: #9c27b0;
   --btn-text: #ffffff;
-  --primary-btn-focus: rgb(70, 203, 145);
+  --primary-btn-focus: #9c27b0;
 }
 
 a {
@@ -115,7 +115,7 @@ a {
 }
 
 .theme-palette > .ex2-button {
-  margin: 0 10px;
+  margin: 5 10px;
   padding: 5px 10px;
   height: 50%;
   font-size: 14px;

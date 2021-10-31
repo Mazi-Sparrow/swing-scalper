@@ -15,16 +15,12 @@ import {
   const categories = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
   const series = [
     {
-      name: "Loss",
+      name: "Profit/Loss",
       data: [3.907, 7.943, 7.848],
     },
     {
       name: "Risk",
       data: [0.21, 0.375, 1.161],
-    },
-    {
-      name: "Profit",
-      data: [1.988, 2.733, 3.994],
     },
     {
       name: "Reward",
