@@ -2,7 +2,6 @@ import * as React from "react";
 import { useHistory } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import { Card, CardContent, Fab } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -13,12 +12,11 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import { Context as AuthContext } from "../../context/AuthContext";
 import { CardActions } from "@mui/material";
 
-const theme = createTheme();
+
 
 export default function SignIn() {
   const history = useHistory();
