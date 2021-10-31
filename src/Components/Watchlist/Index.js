@@ -91,8 +91,9 @@ export default function Index() {
         <Box my={12} mb={15}>
           <Grid
             style={{
-              textAlign: "center",
+              textAlign: "justify",
               fontSize: ".9rem",
+              width: "100%",
               height: "100%",
             }}
             data={[{ ...stateWatchList }]}

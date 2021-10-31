@@ -222,6 +222,8 @@ export default function Index() {
           pageable={true}
           sortable={true}
           style={{
+            textAlign: "justify",
+            fontSize: ".9rem",
             height: "100%",
             width: "100%",
           }}
