@@ -92,7 +92,7 @@ export default function Index() {
           <Grid
             style={{
               textAlign: "center",
-              fontSize: "1.3rem",
+              fontSize: ".9rem",
               height: "100%",
             }}
             data={[{ ...stateWatchList }]}
