@@ -1,154 +1,187 @@
-import React from 'react'
-import Navbar from './navbar'
-import { Box } from '@mui/system'
-import Footer from './Footer'
+import React, { useContext, useEffect, useState } from "react";
+import Navbar from "./navbar";
+import { Box } from "@mui/system";
+import Footer from "./Footer";
+
 import {
-    Chart,
-    ChartSeries,
-    ChartSeriesItem,
-    ChartCategoryAxis,
-    ChartCategoryAxisItem,
-    ChartTitle,
-    ChartLegend,
-  } from "@progress/kendo-react-charts";
-  import "hammerjs";
-  const categories = ['Jan', 'Feb', 'Mar', 'Apr', 'May','Jun', 'Jul', 'Aug', 'Sep', 'Oct','Nov', 'Dec'];
-  const series = [
-    {
-      name: "Profit/Loss",
-      data: [3.907, 7.943, 7.848],
-    },
-    {
-      name: "Risk",
-      data: [0.21, 0.375, 1.161],
-    },
-    {
-      name: "Reward",
-      data: [1.988, 2.733, 3.994],
-    },
-  ];
+  Chart,
+  ChartSeries,
+  ChartSeriesItem,
+  ChartCategoryAxis,
+  ChartCategoryAxisItem,
+  ChartTitle,
+  ChartLegend,
+} from "@progress/kendo-react-charts";
+import "hammerjs";
+
+import { Context as JournalContext } from "../../context/JournalContext";
+import { Context as AuthContext } from "../../context/AuthContext";
+import { dashboardValues } from "./utils";
+const categories = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+
+export default function Index() {
+  const {
+    state: { token },
+  } = React.useContext(AuthContext);
+  const { listJournals } = useContext(JournalContext);
+
+  const [state, setState] = useState({
+    loading: true,
+    profit: 0,
+    loss: 0,
+    openTrades: 0,
+    riskValues: [],
+    rewardValues: [],
+  });
+
+  useEffect(() => {
+    let isMounted = true;
+    listJournals({ token }).then((res) => {
+      if (isMounted) {
+        const { profit, loss, openTrades, riskValues, rewardValues } = dashboardValues(res);
+
+        setState({ ...state, profit, loss, openTrades, riskValues, rewardValues, loading: false });
+      }
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   const pieData = [
     {
       name: "LOSS",
-      share: 12800,
+      share: state.loss,
     },
     {
       name: "OPEN TRADES",
-      share: 3499,
+      share: state.openTrades,
       explode: true,
     },
     {
       name: "PROFIT",
-      share: 16909,
+      share: state.profit,
     },
   ];
 
-  
-export default function Index() {
-    return (
+  const series = [
+    // {
+    //   name: "Profit/Loss",
+    //   data: state.,
+    // },
+    {
+      name: "Risk",
+      data: state.riskValues,
+    },
+    {
+      name: "Reward",
+      data: state.rewardValues,
+    },
+  ];
+
+  return (
+    <>
+      {!state.loading ? (
         <div>
-            <Navbar/>
-            
-            <Box my={10} mb={15} >
-              <div className="ffflex">
+          <Navbar />
 
-
-
-<div className="asdasd">
-              <Chart
-            style={{
-              height: 350,
-            }}
-          >
-            <ChartTitle text="TOTAL TRADES" />
-            <ChartLegend position="top" orientation="horizontal" />
-            <ChartSeries>
-              <ChartSeriesItem
-                type="pie"
-                overlay={{
-                  gradient: "sharpBevel",
-                }}
-                tooltip={{
-                  visible: true,
-                }}
-                data={pieData}
-                categoryField="name"
-                field="share"
-              />
-            </ChartSeries>
-          </Chart>
-
-</div>
-
-
-
-
-   <div className="asdasd">
-          <Chart
-            style={{
-              height: 350,
-            }}
-          >
-            <ChartTitle text="P/L & RISK/REWARD" />
-            <ChartLegend position="top" orientation="horizontal" />
-            <ChartCategoryAxis>
-              <ChartCategoryAxisItem categories={categories} startAngle={45} />
-            </ChartCategoryAxis>
-            <ChartSeries>
-              {series.map((item, idx) => (
-                <ChartSeriesItem
-                  key={idx}
-                  type="column"
-                  tooltip={{
-                    visible: true,
+          <Box my={10} mb={15}>
+            <div className="ffflex">
+              <div className="asdasd">
+                <Chart
+                  style={{
+                    height: 350,
                   }}
-                  data={item.data}
-                  name={item.name}
-                />
-              ))}
-            </ChartSeries>
-          </Chart>
+                >
+                  <ChartTitle text="TOTAL TRADES" />
+                  <ChartLegend position="top" orientation="horizontal" />
+                  <ChartSeries>
+                    <ChartSeriesItem
+                      type="pie"
+                      overlay={{
+                        gradient: "sharpBevel",
+                      }}
+                      tooltip={{
+                        visible: true,
+                      }}
+                      data={pieData}
+                      categoryField="name"
+                      field="share"
+                    />
+                  </ChartSeries>
+                </Chart>
+              </div>
 
-          </div>
-
-          </div>
-
-
-
-
-
-
-          <Chart
-            style={{
-              height: 350,
-            }}
-          >
-            <ChartTitle text="RISK/REWARD TREND" />
-            <ChartLegend position="top" orientation="horizontal" />
-            <ChartCategoryAxis>
-              <ChartCategoryAxisItem categories={categories} startAngle={45} />
-            </ChartCategoryAxis>
-            <ChartSeries>
-              {series.map((item, idx) => (
-                <ChartSeriesItem
-                  key={idx}
-                  type="line"
-                  tooltip={{
-                    visible: true,
+              <div className="asdasd">
+                <Chart
+                  style={{
+                    height: 350,
                   }}
-                  data={item.data}
-                  name={item.name}
-                />
-              ))}
-            </ChartSeries>
-          </Chart>
-  
-      
- 
-    
-            </Box>
-            <Footer/>
+                >
+                  <ChartTitle text="P/L & RISK/REWARD" />
+                  <ChartLegend position="top" orientation="horizontal" />
+                  <ChartCategoryAxis>
+                    <ChartCategoryAxisItem categories={categories} startAngle={45} />
+                  </ChartCategoryAxis>
+                  <ChartSeries>
+                    {series.map((item, idx) => (
+                      <ChartSeriesItem
+                        key={idx}
+                        type="column"
+                        tooltip={{
+                          visible: true,
+                        }}
+                        data={item.data}
+                        name={item.name}
+                      />
+                    ))}
+                  </ChartSeries>
+                </Chart>
+              </div>
+            </div>
 
+            <Chart
+              style={{
+                height: 350,
+              }}
+            >
+              <ChartTitle text="RISK/REWARD TREND" />
+              <ChartLegend position="top" orientation="horizontal" />
+              <ChartCategoryAxis>
+                <ChartCategoryAxisItem categories={categories} startAngle={45} />
+              </ChartCategoryAxis>
+              <ChartSeries>
+                {series.map((item, idx) => (
+                  <ChartSeriesItem
+                    key={idx}
+                    type="line"
+                    tooltip={{
+                      visible: true,
+                    }}
+                    data={item.data}
+                    name={item.name}
+                  />
+                ))}
+              </ChartSeries>
+            </Chart>
+          </Box>
+          <Footer />
         </div>
-    )
+      ) : null}
+    </>
+  );
 }

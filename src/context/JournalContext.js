@@ -66,6 +66,7 @@ const listJournals =
                 profitLossPercentage
                 tradeStatus
                 updatedAt
+                profitLoss
               }
               success
               errors
@@ -75,7 +76,6 @@ const listJournals =
         {},
         { Authorization: `Bearer ${token}` }
       );
-
       if (response.listJournals.success && !response.listJournals.errors) {
         dispatch({
           type: "list_journals",
