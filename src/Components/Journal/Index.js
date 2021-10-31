@@ -4,17 +4,11 @@ import { Box } from "@mui/system";
 import { Grid, GridColumn as Column, GridToolbar } from "@progress/kendo-react-grid";
 import Footer from "./Footer";
 import { process } from "@progress/kendo-data-query";
-import { filterBy } from "@progress/kendo-data-query";
-import { DatePicker } from "@progress/kendo-react-dateinputs";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-
 import { MyCommandCell } from "./myCommandCell";
-import { DateRangeFilter } from "../filters/DateRangeFilter";
-
 import { CustomDate } from "./CutomDate";
 import { insertItem, getItems, updateItem, deleteItem } from "./services";
-
 import { Context as JournalContext } from "../../context/JournalContext";
 import { Context as AuthContext } from "../../context/AuthContext";
 const initialDataState = {
@@ -43,10 +37,6 @@ export default function Index() {
   const [data, setData] = React.useState(journals);
   const [dataState, setDataState] = React.useState(initialDataState);
 
-  const [filter, setFilter] = React.useState([]);
-
-  const [dateRange, setDateRange] = React.useState({ minDateFilter: null, maxDateFilter: null });
-
   React.useEffect(() => {
     let isMounted = true;
     listJournals({ token }).then((res) => {
@@ -70,60 +60,6 @@ export default function Index() {
     />
   );
 
-  const filterChange = (event) => {
-    console.log(event);
-    // setFilter({ ...event.filter });
-  };
-  const handleClearDateFilter = () => {
-    let currentFilters = { ...filter };
-    let newFilter = currentFilters.filters.filter((filter) => {
-      return filter.field !== "createdAt";
-    });
-    currentFilters.filters = newFilter;
-    setDateRange({ minDateFilter: null, maxDateFilter: null });
-    setFilter({ ...currentFilters });
-  };
-
-  const handleDateFilterChange = (event) => {
-    let currentFilters = { ...filter };
-
-    if (event.operator === "gt") {
-      setDateRange({ ...dateRange, minDateFilter: event.value });
-    } else {
-      setDateRange({ ...dateRange, maxDateFilter: event.value });
-    }
-    if (currentFilters.filters) {
-      let newFilter = currentFilters.filters.filter((filter) => {
-        return !(filter.field === "createdAt" && filter.operator === event.operator);
-      });
-      currentFilters.filters = newFilter;
-      currentFilters.filters.push({
-        field: "createdAt",
-        operator: event.operator,
-        value: event.value,
-      });
-    } else {
-      currentFilters.filters = [];
-      currentFilters.logic = "and";
-      currentFilters.filters.push({
-        field: "createdAt",
-        operator: event.operator,
-        value: event.value,
-      });
-    }
-    setFilter({ ...currentFilters });
-  };
-
-  const MyDateFilterCell = (props) => (
-    <DateRangeFilter
-      {...props}
-      min={dateRange.minDateFilter}
-      max={dateRange.maxDateFilter}
-      onDateFilterChange={handleDateFilterChange}
-      onDateFilterClear={handleClearDateFilter}
-    />
-  );
-
   const remove = (dataItem) => {
     const newData = deleteItem(data, dataItem);
     setData(newData);
@@ -142,7 +78,7 @@ export default function Index() {
       const newData = insertItem(data, dataItem);
       setData([...newData]);
 
-      const isSucess = await createJournal({
+      const isSuccess = await createJournal({
         token,
         quantity: parseInt(dataItem.quantity),
         buyPrice: parseFloat(dataItem.buyPrice),
@@ -183,7 +119,7 @@ export default function Index() {
   const enterEdit = (dataItem) => {
     setEditedRecord({ ...dataItem });
     let newData = data.map((item) => {
-      if (item.id == dataItem.id) {
+      if (item.id === dataItem.id) {
         return { ...item, inEdit: true };
       } else return item;
     });
@@ -252,12 +188,8 @@ export default function Index() {
           <Column
             field="createdAt"
             title="Date Openned"
-            editor="date"
-            filter="date"
             cell={CustomDate}
             width="100%"
-            filterCell={MyDateFilterCell}
-            filter="date"
             filterable={false}
             editable={false}
           />

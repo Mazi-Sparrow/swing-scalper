@@ -2,8 +2,8 @@ import * as React from "react";
 import { useHistory } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Logo from "../../assets/images/SwingScalp-01 2.png";
-import { AppBar, AppBarSection, AppBarSpacer, Avatar } from "@progress/kendo-react-layout";
-
+import { AppBar, AppBarSection, AppBarSpacer } from "@progress/kendo-react-layout";
+import {Skeleton } from '@progress/kendo-react-indicators';
 import { Context as AuthContext } from "../../context/AuthContext";
 
 export default function ButtonAppBar() {
@@ -28,7 +28,7 @@ export default function ButtonAppBar() {
 
         <AppBarSection>
           <a href="/">
-            <img src={Logo} width="90px" height="80px" />
+          <img src={Logo} width="100%" height="auto" alt=<Skeleton shape={"rectangle"} style={{ width: "100%", height: "auto", }} /> />
           </a>
         </AppBarSection>
 

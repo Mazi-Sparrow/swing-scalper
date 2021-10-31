@@ -2,13 +2,12 @@ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
 import { Hidden } from "@mui/material";
 import Logo from "../../assets/images/SwingScalp-01 2.png";
 import Mobilemenu from "./Mobilemenu";
-import Fab from "@mui/material/Fab";
+import {Skeleton } from '@progress/kendo-react-indicators';
+
 export default function ButtonAppBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -22,7 +21,7 @@ export default function ButtonAppBar() {
             sx={{ mr: 2 }}
             href="/"
           >
-            <img src={Logo} width="148px" height="138px" />
+            <img src={Logo} width="100%" height="auto" alt=<Skeleton shape={"rectangle"} style={{ width: "100%", height: "auto", }} /> />
           </Button>
           <Hidden mdDown>
             <div className="appbar-btn"></div>

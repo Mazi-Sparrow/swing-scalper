@@ -2,7 +2,6 @@ import Amplify from "aws-amplify";
 import awsconfig from "./aws-exports";
 
 import * as React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import Signin from "./Components/Sign-in/Index";
 import Signup from "./Components/Sign-up/Index";

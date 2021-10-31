@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid,Container,Box,Typography,Button } from '@mui/material'
+import { Grid,Container,Box,Typography } from '@mui/material'
 import Dilogbox from './Dilog'
 export default function Footer() {
     return (

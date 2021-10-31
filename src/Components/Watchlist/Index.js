@@ -70,7 +70,7 @@ export default function Index() {
               sx={{ p: "10px", alignSelf: "center" }}
               aria-label="search"
               onClick={() => handleSearch()}
-              disabled={ticker.length == 0}
+              disabled={ticker.length === 0}
             >
               <Button
                 style={{ backgroundColor: "#9F3D65", color: "white" }}
@@ -146,5 +146,4 @@ export default function Index() {
     </>
   );
 }
-{
-}
+
