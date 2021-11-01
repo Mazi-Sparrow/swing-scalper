@@ -12,7 +12,7 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import CssBaseline from "@mui/material/CssBaseline";
 import { StyledEngineProvider } from "@mui/material/styles";
 import { Provider as AuthProvider, Context as AuthContext } from "./context/AuthContext";
-import { Provider as JournalProvider } from "./context/JournalContext";
+import { Provider as JournalProvider, Context as JournalContext } from "./context/JournalContext";
 import { Provider as WatchListProvider } from "./context/WatchListContext";
 
 import TryToLogin from "./Components/TryToLogin/Index";
@@ -32,6 +32,10 @@ window.Chargebee.init({
 
 function Root() {
   const { state } = React.useContext(AuthContext);
+  const {
+    state: { errorMessage: journalErrorMessage },
+  } = React.useContext(JournalContext);
+
   const authFlow = (
     <>
       {state.errorMessage ? <TryToGetToken></TryToGetToken> : null}
@@ -51,7 +55,7 @@ function Root() {
 
   const appFlow = (
     <>
-      {state.errorMessage ? <TryToGetToken></TryToGetToken> : null}
+      {state.errorMessage || journalErrorMessage ? <TryToGetToken></TryToGetToken> : null}
       <Switch>
         <Route path="/" exact>
           <Redirect to="/dashboard" />

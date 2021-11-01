@@ -149,9 +149,6 @@ const getToken = (dispatch) => async () => {
     const refreshToken = await localStorage.getItem("refreshToken");
     const email = await localStorage.getItem("email");
 
-    if (refreshToken && email) {
-      return false;
-    }
     const response = await graphqlClient.request(
       gql`
         mutation refreshToken($email: String!, $refreshToken: String!) {
@@ -166,6 +163,7 @@ const getToken = (dispatch) => async () => {
       {}
     );
 
+    console.log(response);
     dispatch({ type: "remove_loading" });
 
     if (
