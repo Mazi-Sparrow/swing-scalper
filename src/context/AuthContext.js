@@ -90,6 +90,7 @@ const signin = (dispatch) => async (username, password) => {
 const signup =
   (dispatch) =>
   async ({ email, firstName, lastName, password, confirmPassword }) => {
+    console.log(email, firstName, lastName, password, confirmPassword);
     try {
       dispatch({ type: "add_loading" });
       const response = await graphqlClient.request(
@@ -119,12 +120,14 @@ const signup =
         {}
       );
 
+      console.log(response);
       dispatch({ type: "remove_loading" });
       if (
         !response.createUser.success &&
         response.createUser.errors &&
         response.createUser.errors[0]
       ) {
+        console.log(response.createUser.errors[0]);
         dispatch({
           type: "add_error",
           payload: response.createUser.errors[0],
@@ -163,22 +166,6 @@ const getToken = (dispatch) => async () => {
       {}
     );
 
-    console.log(response);
-    dispatch({ type: "remove_loading" });
-
-    if (
-      !response.refreshToken.success &&
-      response.refreshToken.errors &&
-      response.refreshToken.errors[0]
-    ) {
-      dispatch({
-        type: "add_error",
-        payload: response.refreshToken.errors[0],
-      });
-
-      return false;
-    }
-
     if (!response.refreshToken.errors && response.refreshToken.idToken) {
       dispatch({
         type: "set_token",
@@ -190,12 +177,7 @@ const getToken = (dispatch) => async () => {
 
     return true;
   } catch (error) {
-    dispatch({ type: "remove_loading" });
-
-    dispatch({
-      type: "add_error",
-      payload: "Invalid Request",
-    });
+    console.log(error);
   }
 };
 

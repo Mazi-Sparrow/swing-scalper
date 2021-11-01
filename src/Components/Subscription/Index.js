@@ -4,36 +4,37 @@ import Button from "@mui/material/Button";
 import Navbar from "../Dashboard/navbar";
 import Footer from "./Footer";
 
-import Checkout from "../Checkout/Index";
-
 import "./subscription.scss";
 
 import { Context as AuthContext } from "../../context/AuthContext";
+
+import { Context as SubscriptionContext } from "../../context/SubscriptionContext";
 
 export default function Index() {
   const {
     state: { token },
   } = React.useContext(AuthContext);
 
-  const [plan, setPlan] = React.useState(null);
+  const { createCheckout } = React.useContext(SubscriptionContext);
 
-  function handleClick(id) {
-    setPlan(id);
+  async function handleClick(plan) {
+    // make request to the checkout
+
+    const checkoutUrl = await createCheckout({ token, planId: plan.id });
+    if (checkoutUrl) {
+      window.location.replace(checkoutUrl);
+    }
   }
 
   return (
     <div>
       <Navbar />
 
-      {plan ? (
-        <Checkout plan={plan} />
-      ) : (
-        <div className="app-wrapper">
-          {cardsData.map((props) => {
-            return <PricingCard {...props} key={props.id} clickMe={() => handleClick(props)} />;
-          })}
-        </div>
-      )}
+      <div className="app-wrapper">
+        {cardsData.map((props) => {
+          return <PricingCard {...props} key={props.id} clickMe={() => handleClick(props)} />;
+        })}
+      </div>
 
       <Footer />
     </div>
@@ -111,18 +112,7 @@ function PricingCard(props) {
 
 const cardsData = [
   {
-    id: "SwingScalp-Trial",
-    type: "trial",
-    title: "SwingScalp Trial",
-    description: "SwingScalp Trial - $12.99 for 14 Days",
-    price: 12.99,
-    recurrency: 12.99,
-    mostPopular: false,
-    duration: "month",
-    data: [],
-  },
-  {
-    id: "SwingScalper",
+    id: "cbdemo_premium-USD-monthly",
     type: "basic",
     title: "SwingScalper",
     description: "SwingScalper - $33.00 a Month",
@@ -133,7 +123,7 @@ const cardsData = [
     data: [],
   },
   {
-    id: "SwingScalper-USD-Yearly",
+    id: "cbdemo_premium-USD-yearly",
     type: "basic",
     title: "SwingScalper",
     description: "SwingScalper $360 Yearly",

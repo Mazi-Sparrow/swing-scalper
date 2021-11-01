@@ -13,6 +13,10 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { StyledEngineProvider } from "@mui/material/styles";
 import { Provider as AuthProvider, Context as AuthContext } from "./context/AuthContext";
 import { Provider as JournalProvider, Context as JournalContext } from "./context/JournalContext";
+import {
+  Provider as SubscriptionProvider,
+  Context as SubscriptionContext,
+} from "./context/SubscriptionContext";
 import { Provider as WatchListProvider } from "./context/WatchListContext";
 
 import TryToLogin from "./Components/TryToLogin/Index";
@@ -22,6 +26,7 @@ import ForgotPassword from "./Components/ForgotPassword/Index";
 import ConfirmForgotPassword from "./Components/ConfirmForgotPassword/Index";
 import Subscription from "./Components/Subscription/Index";
 import Information from "./Components/Information/Index";
+import CheckoutRedirect from "./Components/CheckoutRedirect/Index";
 
 Amplify.configure(awsconfig);
 
@@ -65,6 +70,7 @@ function Root() {
         <Route path="/information" component={Information} />
         <Route path="/watchlist" component={Watchlist} />
         <Route path="/subscription" component={Subscription} />
+        <Route path="/redirect" component={CheckoutRedirect} />
         <Route path="*" exact>
           <Redirect to="/dashboard" />
         </Route>
@@ -81,12 +87,14 @@ function App() {
       <AuthProvider>
         <JournalProvider>
           <WatchListProvider>
-            <TryToLogin>
-              <StyledEngineProvider injectFirst>
-                <CssBaseline />
-                <Root />
-              </StyledEngineProvider>
-            </TryToLogin>
+            <SubscriptionProvider>
+              <TryToLogin>
+                <StyledEngineProvider injectFirst>
+                  <CssBaseline />
+                  <Root />
+                </StyledEngineProvider>
+              </TryToLogin>
+            </SubscriptionProvider>
           </WatchListProvider>
         </JournalProvider>
       </AuthProvider>
