@@ -120,7 +120,6 @@ const signup =
         {}
       );
 
-      console.log(response);
       dispatch({ type: "remove_loading" });
       if (
         !response.createUser.success &&
@@ -180,6 +179,43 @@ const getToken = (dispatch) => async () => {
     console.log(error);
   }
 };
+
+const getUser =
+  (dispatch) =>
+  async ({ token }) => {
+    try {
+      const response = await graphqlClient.request(
+        gql`
+          query getUser {
+            getUser {
+              id
+              firstname
+              lastname
+              email
+              phone
+              success
+              errors
+            }
+          }
+        `,
+        {},
+        { Authorization: `Bearer ${token}` }
+      );
+
+      if (!response.getUser.errors && response.getUser.success) {
+        dispatch({
+          type: "set_user",
+          payload: response.getUser,
+        });
+
+        return response.getUser;
+      }
+
+      return false;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 const confirmEmail =
   (dispatch) =>
@@ -345,6 +381,7 @@ export const { Context, Provider } = createDataContext(
     forgotPassword,
     confirmForgotPassword,
     getToken,
+    getUser,
   },
   { token: null, refreshToken: null, errorMessage: "", isLoading: false }
 );

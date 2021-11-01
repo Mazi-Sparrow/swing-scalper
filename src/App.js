@@ -27,6 +27,7 @@ import ConfirmForgotPassword from "./Components/ConfirmForgotPassword/Index";
 import Subscription from "./Components/Subscription/Index";
 import Information from "./Components/Information/Index";
 import CheckoutRedirect from "./Components/CheckoutRedirect/Index";
+import Profile from "./Components/Profile/Index";
 
 Amplify.configure(awsconfig);
 
@@ -71,6 +72,7 @@ function Root() {
         <Route path="/watchlist" component={Watchlist} />
         <Route path="/subscription" component={Subscription} />
         <Route path="/redirect" component={CheckoutRedirect} />
+        <Route path="/profile" component={Profile} />
         <Route path="*" exact>
           <Redirect to="/dashboard" />
         </Route>

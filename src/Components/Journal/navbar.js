@@ -41,6 +41,10 @@ export default function ButtonAppBar() {
               <Button color="inherit" href="/subscription">
                 Subscription
               </Button>
+
+              <Button color="inherit" href="/profile">
+                Profile
+              </Button>
               <Fab color="primary" aria-label="add" className="fab-setting">
                 js
               </Fab>
