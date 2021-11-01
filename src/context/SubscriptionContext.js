@@ -99,25 +99,23 @@ const confirmCheckout =
         { Authorization: `Bearer ${token}` }
       );
 
-      console.log(response);
+      if (
+        !response.confirmCheckout.success &&
+        response.confirmCheckout.errors &&
+        response.confirmCheckout.errors[0]
+      ) {
+        dispatch({
+          type: "add_error",
+          payload: response.confirmCheckout.errors[0],
+        });
 
-      // if (
-      //   !response.confirmCheckout.success &&
-      //   response.confirmCheckout.errors &&
-      //   response.confirmCheckout.errors[0]
-      // ) {
-      //   dispatch({
-      //     type: "add_error",
-      //     payload: response.confirmCheckout.errors[0],
-      //   });
+        return false;
+      }
 
-      //   return false;
-      // }
-
-      // if (response.confirmCheckout.success && !response.confirmCheckout.errors) {
-      //   return true;
-      // }
-      // return false;
+      if (response.confirmCheckout.success && !response.confirmCheckout.errors) {
+        return true;
+      }
+      return false;
     } catch (error) {
       console.log(error);
       dispatch({
