@@ -18,6 +18,7 @@ import {
   Context as SubscriptionContext,
 } from "./context/SubscriptionContext";
 import { Provider as WatchListProvider } from "./context/WatchListContext";
+import { Provider as ContactUsProvider } from "./context/ContactUsContext";
 
 import TryToLogin from "./Components/TryToLogin/Index";
 import TryToGetToken from "./Components/TryToGetToken/Index";
@@ -90,12 +91,14 @@ function App() {
         <JournalProvider>
           <WatchListProvider>
             <SubscriptionProvider>
-              <TryToLogin>
-                <StyledEngineProvider injectFirst>
-                  <CssBaseline />
-                  <Root />
-                </StyledEngineProvider>
-              </TryToLogin>
+              <ContactUsProvider>
+                <TryToLogin>
+                  <StyledEngineProvider injectFirst>
+                    <CssBaseline />
+                    <Root />
+                  </StyledEngineProvider>
+                </TryToLogin>
+              </ContactUsProvider>
             </SubscriptionProvider>
           </WatchListProvider>
         </JournalProvider>

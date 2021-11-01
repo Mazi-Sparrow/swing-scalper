@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import {
+  Container,
+  Grid,
+  Typography,
+  Paper,
+  TextField,
+  Button,
+  CircularProgress,
+} from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
+import { makeStyles } from "@mui/styles";
+
 import Navbar from "../Dashboard/navbar";
 import Footer from "./Footer";
-import { Container, Grid, Typography, Paper, TextField, Button } from "@mui/material";
-
-import SendIcon from "@mui/icons-material/Send";
-
-import { makeStyles } from "@mui/styles";
+import { Context as AuthContext } from "../../context/AuthContext";
+import { Context as ContactUsContext } from "../../context/ContactUsContext";
 
 const useStyles = makeStyles({
   field: {
@@ -15,17 +24,33 @@ const useStyles = makeStyles({
   },
 });
 
+const initialState = {
+  title: "",
+  details: "",
+  email: "",
+  emailError: false,
+  titleError: false,
+  detailsError: false,
+};
+
 export default function Index() {
+  const {
+    state: { token },
+  } = useContext(AuthContext);
+
+  const {
+    state: { errorMessage, isLoading },
+    clearErrorMessage,
+    contactUs,
+  } = useContext(ContactUsContext);
+
   const classes = useStyles();
 
-  const [state, setState] = useState({
-    title: "",
-    details: "",
-    email: "",
-    emailError: false,
-    titleError: false,
-    detailsError: false,
-  });
+  const [state, setState] = useState(initialState);
+
+  useEffect(() => {
+    clearErrorMessage();
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,6 +60,9 @@ export default function Index() {
     if (!state.title) setState({ ...state, titleError: true });
 
     if (state.title && state.details) {
+      contactUs({ title: state.title, message: state.details, token }).then((res) => {
+        setState({ ...state, ...initialState });
+      });
     }
   };
   return (
@@ -128,6 +156,7 @@ export default function Index() {
                       fullWidth
                       label="Title"
                       required
+                      value={state.title}
                       error={state.titleError}
                     />
 
@@ -139,6 +168,7 @@ export default function Index() {
                       fullWidth
                       label="Email"
                       required
+                      value={state.email}
                       error={state.emailError}
                     />
 
@@ -152,6 +182,7 @@ export default function Index() {
                       rows={4}
                       label="Message"
                       required
+                      value={state.details}
                       error={state.detailsError}
                     />
                     <Button
@@ -160,6 +191,9 @@ export default function Index() {
                       color="secondary"
                       endIcon={<SendIcon />}
                     >
+                      {isLoading ? (
+                        <CircularProgress size={20} style={{ marginRight: "5px" }} />
+                      ) : null}
                       Send
                     </Button>
                   </form>

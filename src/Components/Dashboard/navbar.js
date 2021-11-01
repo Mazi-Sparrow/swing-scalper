@@ -32,7 +32,7 @@ export default function ButtonAppBar() {
               src={Logo}
               width="100%"
               height="auto"
-              alt=<Skeleton shape={"rectangle"} style={{ width: "100%", height: "auto" }} />
+              // alt=<Skeleton shape={"rectangle"} style={{ width: "100%", height: "auto" }} />
             />
           </a>
         </AppBarSection>
