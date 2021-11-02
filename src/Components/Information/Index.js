@@ -110,7 +110,7 @@ export default function Index() {
                         gutterBottom
                         padding={2}
                       >
-                        Edit Me Please
+                        BuyZone Watchlist
                       </Typography>
                     </Paper>
                   </Grid>
@@ -128,7 +128,7 @@ export default function Index() {
                         gutterBottom
                         padding={2}
                       >
-                        Edit Me Please
+                        BuyTrigger Watchlist
                       </Typography>
                     </Paper>
                   </Grid>
