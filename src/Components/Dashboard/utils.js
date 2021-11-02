@@ -21,7 +21,6 @@ export const dashboardValues = (journals) => {
 
     const month = new Date(openedJournal.createdAt).getMonth();
 
-    console.log(month);
     riskValues[month] += openedJournal.tradeRisk || 0;
     rewardValues[month] += openedJournal.tradeReward;
   }

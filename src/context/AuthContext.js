@@ -93,7 +93,6 @@ const signin = (dispatch) => async (username, password) => {
 const signup =
   (dispatch) =>
   async ({ email, firstName, lastName, password, confirmPassword }) => {
-    console.log(email, firstName, lastName, password, confirmPassword);
     try {
       dispatch({ type: "add_loading" });
       const response = await graphqlClient.request(
@@ -164,7 +163,6 @@ const getToken = (dispatch) => async () => {
 
     localExpiresAt.setHours(hours - offset);
 
-    console.log(localExpiresAt, new Date());
     if (localExpiresAt < new Date()) {
       const response = await graphqlClient.request(
         gql`
@@ -190,8 +188,6 @@ const getToken = (dispatch) => async () => {
         await localStorage.setItem("token", response.refreshToken.idToken);
         await localStorage.setItem("expiresAt", response.refreshToken.expiresAt);
       }
-    } else {
-      console.log("token is valid");
     }
   } catch (error) {
     console.log(error);
