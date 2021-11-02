@@ -88,7 +88,7 @@ export default function Index() {
                   allowFullScreen="allowfullscreen"
                   width="100%"
                   height="100%"
-                  src="https://www.youtube.com/embed/P9teiP_izSw"
+                  src="https://www.youtube.com/embed/P9teiP_izSw?rel=0"
                   title="YouTube video player"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -110,7 +110,7 @@ export default function Index() {
                         gutterBottom
                         padding={2}
                       >
-                        Edit Me Please
+                        BuyZone Watchlist
                       </Typography>
                     </Paper>
                   </Grid>
@@ -128,7 +128,7 @@ export default function Index() {
                         gutterBottom
                         padding={2}
                       >
-                        Edit Me Please
+                        BuyTrigger Watchlist
                       </Typography>
                     </Paper>
                   </Grid>
