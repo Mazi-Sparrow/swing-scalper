@@ -13,10 +13,12 @@ import Container from "@mui/material/Container";
 import { Context as AuthContext } from "../../context/AuthContext";
 import { CardActions } from "@mui/material";
 
-
 export default function SignUp() {
   const history = useHistory();
-  const goToPage = React.useCallback((page) => history.push(`/${page}`), [history]);
+  const goToPage = React.useCallback(
+    (page, email) => history.push({ pathname: `/${page}`, state: { email } }),
+    [history]
+  );
   const { signup, state, clearErrorMessage } = React.useContext(AuthContext);
 
   React.useEffect(() => {
@@ -47,7 +49,7 @@ export default function SignUp() {
       lastName,
     });
 
-    if (isSignedIn) goToPage("confirm");
+    if (isSignedIn) goToPage("confirm", email);
   };
 
   return (
@@ -122,7 +124,7 @@ export default function SignUp() {
                 id="confirmPassword"
                 autoComplete="new-password"
               />
-            </Grid>    
+            </Grid>
           </Grid>
 
           <CardActions>
