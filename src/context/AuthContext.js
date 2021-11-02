@@ -149,6 +149,7 @@ const signup =
 const getToken = (dispatch) => async () => {
   try {
     const refreshToken = await localStorage.getItem("refreshToken");
+    console.log(refreshToken);
     const email = await localStorage.getItem("email");
 
     const response = await graphqlClient.request(

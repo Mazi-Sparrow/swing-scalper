@@ -17,7 +17,10 @@ import {
   Provider as SubscriptionProvider,
   Context as SubscriptionContext,
 } from "./context/SubscriptionContext";
-import { Provider as WatchListProvider } from "./context/WatchListContext";
+import {
+  Provider as WatchListProvider,
+  Context as WatchListContext,
+} from "./context/WatchListContext";
 import { Provider as ContactUsProvider } from "./context/ContactUsContext";
 
 import TryToLogin from "./Components/TryToLogin/Index";
@@ -32,16 +35,19 @@ import Profile from "./Components/Profile/Index";
 
 Amplify.configure(awsconfig);
 
-window.Chargebee.init({
-  site: process.env.REACT_APP_CHARGEBEE_SITE,
-  publishableKey: process.env.REACT_APP_CHARGEBEE_KEY,
-});
-
 function Root() {
   const { state } = React.useContext(AuthContext);
   const {
     state: { errorMessage: journalErrorMessage },
   } = React.useContext(JournalContext);
+
+  const {
+    state: { errorMessage: watchListErrorMessage },
+  } = React.useContext(WatchListContext);
+
+  const {
+    state: { errorMessage: subscriptionErrorMessage },
+  } = React.useContext(SubscriptionContext);
 
   const authFlow = (
     <>
@@ -62,7 +68,12 @@ function Root() {
 
   const appFlow = (
     <>
-      {state.errorMessage || journalErrorMessage ? <TryToGetToken></TryToGetToken> : null}
+      {state.errorMessage ||
+      journalErrorMessage ||
+      watchListErrorMessage ||
+      subscriptionErrorMessage ? (
+        <TryToGetToken />
+      ) : null}
       <Switch>
         <Route path="/" exact>
           <Redirect to="/dashboard" />

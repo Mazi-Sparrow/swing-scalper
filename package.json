@@ -5,7 +5,6 @@
   "dependencies": {
     "@aws-amplify/ui-react": "^1.2.21",
     "@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining": "^7.15.4",
-    "@chargebee/chargebee-js-react-wrapper": "^0.4.3",
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
     "@mui/icons-material": "^5.0.0",
