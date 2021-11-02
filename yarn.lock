@@ -3790,12 +3790,12 @@
     "@progress/kendo-react-common" "4.9.0"
     prop-types "^15.6.0"
 
-"@progress/kendo-react-indicators@^4.9.0":
-  version "4.9.0"
-  resolved "https://registry.yarnpkg.com/@progress/kendo-react-indicators/-/kendo-react-indicators-4.9.0.tgz#47b74801b952a058a45b1d849e23085de09b8a22"
-  integrity sha512-EGFeuushbjhSmJIQmYfM9vHdXnFjKjSK4Z/LrA0EdIVoS6mJO2qt3dqDsEXAZvVU6GpaJZO/5jNmb3Ew2dUJCw==
+"@progress/kendo-react-indicators@^4.10.0":
+  version "4.10.0"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-react-indicators/-/kendo-react-indicators-4.10.0.tgz#e3e303665d073ccc048d2de8f2276c386e3e34f8"
+  integrity sha512-mP2RC59f3MnNt29vY8+GrHaB4L1fWpTA9zvdNli+hhHqWmDAxGXK79nW5NfKJuHI+eWr4fR9eP8FPkgi47T5lA==
   dependencies:
-    "@progress/kendo-react-common" "4.9.0"
+    "@progress/kendo-react-common" "4.10.0"
     prop-types "^15.6.0"
 
 "@progress/kendo-react-inputs@^4.9.0":
@@ -3808,10 +3808,10 @@
     "@progress/kendo-react-popup" "4.9.0"
     prop-types "^15.6.0"
 
-"@progress/kendo-react-intl@^4.9.0":
-  version "4.9.0"
-  resolved "https://registry.yarnpkg.com/@progress/kendo-react-intl/-/kendo-react-intl-4.9.0.tgz#64a52c3583bcd703817d8e0c0942c691e263d5c9"
-  integrity sha512-rJdZ7s0+DiBAyBmFAYNCymgEUq8Oi/UGjvXm8a1TU+6YWchoH07bePCji5LN16YUUiRLq5UaQ67Ym43C2Vc3sg==
+"@progress/kendo-react-intl@^4.10.0":
+  version "4.10.0"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-react-intl/-/kendo-react-intl-4.10.0.tgz#ab81cd68cbf1095007651360b871ae577e7ceba4"
+  integrity sha512-OiUjtUle8BPxSnfMTfZCD55dHoh+gJ4b9b3+9AcSA86yPhQ5YxFMKfgDOmsUDzJmMQL5MnjTMFZGnWy42THxOw==
   dependencies:
     "@telerik/kendo-intl" "^2.1.0"
     prop-types "^15.6.0"
