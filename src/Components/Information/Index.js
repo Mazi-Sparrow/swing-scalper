@@ -86,17 +86,12 @@ export default function Index() {
               >
                 <iframe
                   allowFullScreen="allowfullscreen"
-                  mozallowfullscreen="mozallowfullscreen"
-                  msallowfullscreen="msallowfullscreen"
-                  oallowfullscreen="oallowfullscreen"
-                  webkitallowfullscreen="webkitallowfullscreen"
                   width="100%"
                   height="100%"
                   src="https://www.youtube.com/embed/P9teiP_izSw"
                   title="YouTube video player"
-                  frameborder="0"
+                  frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
                 ></iframe>
               </Paper>
               <Grid item xs={12}>

@@ -48,6 +48,8 @@ const signin = (dispatch) => async (username, password) => {
       gql`
         query login($username: String!, $password: String!) {
           logIn(username: $username, password: $password) {
+            expiresIn
+            expiresAt
             idToken
             refreshToken
             success
@@ -76,6 +78,7 @@ const signin = (dispatch) => async (username, password) => {
         localStorage.setItem("token", response.logIn.idToken),
         localStorage.setItem("refreshToken", response.logIn.refreshToken),
         localStorage.setItem("email", username),
+        localStorage.setItem("expiresAt", response.logIn.expiresAt),
       ]);
     }
   } catch (error) {
@@ -149,33 +152,47 @@ const signup =
 const getToken = (dispatch) => async () => {
   try {
     const refreshToken = await localStorage.getItem("refreshToken");
-    console.log(refreshToken);
     const email = await localStorage.getItem("email");
-
-    const response = await graphqlClient.request(
-      gql`
-        mutation refreshToken($email: String!, $refreshToken: String!) {
-          refreshToken(email: $email, refreshToken: $refreshToken) {
-            success
-            errors
-            idToken
-          }
-        }
-      `,
-      { email, refreshToken },
-      {}
+    const expiresAt = await localStorage.getItem("expiresAt");
+    const expiresAtDate = new Date(expiresAt);
+    var localExpiresAt = new Date(
+      expiresAtDate.getTime() + expiresAtDate.getTimezoneOffset() * 60 * 1000
     );
 
-    if (!response.refreshToken.errors && response.refreshToken.idToken) {
-      dispatch({
-        type: "set_token",
-        payload: response.refreshToken.idToken,
-      });
+    var offset = expiresAtDate.getTimezoneOffset() / 60;
+    var hours = expiresAtDate.getHours();
 
-      await localStorage.setItem("token", response.refreshToken.idToken);
+    localExpiresAt.setHours(hours - offset);
+
+    console.log(localExpiresAt, new Date());
+    if (localExpiresAt < new Date()) {
+      const response = await graphqlClient.request(
+        gql`
+          mutation refreshToken($email: String!, $refreshToken: String!) {
+            refreshToken(email: $email, refreshToken: $refreshToken) {
+              success
+              errors
+              idToken
+              expiresAt
+            }
+          }
+        `,
+        { email, refreshToken },
+        {}
+      );
+
+      if (!response.refreshToken.errors && response.refreshToken.idToken) {
+        dispatch({
+          type: "set_token",
+          payload: response.refreshToken.idToken,
+        });
+
+        await localStorage.setItem("token", response.refreshToken.idToken);
+        await localStorage.setItem("expiresAt", response.refreshToken.expiresAt);
+      }
+    } else {
+      console.log("token is valid");
     }
-
-    return true;
   } catch (error) {
     console.log(error);
   }
@@ -353,6 +370,7 @@ const logout = (dispatch) => async () => {
   await localStorage.removeItem("token");
   await localStorage.removeItem("email");
   await localStorage.removeItem("refreshToken");
+  await localStorage.removeItem("expiresAt");
 
   dispatch({ type: "logout" });
 };

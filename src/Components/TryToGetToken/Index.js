@@ -8,14 +8,5 @@ export default function TryToLogin({ children }) {
     getToken();
   }, []);
 
-  console.log("try to get token");
-  if (state.isLoading) {
-    return (
-      <div>
-        <h1>Loading...</h1>
-      </div>
-    );
-  } else {
-    return <>{children}</>;
-  }
+  return <>{children}</>;
 }

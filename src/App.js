@@ -68,12 +68,7 @@ function Root() {
 
   const appFlow = (
     <>
-      {state.errorMessage ||
-      journalErrorMessage ||
-      watchListErrorMessage ||
-      subscriptionErrorMessage ? (
-        <TryToGetToken />
-      ) : null}
+      <TryToGetToken />
       <Switch>
         <Route path="/" exact>
           <Redirect to="/dashboard" />
