@@ -27,7 +27,7 @@ export default function CheckoutRedirect() {
       confirmCheckout({ token, id }).then((res) => {
         if (res && isMounted) {
           setConfirm(res);
-          goToPage("dashboard");
+          goToPage("profile");
         }
       });
     }
