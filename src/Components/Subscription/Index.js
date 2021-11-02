@@ -57,21 +57,6 @@ function CardBilling({ price, recurrency, duration }) {
         <strong className="price">$ {price}</strong>
         <strong> / {duration}.</strong>
       </p>
-      <p>
-        <span className="recurrency">Billed Anually or $ {recurrency}/monthly</span>
-      </p>
-    </div>
-  );
-}
-
-function CardFeatures({ data }) {
-  return (
-    <div className="card-features">
-      <ul>
-        {data.map((item, index) => {
-          return <li key={index}>{item}</li>;
-        })}
-      </ul>
     </div>
   );
 }
