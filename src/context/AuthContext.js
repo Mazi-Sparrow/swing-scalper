@@ -163,7 +163,7 @@ const getToken = (dispatch) => async () => {
 
     localExpiresAt.setHours(hours - offset);
 
-    if (localExpiresAt < new Date()) {
+    if (localExpiresAt < new Date() && email && expiresAt && refreshToken) {
       const response = await graphqlClient.request(
         gql`
           mutation refreshToken($email: String!, $refreshToken: String!) {

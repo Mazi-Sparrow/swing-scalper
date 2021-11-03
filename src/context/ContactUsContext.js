@@ -39,18 +39,17 @@ const contactUs =
       dispatch({
         type: "add_loading",
       });
-      const email = await localStorage.getItem("email");
 
       const response = await graphqlClient.request(
         gql`
-          mutation contactUs($email: String!, $title: String!, $message: String!) {
-            contactUs(input: { email: $email, title: $title, message: $message }) {
+          mutation contactUs($title: String!, $message: String!) {
+            contactUs(input: { title: $title, message: $message }) {
               success
               errors
             }
           }
         `,
-        { email, title, message },
+        { title, message },
         { Authorization: `Bearer ${token}` }
       );
 
