@@ -9,7 +9,12 @@ import { Hidden } from "@mui/material";
 import Logo from "../../assets/images/SwingScalp-01 2.png";
 import Mobilemenu from "./Mobilemenu";
 import Fab from "@mui/material/Fab";
+
+import { Context as AuthContext } from "../../context/AuthContext";
 export default function ButtonAppBar() {
+  const {
+    state: { isSubscribed },
+  } = React.useContext(AuthContext);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" className="appbar-setting">
@@ -29,12 +34,17 @@ export default function ButtonAppBar() {
               <Button color="inherit" href="/dashboard">
                 DASHBOARD
               </Button>
-              <Button color="inherit" href="/journal">
-                JOURNAL
-              </Button>
-              <Button color="inherit" href="/watchlist">
-                WATCHLIST
-              </Button>
+              {isSubscribed ? (
+                <>
+                  <Button color="inherit" href="/journal">
+                    JOURNAL
+                  </Button>
+                  <Button color="inherit" href="/watchlist">
+                    WATCHLIST
+                  </Button>
+                </>
+              ) : null}
+
               <Button color="inherit" href="/information">
                 Information
               </Button>

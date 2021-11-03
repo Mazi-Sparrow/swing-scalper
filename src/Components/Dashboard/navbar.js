@@ -10,7 +10,11 @@ export default function ButtonAppBar() {
   const history = useHistory();
   const goToPage = React.useCallback((page) => history.push(`/${page}`), [history]);
 
-  const { logout } = React.useContext(AuthContext);
+  const {
+    logout,
+    state: { isSubscribed },
+  } = React.useContext(AuthContext);
+
   return (
     <>
       <AppBar>
@@ -50,16 +54,21 @@ export default function ButtonAppBar() {
                 DASHBOARD
               </Button>
             </li>
-            <li>
-              <Button color="inherit" href="/journal">
-                JOURNAL
-              </Button>
-            </li>
-            <li>
-              <Button color="inherit" href="/watchlist">
-                WATCHLIST
-              </Button>
-            </li>
+
+            {isSubscribed ? (
+              <>
+                <li>
+                  <Button color="inherit" href="/journal">
+                    JOURNAL
+                  </Button>
+                </li>
+                <li>
+                  <Button color="inherit" href="/watchlist">
+                    WATCHLIST
+                  </Button>
+                </li>
+              </>
+            ) : null}
 
             <li>
               <Button color="inherit" href="/information">

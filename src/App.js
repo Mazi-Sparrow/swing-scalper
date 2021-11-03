@@ -37,17 +37,6 @@ Amplify.configure(awsconfig);
 
 function Root() {
   const { state } = React.useContext(AuthContext);
-  const {
-    state: { errorMessage: journalErrorMessage },
-  } = React.useContext(JournalContext);
-
-  const {
-    state: { errorMessage: watchListErrorMessage },
-  } = React.useContext(WatchListContext);
-
-  const {
-    state: { errorMessage: subscriptionErrorMessage },
-  } = React.useContext(SubscriptionContext);
 
   const authFlow = (
     <>
@@ -70,13 +59,21 @@ function Root() {
     <>
       <TryToGetToken />
       <Switch>
-        <Route path="/" exact>
-          <Redirect to="/dashboard" />
-        </Route>
+        {!state.isSubscribed ? (
+          <Route path="/" exact>
+            <Redirect to="/subscription" />
+          </Route>
+        ) : (
+          <Route path="/" exact>
+            <Redirect to="/dashboard" />
+          </Route>
+        )}
+
         <Route path="/dashboard" component={Dashboard} />
-        <Route path="/journal" component={Journal} />
+        {state.isSubscribed ? <Route path="/journal" component={Journal} /> : null}
+
+        {state.isSubscribed ? <Route path="/watchlist" component={Watchlist} /> : null}
         <Route path="/information" component={Information} />
-        <Route path="/watchlist" component={Watchlist} />
         <Route path="/subscription" component={Subscription} />
         <Route path="/redirect" component={CheckoutRedirect} />
         <Route path="/profile" component={Profile} />
