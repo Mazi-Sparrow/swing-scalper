@@ -11,7 +11,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { Context as AuthContext } from "../../context/AuthContext";
-import { CardActions } from "@mui/material";
+import { CardActions, FormControlLabel, Checkbox } from "@mui/material";
 
 const passwordPattern = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-+_!@#$%^&*.,?]).+$");
 
@@ -23,6 +23,7 @@ export default function SignUp() {
     firstName: "",
     lastName: "",
     formError: "",
+    passwordShown: false,
   });
   const [password, setPassword] = React.useState("");
   const [passwordError, setPasswordError] = React.useState("");
@@ -48,7 +49,16 @@ export default function SignUp() {
   }, [password]);
 
   const onChange = (e) => {
-    setState({ ...state, formError: "", [e.target.name]: e.target.value });
+    if (e.target.name == "password" && !passwordPattern.test(e.target.value)) {
+      setState({
+        ...state,
+        password: e.target.value,
+        formError:
+          "Your Password must contain at least 1 Capital letter, 1 small letter, 1 special char, 1 number",
+      });
+    } else {
+      setState({ ...state, formError: "", [e.target.name]: e.target.value });
+    }
   };
 
   const handleSubmit = async (event) => {
@@ -145,7 +155,7 @@ export default function SignUp() {
                 value={state.password}
                 name="password"
                 label="Password"
-                type="password"
+                type={state.passwordShown ? "text" : "password"}
                 id="password"
                 autoComplete="new-password"
               />
@@ -158,12 +168,24 @@ export default function SignUp() {
                 value={state.confirmPassword}
                 name="confirmPassword"
                 label="confirmPassword"
-                type="password"
+                type={state.passwordShown ? "text" : "password"}
                 id="confirmPassword"
                 autoComplete="new-password"
               />
             </Grid>
           </Grid>
+          <FormControlLabel
+            control={
+              <Checkbox
+                value={state.passwordShown}
+                color="primary"
+                onChange={(e) => {
+                  setState({ ...state, passwordShown: !state.passwordShown });
+                }}
+              />
+            }
+            label="Show Password"
+          />
 
           <CardActions>
             <Button
