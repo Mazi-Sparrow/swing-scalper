@@ -156,18 +156,6 @@ export default function Index() {
                     />
 
                     <TextField
-                      onChange={(e) => setState({ ...state, email: e.target.value })}
-                      className={classes.field}
-                      variant="outlined"
-                      color="secondary"
-                      fullWidth
-                      label="Email"
-                      required
-                      value={state.email}
-                      error={state.emailError}
-                    />
-
-                    <TextField
                       onChange={(e) => setState({ ...state, details: e.target.value })}
                       className={classes.field}
                       variant="outlined"

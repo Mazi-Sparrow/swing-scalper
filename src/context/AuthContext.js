@@ -28,6 +28,7 @@ const authReducers = (state, action) => {
         token: action.payload.token,
         email: action.payload.email,
         refreshToken: action.payload.refreshToken,
+        isSubscribed: action.payload.isSubscribed,
       };
     case "set_token":
       return { ...state, token: action.payload };
@@ -54,6 +55,7 @@ const signin = (dispatch) => async (username, password) => {
             refreshToken
             success
             errors
+            is_subscribed
           }
         }
       `,
@@ -72,13 +74,19 @@ const signin = (dispatch) => async (username, password) => {
     if (!response.logIn.errors && response.logIn.idToken) {
       dispatch({
         type: "signin",
-        payload: { token: response.logIn.idToken, refreshToken: response.logIn.idToken },
+        payload: {
+          token: response.logIn.idToken,
+          email: username,
+          refreshToken: response.logIn.refreshToken,
+          isSubscribed: response.logIn.is_subscribed,
+        },
       });
       await Promise.all([
         localStorage.setItem("token", response.logIn.idToken),
         localStorage.setItem("refreshToken", response.logIn.refreshToken),
         localStorage.setItem("email", username),
         localStorage.setItem("expiresAt", response.logIn.expiresAt),
+        localStorage.setItem("isSubscribed", response.logIn.is_subscribed),
       ]);
     }
   } catch (error) {
@@ -128,7 +136,6 @@ const signup =
         response.createUser.errors &&
         response.createUser.errors[0]
       ) {
-        console.log(response.createUser.errors[0]);
         dispatch({
           type: "add_error",
           payload: response.createUser.errors[0],
@@ -163,7 +170,7 @@ const getToken = (dispatch) => async () => {
 
     localExpiresAt.setHours(hours - offset);
 
-    if (localExpiresAt < new Date()) {
+    if (localExpiresAt < new Date() && email && expiresAt && refreshToken) {
       const response = await graphqlClient.request(
         gql`
           mutation refreshToken($email: String!, $refreshToken: String!) {
@@ -172,6 +179,7 @@ const getToken = (dispatch) => async () => {
               errors
               idToken
               expiresAt
+              is_subscribed
             }
           }
         `,
@@ -185,8 +193,12 @@ const getToken = (dispatch) => async () => {
           payload: response.refreshToken.idToken,
         });
 
-        await localStorage.setItem("token", response.refreshToken.idToken);
-        await localStorage.setItem("expiresAt", response.refreshToken.expiresAt);
+        await Promise.all([
+          localStorage.setItem("isSubscribed", response.refreshToken.is_subscribed),
+          localStorage.setItem("token", response.refreshToken.idToken),
+          localStorage.setItem("expiresAt", response.refreshToken.expiresAt),
+          localStorage.setItem("email", email),
+        ]);
       }
     }
   } catch (error) {
@@ -217,11 +229,6 @@ const getUser =
       );
 
       if (!response.getUser.errors && response.getUser.success) {
-        dispatch({
-          type: "set_user",
-          payload: response.getUser,
-        });
-
         return response.getUser;
       }
 
@@ -363,10 +370,13 @@ const confirmForgotPassword =
   };
 
 const logout = (dispatch) => async () => {
-  await localStorage.removeItem("token");
-  await localStorage.removeItem("email");
-  await localStorage.removeItem("refreshToken");
-  await localStorage.removeItem("expiresAt");
+  await Promise.all([
+    localStorage.removeItem("token"),
+    localStorage.removeItem("email"),
+    localStorage.removeItem("refreshToken"),
+    localStorage.removeItem("expiresAt"),
+    localStorage.removeItem("isSubscribed"),
+  ]);
 
   dispatch({ type: "logout" });
 };
@@ -376,11 +386,17 @@ const clearErrorMessage = (dispatch) => () => {
 };
 
 const tryLocalSignin = (dispatch) => async () => {
-  const token = await localStorage.getItem("token");
-  const refreshToken = await localStorage.getItem("refreshToken");
+  console.log("try to local sign in");
+  const [token, refreshToken, isSubscribed, email] = await Promise.all([
+    localStorage.getItem("token"),
+    localStorage.getItem("refreshToken"),
+    localStorage.getItem("isSubscribed"),
+    localStorage.getItem("email"),
+  ]);
+  console.log("try to login", token, refreshToken, isSubscribed, email);
 
-  if (token) {
-    dispatch({ type: "signin", payload: { token, refreshToken } });
+  if (token && refreshToken && isSubscribed && email) {
+    dispatch({ type: "signin", payload: { token, refreshToken, isSubscribed, email } });
   }
 };
 
@@ -398,5 +414,5 @@ export const { Context, Provider } = createDataContext(
     getToken,
     getUser,
   },
-  { token: null, refreshToken: null, errorMessage: "", isLoading: false }
+  { token: null, refreshToken: null, isSubscribed: false, errorMessage: "", isLoading: false }
 );

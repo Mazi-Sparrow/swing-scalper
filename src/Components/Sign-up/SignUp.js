@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -11,13 +11,33 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { Context as AuthContext } from "../../context/AuthContext";
-import { CardActions } from "@mui/material";
+import { CardActions, FormControlLabel, Checkbox } from "@mui/material";
 
+const passwordPattern = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-+_!@#$%^&*.,?]).+$");
 
 export default function SignUp() {
+  const [state, setState] = useState({
+    password: "",
+    confirmPassword: "",
+    email: "",
+    firstName: "",
+    lastName: "",
+    formError: "",
+    passwordShown: false,
+  });
+  const [password, setPassword] = React.useState("");
+  const [passwordError, setPasswordError] = React.useState("");
+
   const history = useHistory();
-  const goToPage = React.useCallback((page) => history.push(`/${page}`), [history]);
-  const { signup, state, clearErrorMessage } = React.useContext(AuthContext);
+  const goToPage = React.useCallback(
+    (page, email) => history.push({ pathname: `/${page}`, state: { email } }),
+    [history]
+  );
+  const {
+    signup,
+    state: { errorMessage },
+    clearErrorMessage,
+  } = React.useContext(AuthContext);
 
   React.useEffect(() => {
     let isMounted = true;
@@ -26,28 +46,45 @@ export default function SignUp() {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [password]);
+
+  const onChange = (e) => {
+    if (e.target.name == "password" && !passwordPattern.test(e.target.value)) {
+      setState({
+        ...state,
+        password: e.target.value,
+        formError:
+          "Your Password must contain at least 1 Capital letter, 1 small letter, 1 special char, 1 number",
+      });
+    } else {
+      setState({ ...state, formError: "", [e.target.name]: e.target.value });
+    }
+  };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
+    setState({ ...state, formError: "" });
+    clearErrorMessage();
 
-    const email = data.get("email");
-    const password = data.get("password");
-    const firstName = data.get("firstName");
-    const lastName = data.get("lastName");
-    const confirmPassword = data.get("confirmPassword");
+    event.preventDefault();
+
+    if (!passwordPattern.test(state.password)) {
+      setState({
+        ...state,
+        formError:
+          "Your Password must contain at least 1 Capital letter, 1 small letter, 1 special char, 1 number",
+      });
+      return;
+    }
 
     const isSignedIn = await signup({
-      email,
-      password,
-      confirmPassword,
-      firstName,
-      lastName,
+      email: state.email,
+      password: state.password,
+      confirmPassword: state.confirmPassword,
+      firstName: state.firstName,
+      lastName: state.lastName,
     });
 
-    if (isSignedIn) goToPage("confirm");
+    if (isSignedIn) goToPage("confirm", state.email);
   };
 
   return (
@@ -61,8 +98,11 @@ export default function SignUp() {
           alignItems: "center",
         }}
       >
-        {state.errorMessage ? (
-          <Typography style={{ color: "red" }}>{state.errorMessage}</Typography>
+        <div style={{ marginTop: "1.5em" }}></div>
+        {errorMessage ? <Typography style={{ color: "red" }}>{errorMessage}</Typography> : null}
+
+        {state.formError ? (
+          <Typography style={{ color: "red" }}>{state.formError}</Typography>
         ) : null}
         <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
           <LockOutlinedIcon />
@@ -74,6 +114,8 @@ export default function SignUp() {
               <TextField
                 autoComplete="given-name"
                 name="firstName"
+                onChange={onChange}
+                value={state.firstName}
                 required
                 fullWidth
                 id="firstName"
@@ -85,6 +127,8 @@ export default function SignUp() {
               <TextField
                 required
                 fullWidth
+                onChange={onChange}
+                value={state.lastName}
                 id="lastName"
                 label="Last Name"
                 name="lastName"
@@ -95,6 +139,8 @@ export default function SignUp() {
               <TextField
                 required
                 fullWidth
+                onChange={onChange}
+                value={state.email}
                 id="email"
                 label="Email Address"
                 name="email"
@@ -105,9 +151,11 @@ export default function SignUp() {
               <TextField
                 required
                 fullWidth
+                onChange={onChange}
+                value={state.password}
                 name="password"
                 label="Password"
-                type="password"
+                type={state.passwordShown ? "text" : "password"}
                 id="password"
                 autoComplete="new-password"
               />
@@ -116,17 +164,36 @@ export default function SignUp() {
               <TextField
                 required
                 fullWidth
+                onChange={onChange}
+                value={state.confirmPassword}
                 name="confirmPassword"
                 label="confirmPassword"
-                type="password"
+                type={state.passwordShown ? "text" : "password"}
                 id="confirmPassword"
                 autoComplete="new-password"
               />
-            </Grid>    
+            </Grid>
           </Grid>
+          <FormControlLabel
+            control={
+              <Checkbox
+                value={state.passwordShown}
+                color="primary"
+                onChange={(e) => {
+                  setState({ ...state, passwordShown: !state.passwordShown });
+                }}
+              />
+            }
+            label="Show Password"
+          />
 
           <CardActions>
-            <Button size="small" color="primary" type="submit">
+            <Button
+              size="small"
+              color="primary"
+              type="submit"
+              disabled={state.password !== state.confirmPassword}
+            >
               Sign up
             </Button>
           </CardActions>

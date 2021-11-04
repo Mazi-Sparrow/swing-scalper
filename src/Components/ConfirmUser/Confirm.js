@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -14,9 +14,13 @@ import Container from "@mui/material/Container";
 import { Context as AuthContext } from "../../context/AuthContext";
 import { CardActions } from "@mui/material";
 
+export default function Confirm() {
+  const location = useLocation();
 
-export default function SignIn() {
   const history = useHistory();
+
+  const [email, setEmail] = React.useState(location.state.email);
+
   const goToPage = React.useCallback((page) => history.push(`/${page}`), [history]);
 
   const { confirmEmail, state, clearErrorMessage } = React.useContext(AuthContext);
@@ -35,7 +39,6 @@ export default function SignIn() {
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
 
-    const email = data.get("email");
     const code = data.get("code");
 
     const isConfirmed = await confirmEmail({ email, code });
@@ -68,6 +71,8 @@ export default function SignIn() {
             label="Email Address"
             name="email"
             autoComplete="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             autoFocus
           />
           <TextField

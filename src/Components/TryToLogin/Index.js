@@ -8,13 +8,5 @@ export default function TryToLogin({ children }) {
     tryLocalSignin();
   }, []);
 
-  if (state.isLoading) {
-    return (
-      <div>
-        <h1>Loading...</h1>
-      </div>
-    );
-  } else {
-    return <>{children}</>;
-  }
+  return <>{children}</>;
 }
