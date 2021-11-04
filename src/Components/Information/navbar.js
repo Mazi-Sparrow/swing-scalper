@@ -33,7 +33,7 @@ export default function ButtonAppBar() {
               <Button color="inherit" href="/dashboard">
                 DASHBOARD
               </Button>
-              {isSubscribed == "true" ? (
+              {isSubscribed == "true" || isSubscribed == true ? (
                 <>
                   <Button color="inherit" href="/journal">
                     JOURNAL

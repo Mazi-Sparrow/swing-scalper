@@ -56,7 +56,7 @@ export default function ButtonAppBar() {
               </Button>
             </li>
 
-            {isSubscribed == "true" ? (
+            {isSubscribed == "true" || isSubscribed == true ? (
               <>
                 <li>
                   <Button color="inherit" href="/journal">
