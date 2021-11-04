@@ -11,6 +11,8 @@ import {
   ChartCategoryAxisItem,
   ChartTitle,
   ChartLegend,
+  ChartValueAxis,
+  ChartValueAxisItem,
 } from "@progress/kendo-react-charts";
 import "hammerjs";
 
@@ -45,6 +47,7 @@ export default function Index() {
     openTrades: 0,
     riskValues: [],
     rewardValues: [],
+    categories: [],
   });
 
   useEffect(() => {
@@ -53,7 +56,28 @@ export default function Index() {
       if (isMounted) {
         const { profit, loss, openTrades, riskValues, rewardValues } = dashboardValues(res);
 
-        setState({ ...state, profit, loss, openTrades, riskValues, rewardValues, loading: false });
+        const newCategories = [];
+        const newRewards = [];
+        const newRisks = [];
+
+        for (let i = 0; i < 12; i++) {
+          if (riskValues[i] > 0 || rewardValues > 0) {
+            newCategories.push(categories[i]);
+            newRewards.push(rewardValues[i]);
+            newRisks.push(riskValues[i]);
+          }
+        }
+
+        setState({
+          ...state,
+          profit,
+          loss,
+          openTrades,
+          riskValues: newRisks,
+          rewardValues: newRewards,
+          categories: newCategories,
+          loading: false,
+        });
       }
     });
 
@@ -109,8 +133,15 @@ export default function Index() {
                 >
                   <ChartTitle text="TOTAL TRADES" />
                   <ChartLegend position="top" orientation="horizontal" />
+
                   <ChartSeries>
                     <ChartSeriesItem
+                      labels={{
+                        visible: true,
+                        padding: 3,
+                        font: "bold 16px Arial, sans-serif",
+                        format: "c2",
+                      }}
                       type="pie"
                       overlay={{
                         gradient: "sharpBevel",
@@ -132,14 +163,30 @@ export default function Index() {
                     height: 350,
                   }}
                 >
-                  <ChartTitle text="P/L & RISK/REWARD" />
+                  <ChartTitle text="P/L & RISK/REWARD in Dollars" />
                   <ChartLegend position="top" orientation="horizontal" />
+
+                  <ChartValueAxis>
+                    <ChartValueAxisItem
+                      labels={{
+                        format: "c0",
+                        padding: 3,
+                        font: "bold 16px Arial, sans-serif",
+                      }}
+                    />
+                  </ChartValueAxis>
                   <ChartCategoryAxis>
-                    <ChartCategoryAxisItem categories={categories} startAngle={45} />
+                    <ChartCategoryAxisItem categories={state.categories} startAngle={45} />
                   </ChartCategoryAxis>
                   <ChartSeries>
                     {series.map((item, idx) => (
                       <ChartSeriesItem
+                        labels={{
+                          visible: true,
+                          padding: 3,
+                          font: "bold 16px Arial, sans-serif",
+                          format: "c2",
+                        }}
                         key={idx}
                         type="column"
                         tooltip={{
@@ -161,8 +208,17 @@ export default function Index() {
             >
               <ChartTitle text="RISK/REWARD TREND" />
               <ChartLegend position="top" orientation="horizontal" />
+              <ChartValueAxis>
+                <ChartValueAxisItem
+                  labels={{
+                    format: "c0",
+                    padding: 3,
+                    font: "bold 16px Arial, sans-serif",
+                  }}
+                />
+              </ChartValueAxis>
               <ChartCategoryAxis>
-                <ChartCategoryAxisItem categories={categories} startAngle={45} />
+                <ChartCategoryAxisItem categories={state.categories} startAngle={45} />
               </ChartCategoryAxis>
               <ChartSeries>
                 {series.map((item, idx) => (
@@ -174,6 +230,12 @@ export default function Index() {
                     }}
                     data={item.data}
                     name={item.name}
+                    labels={{
+                      visible: true,
+                      padding: 3,
+                      font: "bold 16px Arial, sans-serif",
+                      format: "c2",
+                    }}
                   />
                 ))}
               </ChartSeries>
