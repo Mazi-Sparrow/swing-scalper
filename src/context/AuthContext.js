@@ -86,6 +86,7 @@ const signin = (dispatch) => async (username, password) => {
         localStorage.setItem("refreshToken", response.logIn.refreshToken),
         localStorage.setItem("email", username),
         localStorage.setItem("expiresAt", response.logIn.expiresAt),
+        localStorage.setItem("isSubscribed", response.logIn.is_subscribed),
       ]);
     }
   } catch (error) {
@@ -196,6 +197,7 @@ const getToken = (dispatch) => async () => {
           localStorage.setItem("isSubscribed", response.refreshToken.is_subscribed),
           localStorage.setItem("token", response.refreshToken.idToken),
           localStorage.setItem("expiresAt", response.refreshToken.expiresAt),
+          localStorage.setItem("email", email),
         ]);
       }
     }
@@ -384,14 +386,17 @@ const clearErrorMessage = (dispatch) => () => {
 };
 
 const tryLocalSignin = (dispatch) => async () => {
-  const [token, refreshToken, isSubscribed] = await Promise.all([
+  console.log("try to local sign in");
+  const [token, refreshToken, isSubscribed, email] = await Promise.all([
     localStorage.getItem("token"),
     localStorage.getItem("refreshToken"),
     localStorage.getItem("isSubscribed"),
+    localStorage.getItem("email"),
   ]);
+  console.log("try to login", token, refreshToken, isSubscribed, email);
 
-  if (token && refreshToken && isSubscribed) {
-    dispatch({ type: "signin", payload: { token, refreshToken, isSubscribed } });
+  if (token && refreshToken && isSubscribed && email) {
+    dispatch({ type: "signin", payload: { token, refreshToken, isSubscribed, email } });
   }
 };
 

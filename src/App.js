@@ -59,7 +59,7 @@ function Root() {
     <>
       <TryToGetToken />
       <Switch>
-        {!state.isSubscribed ? (
+        {state.isSubscribed == "false" ? (
           <Route path="/" exact>
             <Redirect to="/subscription" />
           </Route>
@@ -70,9 +70,9 @@ function Root() {
         )}
 
         <Route path="/dashboard" component={Dashboard} />
-        {state.isSubscribed ? <Route path="/journal" component={Journal} /> : null}
+        {state.isSubscribed == "true" ? <Route path="/journal" component={Journal} /> : null}
 
-        {state.isSubscribed ? <Route path="/watchlist" component={Watchlist} /> : null}
+        {state.isSubscribed == "true" ? <Route path="/watchlist" component={Watchlist} /> : null}
         <Route path="/information" component={Information} />
         <Route path="/subscription" component={Subscription} />
         <Route path="/redirect" component={CheckoutRedirect} />
@@ -84,7 +84,7 @@ function Root() {
     </>
   );
 
-  return state.token ? appFlow : authFlow;
+  return state.token && state.email ? appFlow : authFlow;
 }
 
 function App() {

@@ -15,6 +15,7 @@ export default function ButtonAppBar() {
     state: { isSubscribed },
   } = React.useContext(AuthContext);
 
+  console.log(typeof isSubscribed);
   return (
     <>
       <AppBar>
@@ -55,7 +56,7 @@ export default function ButtonAppBar() {
               </Button>
             </li>
 
-            {isSubscribed ? (
+            {isSubscribed == "true" ? (
               <>
                 <li>
                   <Button color="inherit" href="/journal">
