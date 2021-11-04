@@ -114,7 +114,7 @@ const cardsData = [
     description: "SwingScalper $360 Yearly",
     price: 360.0,
     recurrency: 360.0,
-    mostPopular: false,
+    mostPopular: true,
     duration: "year",
     data: [],
   },

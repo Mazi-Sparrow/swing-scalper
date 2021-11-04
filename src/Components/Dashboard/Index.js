@@ -131,7 +131,7 @@ export default function Index() {
                     height: 350,
                   }}
                 >
-                  <ChartTitle text="TOTAL TRADES" />
+                  <ChartTitle text="PERFORMANCE" />
                   <ChartLegend position="top" orientation="horizontal" />
 
                   <ChartSeries>
@@ -163,7 +163,7 @@ export default function Index() {
                     height: 350,
                   }}
                 >
-                  <ChartTitle text="P/L & RISK/REWARD in Dollars" />
+                  <ChartTitle text="P/L & RISK/REWARD" />
                   <ChartLegend position="top" orientation="horizontal" />
 
                   <ChartValueAxis>
