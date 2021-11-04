@@ -189,7 +189,7 @@ export default function Index() {
             field="createdAt"
             title="Date Openned"
             cell={CustomDate}
-            width="100%"
+            width="150px"
             filterable={false}
             editable={false}
           />
@@ -227,7 +227,7 @@ export default function Index() {
             editor="date"
             format="{0:d}"
             cell={CustomDate}
-            width="100%"
+            width="150px"
             filterable={false}
             editable={false}
           />
