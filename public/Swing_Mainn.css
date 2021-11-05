@@ -2,6 +2,9 @@
 .k-common-test-class {
     opacity: 0;
 }
+.MuiCardContent-root.css-1qw96cp {
+    display: none !important;
+}
 
 [hidden] {
     display: none !important;
@@ -34,6 +37,7 @@ script {
     -ms-flex-flow: row nowrap;
         flex-flow: row nowrap;
 }
+
 
 .k-vbox,
 .k-vstack {
