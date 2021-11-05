@@ -67,7 +67,7 @@ function CardBilling({ price, recurrency, duration }) {
   return (
     <div className="card-billing">
       <p>
-        <strong className="price">$ {price}</strong>
+        <strong className="price">{price}</strong>
         <strong> / {duration}.</strong>
       </p>
     </div>
@@ -95,14 +95,14 @@ function CardAction({ clickMe }) {
 }
 
 function PricingCard(props) {
-  const { type, title, description, price, recurrency, duration, mostPopular, data, clickMe, id } =
+  const { type, name, description, price, recurrency, period_unit, mostPopular, data, clickMe, id } =
     props;
 
   return (
     <div className={`card pricing-card ${type}`}>
       {mostPopular ? <span className="most-popular">Most Popular</span> : null}
-      <CardDescription title={title} description={description} />
-      <CardBilling price={price} recurrency={recurrency} duration={duration} />
+      <CardDescription title={name} description={description} />
+      <CardBilling price={price} recurrency={recurrency} duration={period_unit} />
       <CardAction clickMe={clickMe} />
     </div>
   );
