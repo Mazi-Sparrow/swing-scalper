@@ -125,8 +125,40 @@ const confirmCheckout =
     }
   };
 
+  const getPlans = 
+    (dispatch) => 
+    async () => {
+      try {
+        const response = await graphqlClient.request(
+          gql`
+            query { 
+              getPlans { 
+                items { 
+                  id
+                  name
+                  description
+                  price
+                  period
+                  period_unit 
+                } 
+              } 
+            }
+          `
+        );
+        if (response.getPlans) {
+          return response.getPlans.items;
+        }
+      } catch (error) {
+        console.log(error);
+        dispatch({
+          type: "add_error",
+          payload: "Invalid Request",
+        });
+      }
+    }
+
 export const { Context, Provider } = createDataContext(
   subscriptionReducers,
-  { createCheckout, confirmCheckout },
+  { createCheckout, confirmCheckout, getPlans },
   { checkoutUrl: null, errorMessage: "", isLoading: false }
 );

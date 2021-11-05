@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 
 import Navbar from "../Dashboard/navbar";
@@ -11,11 +11,24 @@ import { Context as AuthContext } from "../../context/AuthContext";
 import { Context as SubscriptionContext } from "../../context/SubscriptionContext";
 
 export default function Index() {
+  const [availablePlans, setAvailablePlans] = useState([]);
+
   const {
     state: { token },
   } = React.useContext(AuthContext);
 
-  const { createCheckout } = React.useContext(SubscriptionContext);
+  const { createCheckout, getPlans } = React.useContext(SubscriptionContext);
+
+  useEffect(() => {
+    FetchPlans();
+  }, [])
+
+  async function FetchPlans() {
+    const plans = await getPlans();
+    if (plans) {
+      setAvailablePlans(plans);
+    }
+  }
 
   async function handleClick(plan) {
     // make request to the checkout
@@ -31,7 +44,7 @@ export default function Index() {
       <Navbar />
 
       <div className="app-wrapper">
-        {cardsData.map((props) => {
+        {availablePlans.map((props) => {
           return <PricingCard {...props} key={props.id} clickMe={() => handleClick(props)} />;
         })}
       </div>
