@@ -1,8 +1,6 @@
 /* Scss Document */
 
-.MuiCardContent-root.css-1qw96cp {
-    display: none;
-}
+
 
 @font-face {
   font-family: Roboto-BoldItalic;
@@ -338,4 +336,7 @@ body {
   .asdasd * {
     width: 100%;
   }
+ .MuiCardContent-root.css-1qw96cp {
+    display: none !important;
+}   
 }
