@@ -87,6 +87,44 @@ export default function Profile() {
                 style={{ marginTop: "10px", marginBottom: "10px", width: "80%" }}
               />
             </div>
+            
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "start",
+                columnGap: "5px",
+                fontWeight: "bold",
+                fontSize: "1.2em",
+              }}
+            >
+              <label style={{ width: "20%" }}>Subscription plan: </label>
+              <TextField
+                value={user.subscriptions.length !== 0 ? user.subscriptions[0].name : ""}
+                variant="outlined"
+                color="secondary"
+                style={{ marginTop: "10px", marginBottom: "10px", width: "80%" }}
+              />
+            </div>
+            
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "start",
+                columnGap: "5px",
+                fontWeight: "bold",
+                fontSize: "1.2em",
+              }}
+            >
+              <label style={{ width: "20%" }}>Subscription plan description: </label>
+              <TextField
+                value={user.subscriptions.length !== 0 ? user.subscriptions[0].description : ""}
+                variant="outlined"
+                color="secondary"
+                style={{ marginTop: "10px", marginBottom: "10px", width: "80%" }}
+              />
+            </div>
           </div>
         </Container>
       ) : null}

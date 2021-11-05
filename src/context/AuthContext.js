@@ -221,6 +221,11 @@ const getUser =
               phone
               success
               errors
+              subscriptions {
+                name
+                billing_period
+                description
+              }
             }
           }
         `,
