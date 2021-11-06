@@ -4,7 +4,7 @@ import Dilogbox from './Dilog'
 export default function Footer() {
     return (
         <div className="Footer-section" >
-            <Box bgcolor="#9C1265"  py={2} >
+            <Box bgcolor="#9c27b0"  py={2} >
                 <Container>
                     <Grid container >
                       <Grid item lg={6} >

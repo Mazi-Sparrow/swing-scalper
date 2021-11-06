@@ -122,12 +122,12 @@ export default function Index() {
               disabled={ticker.length === 0}
             >
               <Button
-                style={{ backgroundColor: "#9F3D65", color: "white" }}
+                style={{ backgroundColor: "#9c27b0", color: "white" }}
                 variant="contained"
                 href="#"
               >
                 {isLoading ? <CircularProgress size={20} /> : null}
-                Search
+                Analyze
               </Button>
             </IconButton>
           </Paper>
