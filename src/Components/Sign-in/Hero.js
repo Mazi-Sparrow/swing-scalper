@@ -13,8 +13,8 @@ export default function Hero() {
     <div className="hero-section">
       <Container>
         <Grid container justifyContent="center" alignItems="center" flexBasis="100px">
-          <Grid item lg={6} md={8} sm={8} xs={12}>
-            <Card sx={{ maxWidth: 720, minWidth: 550 }} className="card-main">
+          <Grid item lg={6} mt={2} md={8} sm={8} xs={12}>
+            <Card sx={{ maxWidth: 1000 }} className="card-main">
               <CardContent>
                 <Typography variant="body1" className="RELIABLE">
                   SWINGSCALP
@@ -69,9 +69,10 @@ export default function Hero() {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item lg={6} md={8} sm={8} xs={12}>
+          <Grid item lg={6} mt={2} md={12} sm={12} xs={12}>
             <Box className="hero-reliable"></Box>
-            <img src={Logo} width="100%" height="auto" alt=<Skeleton shape={"rectangle"} style={{ width: "100%", height: "auto", }} /> />
+            <img src={Logo} width="100%" height="auto" alt=""/> 
+            <Skeleton shape={"rectangle"} style={{ width: "100%", height: "auto", }} />
             <Box className="hero-reliable"></Box>
             <Typography variant="body2" className="RELIABLE2">
               Always evaluate <span className="plan3"> RISK</span> before

@@ -87,6 +87,10 @@ export default function Index() {
         stopLoss: parseFloat(dataItem.stopLoss),
       });
     }
+
+    listJournals({ token }).then((res) => {
+      setData(res);
+    });
   };
 
   const update = async (dataItem) => {
@@ -100,6 +104,7 @@ export default function Index() {
         token,
       });
     }
+
     setData(newData);
   };
 
@@ -183,36 +188,83 @@ export default function Index() {
               New Trade
             </Button>
           </GridToolbar>
-          <Column cell={CommandCell} width="100px" filterable={false} />
+          <Column 
+            cell={CommandCell}
+            filterable={false}
+            width="100%"
+          />
 
           <Column
             field="createdAt"
             title="Date Openned"
             cell={CustomDate}
-            width="150px"
             filterable={false}
             editable={false}
+            width="150px"
           />
-          <Column field="ticker" title="Ticker" filterable={false} filter="text" editable={true} />
-          <Column field="quantity" title="Qty" filterable={false} editable={true} />
-          <Column field="buyPrice" title="Avg Price $" filterable={false} editable={true} />
-          <Column field="stopLoss" title="Stop Loss $" filterable={false} editable={true} />
-          <Column field="priceTargets" title="Price Target $" filterable={false} editable={true} />
+          <Column 
+            field="ticker" 
+            title="Ticker" 
+            filterable={false} 
+            filter="text"
+            editable={true} 
+            width="100px"
+          />
+          <Column 
+            field="quantity" 
+            title="Qty" 
+            filterable={false} 
+            editable={true}
+            width="100%" 
+          />
+          <Column 
+            field="buyPrice" 
+            title="Avg Price $" 
+            filterable={false} 
+            editable={true} 
+            width="100px"
+          />
+          <Column 
+            field="stopLoss" 
+            title="Stop Loss $" 
+            filterable={false} 
+            editable={true} 
+            width="100px" 
+          />
+          <Column 
+            field="priceTargets" 
+            title="Price Target $" 
+            filterable={false} 
+            editable={true} 
+            width="100px" 
+          />
           <Column
             field="tradeRisk"
             title="Risk $"
-            editable={false}
             filterable={false}
-            width="100%"
+            editable={false}
+            width="100px"
           />
-          <Column field="tradeReward" title="Reward $" editable={false} filterable={false} />
-          <Column field="profitLossPercentage" title="P/L %" editable={false} filterable={false} />
+          <Column 
+            field="tradeReward" 
+            title="Reward $"
+            filterable={false} 
+            editable={false}
+            width="100px" 
+          />
+          <Column 
+            field="profitLossPercentage" 
+            title="P/L %"
+            filterable={false} 
+            editable={false} 
+            width="100px" 
+          />
           <Column
             field="tradeStatus"
             title="Status"
-            width="100%"
-            editable={false}
             filterable={false}
+            editable={false}
+            width="80px"
           />
           <Column
             field="sellPrice"
@@ -220,6 +272,7 @@ export default function Index() {
             editor="numeric"
             filterable={false}
             editable={setEditable()}
+            width="150px"
           />
           <Column
             field="updatedAt"
@@ -227,9 +280,9 @@ export default function Index() {
             editor="date"
             format="{0:d}"
             cell={CustomDate}
-            width="150px"
             filterable={false}
             editable={false}
+            width="150px"
           />
         </Grid>
       </Box>
