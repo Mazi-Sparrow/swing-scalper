@@ -79,7 +79,7 @@ function CardAction({ clickMe }) {
     <div className="card-action">
       <Button
         style={{
-          backgroundColor: "#9F3D65",
+          
           color: "white",
           width: "150px",
           fontSize: "1.2rem",

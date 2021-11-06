@@ -9,7 +9,7 @@ export default function Footer() {
                     <Grid container >
                       <Grid item lg={6} >
                       <Typography variant="body2" sx={{color:"white"}}  >
-            TECH TELOS INC 2021
+                      © TECH TELOS INC 2021
         </Typography>
         <Typography variant="body2" sx={{color:"white"}}  >
             support@swingscalp.com

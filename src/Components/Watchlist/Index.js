@@ -4,20 +4,69 @@ import InputBase from "@mui/material/InputBase";
 import Button from "@mui/material/Button";
 // import { Box } from "@mui/system";
 import Box from "@mui/material/Box";
-
 import { Grid, GridColumn as Column } from "@progress/kendo-react-grid";
 import { CardHeader, CircularProgress } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import { Grid as MaterialGrid } from "@mui/material";
-
 import Navbar from "../Dashboard/navbar";
 import Footer from "./Footer";
 import { LinearGaugeComponent } from "./LinearGaugeComponent";
 import { RadialGaugeComponent } from "./RadialGaugeComponent";
 import { ArcGaugeComponent } from "./ArcGaugeComponent";
-
 import { Context as AuthContext } from "../../context/AuthContext";
 import { Context as WatchListContext } from "../../context/WatchListContext";
+
+const cellWithBackGround = (props) => {
+  const buyZone = props.dataItem.buyZone;
+
+  {if (buyZone == true ) {
+    return (
+      <td
+        style={{
+          backgroundColor: "rgb(55, 180, 0,0.32)",
+        }}
+      >
+        {buyZone} <span>Green Light</span>
+      </td>
+    );
+  }
+
+  return (
+    <td
+      style={{
+        backgroundColor: "rgb(243, 23, 0, 0.32)",
+      }}
+    >
+      {buyZone} <span> No Buy Zone </span>
+    </td>
+  );
+  }
+
+  const buyTrigger = props.dataItem.buyTrigger;
+
+  {if (buyTrigger == true ) {
+    return (
+      <td
+        style={{
+          backgroundColor: "rgb(55, 180, 0,0.32)",
+        }}
+      >
+        {buyTrigger} <span> Triggered </span>
+      </td>
+    );
+  }
+
+  return (
+    <td
+      style={{
+        backgroundColor: "rgb(243, 23, 0, 0.32)",
+      }}
+    >
+      {buyTrigger} <span> Not Yet </span>
+    </td>
+  );
+  }
+};
 
 const MyLinearGaugeComponent = (props) => {
   return <LinearGaugeComponent {...props} />;
@@ -110,8 +159,8 @@ export default function Index() {
             <Column field="rsi14" title="RSI" filterable={false} editable={false} />
             <Column field="tradeRisk" title="Risk $" filterable={false} editable={false} />
             <Column field="tradeReward" title="Reward $" filterable={false} editable={false} />
-            <Column field="buyZone" title="Buy Zone" filterable={false} editable={false} />
-            <Column field="buyTrigger" title="Buy Trigger" filterable={false} editable={false} />
+            <Column field="buyZone" title="Buy Zone" cell={cellWithBackGround} filterable={false} editable={false} />
+            <Column field="buyTrigger" title="Buy Trigger" cell={cellWithBackGround} filterable={false} editable={false} />
           </Grid>
         </Box>
       </div>
