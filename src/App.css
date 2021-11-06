@@ -18216,6 +18216,13 @@ div.k-grid-footer {
     cursor: default;
 }
 
+.k-grid-header col:nth-of-type(1){
+    width: 20%
+}
+.k-grid-table col:nth-of-type(1){
+    width: 20%
+}
+
 .k-grid-header .k-header:first-child {
     border-left-width: 0;
 }
