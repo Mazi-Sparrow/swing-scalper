@@ -42,11 +42,13 @@ export default function Index() {
 
   const [state, setState] = useState({
     loading: true,
+    profitLossSum: 0,
     profit: 0,
     loss: 0,
     openTrades: 0,
     riskValues: [],
     rewardValues: [],
+    profitLossValues: [],
     categories: [],
   });
 
@@ -54,11 +56,12 @@ export default function Index() {
     let isMounted = true;
     listJournals({ token }).then((res) => {
       if (isMounted) {
-        const { profit, loss, openTrades, riskValues, rewardValues } = dashboardValues(res);
+        const { profitLossSum, profit, loss, openTrades, riskValues, rewardValues, profitLossValues } = dashboardValues(res);
 
         const newCategories = [];
         const newRewards = [];
         const newRisks = [];
+        const newProfitLossValues = [];
 
         for (let i = 0; i < 12; i++) {
           if (riskValues[i] > 0 || rewardValues > 0) {
@@ -66,15 +69,18 @@ export default function Index() {
             newRewards.push(rewardValues[i]);
             newRisks.push(riskValues[i]);
           }
+          newProfitLossValues.push(profitLossValues[i]);
         }
 
         setState({
           ...state,
+          profitLossSum,
           profit,
           loss,
           openTrades,
           riskValues: newRisks,
           rewardValues: newRewards,
+          profitLossValues: newProfitLossValues,
           categories: newCategories,
           loading: false,
         });
@@ -89,24 +95,15 @@ export default function Index() {
   const pieData = [
     {
       name: "LOSS",
-      share: state.loss,
-    },
-    {
-      name: "OPEN TRADES",
-      share: state.openTrades,
-      explode: true,
+      share: state.profitLossSum !== 0 ? state.loss / state.profitLossSum : 0,
     },
     {
       name: "PROFIT",
-      share: state.profit,
+      share: state.profitLossSum !== 0 ? state.profit / state.profitLossSum : 0,
     },
   ];
 
   const series = [
-    // {
-    //   name: "Profit/Loss",
-    //   data: state.,
-    // },
     {
       name: "Risk",
       data: state.riskValues,
@@ -116,6 +113,13 @@ export default function Index() {
       data: state.rewardValues,
     },
   ];
+
+  const seriesProfitLoss = [
+    {
+      name: "Profit/Loss",
+      data: state.profitLossValues,
+    }
+  ]
 
   return (
     <>
@@ -140,7 +144,7 @@ export default function Index() {
                         visible: true,
                         padding: 3,
                         font: "bold 16px Arial, sans-serif",
-                        format: "c2",
+                        format: "p",
                       }}
                       type="pie"
                       overlay={{
@@ -217,11 +221,8 @@ export default function Index() {
                   }}
                 />
               </ChartValueAxis>
-              <ChartCategoryAxis>
-                <ChartCategoryAxisItem categories={state.categories} startAngle={45} />
-              </ChartCategoryAxis>
               <ChartSeries>
-                {series.map((item, idx) => (
+                {seriesProfitLoss.map((item, idx) => (
                   <ChartSeriesItem
                     key={idx}
                     type="line"
