@@ -16,10 +16,10 @@ import { ArcGaugeComponent } from "./ArcGaugeComponent";
 import { Context as AuthContext } from "../../context/AuthContext";
 import { Context as WatchListContext } from "../../context/WatchListContext";
 
-const cellWithBackGround = (props) => {
+const zoneBackGround = (props) => {
   const buyZone = props.dataItem.buyZone;
 
-  {if (buyZone == true ) {
+  if (buyZone == true ) {
     return (
       <td
         style={{
@@ -40,11 +40,11 @@ const cellWithBackGround = (props) => {
       {buyZone} <span> No Buy Zone </span>
     </td>
   );
-  }
-
+};
+const triggerBackGround = (props) => {
   const buyTrigger = props.dataItem.buyTrigger;
 
-  {if (buyTrigger == true ) {
+  if (buyTrigger == true ) {
     return (
       <td
         style={{
@@ -65,7 +65,6 @@ const cellWithBackGround = (props) => {
       {buyTrigger} <span> Not Yet </span>
     </td>
   );
-  }
 };
 
 const MyLinearGaugeComponent = (props) => {
@@ -159,8 +158,8 @@ export default function Index() {
             <Column field="rsi14" title="RSI" filterable={false} editable={false} />
             <Column field="tradeRisk" title="Risk $" filterable={false} editable={false} />
             <Column field="tradeReward" title="Reward $" filterable={false} editable={false} />
-            <Column field="buyZone" title="Buy Zone" cell={cellWithBackGround} filterable={false} editable={false} />
-            <Column field="buyTrigger" title="Buy Trigger" cell={cellWithBackGround} filterable={false} editable={false} />
+            <Column field="buyZone" title="Buy Zone" cell={zoneBackGround} filterable={false} editable={false} />
+            <Column field="buyTrigger" title="Buy Trigger" cell={triggerBackGround} filterable={false} editable={false} />
           </Grid>
         </Box>
       </div>
