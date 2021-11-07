@@ -149,15 +149,22 @@ export default function Index() {
     setData([newDataItem, ...data]);
   };
 
+  const updateData = () => {
+    listJournals({ token }).then((res) => {
+      setData(res);
+    });
+  }
+
   const setEditable = () => {
     return editedRecord && editedRecord.tradeStatus === "Open";
   };
 
-  // responsive columns on window resize  
+  // responsive columns on window resize
   const [columnWidth, setColumnWidth] = React.useState((window.innerWidth - 530)/9);
 
   React.useEffect(() => {
     window.addEventListener("resize", handleResize);
+    handleResize();
   }, []);
 
   const handleResize = () => {
@@ -173,6 +180,12 @@ export default function Index() {
     return columnWidth;
   }
 
+  const [page, setPage] = React.useState(initialDataState);
+
+  const pageChange = (event) => {
+    setPage(event.page);
+  };
+
   return (
     <div>
       <Navbar />
@@ -181,6 +194,10 @@ export default function Index() {
         {errorMessage ? <Typography style={{ color: "red" }}>{errorMessage}</Typography> : null}
         <Grid
           pageable={true}
+          skip={page.skip}
+          take={page.take}
+          onPageChange={pageChange}
+          total={data.length}
           sortable={true}
           style={{
             textAlign: "justify",
@@ -188,9 +205,8 @@ export default function Index() {
             height: "100%",
             width: "100%",
           }}
-          data={process(data, dataState)}
-          // filter={filter}
-          // onFilterChange={filterChange}
+          data={data.slice(page.skip, page.take + page.skip)}
+          
           onDataStateChange={(e) => {
             setDataState(e.dataState);
           }}
@@ -206,6 +222,14 @@ export default function Index() {
               onClick={addNew}
             >
               New Trade
+            </Button>
+            <Button
+              title="Add new"
+              className="k-primary k-button k-grid-edit-command"
+              style={{ padding: "5px 10px" }}
+              onClick={updateData}
+            >
+              Update
             </Button>
           </GridToolbar>
           <Column

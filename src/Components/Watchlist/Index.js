@@ -97,6 +97,28 @@ export default function Index() {
     if (response) setStateWatchList(response);
   };
 
+  // responsive columns on window resize  
+  const columns = document.getElementsByClassName('k-header');
+  const [columnWidth, setColumnWidth] = React.useState(window.innerWidth/columns.length);
+
+  React.useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    handleResize();
+  }, []);
+
+  const handleResize = () => {
+    if ((window.innerWidth/columns.length) > 100) {
+      setColumnWidth((window.innerWidth/columns.length) + 'px');
+    }
+    else {
+      setColumnWidth('100px');
+    }
+  }
+
+  const setWidth = () => {
+    return columnWidth;
+  }
+
   return (
     <>
       <Navbar />
@@ -134,7 +156,7 @@ export default function Index() {
       </Box>
 
       <div
-        style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%" }}
+        // style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%" }}
       >
         <Box my={12} mb={15}>
           <Grid
@@ -146,20 +168,72 @@ export default function Index() {
             }}
             data={[{ ...stateWatchList }]}
           >
-            <Column field="ticker" title="Ticker" filterable={false} editable={false} />
-            <Column field="buyPrice" title="Price $" filterable={false} editable={false} />
-            <Column field="stopLoss" title="Stop Loss $" filterable={false} editable={false} />
+            <Column 
+              field="ticker" 
+              title="Ticker" 
+              filterable={false} 
+              editable={false}
+              // width="100px" 
+              width={setWidth()}
+            />
+            <Column 
+              field="buyPrice" 
+              title="Price $" 
+              filterable={false} 
+              editable={false} 
+              width={setWidth()}
+            />
+            <Column 
+              field="stopLoss" 
+              title="Stop Loss $" 
+              filterable={false} 
+              editable={false} 
+              width={setWidth()}
+            />
             <Column
               field="priceTargets"
               title="Price Target $"
               filterable={false}
               editable={false}
+              width={setWidth()}
             />
-            <Column field="rsi14" title="RSI" filterable={false} editable={false} />
-            <Column field="tradeRisk" title="Risk $" filterable={false} editable={false} />
-            <Column field="tradeReward" title="Reward $" filterable={false} editable={false} />
-            <Column field="buyZone" title="Buy Zone" cell={zoneBackGround} filterable={false} editable={false} />
-            <Column field="buyTrigger" title="Buy Trigger" cell={triggerBackGround} filterable={false} editable={false} />
+            <Column 
+              field="rsi14" 
+              title="RSI" 
+              filterable={false} 
+              editable={false} 
+              width={setWidth()}
+            />
+            <Column 
+              field="tradeRisk" 
+              title="Risk $" 
+              filterable={false} 
+              editable={false} 
+              width={setWidth()}
+            />
+            <Column 
+              field="tradeReward" 
+              title="Reward $" 
+              filterable={false} 
+              editable={false} 
+              width={setWidth()}
+            />
+            <Column 
+              field="buyZone" 
+              title="Buy Zone" 
+              cell={zoneBackGround} 
+              filterable={false} 
+              editable={false} 
+              width={setWidth()}
+            />
+            <Column 
+              field="buyTrigger" 
+              title="Buy Trigger" 
+              cell={triggerBackGround} 
+              filterable={false} 
+              editable={false}
+              width={setWidth()}
+            />
           </Grid>
         </Box>
       </div>
