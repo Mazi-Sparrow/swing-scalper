@@ -167,7 +167,7 @@ export default function Index() {
                     height: 350,
                   }}
                 >
-                  <ChartTitle text="P/L & RISK/REWARD" />
+                  <ChartTitle text="RISK/REWARD" />
                   <ChartLegend position="top" orientation="horizontal" />
 
                   <ChartValueAxis>
@@ -210,7 +210,7 @@ export default function Index() {
                 height: 350,
               }}
             >
-              <ChartTitle text="RISK/REWARD TREND" />
+              <ChartTitle text="P/L TREND LINE" />
               <ChartLegend position="top" orientation="horizontal" />
               <ChartValueAxis>
                 <ChartValueAxisItem
