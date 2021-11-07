@@ -153,6 +153,26 @@ export default function Index() {
     return editedRecord && editedRecord.tradeStatus === "Open";
   };
 
+  // responsive columns on window resize  
+  const [columnWidth, setColumnWidth] = React.useState((window.innerWidth - 530)/9);
+
+  React.useEffect(() => {
+    window.addEventListener("resize", handleResize);
+  }, []);
+
+  const handleResize = () => {
+    if (((window.innerWidth - 530)/9) > 100) {
+      setColumnWidth(((window.innerWidth - 530)/9) + 'px');
+    }
+    else {
+      setColumnWidth('100px');
+    }
+  }
+
+  const setWidth = () => {
+    return columnWidth;
+  }
+
   return (
     <div>
       <Navbar />
@@ -188,10 +208,10 @@ export default function Index() {
               New Trade
             </Button>
           </GridToolbar>
-          <Column 
+          <Column
             cell={CommandCell}
             filterable={false}
-            width="100%"
+            width="100px"
           />
 
           <Column
@@ -202,62 +222,68 @@ export default function Index() {
             editable={false}
             width="150px"
           />
-          <Column 
-            field="ticker" 
-            title="Ticker" 
-            filterable={false} 
+          <Column
+            field="ticker"
+            title="Ticker"
+            filterable={false}
             filter="text"
-            editable={true} 
-            width="100px"
-          />
-          <Column 
-            field="quantity" 
-            title="Qty" 
-            filterable={false} 
             editable={true}
-            width="100%" 
+            width={setWidth()}
           />
-          <Column 
-            field="buyPrice" 
-            title="Avg Price $" 
-            filterable={false} 
-            editable={true} 
-            width="100px"
+          <Column
+            field="quantity"
+            title="Qty"
+            filterable={false}
+            editable={true}
+            width={setWidth()}
           />
-          <Column 
-            field="stopLoss" 
-            title="Stop Loss $" 
-            filterable={false} 
-            editable={true} 
-            width="100px" 
+          <Column
+            field="buyPrice"
+            title="Avg Price $"
+            format="{0:c}"
+            filterable={false}
+            editable={true}
+            width={setWidth()}
           />
-          <Column 
-            field="priceTargets" 
-            title="Price Target $" 
-            filterable={false} 
-            editable={true} 
-            width="100px" 
+          <Column
+            field="stopLoss"
+            title="Stop Loss $"
+            format="{0:c}"
+            filterable={false}
+            editable={true}
+            width={setWidth()}
+          />
+          <Column
+            field="priceTargets"
+            title="Price Target $"
+            format="{0:c}"
+            filterable={false}
+            editable={true}
+            width={setWidth()}
           />
           <Column
             field="tradeRisk"
             title="Risk $"
+            format="{0:c}"
             filterable={false}
             editable={false}
-            width="100px"
+            width={setWidth()}
           />
-          <Column 
-            field="tradeReward" 
+          <Column
+            field="tradeReward"
             title="Reward $"
-            filterable={false} 
+            format="{0:c}"
+            filterable={false}
             editable={false}
-            width="100px" 
+            width={setWidth()}
           />
-          <Column 
-            field="profitLossPercentage" 
+          <Column
+            field="profitLossPercentage"
             title="P/L %"
-            filterable={false} 
-            editable={false} 
-            width="100px" 
+            format="{0:#.00\%}"
+            filterable={false}
+            editable={false}
+            width={setWidth()}
           />
           <Column
             field="tradeStatus"
@@ -270,9 +296,10 @@ export default function Index() {
             field="sellPrice"
             title="Sell Price $"
             editor="numeric"
+            format="{0:c}"
             filterable={false}
             editable={setEditable()}
-            width="150px"
+            width={setWidth()}
           />
           <Column
             field="updatedAt"
