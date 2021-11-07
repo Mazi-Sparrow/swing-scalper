@@ -88,7 +88,7 @@ export default function Index() {
                   allowFullScreen="allowfullscreen"
                   width="100%"
                   height="100%"
-                  src="https://www.youtube.com/embed/P9teiP_izSw?rel=0"
+                  src="https://www.youtube.com/embed/kUlffl8j3Es?rel=0"
                   title="YouTube video player"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

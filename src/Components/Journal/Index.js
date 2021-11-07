@@ -18,7 +18,7 @@ const initialDataState = {
       dir: "asc",
     },
   ],
-  take: 40,
+  take: 20,
   skip: 0,
 };
 export default function Index() {
@@ -216,7 +216,7 @@ export default function Index() {
 
           <Column
             field="createdAt"
-            title="Date Openned"
+            title="OPENED"
             cell={CustomDate}
             filterable={false}
             editable={false}
@@ -224,7 +224,7 @@ export default function Index() {
           />
           <Column
             field="ticker"
-            title="Ticker"
+            title="TICKER"
             filterable={false}
             filter="text"
             editable={true}
@@ -232,14 +232,14 @@ export default function Index() {
           />
           <Column
             field="quantity"
-            title="Qty"
+            title="QTY"
             filterable={false}
             editable={true}
             width={setWidth()}
           />
           <Column
             field="buyPrice"
-            title="Avg Price $"
+            title="BUY PRICE"
             format="{0:c}"
             filterable={false}
             editable={true}
@@ -247,7 +247,7 @@ export default function Index() {
           />
           <Column
             field="stopLoss"
-            title="Stop Loss $"
+            title="S/LOSS"
             format="{0:c}"
             filterable={false}
             editable={true}
@@ -255,7 +255,7 @@ export default function Index() {
           />
           <Column
             field="priceTargets"
-            title="Price Target $"
+            title="P/TARGET"
             format="{0:c}"
             filterable={false}
             editable={true}
@@ -263,7 +263,7 @@ export default function Index() {
           />
           <Column
             field="tradeRisk"
-            title="Risk $"
+            title="RISK"
             format="{0:c}"
             filterable={false}
             editable={false}
@@ -271,7 +271,7 @@ export default function Index() {
           />
           <Column
             field="tradeReward"
-            title="Reward $"
+            title="REWARD"
             format="{0:c}"
             filterable={false}
             editable={false}
@@ -279,7 +279,7 @@ export default function Index() {
           />
           <Column
             field="profitLossPercentage"
-            title="P/L %"
+            title="P/L"
             format="{0:#.00\%}"
             filterable={false}
             editable={false}
@@ -287,14 +287,14 @@ export default function Index() {
           />
           <Column
             field="tradeStatus"
-            title="Status"
+            title="STATUS"
             filterable={false}
             editable={false}
             width="80px"
           />
           <Column
             field="sellPrice"
-            title="Sell Price $"
+            title="SELL PRICE"
             editor="numeric"
             format="{0:c}"
             filterable={false}
@@ -303,7 +303,7 @@ export default function Index() {
           />
           <Column
             field="updatedAt"
-            title="Date Closed"
+            title="CLOSED"
             editor="date"
             format="{0:d}"
             cell={CustomDate}
