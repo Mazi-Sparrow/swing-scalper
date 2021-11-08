@@ -26,7 +26,7 @@ const zoneBackGround = (props) => {
           backgroundColor: "rgb(55, 180, 0,0.32)",
         }}
       >
-        {buyZone} <span>Green Light</span>
+        {buyZone} <span>Green Zone </span>
       </td>
     );
   }
@@ -62,7 +62,7 @@ const triggerBackGround = (props) => {
         backgroundColor: "rgb(243, 23, 0, 0.32)",
       }}
     >
-      {buyTrigger} <span> Not Yet </span>
+      {buyTrigger} <span> No Trigger </span>
     </td>
   );
 };

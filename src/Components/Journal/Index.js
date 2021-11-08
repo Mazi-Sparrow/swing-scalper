@@ -229,7 +229,7 @@ export default function Index() {
               style={{ padding: "5px 10px" }}
               onClick={updateData}
             >
-              Update
+              Refresh
             </Button>
           </GridToolbar>
           <Column
