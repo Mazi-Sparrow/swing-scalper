@@ -54,8 +54,6 @@ export default function Hero() {
                 <Typography variant="body2" className="RELIABLE3">
                 The information contained in this site is provided for informational purposes only, and should not be construed as financial advice on any subject matter.
                 </Typography>
-                <Typography variant="body2" className="RELIABLE3">
-                </Typography>
               </CardContent>
             </Card>
           </Grid>
@@ -69,6 +67,9 @@ export default function Hero() {
             </Typography>
             <Typography className="RELIABLE3">PLAN YOUR TRADE AND TRADE YOUR PLAN</Typography>
           </Grid>
+          <Typography variant="body2" className="RELIABLE3">
+                For A Limited Time, Try SwingScalp For 14 Days @ $12.99. You Will Be Billed The Full Monthly Rate Of $33.00 At Expiration of Trial. This Offer Ends Dec 7th 2021.
+                </Typography>
         </Grid>
       </Container>
     </div>
