@@ -21,14 +21,13 @@ export default function Hero() {
                 </Typography>
 
                 <Typography variant="body1" className="RELIABLE2">
-                  GUIDANCE FOR MORE PROFITABLE TRADING
                 </Typography>
-                <div style={{ display: "flex", marginTop: "3rem", wordWrap: "break-word" }}>
+                <div style={{ display: "flex", marginTop: "1.5rem", wordWrap: "break-word" }}>
                   <CheckCircleIcon
                     style={{ marginRight: "1.1rem", color: "#9c1265", fontSize: "1.2rem" }}
                   />
                   <Typography className="RELIABLE3" sx={{ wordWrap: "break-word" }}>
-                    Log & Track Trades in A Responsive Trading Journl with Real-Time Price Updates.
+                  Log & Track Trades in A Responsive Trading Journal.
                   </Typography>
                 </div>
 
@@ -37,34 +36,26 @@ export default function Hero() {
                     style={{ marginRight: "1.1rem", color: "#9c1265", fontSize: "1.2rem" }}
                   />
                   <Typography variant="body4" className="RELIABLE3">
-                    Get Precise Knowledge of The Risk vs. Reward on Each trade
-                    <span style={{ textDecoration: "underline" }}> Before </span>
-                    You Buy.
+                  Simplify Stage 1 Technical Analysis.
                   </Typography>
                 </div>
-
                 <div style={{ display: "flex", marginBottom: "1.2rem" }}>
                   <CheckCircleIcon
                     style={{ marginRight: "1.1rem", color: "#9c1265", fontSize: "1.2rem" }}
                   />
                   <Typography variant="body4" className="RELIABLE3">
-                    Utilize Our Complimentary Breakout Scanner to Discover Undervalued Stocks.
-                  </Typography>
+                Catch Stocks At Undervalued Prices With Our Scanner.                  
+                </Typography>
                 </div>
-
-                <Typography className="RELIABLE3"> PLAN YOUR TRADE AND TRADE YOUR PLAN</Typography>
-
                 <Typography className="RELIABLE3">
-                  Become A More Disciplined Trader & Watch Your Profits Grow!
                 </Typography>
                 <SignIn />
               </CardContent>
               <CardContent>
                 <Typography variant="body2" className="RELIABLE3">
-                  For A Limited Time, Get 14 Days of Unlimited Access to SwingScalp For Only 12.99!
+                The information contained in this site is provided for informational purposes only, and should not be construed as financial advice on any subject matter.
                 </Typography>
                 <Typography variant="body2" className="RELIABLE3">
-                  An Incredible Value With Proven Results
                 </Typography>
               </CardContent>
             </Card>
@@ -78,6 +69,7 @@ export default function Hero() {
               Always evaluate <span className="plan3"> RISK</span> before
               <span className="plan"> REWARD.</span>
             </Typography>
+            <Typography className="RELIABLE3"> PLAN YOUR TRADE AND TRADE YOUR PLAN</Typography>
           </Grid>
         </Grid>
       </Container>
