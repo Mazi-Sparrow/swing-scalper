@@ -68,7 +68,7 @@ export default function Hero() {
             <Typography className="RELIABLE3">PLAN YOUR TRADE AND TRADE YOUR PLAN</Typography>
           </Grid>
           <Typography variant="body2" className="RELIABLE3">
-                For A Limited Time, Try SwingScalp For 14 Days @ $12.99. You Will Be Billed The Full Monthly Rate Of $33.00 At Expiration of Trial. This Offer Ends Dec 7th 2021.
+          For A Limited Time, you are welcome to try SwingScalp For 14 Days @ $12.99. You will be billed the full monthly rate of $33.00 at expiration of Trial. You can choose to cancel at anytime with no obligations.
                 </Typography>
         </Grid>
       </Container>
