@@ -4,7 +4,7 @@ import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import "@progress/kendo-theme-default/dist/all.css";
+import "@progress/kendo-theme-material/dist/all.css";
 
 // $("#gridName").find("table th").eq(1).hide();
 
