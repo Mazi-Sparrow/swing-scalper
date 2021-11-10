@@ -1,0 +1,24 @@
+.sidebar-page-list {
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .mobileNavbar {
+        display: initial;
+    }
+}
+@media (min-width: 769px) {
+    .mobileNavbar {
+        display: none;
+    }    
+}
+
+.sidebar-page-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.logout-mobile-btn {
+    color: red;
+    margin-top: 50px;
+}

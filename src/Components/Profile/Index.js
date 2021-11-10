@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context as AuthContext } from "../../context/AuthContext";
-import Navbar from "../Dashboard/navbar";
+import { Box } from "@mui/system";
+
+import Navbar from "../Navbar/NavbarComponent";
+import MobileNavbar from "../MobileNavbar/MobileNavbarComponent";
+
 import Footer from "../Dashboard/Footer";
 import { Container, Grid, TextField } from "@mui/material";
 
@@ -20,13 +24,19 @@ export default function Profile() {
 
   return (
     <div>
-      <Navbar />
+      <Box>
+        <Navbar />
+      </Box>
+      <Box>
+        <MobileNavbar />
+      </Box>
+
       {user ? (
         <Container
           style={{
             marginTop: "2rem",
             marginBottom: "2rem",
-            border: "grey 1px solid",
+            // border: "grey 1px solid",
             borderRadius: "3px",
           }}
         >

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import Navbar from "./navbar";
+import Navbar from "../Navbar/NavbarComponent";
+import MobileNavbar from "../MobileNavbar/MobileNavbarComponent";
 import { Box } from "@mui/system";
 import Footer from "./Footer";
 
@@ -125,7 +126,12 @@ export default function Index() {
     <>
       {!state.loading ? (
         <div>
-          <Navbar />
+          <Box>
+            <Navbar />
+          </Box>
+          <Box>
+            <MobileNavbar />
+          </Box>
 
           <Box my={10} mb={15}>
             <div className="ffflex">

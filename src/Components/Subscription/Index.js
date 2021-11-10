@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { Box } from "@mui/system";
 import Button from "@mui/material/Button";
 
-import Navbar from "../Dashboard/navbar";
+import Navbar from "../Navbar/NavbarComponent";
+import MobileNavbar from "../MobileNavbar/MobileNavbarComponent";
+
 import Footer from "./Footer";
 
 import "./subscription.scss";
@@ -41,7 +44,12 @@ export default function Index() {
 
   return (
     <div>
-      <Navbar />
+      <Box>
+        <Navbar />
+      </Box>
+      <Box>
+        <MobileNavbar />
+      </Box>
 
       <div className="app-wrapper">
         {availablePlans.map((props) => {

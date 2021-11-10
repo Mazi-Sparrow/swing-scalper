@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import {
+  Box,
   Container,
   Grid,
   Typography,
@@ -11,7 +12,9 @@ import {
 import SendIcon from "@mui/icons-material/Send";
 import { makeStyles } from "@mui/styles";
 
-import Navbar from "../Dashboard/navbar";
+import Navbar from "../Navbar/NavbarComponent";
+import MobileNavbar from "../MobileNavbar/MobileNavbarComponent";
+
 import Footer from "./Footer";
 import { Context as AuthContext } from "../../context/AuthContext";
 import { Context as ContactUsContext } from "../../context/ContactUsContext";
@@ -67,7 +70,12 @@ export default function Index() {
   };
   return (
     <div>
-      <Navbar />
+      <Box>
+        <Navbar />
+      </Box>
+      <Box>
+        <MobileNavbar />
+      </Box>
 
       <Grid
         style={{ marginTop: "2rem", marginBottom: "2rem" }}

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
-import Navbar from "../Dashboard/navbar";
+import Navbar from "../Navbar/NavbarComponent";
+import MobileNavbar from "../MobileNavbar/MobileNavbarComponent";
 import { Box } from "@mui/system";
 import { Grid, GridColumn as Column, GridToolbar } from "@progress/kendo-react-grid";
 import Footer from "./Footer";
@@ -11,6 +12,8 @@ import { CustomDate } from "./CutomDate";
 import { insertItem, getItems, updateItem, deleteItem } from "./services";
 import { Context as JournalContext } from "../../context/JournalContext";
 import { Context as AuthContext } from "../../context/AuthContext";
+import './style.css';
+
 const initialDataState = {
   sort: [
     {
@@ -188,9 +191,14 @@ export default function Index() {
 
   return (
     <div>
-      <Navbar />
+      <Box>
+        <Navbar />
+      </Box>
+      <Box>
+        <MobileNavbar />
+      </Box>
 
-      <Box my={12} mb={15}>
+      <Box className="journal-page-content page-content" my={12} mb={15}>
         {errorMessage ? <Typography style={{ color: "red" }}>{errorMessage}</Typography> : null}
         <Grid
           pageable={true}

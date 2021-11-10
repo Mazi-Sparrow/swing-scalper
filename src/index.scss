@@ -89,10 +89,10 @@ $small-phone-width: 480px;
   background: $primary;
 }
 .pad {
-  padding: 4px;
+  padding: 0px; //4px
 }
 .mar {
-  margin: 2px;
+  margin: 0px; //2px
 }
 
 body {
@@ -127,7 +127,7 @@ body {
     font-size: 18px;
     line-height: 20px;
     position: relative;
-    top: -40px;
+    // top: -40px;
     @include desktop {
       font-size: 15px;
     }

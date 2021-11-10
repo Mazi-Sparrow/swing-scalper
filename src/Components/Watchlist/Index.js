@@ -8,7 +8,10 @@ import { Grid, GridColumn as Column } from "@progress/kendo-react-grid";
 import { CardHeader, CircularProgress } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import { Grid as MaterialGrid } from "@mui/material";
-import Navbar from "../Dashboard/navbar";
+
+import Navbar from "../Navbar/NavbarComponent";
+import MobileNavbar from "../MobileNavbar/MobileNavbarComponent";
+
 import Footer from "./Footer";
 import { LinearGaugeComponent } from "./LinearGaugeComponent";
 import { RadialGaugeComponent } from "./RadialGaugeComponent";
@@ -121,149 +124,156 @@ export default function Index() {
 
   return (
     <>
-      <Navbar />
-
-      {errorMessage ? <h4 style={{ color: "red", textAlign: "center" }}>{errorMessage}</h4> : null}
-      <Box component="form" noValidate sx={{ mt: 3 }}>
-        <MaterialGrid container justifyContent="center" style={{ marginTop: "30px" }}>
-          <Paper sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: "50%" }}>
-            <InputBase
-              sx={{ ml: 1, flex: 1, fontSize: "1.5rem" }}
-              placeholder="Enter a Ticker"
-              inputProps={{ "aria-label": "search watchList" }}
-              value={ticker}
-              onChange={(e) => setTicker(e.target.value)}
-            />
-
-            <IconButton
-              type="submit"
-              sx={{ p: "10px", alignSelf: "center" }}
-              aria-label="search"
-              onClick={() => handleSearch()}
-              disabled={ticker.length === 0}
-            >
-              <Button
-                style={{ backgroundColor: "#9c27b0", color: "white" }}
-                variant="contained"
-                href="#"
-              >
-                {isLoading ? <CircularProgress size={20} /> : null}
-                Analyze
-              </Button>
-            </IconButton>
-          </Paper>
-        </MaterialGrid>
+      <Box>
+        <Navbar />
+      </Box>
+      <Box>
+        <MobileNavbar />
       </Box>
 
-      <div
-        // style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%" }}
-      >
-        <Box my={12} mb={15}>
-          <Grid
-            style={{
-              textAlign: "justify",
-              fontSize: ".9rem",
-              width: "100%",
-              height: "100%",
-            }}
-            data={[{ ...stateWatchList }]}
-          >
-            <Column 
-              field="ticker" 
-              title="Ticker" 
-              filterable={false} 
-              editable={false}
-              // width="100px" 
-              width={setWidth()}
-            />
-            <Column 
-              field="buyPrice" 
-              title="Price $" 
-              filterable={false} 
-              editable={false} 
-              width={setWidth()}
-            />
-            <Column 
-              field="stopLoss" 
-              title="Stop Loss $" 
-              filterable={false} 
-              editable={false} 
-              width={setWidth()}
-            />
-            <Column
-              field="priceTargets"
-              title="Price Target $"
-              filterable={false}
-              editable={false}
-              width={setWidth()}
-            />
-            <Column 
-              field="rsi14" 
-              title="RSI" 
-              filterable={false} 
-              editable={false} 
-              width={setWidth()}
-            />
-            <Column 
-              field="tradeRisk" 
-              title="Risk $" 
-              filterable={false} 
-              editable={false} 
-              width={setWidth()}
-            />
-            <Column 
-              field="tradeReward" 
-              title="Reward $" 
-              filterable={false} 
-              editable={false} 
-              width={setWidth()}
-            />
-            <Column 
-              field="buyZone" 
-              title="Buy Zone" 
-              cell={zoneBackGround} 
-              filterable={false} 
-              editable={false} 
-              width={setWidth()}
-            />
-            <Column 
-              field="buyTrigger" 
-              title="Buy Trigger" 
-              cell={triggerBackGround} 
-              filterable={false} 
-              editable={false}
-              width={setWidth()}
-            />
-          </Grid>
+      <div className="watchlist-page-content page-content">
+        {errorMessage ? <h4 style={{ color: "red", textAlign: "center" }}>{errorMessage}</h4> : null}
+        <Box component="form" noValidate sx={{ mt: 3 }}>
+          <MaterialGrid container justifyContent="center" style={{ marginTop: "30px" }}>
+            <Paper sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: "50%" }}>
+              <InputBase
+                sx={{ ml: 1, flex: 1, fontSize: "1.5rem" }}
+                placeholder="Enter a Ticker"
+                inputProps={{ "aria-label": "search watchList" }}
+                value={ticker}
+                onChange={(e) => setTicker(e.target.value)}
+              />
+
+              <IconButton
+                type="submit"
+                sx={{ p: "10px", alignSelf: "center" }}
+                aria-label="search"
+                onClick={() => handleSearch()}
+                disabled={ticker.length === 0}
+              >
+                <Button
+                  style={{ backgroundColor: "#9c27b0", color: "white" }}
+                  variant="contained"
+                  href="#"
+                >
+                  {isLoading ? <CircularProgress size={20} /> : null}
+                  Analyze
+                </Button>
+              </IconButton>
+            </Paper>
+          </MaterialGrid>
         </Box>
-      </div>
 
-      <MaterialGrid sx={{ marginTop: "5rem" }} container>
-        <MaterialGrid item xs={12}>
-          <MaterialGrid container justifyContent="space-around" spacing={0} style={{ padding: 10 }}>
-            {stateWatchList.rsi14 ? (
-              <MaterialGrid className="guage" item sx={{ maxWidth: 345, flexBasis: 350 }}>
-                <CardHeader title="RSI" />
-                <MyRadialGaugeComponent watchList={stateWatchList} />
-              </MaterialGrid>
-            ) : null}
+        <div
+          // style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%" }}
+        >
+          <Box my={12} mb={15}>
+            <Grid
+              style={{
+                textAlign: "justify",
+                fontSize: ".9rem",
+                width: "100%",
+                height: "100%",
+              }}
+              data={[{ ...stateWatchList }]}
+            >
+              <Column 
+                field="ticker" 
+                title="Ticker" 
+                filterable={false} 
+                editable={false}
+                // width="100px" 
+                width={setWidth()}
+              />
+              <Column 
+                field="buyPrice" 
+                title="Price $" 
+                filterable={false} 
+                editable={false} 
+                width={setWidth()}
+              />
+              <Column 
+                field="stopLoss" 
+                title="Stop Loss $" 
+                filterable={false} 
+                editable={false} 
+                width={setWidth()}
+              />
+              <Column
+                field="priceTargets"
+                title="Price Target $"
+                filterable={false}
+                editable={false}
+                width={setWidth()}
+              />
+              <Column 
+                field="rsi14" 
+                title="RSI" 
+                filterable={false} 
+                editable={false} 
+                width={setWidth()}
+              />
+              <Column 
+                field="tradeRisk" 
+                title="Risk $" 
+                filterable={false} 
+                editable={false} 
+                width={setWidth()}
+              />
+              <Column 
+                field="tradeReward" 
+                title="Reward $" 
+                filterable={false} 
+                editable={false} 
+                width={setWidth()}
+              />
+              <Column 
+                field="buyZone" 
+                title="Buy Zone" 
+                cell={zoneBackGround} 
+                filterable={false} 
+                editable={false} 
+                width={setWidth()}
+              />
+              <Column 
+                field="buyTrigger" 
+                title="Buy Trigger" 
+                cell={triggerBackGround} 
+                filterable={false} 
+                editable={false}
+                width={setWidth()}
+              />
+            </Grid>
+          </Box>
+        </div>
 
-            {stateWatchList.buyZone ? (
-              <MaterialGrid item sx={{ maxWidth: 345, flexBasis: 300 }} className="guage">
-                <CardHeader title="Buy Zone" />
-                <MyLinearGaugeComponent watchList={stateWatchList} />
-              </MaterialGrid>
-            ) : null}
+        <MaterialGrid sx={{ marginTop: "5rem" }} container>
+          <MaterialGrid item xs={12}>
+            <MaterialGrid container justifyContent="space-around" spacing={0} style={{ padding: 10 }}>
+              {stateWatchList.rsi14 ? (
+                <MaterialGrid className="guage" item sx={{ maxWidth: 345, flexBasis: 350 }}>
+                  <CardHeader title="RSI" />
+                  <MyRadialGaugeComponent watchList={stateWatchList} />
+                </MaterialGrid>
+              ) : null}
 
-            {stateWatchList.buyTrigger ? (
-              <MaterialGrid item sx={{ maxWidth: 345, flexBasis: 300 }} className="guage">
-                <CardHeader title="Buy Trigger" />
-                <MyArcGaugeComponent watchList={stateWatchList} />
-              </MaterialGrid>
-            ) : null}
+              {stateWatchList.buyZone ? (
+                <MaterialGrid item sx={{ maxWidth: 345, flexBasis: 300 }} className="guage">
+                  <CardHeader title="Buy Zone" />
+                  <MyLinearGaugeComponent watchList={stateWatchList} />
+                </MaterialGrid>
+              ) : null}
+
+              {stateWatchList.buyTrigger ? (
+                <MaterialGrid item sx={{ maxWidth: 345, flexBasis: 300 }} className="guage">
+                  <CardHeader title="Buy Trigger" />
+                  <MyArcGaugeComponent watchList={stateWatchList} />
+                </MaterialGrid>
+              ) : null}
+            </MaterialGrid>
           </MaterialGrid>
         </MaterialGrid>
-      </MaterialGrid>
+      </div>
       <Footer />
     </>
   );

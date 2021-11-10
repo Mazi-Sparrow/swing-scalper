@@ -6673,7 +6673,7 @@ kendo-badge-container {
 }
 
 .k-button-primary, .k-button.k-primary {
-    border-color: #9c27b0;
+    border-color: #9c27b0 !important;
     color: white;
     background-color: #9c27b0;
 }
@@ -19275,7 +19275,7 @@ tbody .k-group-cell {
 }
 
 .k-grid tr.k-alt {
-    background-color: transparent;
+    background-color: #ffa3c125 !important;
 }
 
 .k-grid tbody tr:hover,
