@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useHistory } from "react-router-dom";
-import Button from "@mui/material/Button";
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Logo from "../../assets/images/SwingScalp-01 2.png";
 import { AppBar, AppBarSection, AppBarSpacer } from "@progress/kendo-react-layout";
 import { Context as AuthContext } from "../../context/AuthContext";
@@ -12,12 +13,11 @@ export default function ButtonAppBar() {
 
   const {
     logout,
-    state: { isSubscribed },
+    state: { isSubscribed, token },
   } = React.useContext(AuthContext);
 
-  console.log(typeof isSubscribed);
   return (
-    <div className="navbar">
+    <div className="no-padding navbar">
       <AppBar>
         <AppBarSection>
         </AppBarSection>
@@ -45,55 +45,94 @@ export default function ButtonAppBar() {
           }}
         />
 
-        <AppBarSection>
-          <ul style={{ fontSize: "16px" }}>
-            <li>
-              <Button color="inherit" href="/dashboard">
-                DASHBOARD
-              </Button>
-            </li>
+        {token ? (
+        <>
+          <AppBarSection>
+            <ul style={{ fontSize: "16px" }}>
+              <li>
+                <Button color="inherit" href="/dashboard">
+                  DASHBOARD
+                </Button>
+              </li>
 
-            {isSubscribed === "true" || isSubscribed === true ? (
-              <>
-                <li>
-                  <Button color="inherit" href="/journal">
-                    JOURNAL
-                  </Button>
-                </li>
-                <li>
-                  <Button color="inherit" href="/watchlist">
-                    WATCHLIST
-                  </Button>
-                </li>
-              </>
-            ) : null}
+              {isSubscribed === "true" || isSubscribed === true ? (
+                <>
+                  <li>
+                    <Button color="inherit" href="/journal">
+                      JOURNAL
+                    </Button>
+                  </li>
+                  <li>
+                    <Button color="inherit" href="/watchlist">
+                      WATCHLIST
+                    </Button>
+                  </li>
+                </>
+              ) : null}
 
-            <li>
-              <Button color="inherit" href="/information">
-                Information
-              </Button>
-            </li>
+              <li>
+                <Button color="inherit" href="/information">
+                  Information
+                </Button>
+              </li>
 
-            <li>
-              <Button color="inherit" href="/subscription">
-                Subscription
-              </Button>
-            </li>
-            <li>
-              <Button color="inherit" href="/profile">
-                Profile
-              </Button>
-            </li>
-          </ul>
-        </AppBarSection>
+              <li>
+                <Button color="inherit" href="/subscription">
+                  Subscription
+                </Button>
+              </li>
+              <li>
+                <Button color="inherit" href="/profile">
+                  Profile
+                </Button>
+              </li>
+            </ul>
+          </AppBarSection>
 
-        <AppBarSpacer />
+          <AppBarSpacer />
 
-        <AppBarSection>
-          <Button size="medium" color="primary" onClick={() => logout().then(() => goToPage(""))}>
-            Logout
-          </Button>
-        </AppBarSection>
+          <AppBarSection>
+            <Button size="medium" color="primary" onClick={() => logout().then(() => goToPage(""))}>
+              Logout
+            </Button>
+          </AppBarSection>
+        </>
+        ) 
+        : 
+        <>
+          {/* <AppBarSection>
+            <ul style={{ fontSize: "16px" }}>
+              <li>
+                <Button color="inherit" href="/dashboard">
+                  HOME
+                </Button>
+              </li>
+
+              <li>
+                <Button color="inherit" href="/journal">
+                  FEATURES
+                </Button>
+              </li>
+              <li>
+                <Button color="inherit" href="/watchlist">
+                  PRICING
+                </Button>
+              </li>
+
+              <li>
+                <Button color="inherit" href="/information">
+                  TUTORIALS
+                </Button>
+              </li>
+            </ul>
+          </AppBarSection> */}
+          
+          <Box className="button-box">
+            <Button className="navbar-button" color="inherit" variant="contained" href="/signin" >login</Button>
+            <Button className="navbar-button" color="inherit" variant="contained" href="/signup" >signup</Button>
+          </Box>
+        </>
+        }
       </AppBar>
       <style>
         {`

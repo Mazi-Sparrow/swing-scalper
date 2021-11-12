@@ -27,8 +27,13 @@ export default function ButtonAppBar() {
           
          
           </div>
-        
-          <Button color="inherit" variant="contained" href="/signup" >signup</Button>
+
+          <div class="button-box nav-button login-btn">
+            <Button color="inherit" variant="contained" href="/signin">login</Button>
+          </div> 
+          <div class="button-box nav-button signup-btn">
+            <Button color="inherit" variant="contained" href="/signup">sign up</Button>
+          </div>
           
           </Hidden>
           <Hidden mdUp>

@@ -32,6 +32,7 @@ import Subscription from "./Components/Subscription/Index";
 import Information from "./Components/Information/Index";
 import CheckoutRedirect from "./Components/CheckoutRedirect/Index";
 import Profile from "./Components/Profile/Index";
+import LandingPage from './Components/LandingPage/Index';
 
 Amplify.configure(awsconfig);
 
@@ -42,7 +43,8 @@ function Root() {
     <>
       {state.errorMessage ? <TryToGetToken></TryToGetToken> : null}
       <Switch>
-        <Route exact path="/" component={Signin} />
+        <Route exact path="/" component={LandingPage} />
+        <Route path="/signin" component={Signin} />
         <Route path="/signup" component={Signup} />
         <Route path="/confirm" component={ConfirmUser} />
         <Route path="/forgotPassword" component={ForgotPassword} />
@@ -59,7 +61,7 @@ function Root() {
     <>
       <TryToGetToken />
       <Switch>
-        {state.isSubscribed == "false" ? (
+        {state.isSubscribed === "false" ? (
           <Route path="/" exact>
             <Redirect to="/subscription" />
           </Route>
@@ -70,11 +72,11 @@ function Root() {
         )}
 
         <Route path="/dashboard" component={Dashboard} />
-        {state.isSubscribed == "true" || state.isSubscribed == true ? (
+        {state.isSubscribed === "true" || state.isSubscribed === true ? (
           <Route path="/journal" component={Journal} />
         ) : null}
 
-        {state.isSubscribed == "true" || state.isSubscribed == true ? (
+        {state.isSubscribed === "true" || state.isSubscribed === true ? (
           <Route path="/watchlist" component={Watchlist} />
         ) : null}
         <Route path="/information" component={Information} />

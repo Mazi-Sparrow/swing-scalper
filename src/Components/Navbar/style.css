@@ -1,3 +1,17 @@
+.k-appbar-light {
+    background-color: white !important;
+}
+.no-padding {
+    padding: 0px;
+}
+.navbar-button {
+    background-color: #9c1265;
+    color: white;
+}
+.button-box {
+    margin-left: auto;
+}
+
 @media (min-width: 768px) {
     .navbar {
         display: block;

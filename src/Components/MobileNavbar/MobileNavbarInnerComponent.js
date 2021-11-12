@@ -82,7 +82,13 @@ export default function TemporaryDrawer() {
           </React.Fragment>
         ))}
       </div>
-        ) : <div></div>}
+        ) 
+        : 
+          <Box className="button-box">
+            <Button className="navbar-button" color="inherit" variant="contained" href="/signin" >login</Button>
+            <Button className="navbar-button" color="inherit" variant="contained" href="/signup" >signup</Button>
+          </Box>
+        }
     </div>
   );
 }

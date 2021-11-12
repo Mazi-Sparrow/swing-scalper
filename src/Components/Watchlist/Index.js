@@ -102,7 +102,7 @@ export default function Index() {
 
   // responsive columns on window resize  
   const columns = document.getElementsByClassName('k-header');
-  const [columnWidth, setColumnWidth] = React.useState(window.innerWidth/columns.length);
+  const [columnWidth, setColumnWidth] = React.useState((window.innerWidth-50)/columns.length);
 
   React.useEffect(() => {
     window.addEventListener("resize", handleResize);
@@ -111,7 +111,7 @@ export default function Index() {
 
   const handleResize = () => {
     if ((window.innerWidth/columns.length) > 100) {
-      setColumnWidth((window.innerWidth/columns.length) + 'px');
+      setColumnWidth(((window.innerWidth-50)/columns.length) + 'px');
     }
     else {
       setColumnWidth('100px');
