@@ -33,6 +33,8 @@ import Information from "./Components/Information/Index";
 import CheckoutRedirect from "./Components/CheckoutRedirect/Index";
 import Profile from "./Components/Profile/Index";
 import LandingPage from './Components/LandingPage/Index';
+import PrivacyPolicy from './Components/PrivacyPolicy/Index';
+import TermsOfService from "./Components/TermsOfService/Index";
 
 Amplify.configure(awsconfig);
 
@@ -49,6 +51,8 @@ function Root() {
         <Route path="/confirm" component={ConfirmUser} />
         <Route path="/forgotPassword" component={ForgotPassword} />
         <Route path="/confirmForgotPassword" component={ConfirmForgotPassword} />
+        <Route path="/privacy-policy" component={PrivacyPolicy} />
+        <Route path="/terms-of-service" component={TermsOfService} />
         <Route path="*" exact component={Signin} />
         <Route path="*" exact>
           <Redirect to="/" />
@@ -83,6 +87,8 @@ function Root() {
         <Route path="/subscription" component={Subscription} />
         <Route path="/redirect" component={CheckoutRedirect} />
         <Route path="/profile" component={Profile} />
+        <Route path="/privacy-policy" component={PrivacyPolicy} />
+        <Route path="/terms-of-service" component={TermsOfService} />
         <Route path="*" exact>
           <Redirect to="/dashboard" />
         </Route>
