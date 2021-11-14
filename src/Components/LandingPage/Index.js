@@ -66,7 +66,9 @@ const LandingPage = () => {
                     <Box className="homepage-watch-app-demo-text" onClick={() => { setOpen(true) }}>WATCH APP DEMO</Box>
 
                     <Box className="homepage-faq-title">Frequently Asked Questions</Box>
-                    
+                    <Box className="homepage-faq-sub">
+                        <h7>At SwingScalp, our mission is to help you maximize your profits by simplifying technical analysis. Our app is designed to help you master the art of swing trading. That said, we still want to make sure you have all the information you need before signing up for our app.</h7>
+                        </Box>
                     <Box className="homepage-faq-content">
                         <Accordion className="homepage-accordion">
                             <AccordionSummary
@@ -74,12 +76,11 @@ const LandingPage = () => {
                                 aria-controls="panel2a-content"
                                 id="panel2a-header"
                             >
-                                <Typography>Question 1</Typography>
+                                <Typography>1.	What is the app payment timing and recurrence? </Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                                    malesuada lacus ex, sit amet blandit leo lobortis eget.
+                                After your trial period is over, the standard subscription is $33 per month, which can easily be canceled anytime. We also offer annual packages for greater savings. Click here for more information.
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
@@ -89,12 +90,11 @@ const LandingPage = () => {
                                 aria-controls="panel2a-content"
                                 id="panel2a-header"
                             >
-                                <Typography>Question 2</Typography>
+                                <Typography>2.	What do I get with the Simplified Trade Journal?</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                                    malesuada lacus ex, sit amet blandit leo lobortis eget.
+                                With our Simplified Trade Journal, you're able to easily log your trades and keep track of your current progress on the user-friendly dashboard. You'll also receive real-time notifications when your stock is approaching and hits your stop loss or price targets. For premium subscribers.
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
@@ -104,12 +104,11 @@ const LandingPage = () => {
                                 aria-controls="panel2a-content"
                                 id="panel2a-header"
                             >
-                                <Typography>Question 3</Typography>
+                                <Typography>3.	What are the main variables the analysis is based on? </Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                                    malesuada lacus ex, sit amet blandit leo lobortis eget.
+                                A successful trade starts with the right analysis. The main variables we use for an effective strategy are a safely calculated stop loss, price target, and risk/reward.
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
@@ -119,12 +118,11 @@ const LandingPage = () => {
                                 aria-controls="panel2a-content"
                                 id="panel2a-header"
                             >
-                                <Typography>Question 4</Typography>
+                                <Typography>4.	Is crypto currency trading included?</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                                    malesuada lacus ex, sit amet blandit leo lobortis eget.
+                                There are a few mainstream crypto currencies included. As the world of cryptocurrency expands, more exciting options will become available. Due to regulation or volatility, many have been left out for now but will be added soon!
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
@@ -134,12 +132,11 @@ const LandingPage = () => {
                                 aria-controls="panel2a-content"
                                 id="panel2a-header"
                             >
-                                <Typography>Question 5</Typography>
+                                <Typography>5.	Are penny stocks included?</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                                    malesuada lacus ex, sit amet blandit leo lobortis eget.
+                                Yes, penny stocks are included in analysis on our app.
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
@@ -149,12 +146,11 @@ const LandingPage = () => {
                                 aria-controls="panel2a-content"
                                 id="panel2a-header"
                             >
-                                <Typography>Question 6</Typography>
+                                <Typography>What platforms does your app run on?</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                                    malesuada lacus ex, sit amet blandit leo lobortis eget.
+                                SwingScalp is a progressive web app and responds to screen size changes, so it'll work well even on your mobile device. For best use, we recommend using a computer. A mobile version is currently in production and will be launching soon.
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
@@ -164,12 +160,11 @@ const LandingPage = () => {
                                 aria-controls="panel2a-content"
                                 id="panel2a-header"
                             >
-                                <Typography>Question 7</Typography>
+                                <Typography>How secure is SwingScalp?</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                                    malesuada lacus ex, sit amet blandit leo lobortis eget.
+                                Being secured by the best identity federation technologies available ensures that our users are always protected. We upgrade as industry changes occur so you can be assured your information is safe.
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
@@ -179,12 +174,11 @@ const LandingPage = () => {
                                 aria-controls="panel2a-content"
                                 id="panel2a-header"
                             >
-                                <Typography>Question 8</Typography>
+                                <Typography>Do you offer refunds?</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                                    malesuada lacus ex, sit amet blandit leo lobortis eget.
+                                No, but we have a 14-day trial that you can cancel any time so you can experience all our features before deciding to keep your access. We also offer free access until your account is closed.
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
@@ -194,12 +188,11 @@ const LandingPage = () => {
                                 aria-controls="panel2a-content"
                                 id="panel2a-header"
                             >
-                                <Typography>Question 9</Typography>
+                                <Typography>Who is SwingScalp best for?</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                                    malesuada lacus ex, sit amet blandit leo lobortis eget.
+                                When you're trading stocks for short periods, it can be risky at times. That's why we've created this innovative app for the retail trader who wants to limit their risk.
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>

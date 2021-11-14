@@ -5,6 +5,12 @@
     color: white;
     text-align: center;
 }
+.homepage-content h7,
+.homepage-content {
+    /* color: #9C1265; */
+    color: rgb(12, 2, 2);
+    text-align: center;
+}
 
 a:hover {
     /* color: inherit; */
@@ -21,6 +27,13 @@ a:hover {
     font-weight: 500;
     font-size: 16px;
     margin-top: 0px;
+}
+
+.homepage-content h7 {
+    font-weight: 500;
+    font-size: 16px;
+    margin-top: 0px;
+    padding: 30px;
 }
 
 .homepage-content article {
@@ -62,10 +75,20 @@ a:hover {
     font-size: 20px;
 }
 
+.homepage-faq-sub {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    line-height: 30px;
+    font-size: 16px;
+}
 .homepage-welcome-text div {
     margin: 10px 0px;
 }
-
+.homepage-faq-sub div {
+    margin: 10px 0px;
+}
 .homepage-text-accent {
     font-size: 22px;
 }

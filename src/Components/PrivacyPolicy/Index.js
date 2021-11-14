@@ -16,8 +16,8 @@ const PrivacyPolicy = () => {
 
             <Box className="privacy-policy-content">
                 <Box className="privacy-policy-text">
-                "PRIVACY POLICY"
-"Effective date: 09/23/2021
+                <h1>"PRIVACY POLICY"</h1>
+<h2>"Effective date: 09/23/2021</h2>
 1.   Introduction"
 "Welcome to Tech Telos Inc
 Tech  Telos  Inc (“us”,  “we”,  or  “our”)  operates swingscalp.com  and  SwingScalp  mobile application (hereinafter referred to as “Service”).
