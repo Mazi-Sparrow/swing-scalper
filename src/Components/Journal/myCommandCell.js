@@ -1,9 +1,25 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
+import './style.css';
+
 export const MyCommandCell = (props) => {
   const { dataItem } = props;
   const inEdit = dataItem[props.editField];
   const isNewItem = dataItem.id === undefined;
+
+  if (props.dataItem.tradeStatus === 'Closed') {
+    return (
+      <td className="k-command-cell">
+        <Button
+          className="k-button k-grid-delete-command"
+          onClick={() => (props.delete(dataItem))}
+        >
+          Delete
+        </Button>
+      </td>
+    )
+  }
+
   return inEdit ? (
     <td className="k-command-cell">
       <Button

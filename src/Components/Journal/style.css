@@ -3,3 +3,8 @@
     margin-left: 6px;
     margin-right: 6px;
 }
+
+.k-grid-delete-command {
+    background-color: #FF000099 !important;
+    color: white !important;
+}
