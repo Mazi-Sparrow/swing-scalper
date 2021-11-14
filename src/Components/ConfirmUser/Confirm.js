@@ -42,7 +42,7 @@ export default function Confirm() {
     const code = data.get("code");
 
     const isConfirmed = await confirmEmail({ email, code });
-    if (isConfirmed) goToPage("dashboard");
+    if (isConfirmed) goToPage("subscription");
   };
 
   return (
