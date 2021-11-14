@@ -186,8 +186,46 @@ const createJournal =
     }
   };
 
+  const deleteJournal =
+    (dispatch) =>
+    async ({ id, token }) => {
+      try {
+        const response = await graphqlClient.request(
+          gql`
+            mutation deleteJournal($id: String!) {
+              deleteJournal(id: $id) {
+                success
+                errors
+              }
+            }
+          `,
+          { id },
+          { Authorization: `Bearer ${token}` }
+        );
+
+        if (
+          !response.deleteJournal.success &&
+          response.deleteJournal.errors &&
+          response.deleteJournal.errors[0]
+        ) {
+          dispatch({
+            type: "add_error",
+            payload: response.deleteJournal.errors[0],
+          });
+          return false;
+        }
+        return true;
+      } catch (error) {
+        console.log(error);
+        dispatch({
+          type: "add_error",
+          payload: "Invalid Request",
+        });
+      }
+    };
+
 export const { Context, Provider } = createDataContext(
   journalReducers,
-  { listJournals, updateJournal, createJournal },
+  { listJournals, updateJournal, createJournal, deleteJournal },
   { journals: [], errorMessage: "", isLoading: false }
 );

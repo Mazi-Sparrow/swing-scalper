@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context as AuthContext } from "../../context/AuthContext";
 import { Box } from "@mui/system";
+import { Button } from "@mui/material";
 
 import Navbar from "../Navbar/NavbarComponent";
 import MobileNavbar from "../MobileNavbar/MobileNavbarComponent";
@@ -41,7 +42,13 @@ export default function Profile() {
           }}
         >
           <div style={{ height: "70vh" }}>
-            <h1 style={{ textAlign: "center" }}>Profile</h1>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+              <Button className="navbar-button" href="/subscription">
+                Subscription
+              </Button>
+              <h1 style={{ textAlign: "center" }}>Profile</h1>
+              <div></div>
+            </div>
 
             <div
               style={{

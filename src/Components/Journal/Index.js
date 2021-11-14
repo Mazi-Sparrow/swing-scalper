@@ -32,6 +32,7 @@ export default function Index() {
     listJournals,
     updateJournal,
     createJournal,
+    deleteJournal,
     state: { journals, errorMessage },
   } = React.useContext(JournalContext);
 
@@ -59,6 +60,7 @@ export default function Index() {
       discard={discard}
       update={update}
       cancel={cancel}
+      delete={deleteJournalFunc}
       editField={editField}
     />
   );
@@ -110,6 +112,17 @@ export default function Index() {
 
     setData(newData);
   };
+
+  const deleteJournalFunc = async (dataItem) => {
+    const isSuccess = await deleteJournal({
+      id: dataItem.id,
+      token,
+    })
+
+    listJournals({ token }).then((res) => {
+      setData(res);
+    });
+  }
 
   const discard = (dataItem) => {
     const newData = [...data];
@@ -189,6 +202,29 @@ export default function Index() {
     setPage(event.page);
   };
 
+  const cellRender = (tdElement, cellProps) => {
+    // console.log(cellProps);
+    if (cellProps.dataItem.tradeStatus === 'Closed') {
+    }
+    // if (cellProps.rowType === "groupFooter") {
+    //   if (cellProps.field === "UnitPrice") {
+    //     return (
+    //       <td aria-colindex={cellProps.columnIndex} role={"gridcell"}>
+    //         Average: {cellProps.dataItem.aggregates.UnitPrice.average}
+    //       </td>
+    //     );
+    //   } else if (cellProps.field === "UnitsInStock") {
+    //     return (
+    //       <td aria-colindex={cellProps.columnIndex} role={"gridcell"}>
+    //         Sum: {cellProps.dataItem.aggregates.UnitsInStock.sum}
+    //       </td>
+    //     );
+    //   }
+    // }
+
+    return tdElement;
+  };
+
   return (
     <div>
       <Box>
@@ -214,6 +250,7 @@ export default function Index() {
             width: "100%",
           }}
           data={data.slice(page.skip, page.take + page.skip)}
+          cellRender={cellRender}
           
           onDataStateChange={(e) => {
             setDataState(e.dataState);
@@ -232,7 +269,7 @@ export default function Index() {
               New Trade
             </Button>
             <Button
-              title="Add new"
+              title="Refresh"
               className="k-primary k-button k-grid-edit-command"
               style={{ padding: "5px 10px" }}
               onClick={updateData}
