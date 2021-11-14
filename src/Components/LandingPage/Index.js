@@ -27,14 +27,13 @@ const LandingPage = () => {
                 </Box>
                 <Box className="homepage-content">
                     <Box className="homepage-background">
-                        <h1>Entry And Exit Strategies For Swing Trading!</h1>
+                        <h1>Tested Entry And Exit Setups For Swing Trading!</h1>
                         <h2>Your entry and exit levels play a crucial role in the success of a trade and SwingScalp helps you find the right Setup.</h2>
                         <article className="homepage-welcome-text">
-                            <Box>At SwingScalp, we develop Algorithms based on <strong><span className="homepage-text-accent">PROVEN</span></strong> profitable TECHNICAL ANALYSIS under the hood to help you.</Box>
-                            <Box>Simplifying the process of Technical Analysis takes you from identifying a setup, planning  to executing trades faster with reduced risk.</Box>
-                            <Box>It’s not just enough to know what <b>stock</b> or when to buy, a lot of times, we end up with loses trading high performing stocks because we ignore the most important factor in every trade.</Box>
-                            <Box><strong><span className="homepage-text-accent">MARGIN</span></strong>, when to sell and if you plan on trading this stock as opposed to investing, you need to know how much to allocate to a trade if the risk/reward is worth it. We have also added a free to use Simplified Trade Journal to log your trades and track your progress.</Box>
-                            <Box>Enjoy Exclusive Access to <b>Trade Streams</b> From All 19 Exchanges in RealTime with our <b>Premium Membership</b>.</Box>
+                            <Box>We simplify Technical Analysis by <b>Instantly</b> performing high intensity and rapid analytics based on <strong><span className="homepage-text-accent">PROVEN</span></strong> profitable Strategies before you put your money to work. </Box>
+                            <Box>It’s not just enough to know what <b>Stock</b> or when to buy, our Simplified Technical Analysis takes you from identifying a setup, planning  to executing trades faster with reduced risk. </Box>
+                            <Box><strong><span className="homepage-text-accent">YOU</span></strong> are just a few clicks from the easiest way to gain extraordinary confidence in your trades with simple clarity of your risk and return and quantified <b>Pofit Margin</b>. </Box>
+                            <Box>Enjoy Free Access to our <b>Trade Journal</b> to keep track of your progress with RealTime notifications on when to <b>Close or Cut</b> a trade with our <b>Premium Membership</b>.</Box>
                         </article>
                         <Button className="homepage-trial-btn" size="large" variant="contained" href="/signup">14 DAYS TRIAL FOR $12.99</Button>
 
