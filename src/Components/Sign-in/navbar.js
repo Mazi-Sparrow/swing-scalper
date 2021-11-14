@@ -6,7 +6,8 @@ import Button from '@mui/material/Button';
 import { Hidden } from '@mui/material';
 import Logo from '../../assets/images/SwingScalp-01 2.png';
 import Mobilemenu from './Mobilemenu';
-import {Skeleton } from '@progress/kendo-react-indicators';
+import './style.css';
+
 export default function ButtonAppBar() {
   return (
     <Box sx={{ flexGrow: 1 }}  >
@@ -19,8 +20,9 @@ export default function ButtonAppBar() {
             aria-label="menu"
             sx={{ mr: 2 }}
             href="/"
+            class="swing-scalp-logo"
           >
-            <img src={Logo} width="100%" height="auto" alt=<Skeleton shape={"rectangle"} style={{ width: "100%", height: "auto", }} /> />
+            <img src={Logo} width="100%" height="auto" alt="swing scalp logo"/>
           </Button>
           <Hidden  mdDown>
           <div className="appbar-btn" >

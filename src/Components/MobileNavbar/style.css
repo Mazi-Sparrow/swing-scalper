@@ -8,9 +8,6 @@
     justify-content: center;
     flex-wrap: wrap;
 }
-.navbar-button {
-    margin: 10px 10px;
-}
 
 @media (max-width: 768px) {
     .mobileNavbar {

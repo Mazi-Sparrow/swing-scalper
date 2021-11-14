@@ -7,9 +7,24 @@
 .navbar-button {
     background-color: #9c1265;
     color: white;
+    margin: 10px 10px;
 }
-.button-box {
+.nav-button-box {
     margin-left: auto;
+}
+.nav-button {
+    margin: 0px 10px;
+}
+
+.navbar-logout-btn {
+    color: red;
+}
+
+@media (max-width: 1200px) {
+    .navbar-button {
+        font-size: 12px;
+        margin: 10px 5px;
+    }
 }
 
 @media (min-width: 768px) {

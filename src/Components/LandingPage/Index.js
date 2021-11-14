@@ -33,7 +33,7 @@ const LandingPage = () => {
                             <Box><strong><span className="homepage-text-accent">MARGIN</span></strong>, when to sell and if you plan on trading this stock as opposed to investing, you need to know how much to allocate to a trade if the risk/reward is worth it. We have also added a free to use Simplified Trade Journal to log your trades and track your progress.</Box>
                             <Box>Enjoy Exclusive Access to <b>Trade Streams</b> From All 19 Exchanges in RealTime with our <b>Premium Membership</b>.</Box>
                         </article>
-                        <Button className="homepage-trial-btn" size="large" variant="contained">14 DAYS TRIAL FOR $12.99</Button>
+                        <Button className="homepage-trial-btn" size="large" variant="contained" href="/signup">14 DAYS TRIAL FOR $12.99</Button>
 
                         <Box className="homepage-image-box homepage-watchlist-image">
                             <img src={Watchlist} alt="watchlist demo"/>
@@ -47,7 +47,7 @@ const LandingPage = () => {
                             <img src={Dashboard} alt="dashboard demo"/>
                         </Box>
 
-                        <Button className="homepage-trial-btn" size="large" variant="contained">14 DAYS TRIAL FOR $12.99</Button>
+                        <Button className="homepage-trial-btn" size="large" variant="contained" href="/signup">14 DAYS TRIAL FOR $12.99</Button>
 
                     </Box>
                     <Box className="homepage-pwa-title">PROGRESSIVE WEB APPLICATION</Box>
@@ -57,7 +57,7 @@ const LandingPage = () => {
                     <Box className="homepage-pwa-description">**No App Downloads Or Installation Needed**</Box>
 
                     <Box className="homepage-watch-app-demo-box">
-                        <Box className="homepage-watch-app-demo-play-button"></Box>
+                        <a className="homepage-watch-app-demo-play-button" href="https://www.youtube.com/watch?v=kUlffl8j3Es&t=1s&ab_channel=SwingScalp"> </a>
                     </Box>
                     <Box className="homepage-watch-app-demo-text">WATCH APP DEMO</Box>
 
@@ -109,8 +109,6 @@ const LandingPage = () => {
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
-                    {/* </Box>
-                    <Box className="homepage-faq-content"> */}
                         <Accordion className="homepage-accordion">
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
@@ -156,8 +154,6 @@ const LandingPage = () => {
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
-                    {/* </Box>
-                    <Box className="homepage-faq-content"> */}
                         <Accordion className="homepage-accordion">
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
