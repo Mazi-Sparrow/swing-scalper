@@ -116,6 +116,7 @@ a:hover {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .homepage-watch-app-demo-play-button {
@@ -130,6 +131,10 @@ a:hover {
 .homepage-watch-app-demo-text {
     color: #9C1265;
     font-weight: 600;
+}
+
+.homepage-watch-app-demo-text:hover {
+    cursor: pointer;
 }
 
 .homepage-faq-title {
@@ -180,7 +185,14 @@ a:hover {
 .homepage-terms-of-service-btn,
 .homepage-privacy-policy-btn {
     margin: 20px 10px;
+    background-color: #9C1265 !important;
+    /* font-size: 1.2rem !important; */
 }
+
+.homepage-terms-of-service-btn:hover,
+.homepage-privacy-policy-btn:hover {
+    color: white;
+} 
 
 .homepage-copyright {
     font-weight: 600;
@@ -211,6 +223,11 @@ a:hover {
     .homepage-accordion {
         width: 45%;
     }
+}
+
+.homepage-video-demo-modal {
+    left: 32%;
+    top: 20%;
 }
 
 @media (max-width: 770px) {

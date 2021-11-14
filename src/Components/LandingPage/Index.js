@@ -10,8 +10,11 @@ import Journal from '../../assets/images/landing-page-journal.png';
 import Dashboard from '../../assets/images/landing-page-dashboard.png';
 import PWA from '../../assets/images/landing-page-pwa.jpg';
 import Slide from 'react-reveal/Slide';
+import '../../../node_modules/react-modal-video/css/modal-video.css';
+import ModalVideo from 'react-modal-video'
 
 const LandingPage = () => {
+    const [isOpen, setOpen] = React.useState(false)
     return (
         <Box className="container-fluid homepage">
             <Box className="row">
@@ -56,10 +59,11 @@ const LandingPage = () => {
                     </Box>
                     <Box className="homepage-pwa-description">**No App Downloads Or Installation Needed**</Box>
 
-                    <Box className="homepage-watch-app-demo-box">
-                        <a className="homepage-watch-app-demo-play-button" href="https://www.youtube.com/watch?v=kUlffl8j3Es&t=1s&ab_channel=SwingScalp"> </a>
+                    <Box className="homepage-watch-app-demo-box" onClick={() => { setOpen(true) }}>
+                        <div className="homepage-watch-app-demo-play-button" onClick={() => { setOpen(true) }}></div>
                     </Box>
-                    <Box className="homepage-watch-app-demo-text">WATCH APP DEMO</Box>
+                    <ModalVideo channel='youtube' autoplay isOpen={isOpen} videoId="kUlffl8j3Es" onClose={() => setOpen(false)} />
+                    <Box className="homepage-watch-app-demo-text" onClick={() => { setOpen(true) }}>WATCH APP DEMO</Box>
 
                     <Box className="homepage-faq-title">Frequently Asked Questions</Box>
                     
@@ -205,8 +209,8 @@ const LandingPage = () => {
                         <Box className="homepage-bottom-advice">PLEASE ALWAYS DO YOUR RESEARCH OR CONSULT A FINANCIAL ADVISER.</Box>
                     </Box>
                     <Box className="homepage-button-box">
-                        <Button className="homepage-terms-of-service-btn" size="large" variant="contained">Terms of Service</Button>
-                        <Button className="homepage-privacy-policy-btn" size="large" variant="contained">Privacy Policy</Button>
+                        <Button className="homepage-terms-of-service-btn" size="large" variant="contained" href="/terms-of-service">Terms of Service</Button>
+                        <Button className="homepage-privacy-policy-btn" size="large" variant="contained" href="/privacy-policy">Privacy Policy</Button>
                     </Box>
                     <Box className="homepage-copyright">
                         © TECH TELOS INC 2021
