@@ -49,7 +49,7 @@ export default function SignUp() {
   }, [password]);
 
   const onChange = (e) => {
-    if (e.target.name == "password" && !passwordPattern.test(e.target.value)) {
+    if (e.target.name === "password" && !passwordPattern.test(e.target.value)) {
       setState({
         ...state,
         password: e.target.value,
