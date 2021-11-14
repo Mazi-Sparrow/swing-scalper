@@ -16,37 +16,6 @@ export default function Hero() {
           <Grid item lg={6} mt={2} md={8} sm={8} xs={12}>
             <Card sx={{ maxWidth: 1000 }} className="card-main">
               <CardContent>
-                <Typography variant="body1" className="RELIABLE">
-                  SWINGSCALP
-                </Typography>
-
-                <Typography variant="body1" className="RELIABLE2">
-                </Typography>
-                <div style={{ display: "flex", marginTop: "1.5rem", wordWrap: "break-word" }}>
-                  <CheckCircleIcon
-                    style={{ marginRight: "1.1rem", color: "#9c1265", fontSize: "1.2rem" }}
-                  />
-                  <Typography className="RELIABLE3" sx={{ wordWrap: "break-word" }}>
-                  Log & Track Trades in A Responsive Trading Journal.
-                  </Typography>
-                </div>
-
-                <div style={{ display: "flex" }}>
-                  <CheckCircleIcon
-                    style={{ marginRight: "1.1rem", color: "#9c1265", fontSize: "1.2rem" }}
-                  />
-                  <Typography variant="body4" className="RELIABLE3">
-                  Simplify Stage 1 Technical Analysis.
-                  </Typography>
-                </div>
-                <div style={{ display: "flex", marginBottom: "1.2rem" }}>
-                  <CheckCircleIcon
-                    style={{ marginRight: "1.1rem", color: "#9c1265", fontSize: "1.2rem" }}
-                  />
-                  <Typography variant="body4" className="RELIABLE3">
-                Catch Stocks At Undervalued Prices With Our Scanner.                  
-                </Typography>
-                </div>
                 <Typography className="RELIABLE3">
                 </Typography>
                 <SignIn />
@@ -65,12 +34,11 @@ export default function Hero() {
             <img src={Logo} width="100%" height="auto" alt=""/> 
             <Skeleton shape={"rectangle"} style={{ width: "100%", height: "auto", }} />
             <Box className="hero-reliable"></Box>
-            <Typography variant="body2" className="RELIABLE2">
+            </Grid>
+          <Typography variant="body2" className="RELIABLE2">
               Always evaluate <span className="plan3"> RISK</span> before
               <span className="plan"> REWARD.</span>
             </Typography>
-            <Typography className="RELIABLE3"> PLAN YOUR TRADE AND TRADE YOUR PLAN</Typography>
-          </Grid>
         </Grid>
       </Container>
     </div>
