@@ -63,7 +63,7 @@ export default function ForgotPassword() {
           <LockOutlinedIcon />
         </Avatar>
 
-        <Typography component="h1" variant="h5">
+        <Typography variant="body2" className="RELIABLE2">
           Forgot Password
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
