@@ -26,7 +26,7 @@ export default function TemporaryDrawer() {
   const Data=[
     {name:"DASHBOARD" ,  link:"/dashboard"},
     {name:"JOURNAL" ,  link:"/journal"},
-    {name:"WATCHLIST" ,  link:"/watchlist"},
+    {name:"ANALYZER" ,  link:"/watchlist"},
     {name:"TRADE STREAMS" ,  link:"/trade"},
     {name:"SIGNUP" ,  link:"/signup"},
     

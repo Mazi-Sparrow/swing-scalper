@@ -65,7 +65,7 @@ export default function ButtonAppBar() {
                 </li>
                 <li>
                   <Button color="inherit" href="/watchlist">
-                    WATCHLIST
+                    ANALYZER
                   </Button>
                 </li>
               </>

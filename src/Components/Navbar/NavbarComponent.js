@@ -58,7 +58,7 @@ export default function ButtonAppBar() {
                     JOURNAL
                   </Button>
                   <Button className="navbar-button" color="inherit" href="/watchlist">
-                    WATCHLIST
+                    ANALYZER
                   </Button>
                 </>
               ) : null}

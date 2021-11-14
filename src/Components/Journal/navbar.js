@@ -33,7 +33,7 @@ export default function ButtonAppBar() {
                 JOURNAL
               </Button>
               <Button color="inherit" href="/watchlist">
-                WATCHLIST
+                ANALYZER
               </Button>
               <Button color="inherit" href="/information">
                 Information
