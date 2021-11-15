@@ -28,12 +28,11 @@ const LandingPage = () => {
                 <Box className="homepage-content">
                     <Box className="homepage-background">
                         <h1>Tested Entry And Exit Setups For Swing Trading!</h1>
-                        <h2>Your entry and exit levels play a crucial role in the success of a trade and SwingScalp helps you find the right Setup.</h2>
+                        <h2>Your entry and exit levels play a crucial role in the success of a trade.</h2>
                         <article className="homepage-welcome-text">
                             <Box>We simplify Technical Analysis by <b>Instantly</b> performing high intensity and rapid analytics based on <strong><span className="homepage-text-accent">PROVEN</span></strong> profitable Strategies before you put your money to work. </Box>
-                            <Box>It’s not just enough to know what <b>Stock</b> or when to buy, our Simplified Technical Analysis takes you from identifying a setup, planning  to executing trades faster with reduced risk. </Box>
-                            <Box><strong><span className="homepage-text-accent">YOU</span></strong> are just a few clicks from the easiest way to gain extraordinary confidence in your trades with simple clarity of your risk and return and quantified <b>Pofit Margin</b>. </Box>
-                            <Box>Enjoy Free Access to our <b>Trade Journal</b> to keep track of your progress with RealTime notifications on when to <b>Close or Cut</b> a trade with our <b>Premium Membership</b>.</Box>
+                            <Box><strong><span className="homepage-text-accent">YOU</span></strong> are just a few clicks from the easiest way to gain extraordinary confidence in your trades with simple clarity of your <b>Risk to Reward</b>. </Box>
+                            <Box>Enjoy Free Access to our <b>Trade Journal</b> to log and keep track of your trades with RealTime notifications on when to <b>Close or Cut</b> a trade with our <b>Premium Membership</b>.</Box>
                         </article>
                         <Button className="homepage-trial-btn" size="large" variant="contained" href="/signup">14 DAYS TRIAL FOR $12.99</Button>
 
@@ -75,7 +74,7 @@ const LandingPage = () => {
                                 aria-controls="panel2a-content"
                                 id="panel2a-header"
                             >
-                                <Typography>1.	What is the app payment timing and recurrence? </Typography>
+                                <Typography>What is the app payment timing and recurrence? </Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography>
@@ -89,7 +88,7 @@ const LandingPage = () => {
                                 aria-controls="panel2a-content"
                                 id="panel2a-header"
                             >
-                                <Typography>2.	What do I get with the Simplified Trade Journal?</Typography>
+                                <Typography>What do I get with the Simplified Trade Journal?</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography>
@@ -103,7 +102,7 @@ const LandingPage = () => {
                                 aria-controls="panel2a-content"
                                 id="panel2a-header"
                             >
-                                <Typography>3.	What are the main variables the analysis is based on? </Typography>
+                                <Typography>What are the main variables the analysis is based on? </Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography>
@@ -117,7 +116,7 @@ const LandingPage = () => {
                                 aria-controls="panel2a-content"
                                 id="panel2a-header"
                             >
-                                <Typography>4.	Is crypto currency trading included?</Typography>
+                                <Typography>Is crypto currency trading included?</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography>
@@ -131,7 +130,7 @@ const LandingPage = () => {
                                 aria-controls="panel2a-content"
                                 id="panel2a-header"
                             >
-                                <Typography>5.	Are penny stocks included?</Typography>
+                                <Typography>Are penny stocks included?</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography>
