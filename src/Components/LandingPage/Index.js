@@ -31,7 +31,7 @@ const LandingPage = () => {
                         <h2>Your entry and exit levels play a crucial role in the success of a trade.</h2>
                         <article className="homepage-welcome-text">
                             <Box>We simplify Technical Analysis by <b>Instantly</b> performing high intensity and rapid analytics based on <strong><span className="homepage-text-accent">PROVEN</span></strong> profitable Strategies before you put your money to work. </Box>
-                            <Box><strong><span className="homepage-text-accent">YOU</span></strong> are just a few clicks from the easiest way to gain extraordinary confidence in your trades with simple clarity of your <b>Risk to Reward</b>. </Box>
+                            <Box><strong><span className="homepage-text-accent">YOU</span></strong> are just a few clicks from the easiest way to gain extraordinary confidence in your trades with <b>AI</b> generated <b>Entries & Exits</b> to match your desired <b>Risk to Reward</b>. </Box>
                             <Box>Enjoy Free Access to our <b>Trade Journal</b> to log and keep track of your trades with RealTime notifications on when to <b>Close or Cut</b> a trade with our <b>Premium Membership</b>.</Box>
                         </article>
                         <Button className="homepage-trial-btn" size="large" variant="contained" href="/signup">14 DAYS TRIAL FOR $12.99</Button>
