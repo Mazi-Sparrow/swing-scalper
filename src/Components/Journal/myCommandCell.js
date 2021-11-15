@@ -11,7 +11,7 @@ export const MyCommandCell = (props) => {
     return (
       <td className="k-command-cell">
         <Button
-          className="k-button k-grid-delete-command"
+          className="k-primary k-button k-grid-delete-command"
           onClick={() => (props.delete(dataItem))}
         >
           Delete

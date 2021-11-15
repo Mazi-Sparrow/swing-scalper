@@ -1,0 +1,18 @@
+.social-share-block {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 100px;
+    margin-top: -20px;
+    margin-bottom: 40px;
+}
+
+.social-share-icons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.social-share-icon {
+    margin: 0 7px;
+}

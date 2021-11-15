@@ -3,6 +3,38 @@ import Navbar from "../Navbar/NavbarComponent";
 import MobileNavbar from "../MobileNavbar/MobileNavbarComponent";
 import { Box } from "@mui/system";
 import Footer from "./Footer";
+import './style.css';
+import {
+  EmailShareButton,
+  FacebookShareButton,
+  InstapaperShareButton,
+  LinkedinShareButton,
+  LivejournalShareButton,
+  MailruShareButton,
+  OKShareButton,
+  RedditShareButton,
+  TelegramShareButton,
+  TwitterShareButton,
+  ViberShareButton,
+  VKShareButton,
+  WhatsappShareButton,
+} from "react-share";
+
+import {
+  EmailIcon,
+  FacebookIcon,
+  InstapaperIcon,
+  LinkedinIcon,
+  LivejournalIcon,
+  MailruIcon,
+  OKIcon,
+  RedditIcon,
+  TelegramIcon,
+  TwitterIcon,
+  ViberIcon,
+  VKIcon,
+  WhatsappIcon,
+} from "react-share";
 
 import {
   Chart,
@@ -122,6 +154,8 @@ export default function Index() {
     }
   ]
 
+  const UrlToShare = window.location.href;
+
   return (
     <>
       {!state.loading ? (
@@ -134,6 +168,65 @@ export default function Index() {
           </Box>
 
           <Box my={10} mb={15}>
+            <Box className="social-share-block">
+              <span>Share: </span>
+              <Box className="social-share-icons">
+                <FacebookShareButton
+                  url={UrlToShare}
+                  quote="My dashboard on SwingScalp!"
+                  className="social-share-icon facebook-share-button"
+                >
+                  <FacebookIcon size={32} round />
+                </FacebookShareButton>
+                <TwitterShareButton
+                  url={UrlToShare}
+                  title="My dashboard on SwingScalp!"
+                  className="social-share-icon twitter-share-button"
+                >
+                  <TwitterIcon size={32} round />
+                </TwitterShareButton>
+                <TelegramShareButton
+                  url={UrlToShare}
+                  title="My dashboard on SwingScalp!"
+                  className="social-share-icon telegram-share-button"
+                >
+                  <TelegramIcon size={32} round />
+                </TelegramShareButton>
+                <WhatsappShareButton
+                  url={UrlToShare}
+                  title="My dashboard on SwingScalp!"
+                  className="social-share-icon whatsapp-share-button"
+                  separator=":: "
+                >
+                  <WhatsappIcon size={32} round />
+                </WhatsappShareButton>
+                <RedditShareButton
+                  url={UrlToShare}
+                  title="My dashboard on SwingScalp!"
+                  windowWidth={660}
+                  windowHeight={460}
+                  className="social-share-icon reddit-share-button"
+                >
+                  <RedditIcon size={32} round />
+                </RedditShareButton>
+                <EmailShareButton
+                  url={UrlToShare}
+                  title="My dashboard on SwingScalp!"
+                  body="Hi there! Check out my dashboard on SwingScalp!"
+                  className="social-share-icon email-share-button"
+                >
+                  <EmailIcon size={32} round />
+                </EmailShareButton>
+                <ViberShareButton
+                  url={UrlToShare}
+                  title="My dashboard on SwingScalp!"
+                  className="social-share-icon viber-share-button"
+                >
+                  <ViberIcon size={32} round />
+                </ViberShareButton>
+
+              </Box>
+            </Box>
             <div className="ffflex">
               <div className="asdasd">
                 <Chart
