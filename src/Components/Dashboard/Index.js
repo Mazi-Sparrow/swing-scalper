@@ -7,33 +7,17 @@ import './style.css';
 import {
   EmailShareButton,
   FacebookShareButton,
-  InstapaperShareButton,
-  LinkedinShareButton,
-  LivejournalShareButton,
-  MailruShareButton,
-  OKShareButton,
   RedditShareButton,
   TelegramShareButton,
   TwitterShareButton,
-  ViberShareButton,
-  VKShareButton,
-  WhatsappShareButton,
 } from "react-share";
 
 import {
   EmailIcon,
   FacebookIcon,
-  InstapaperIcon,
-  LinkedinIcon,
-  LivejournalIcon,
-  MailruIcon,
-  OKIcon,
   RedditIcon,
   TelegramIcon,
   TwitterIcon,
-  ViberIcon,
-  VKIcon,
-  WhatsappIcon,
 } from "react-share";
 
 import {
@@ -167,7 +151,7 @@ export default function Index() {
             <MobileNavbar />
           </Box>
 
-          <Box my={10} mb={15}>
+          <Box id="dashboard-page-content" my={10} mb={15}>
             <Box className="social-share-block">
               <span>Share: </span>
               <Box className="social-share-icons">
@@ -192,14 +176,6 @@ export default function Index() {
                 >
                   <TelegramIcon size={32} round />
                 </TelegramShareButton>
-                <WhatsappShareButton
-                  url={UrlToShare}
-                  title="My dashboard on SwingScalp!"
-                  className="social-share-icon whatsapp-share-button"
-                  separator=":: "
-                >
-                  <WhatsappIcon size={32} round />
-                </WhatsappShareButton>
                 <RedditShareButton
                   url={UrlToShare}
                   title="My dashboard on SwingScalp!"
@@ -217,14 +193,6 @@ export default function Index() {
                 >
                   <EmailIcon size={32} round />
                 </EmailShareButton>
-                <ViberShareButton
-                  url={UrlToShare}
-                  title="My dashboard on SwingScalp!"
-                  className="social-share-icon viber-share-button"
-                >
-                  <ViberIcon size={32} round />
-                </ViberShareButton>
-
               </Box>
             </Box>
             <div className="ffflex">
