@@ -62,9 +62,25 @@ a:hover {
     align-items: center;
     margin: 0 auto;
     max-width: 100%;
-    background-color: #9035AA;
+    /* background-color: #9035AA; */
+    background: linear-gradient(100deg,#7718E3,#9035AA,#3324bc);
+    background-size: 180% 180%;
+    animation: gradient-animation 10s ease infinite;
+      
     padding: 0px 40px 60px 40px;
 }
+
+@keyframes gradient-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 
 .homepage-welcome-text {
     display: flex;
@@ -111,7 +127,10 @@ a:hover {
 }
 
 .homepage-pwa-title {
-    background-color: #9035AA;
+    /* background-color: #9035AA; */
+    background: linear-gradient(130deg,#7718E3,#9035AA,#3324bc);
+    background-size: 180% 180%;
+    animation: gradient-animation 10s ease infinite;
     border-radius: 30px;
     font-size: 42px;
     padding: 10px 40px;
