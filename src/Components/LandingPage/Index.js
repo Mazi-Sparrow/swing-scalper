@@ -88,11 +88,11 @@ const LandingPage = () => {
                                 aria-controls="panel2a-content"
                                 id="panel2a-header"
                             >
-                                <Typography>What do I get with the Simplified Trade Journal?</Typography>
+                                <Typography>What do I get with the Trade Journal?</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography>
-                                With our Simplified Trade Journal, you're able to easily log your trades and keep track of your current progress on the user-friendly dashboard. You'll also receive real-time notifications when your stock is approaching and hits your stop loss or price targets. For premium subscribers.
+                                With our Trade Journal, you're able to easily log your trades and keep track of your current progress on the user-friendly dashboard. You'll also receive real-time notifications when your stock is approaching and hits your stop loss or price targets. For premium subscribers.
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
