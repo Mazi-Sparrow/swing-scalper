@@ -27,26 +27,27 @@ const LandingPage = () => {
                 </Box>
                 <Box className="homepage-content">
                     <Box className="homepage-background">
-                        <h1>Tested Entry And Exit Setups For Swing Trading!</h1>
+                        <h1>Swingscalp University!</h1>
                         <h2>Your entry and exit levels play a crucial role in the success of a trade.</h2>
                         <article className="homepage-welcome-text">
-                            <Box>We simplify Technical Analysis by <b>Instantly</b> performing high intensity and rapid analytics based on <strong><span className="homepage-text-accent">PROVEN</span></strong> profitable Strategies before you put your money to work. </Box>
+                            <Box>We give you the tools to mitigate the risks of short/long term swing trading as you navigate these <b>Volatile Markets</b>. </Box>
+                            <Box>Simplifying Chart Reading / Technical Analysis with easy to read components gives you a <b>Guided Edge</b> before you put your money to work. </Box>
                             <Box><strong><span className="homepage-text-accent">YOU</span></strong> are just a few clicks from the easiest way to gain extraordinary confidence in your trades with <b>AI</b> generated <b>Entries & Exits</b> to match your desired <b>Risk to Reward</b>. </Box>
                             <Box>Enjoy Free Access to our <b>Trade Journal</b> to log and keep track of your trades with RealTime notifications on when to <b>Close or Cut</b> a trade with our <b>Premium Membership</b>.</Box>
+                            <Box>For a <b>Limited Time</b>, We are giving you a $33.00/Monthly access value to try for <b>14 days at $12.99</b> which you can cancel anytime.</Box>
                         </article>
                         
                         <Box className="homepage-image-box homepage-dashboard-image">
                             <img src={Dashboard} alt="dashboard demo"/>
                         </Box>
 
-                        <Button className="homepage-trial-btn" size="large" variant="contained" href="/signup">14 DAYS TRIAL FOR $12.99</Button>
+                        <Button className="homepage-trial-btn" size="large" variant="contained" href="/signup">SCHEDULE DEMO CALL</Button>
 
                     </Box>
-                    <Box className="homepage-pwa-title">PROGRESSIVE WEB APPLICATION</Box>
+                    <Box className="homepage-pwa-title">No Downloads Needed</Box>
                     <Box className="homepage-image-box homepage-pwa-image">
                         <img src={PWA} alt="PWA"/>
                     </Box>
-                    <Box className="homepage-pwa-description">**No App Downloads Or Installation Needed**</Box>
 
                     <Box className="homepage-watch-app-demo-box" onClick={() => { setOpen(true) }}>
                         <div className="homepage-watch-app-demo-play-button" onClick={() => { setOpen(true) }}></div>
