@@ -34,27 +34,25 @@ const LandingPage = () => {
                             <Box>Simplifying Chart Reading / Technical Analysis with easy to read components gives you a <b>Guided Edge</b> before you put your money to work. </Box>
                             <Box><strong><span className="homepage-text-accent">YOU</span></strong> are just a few clicks from the easiest way to gain extraordinary confidence in your trades with <b>AI</b> generated <b>Entries & Exits</b> to match your desired <b>Risk to Reward</b>. </Box>
                             <Box>Enjoy Free Access to our <b>Trade Journal</b> to log and keep track of your trades with RealTime notifications on when to <b>Close or Cut</b> a trade with our <b>Premium Membership</b>.</Box>
-                            <Box>For a <b>Limited Time</b>, We are giving you a $33.00/Monthly access value to try for <b>14 days at $12.99</b> which you can cancel anytime.</Box>
+                            <Box>For a <b>Limited Time</b>, We are giving you a $52.00/Monthly access value to try for <b>14 days at $12.99</b> which you can cancel anytime.</Box>
                         </article>
-                        
+                        <Box className="homepage-watch-app-demo-box" onClick={() => { setOpen(true) }}>
+                        <div className="homepage-watch-app-demo-play-button" onClick={() => { setOpen(true) }}></div>
+                    </Box>
+                    <ModalVideo channel='youtube' autoplay isOpen={isOpen} videoId="kUlffl8j3Es" onClose={() => setOpen(false)} />
+                    <Box className="homepage-trial-btn" onClick={() => { setOpen(true) }}>WATCH DEMO</Box>
+                    
                         <Box className="homepage-image-box homepage-dashboard-image">
                             <img src={Dashboard} alt="dashboard demo"/>
                         </Box>
 
-                        <Button className="homepage-trial-btn" size="large" variant="contained" href="/signup">SCHEDULE DEMO CALL</Button>
+                        <Button className="homepage-trial-btn" size="large" variant="contained" href="/signup">14 DAYS TRIAL FOR $12.99</Button>
 
                     </Box>
                     <Box className="homepage-pwa-title">No Downloads Needed</Box>
                     <Box className="homepage-image-box homepage-pwa-image">
                         <img src={PWA} alt="PWA"/>
                     </Box>
-
-                    <Box className="homepage-watch-app-demo-box" onClick={() => { setOpen(true) }}>
-                        <div className="homepage-watch-app-demo-play-button" onClick={() => { setOpen(true) }}></div>
-                    </Box>
-                    <ModalVideo channel='youtube' autoplay isOpen={isOpen} videoId="kUlffl8j3Es" onClose={() => setOpen(false)} />
-                    <Box className="homepage-watch-app-demo-text" onClick={() => { setOpen(true) }}>WATCH APP DEMO</Box>
-
                     <Box className="homepage-faq-title">Frequently Asked Questions</Box>
                     <Box className="homepage-faq-sub">
                         <h7>At SwingScalp, our mission is to help you maximize your profits by simplifying technical analysis. Our app is designed to help you master the art of swing trading. That said, we still want to make sure you have all the information you need before signing up for our app.</h7>
