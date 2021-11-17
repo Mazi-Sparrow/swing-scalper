@@ -34,16 +34,7 @@ const LandingPage = () => {
                             <Box><strong><span className="homepage-text-accent">YOU</span></strong> are just a few clicks from the easiest way to gain extraordinary confidence in your trades with <b>AI</b> generated <b>Entries & Exits</b> to match your desired <b>Risk to Reward</b>. </Box>
                             <Box>Enjoy Free Access to our <b>Trade Journal</b> to log and keep track of your trades with RealTime notifications on when to <b>Close or Cut</b> a trade with our <b>Premium Membership</b>.</Box>
                         </article>
-                        <Button className="homepage-trial-btn" size="large" variant="contained" href="/signup">14 DAYS TRIAL FOR $12.99</Button>
-
-                        <Box className="homepage-image-box homepage-watchlist-image">
-                            <img src={Watchlist} alt="watchlist demo"/>
-                        </Box>
-
-                        <Box className="homepage-image-box homepage-journal-image">
-                            <img src={Journal} alt="journal demo"/>
-                        </Box>
-
+                        
                         <Box className="homepage-image-box homepage-dashboard-image">
                             <img src={Dashboard} alt="dashboard demo"/>
                         </Box>
