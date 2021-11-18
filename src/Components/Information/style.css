@@ -1,0 +1,197 @@
+.information-page-separator {
+    width: 5%;
+}
+
+.information-page-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.information-page-main-content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+}
+
+.information-page-leftside {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    width: 45%;
+}
+
+.video-list-title {
+    color: #9C1265;
+    font-size: 30px;
+    margin-top: 20px;
+    margin-right: 40px;
+}
+
+.contact-us-form-title {
+    color: #9C1265;
+    font-size: 30px;
+    margin-top: 20px;
+    margin-left: 190px;
+}
+
+.information-page-rightside {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 45%;
+}
+
+.information-page-form {
+    margin-top: 50px;
+    width: 80%;
+}
+
+.information-page-video {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0px;
+    width: 350px;
+    height: 150px;
+    cursor: pointer;
+}
+
+.form-field {
+    margin: 20px 0px;
+}
+
+.information-watch-app-demo-play-button {
+    margin-left: 15px;
+	width: 0;
+	height: 0;
+	border-top: 25px solid transparent;
+	border-left: 50px solid #9C1265;
+	border-bottom: 25px solid transparent;
+}
+
+
+
+.information-faq-sub {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    line-height: 30px;
+    font-size: 16px;
+}
+
+.information-faq-sub div {
+    margin: 10px 0px;
+}
+
+.information-faq-title {
+    color: #9C1265;
+    font-size: 45px;
+    font-weight: 800;
+    margin-top: 50px;
+}
+
+.information-faq-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    width: 80%;
+    margin: 10px 0px;
+    margin-bottom: 50px;
+}
+
+.information-accordion {
+    margin: 5px 10px !important;
+    background-color: #9C1265;
+    color: white;
+    padding-left: 10px;
+    width: 30%;
+}
+
+@media (max-width: 1250px) {
+    .contact-us-form-title {
+        margin-left: 130px;
+    }
+}
+
+@media (max-width: 1025px) {
+    .information-page-form {
+        width: 100%;
+    }
+
+    .contact-us-form-title {
+        margin-left: 80px;
+    }
+
+    .information-accordion {
+        width: 45%;
+    }
+}
+
+@media (max-width: 770px) {
+    .information-page-leftside {
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .video-list-title {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    .information-page-separator {
+        width: 0%;
+    }
+
+    .information-page-rightside {
+        align-items: center;
+        width: 80%;
+    }
+
+    .contact-us-form-title {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    .information-page-form {
+        margin-top: 10px;
+    }
+
+    .information-page-main-content {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;   
+    }
+    .information-faq-title {
+        color: #9C1265;
+        font-size: 36px;
+        font-weight: 800;
+        margin-top: 50px;
+    }
+    .information-accordion {
+        width: 100%;
+    }
+}
+
+@media (max-width: 470px) { 
+    .information-faq-title {
+        font-size: 28px;
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 376px) {
+    .information-faq-title {
+        font-size: 22px;
+        margin-top: 30px;
+    }
+}
