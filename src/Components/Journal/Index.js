@@ -3,6 +3,7 @@ import Navbar from "../Navbar/NavbarComponent";
 import MobileNavbar from "../MobileNavbar/MobileNavbarComponent";
 import { Box } from "@mui/system";
 import { Grid, GridColumn as Column, GridToolbar } from "@progress/kendo-react-grid";
+import { Dialog, DialogActionsBar } from "@progress/kendo-react-dialogs";
 import Footer from "./Footer";
 import { process } from "@progress/kendo-data-query";
 import Typography from "@mui/material/Typography";
@@ -12,6 +13,11 @@ import { CustomDate } from "./CutomDate";
 import { insertItem, getItems, updateItem, deleteItem } from "./services";
 import { Context as JournalContext } from "../../context/JournalContext";
 import { Context as AuthContext } from "../../context/AuthContext";
+import {
+  Notification,
+  NotificationGroup,
+} from "@progress/kendo-react-notification";
+import { Fade } from "@progress/kendo-react-animation";
 import './style.css';
 
 const initialDataState = {
@@ -40,6 +46,13 @@ export default function Index() {
   const [editedRecord, setEditedRecord] = React.useState(null);
   const [data, setData] = React.useState(journals);
   const [dataState, setDataState] = React.useState(initialDataState);
+  const [promptDeletionVisible, setPromptDeletionVisible] = React.useState(false);
+  const [currentDataItem, setCurrentDataItem] = React.useState(null);
+  const [notificationVisible, setNotificationVisible] = React.useState(false);
+  
+  const toggleDialog = () => {
+    setPromptDeletionVisible(!promptDeletionVisible);
+  };
 
   React.useEffect(() => {
     let isMounted = true;
@@ -60,7 +73,7 @@ export default function Index() {
       discard={discard}
       update={update}
       cancel={cancel}
-      delete={deleteJournalFunc}
+      delete={handleDeleteClick}
       editField={editField}
     />
   );
@@ -113,15 +126,27 @@ export default function Index() {
     setData(newData);
   };
 
+  const handleDeleteClick = (dataItem) => {
+    setPromptDeletionVisible(true);
+    setCurrentDataItem(dataItem);
+  }
+
   const deleteJournalFunc = async (dataItem) => {
     const isSuccess = await deleteJournal({
       id: dataItem.id,
       token,
     })
 
-    listJournals({ token }).then((res) => {
-      setData(res);
-    });
+    if (isSuccess) {
+      listJournals({ token }).then((res) => {
+        setData(res);
+      });
+      setNotificationVisible(true);
+      setTimeout(() => {
+        setNotificationVisible(false);
+      }, 5000);
+      setPromptDeletionVisible(false);
+    }
   }
 
   const discard = (dataItem) => {
@@ -233,7 +258,54 @@ export default function Index() {
       <Box>
         <MobileNavbar />
       </Box>
+      <NotificationGroup
+        style={{
+          zIndex: 10000,
+          right: 25,
+          bottom: 25,
+          alignItems: "flex-start",
+          flexWrap: "wrap-reverse",
+        }}
+      >
+        <Fade>
+          {notificationVisible && (
+            <Notification
+              type={{
+                style: "success",
+                icon: true,
+              }}
+              closable={true}
+              onClose={() => setNotificationVisible(false)}
+            >
+              <span>Record has been removed</span>
+            </Notification>
+          )}
+        </Fade>
+      </NotificationGroup>
 
+      {promptDeletionVisible && (
+        <Dialog title={"Please confirm deletion"} onClose={toggleDialog}>
+          <p
+            style={{
+              margin: "25px",
+              textAlign: "center",
+              fontSize: "18px",
+            }}
+          >
+            Are you sure you want to delete this record?
+          </p>
+          <DialogActionsBar>
+            <Button className="prompt-button k-button navbar-button" onClick={toggleDialog}>
+              No
+            </Button>
+            <Button className="prompt-button k-button navbar-button" onClick={() => {
+                deleteJournalFunc(currentDataItem)
+              }}>
+              Yes
+            </Button>
+          </DialogActionsBar>
+        </Dialog>
+      )}      
       <Box className="journal-page-content page-content" my={12} mb={15}>
         {errorMessage ? <Typography style={{ color: "red" }}>{errorMessage}</Typography> : null}
         <Grid

@@ -3,3 +3,10 @@
     margin-left: 6px;
     margin-right: 6px;
 }
+
+.prompt-button {
+    background-color: #9c1265 !important;
+    color: white !important;
+    padding: 10px 10px !important;
+    border-radius: 5px !important;
+}
