@@ -31,14 +31,6 @@ import secondVideoImage from '../../assets/images/SecondVideoBackground.png'
 import thirdVideoImage from '../../assets/images/ThirdVideoBackground.png'
 
 
-// const useStyles = makeStyles({
-//   field: {
-//     marginTop: "20px",
-//     marginBottom: "20px",
-//     display: "block",
-//   },
-// });
-
 const initialState = {
   title: "",
   details: "",
@@ -63,8 +55,6 @@ export default function Index() {
     clearErrorMessage,
     contactUs,
   } = useContext(ContactUsContext);
-
-  // const classes = useStyles();
 
   const [state, setState] = useState(initialState);
 
