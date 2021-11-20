@@ -36,17 +36,20 @@ const LandingPage = () => {
                             <Box>Enjoy Free Access to our <b>Trade Journal</b> to log and keep track of your trades with RealTime notifications on when to <b>Close or Cut</b> a trade with our <b>Premium Membership</b>.</Box>
                             <Box>For a <b>Limited Time</b>, We are giving you a $52.00/Monthly access value to try for <b>14 days at $12.99</b> which you can cancel anytime.</Box>
                         </article>
-                        <Box className="homepage-watch-app-demo-box" onClick={() => { setOpen(true) }}>
-                        <div className="homepage-watch-app-demo-play-button" onClick={() => { setOpen(true) }}></div>
-                    </Box>
-                    <ModalVideo channel='youtube' autoplay isOpen={isOpen} videoId="kUlffl8j3Es" onClose={() => setOpen(false)} />
-                    <Box className="homepage-trial-btn" onClick={() => { setOpen(true) }}>WATCH DEMO</Box>
+                        {/* <Box className="homepage-watch-app-demo-box" onClick={() => { setOpen(true) }}>
+                            <div className="homepage-watch-app-demo-play-button" onClick={() => { setOpen(true) }}></div>
+                        </Box> */}
+                        <ModalVideo channel='youtube' autoplay isOpen={isOpen} videoId="kUlffl8j3Es" onClose={() => setOpen(false)} />
+                        {/* <Box className="homepage-trial-btn" onClick={() => { setOpen(true) }}>WATCH DEMO</Box> */}
                     
                         <Box className="homepage-image-box homepage-dashboard-image">
-                            <img src={Dashboard} alt="dashboard demo"/>
+                            <img onClick={() => { setOpen(true) }} src={Dashboard} alt="dashboard demo"/>
+                            <div className="homepage-watch-app-demo-play-wrapper">
+                                <div className="homepage-watch-app-demo-play-button" onClick={() => { setOpen(true) }}></div>
+                            </div>
                         </Box>
 
-                        <Button className="homepage-trial-btn" size="large" variant="contained" href="/signup">14 DAYS TRIAL FOR $12.99</Button>
+                        <Button className="homepage-trial-btn large-button" size="large" variant="contained" href="/signup">14 DAYS TRIAL FOR $12.99</Button>
 
                     </Box>
                     <Box className="homepage-pwa-title">No Downloads Needed</Box>
@@ -56,7 +59,7 @@ const LandingPage = () => {
                     <Box className="homepage-faq-title">Frequently Asked Questions</Box>
                     <Box className="homepage-faq-sub">
                         <h7>At SwingScalp, our mission is to help you maximize your profits by simplifying technical analysis. Our app is designed to help you master the art of swing trading. That said, we still want to make sure you have all the information you need before signing up for our app.</h7>
-                        </Box>
+                    </Box>
                     <Box className="homepage-faq-content">
                         <Accordion className="homepage-accordion">
                             <AccordionSummary
@@ -190,8 +193,8 @@ const LandingPage = () => {
                         <Box className="homepage-bottom-advice">PLEASE ALWAYS DO YOUR RESEARCH OR CONSULT A FINANCIAL ADVISER.</Box>
                     </Box>
                     <Box className="homepage-button-box">
-                        <Button className="homepage-terms-of-service-btn" size="large" variant="contained" href="/terms-of-service">Terms of Service</Button>
-                        <Button className="homepage-privacy-policy-btn" size="large" variant="contained" href="/privacy-policy">Privacy Policy</Button>
+                        <Button className="homepage-terms-of-service-btn default-button" size="large" variant="contained" href="/terms-of-service">Terms of Service</Button>
+                        <Button className="homepage-privacy-policy-btn default-button" size="large" variant="contained" href="/privacy-policy">Privacy Policy</Button>
                     </Box>
                     <Box className="homepage-copyright">
                         © TECH TELOS INC 2021

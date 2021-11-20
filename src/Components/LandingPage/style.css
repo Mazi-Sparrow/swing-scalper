@@ -18,14 +18,14 @@ a:hover {
 
 .homepage-content h1 {
     font-weight: 400;
-    font-size: 50px;
-    margin-top: 80px;
-    margin-bottom: 0px;
+    font-size: 70px;
+    margin-top: 60px;
+    margin-bottom: 10px;
 }
 
 .homepage-content h2 {
     font-weight: 500;
-    font-size: 16px;
+    font-size: 23px;
     margin-top: 0px;
 }
 
@@ -34,16 +34,17 @@ a:hover {
     font-size: 16px;
     margin-top: 0px;
     padding: 30px;
+    width: 70%;
 }
 
 .homepage-content article {
-    font-size: 16px;
+    font-size: 24px;
 }
 
 .homepage-content button, 
 .homepage-content .homepage-trial-btn {
     background-color: #9C1265 !important;
-    font-size: 1.2rem !important;
+    /* font-size: 1.2rem !important; */
 }
 
 .homepage-content {
@@ -62,11 +63,12 @@ a:hover {
     align-items: center;
     margin: 0 auto;
     max-width: 100%;
+    width: 100%;
     /* background-color: #9035AA; */
     background: linear-gradient(100deg,#7718E3,#9035AA,#3324bc);
     background-size: 180% 180%;
     animation: gradient-animation 10s ease infinite;
-      
+
     padding: 0px 40px 60px 40px;
 }
 
@@ -120,17 +122,53 @@ a:hover {
     /* border: 1px solid #9C1265; */
     margin: 30px 0px;
     width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .homepage-content .homepage-image-box img {
     width: 100%;
+    /* cursor: pointer; */
+}
+
+.homepage-watch-app-demo-play-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 150px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: white;
+    background: linear-gradient(130deg,#7718E3,#9035AA,#3324bc);
+    background-size: 180% 180%;
+    animation: gradient-animation 2s ease infinite;
+    cursor: pointer;
+    transform: scale(1);
+    transition: all 0.2s ease-in-out;
+}
+
+.homepage-watch-app-demo-play-wrapper:hover {
+    transform: scale(1.05);
+    transition: all 0.2s ease-in-out;
+}
+
+.homepage-content .homepage-image-box div {
+    position: absolute;
+    -webkit-box-shadow: 10px 10px 60px 0px rgba(229, 0, 255, 0.2);
+    -moz-box-shadow: 10px 10px 60px 0px rgba(229, 0, 255, 0.2);
+    box-shadow: 10px 10px 60px 0px rgba(229, 0, 255, 0.2);
 }
 
 .homepage-pwa-title {
     /* background-color: #9035AA; */
-    background: linear-gradient(130deg,#7718E3,#9035AA,#3324bc);
+    /* background: linear-gradient(130deg,#7718E3,#9035AA,#3324bc);
     background-size: 180% 180%;
-    animation: gradient-animation 10s ease infinite;
+    animation: gradient-animation 10s ease infinite; */
+    background: linear-gradient(-45deg, #771552, #e73c7e, #23a6d5, #7718E3);
+	background-size: 400% 400%;
+	animation: gradient-animation 10s ease infinite;
     border-radius: 30px;
     font-size: 42px;
     padding: 10px 40px;
@@ -138,6 +176,7 @@ a:hover {
     font-weight: 600;
     margin-top: -45px;
     border: 5px solid white;
+    user-select: none;
 }
 
 .homepage-content .homepage-pwa-image {
@@ -166,7 +205,7 @@ a:hover {
 	width: 0;
 	height: 0;
 	border-top: 25px solid transparent;
-	border-left: 50px solid #9C1265;
+	border-left: 50px solid white;
 	border-bottom: 25px solid transparent;
 }
 
@@ -192,6 +231,16 @@ a:hover {
     color: white;
     padding-left: 10px;
     width: 30%;
+    transition: all 0.2s ease-in-out;
+}
+.MuiAccordionSummary-expandIconWrapper {
+    transition: all 0.2s ease-in-out;
+}
+.homepage-accordion:hover {
+    box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 50%), 0px 4px 5px 0px rgb(0 0 0 / 25%), 0px 1px 10px 0px rgb(0 0 0 / 25%);
+}
+.homepage-accordion:hover .MuiAccordionSummary-expandIconWrapper {
+    color: white;
 }
 
 .homepage-faq-content {

@@ -3,6 +3,7 @@ import awsconfig from "./aws-exports";
 
 import * as React from "react";
 import "./App.css";
+import "./Custom.css";
 import Signin from "./Components/Sign-in/Index";
 import Signup from "./Components/Sign-up/Index";
 import Dashboard from "./Components/Dashboard/Index";
