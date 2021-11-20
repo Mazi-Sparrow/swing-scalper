@@ -38,11 +38,18 @@ export default function TemporaryDrawer() {
     {name:"JOURNAL",  link:"/journal"},
     {name:"ANALYZER",  link:"/watchlist"},
     {name: "INFORMATION", link:"/information"},
-    {name: "SUBSCRIPTION", link:"/subscription"},
+    // {name: "SUBSCRIPTION", link:"/subscription"},
     {name: "PROFILE", link:"/profile"},
   ]
 
-  const list = (anchor) => (
+  const LoggedOutData=[
+    {name:"INFORMATION",  link:"/information"},
+    {name:"SUBSCRIPTION",  link:"/subscription"},
+    // {name:"LOGIN",  link:"/signin"},
+    // {name:"SIGNUP",  link:"/signup"},
+  ]
+
+  const list = (anchor, isLoggedIn) => (
     <Box
       sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
       role="presentation"
@@ -50,16 +57,37 @@ export default function TemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List className="sidebar-page-list">
-        {Data.map((text, index) => (
-         
-          <ListItem button key={text}   >
-            <Button href={text.link} > <ListItemText primary={text.name} className="mob-btn" /></Button>
-          </ListItem>
-          
-        ))}
-        <Button className="mob-btn logout-mobile-btn" onClick={() => logout().then(() => goToPage(""))}>
-            Logout
-        </Button>
+        {isLoggedIn === 'true' ? 
+          (
+            <>
+              {Data.map((text, index) => (
+              
+                <ListItem button key={text}   >
+                  <Button href={text.link} > <ListItemText primary={text.name} className="mob-btn" /></Button>
+                </ListItem>
+              ))}
+            <Button className="mob-btn logout-mobile-btn" onClick={() => logout().then(() => goToPage(""))}>
+                Logout
+            </Button>
+            </>
+          )
+          : 
+          (
+            <>
+              {LoggedOutData.map((text, index) => (
+                <ListItem button key={text}   >
+                  <Button href={text.link} > <ListItemText primary={text.name} className="mob-btn" /></Button>
+                </ListItem>
+              ))}
+            <Button className="mob-btn login-mobile-btn" onClick={() => logout().then(() => goToPage("signin"))}>
+                Login
+            </Button>
+            <Button className="mob-btn login-mobile-btn" onClick={() => logout().then(() => goToPage("signup"))}>
+                Sign up
+            </Button>
+            </>
+          )
+        }
       </List>
     
     </Box>
@@ -77,17 +105,31 @@ export default function TemporaryDrawer() {
               open={state[anchor]}
               onClose={toggleDrawer(anchor, false)}
             >
-              {list(anchor)}
+              {list(anchor, 'true')}
             </Drawer>
           </React.Fragment>
         ))}
       </div>
         ) 
         : 
-          <Box className="button-box">
-            <Button className="navbar-button" color="inherit" variant="contained" href="/signin" >login</Button>
-            <Button className="navbar-button" color="inherit" variant="contained" href="/signup" >signup</Button>
-          </Box>
+        <div>
+        {[ 'right',].map((anchor) => (
+          <React.Fragment key={anchor}>
+            <Button onClick={toggleDrawer(anchor, true)} className="mobmenuicon" ><MenuIcon/></Button>
+            <Drawer
+              anchor={anchor}
+              open={state[anchor]}
+              onClose={toggleDrawer(anchor, false)}
+            >
+              {list(anchor, 'false')}
+            </Drawer>
+          </React.Fragment>
+        ))}
+      </div>
+          // <Box className="button-box">
+          //   <Button className="navbar-button" color="inherit" variant="contained" href="/signin" >login</Button>
+          //   <Button className="navbar-button" color="inherit" variant="contained" href="/signup" >signup</Button>
+          // </Box>
         }
     </div>
   );

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context as AuthContext } from "../../context/AuthContext";
+import { Context as SubscriptionContext } from "../../context/SubscriptionContext";
 import { Box } from "@mui/system";
 import { Button } from "@mui/material";
 
@@ -14,14 +15,35 @@ export default function Profile() {
     state: { token },
     getUser,
   } = useContext(AuthContext);
+  const { cancelSubscription } = useContext(SubscriptionContext);
 
   const [user, setUser] = useState(null);
+  const [subscriptionId, setSubscriptionId] = useState('');
 
   useEffect(() => {
     if (token) {
       getUser({ token }).then((res) => setUser(res));
     }
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      // console.log(user);
+      // console.log(user.subscriptions[0].id);
+      setSubscriptionId(user.subscriptions[0].id)
+    }
+  }, [user])
+
+  const handleCancelSubscriptionClick = async () => {
+    const isSuccess = await cancelSubscription({
+      id: subscriptionId,
+      token,
+    })
+    if (isSuccess) {
+      getUser({ token }).then((res) => setUser(res));
+    }
+    console.log(isSuccess);
+  }
 
   return (
     <div>
@@ -41,10 +63,10 @@ export default function Profile() {
             borderRadius: "3px",
           }}
         >
-          <div style={{ height: "70vh" }}>
+          <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-              <Button className="navbar-button" href="/subscription">
-                Subscription
+              <Button className="navbar-button primary-btn-color default-btn-hover default-button" href="/subscription">
+                To Subscription
               </Button>
               <h1 style={{ textAlign: "center" }}>Profile</h1>
               <div></div>
@@ -142,6 +164,12 @@ export default function Profile() {
                 style={{ marginTop: "10px", marginBottom: "10px", width: "80%" }}
               />
             </div>
+          </div>
+          <div className="cancel-subction-button-box">
+            <Button className="navbar-button primary-btn-color default-btn-hover" onClick={handleCancelSubscriptionClick}>
+            {/* <Button className="navbar-button" onClick={() => {cancelSubscription(subscriptionId)}}> */}
+                Cancel subscription
+            </Button>
           </div>
         </Container>
       ) : null}

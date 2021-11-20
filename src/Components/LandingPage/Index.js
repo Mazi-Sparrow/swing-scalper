@@ -50,6 +50,10 @@ const LandingPage = () => {
                         </Box>
 
                         <Button className="homepage-trial-btn large-button" size="large" variant="contained" href="/signup">14 DAYS TRIAL FOR $12.99</Button>
+                        <Box className="homepage-button-box">
+                            <Button className="homepage-btn default-button" size="large" variant="contained" href="/subscription">To INFORMATION</Button>
+                            <Button className="homepage-btn default-button" size="large" variant="contained" href="/information">To SUBSCRIPTION</Button>
+                        </Box>
 
                     </Box>
                     <Box className="homepage-pwa-title">No Downloads Needed</Box>

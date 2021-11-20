@@ -222,6 +222,7 @@ const getUser =
               success
               errors
               subscriptions {
+                id
                 name
                 billing_period
                 description

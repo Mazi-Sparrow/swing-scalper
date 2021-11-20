@@ -139,7 +139,7 @@ export default function Index() {
             <Button
               variant="contained"
               type="submit"
-              color="secondary"
+              className="primary-btn-color default-btn-hover"
               endIcon={<SendIcon />}
             >
               {isLoading ? (

@@ -152,7 +152,8 @@ export default function Index() {
                 disabled={ticker.length === 0}
               >
                 <Button
-                  style={{ backgroundColor: "#9c27b0", color: "white" }}
+                  className="primary-btn-color"
+                  // style={{ backgroundColor: "#9c27b0", color: "white" }}
                   variant="contained"
                   href="#"
                 >

@@ -157,8 +157,46 @@ const confirmCheckout =
       }
     }
 
+  const cancelSubscription = 
+  (dispatch) =>
+  async ({ id, token }) => {
+    try {
+      const response = await graphqlClient.request(
+        gql`
+          mutation cancelSubscription($id: String!) {
+            cancelSubscription(id: $id) {
+              success
+              errors
+            }
+          }
+        `,
+        { id },
+        { Authorization: `Bearer ${token}` }
+      );
+
+      if (
+        !response.cancelSubscription.success &&
+        response.cancelSubscription.errors &&
+        response.cancelSubscription.errors[0]
+      ) {
+        dispatch({
+          type: "add_error",
+          payload: response.cancelSubscription.errors[0],
+        });
+        return false;
+      }
+      return true;
+    } catch (error) {
+      console.log(error);
+      dispatch({
+        type: "add_error",
+        payload: "Invalid Request",
+      });
+    }
+  };
+
 export const { Context, Provider } = createDataContext(
   subscriptionReducers,
-  { createCheckout, confirmCheckout, getPlans },
+  { createCheckout, confirmCheckout, getPlans, cancelSubscription },
   { checkoutUrl: null, errorMessage: "", isLoading: false }
 );

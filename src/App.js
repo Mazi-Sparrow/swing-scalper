@@ -54,6 +54,8 @@ function Root() {
         <Route path="/confirmForgotPassword" component={ConfirmForgotPassword} />
         <Route path="/privacy-policy" component={PrivacyPolicy} />
         <Route path="/terms-of-service" component={TermsOfService} />
+        <Route path="/information" component={Information} />
+        <Route path="/subscription" component={Subscription} />
         <Route path="*" exact component={Signin} />
         <Route path="*" exact>
           <Redirect to="/" />

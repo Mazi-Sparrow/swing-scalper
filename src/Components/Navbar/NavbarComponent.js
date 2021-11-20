@@ -48,30 +48,30 @@ export default function ButtonAppBar() {
         {token ? (
         <>
           <AppBarSection>
-                <Button className="navbar-button" color="inherit" href="/dashboard">
+                <Button className="primary-btn-color default-btn-hover navbar-button" color="inherit" href="/dashboard">
                   DASHBOARD
                 </Button>
 
               {isSubscribed === "true" || isSubscribed === true ? (
                 <>
-                  <Button className="navbar-button" color="inherit" href="/journal">
+                  <Button className="primary-btn-color default-btn-hover navbar-button" color="inherit" href="/journal">
                     JOURNAL
                   </Button>
-                  <Button className="navbar-button" color="inherit" href="/watchlist">
+                  <Button className="primary-btn-color default-btn-hover navbar-button" color="inherit" href="/watchlist">
                     ANALYZER
                   </Button>
                 </>
               ) : null}
 
-                <Button className="navbar-button" color="inherit" href="/information">
+                <Button className="primary-btn-color default-btn-hover navbar-button" color="inherit" href="/information">
                   Information
                 </Button>
 
-                <Button className="navbar-button" color="inherit" href="/subscription">
+                {/* <Button className="navbar-button" color="inherit" href="/subscription">
                   Subscription
-                </Button>
+                </Button> */}
 
-                <Button className="navbar-button" color="inherit" href="/profile">
+                <Button className="primary-btn-color default-btn-hover navbar-button" color="inherit" href="/profile">
                   Profile
                 </Button>
                 
@@ -80,7 +80,7 @@ export default function ButtonAppBar() {
           <AppBarSpacer />
 
           <AppBarSection>
-            <Button className="navbar-logout-btn" size="medium" onClick={() => logout().then(() => goToPage(""))}>
+            <Button className="primary-btn-color default-btn-hover navbar-logout-btn" size="medium" onClick={() => logout().then(() => goToPage(""))}>
               Logout
             </Button>
           </AppBarSection>
@@ -115,9 +115,18 @@ export default function ButtonAppBar() {
             </ul>
           </AppBarSection> */}
           
+          <AppBarSection className="navbar-button-box">
+            <Button className="primary-btn-color default-btn-hover" color="inherit" href="/information">
+              Information
+            </Button>
+
+            <Button className="primary-btn-color default-btn-hover" color="inherit" href="/subscription">
+              Subscription
+            </Button>
+          </AppBarSection>
           <Box className="nav-button-box">
-            <Button className="navbar-button default-button" color="inherit" variant="contained" href="/signin" >login</Button>
-            <Button className="navbar-button default-button" color="inherit" variant="contained" href="/signup" >signup</Button>
+            <Button className="navbar-button primary-btn-color default-btn-hover" color="inherit" variant="contained" href="/signin" >login</Button>
+            <Button className="navbar-button primary-btn-color default-btn-hover" color="inherit" variant="contained" href="/signup" >signup</Button>
           </Box>
         </>
         }

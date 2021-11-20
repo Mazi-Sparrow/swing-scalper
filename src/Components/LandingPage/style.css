@@ -41,12 +41,6 @@ a:hover {
     font-size: 24px;
 }
 
-.homepage-content button, 
-.homepage-content .homepage-trial-btn {
-    background-color: #9C1265 !important;
-    /* font-size: 1.2rem !important; */
-}
-
 .homepage-content {
     display: flex;
     flex-direction: column;
@@ -273,10 +267,9 @@ a:hover {
     color: #9C1265;
 }
 
-.homepage-terms-of-service-btn,
-.homepage-privacy-policy-btn {
+.homepage-button-box a {
     margin: 20px 10px;
-    background-color: #9C1265 !important;
+    /* background-color: #9C1265 !important; */
     /* font-size: 1.2rem !important; */
 }
 
@@ -291,7 +284,31 @@ a:hover {
     margin-bottom: 20px;
 }
 
+@media (max-width: 1400px) {
+    .homepage-watch-app-demo-play-wrapper {
+        width: 250px;
+        height: 125px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .homepage-watch-app-demo-play-wrapper {
+        width: 200px;
+        height: 100px;
+    }
+}
+
 @media (max-width: 1025px) {
+    .homepage-watch-app-demo-play-wrapper {
+        width: 150px;
+        height: 75px;
+    }
+    .homepage-watch-app-demo-play-wrapper div {
+        border-top: 18px solid transparent;
+        border-left: 36px solid white;
+        border-bottom: 18px solid transparent;
+    }
+
     .homepage-content h1 {
         font-size: 35px;
         margin-top: 50px;
@@ -322,6 +339,16 @@ a:hover {
 }
 
 @media (max-width: 770px) {
+    .homepage-watch-app-demo-play-wrapper {
+        width: 100px;
+        height: 50px;
+    }
+    .homepage-watch-app-demo-play-wrapper div {
+        border-top: 12px solid transparent;
+        border-left: 24px solid white;
+        border-bottom: 12px solid transparent;
+    }
+
     .homepage-content h1 {
         font-size: 28px;
         margin-top: 40px;
@@ -350,6 +377,17 @@ a:hover {
 }
 
 @media (max-width: 470px) {
+    .homepage-watch-app-demo-play-wrapper {
+        width: 75px;
+        height: 40px;
+    }
+    .homepage-watch-app-demo-play-wrapper div {
+        border-top: 8px solid transparent;
+        border-left: 16px solid white;
+        border-bottom: 8px solid transparent;
+        margin-left: 8px;
+    }
+
     .homepage-pwa-title {
         font-size: 20px;
         padding: 10px 20px;

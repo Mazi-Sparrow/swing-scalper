@@ -90,7 +90,7 @@ export default function SignIn() {
             label="Remember me"
           />
           <CardActions>
-            <Button size="small" color="primary" type="submit">
+            <Button className="primary-btn-color default-btn-hover default-button" type="submit">
               Login
             </Button>
           </CardActions>

@@ -191,8 +191,7 @@ export default function SignUp() {
 
           <CardActions>
             <Button
-              size="small"
-              color="primary"
+              className="primary-btn-color default-btn-hover default-button"
               type="submit"
               disabled={state.password !== state.confirmPassword}
             >
