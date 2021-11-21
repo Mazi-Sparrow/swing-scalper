@@ -66,7 +66,7 @@ export default function Profile() {
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
               <Button className="navbar-button primary-btn-color default-btn-hover default-button" href="/subscription">
-                To Subscription
+                Subscription
               </Button>
               <h1 style={{ textAlign: "center" }}>Profile</h1>
               <div></div>

@@ -121,7 +121,7 @@ export default function ButtonAppBar() {
             </Button>
 
             <Button className="primary-btn-color default-btn-hover" color="inherit" href="/subscription">
-              Subscription
+              Pricing
             </Button>
           </AppBarSection>
           <Box className="nav-button-box">
