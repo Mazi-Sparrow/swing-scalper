@@ -49,7 +49,7 @@ const LandingPage = () => {
                             </div>
                         </Box>
 
-                        <Button className="homepage-trial-btn large-button" size="large" variant="contained" href="/signup">14 DAYS TRIAL FOR $12.99</Button>
+                        <Button className="homepage-trial-btn gradient-animation-reversed large-button" size="large" variant="contained" href="/signup">14 DAYS TRIAL FOR $12.99</Button>
 
                     </Box>
                     <Box className="homepage-pwa-title">No Downloads Needed</Box>

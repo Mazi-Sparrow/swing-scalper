@@ -173,6 +173,18 @@ a:hover {
     user-select: none;
 }
 
+.gradient-animation {
+    background: linear-gradient(-45deg, #771552, #e73c7e, #23a6d5, #7718E3);
+	background-size: 400% 400%;
+	animation: gradient-animation 10s ease infinite;
+}
+
+.gradient-animation-reversed {
+    background: linear-gradient(-45deg, #7718E3, #23a6d5, #e73c7e, #771552);
+	background-size: 400% 400%;
+	animation: gradient-animation 10s ease infinite;
+}
+
 .homepage-content .homepage-pwa-image {
     width: 60%;
     margin: 10px 0px;
