@@ -10,6 +10,8 @@ import MobileNavbar from "../MobileNavbar/MobileNavbarComponent";
 import Footer from "../Dashboard/Footer";
 import { Container, Grid, TextField } from "@mui/material";
 
+import './style.css';
+
 export default function Profile() {
   const {
     state: { token },
@@ -68,7 +70,7 @@ export default function Profile() {
               <Button className="navbar-button primary-btn-color default-btn-hover default-button" href="/subscription">
                 Subscription
               </Button>
-              <h1 style={{ textAlign: "center" }}>Profile</h1>
+              <h1 className="profile-page-title" style={{ textAlign: "center" }}>Profile</h1>
               <div></div>
             </div>
 
