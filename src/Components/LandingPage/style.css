@@ -296,6 +296,10 @@ a:hover {
     margin-bottom: 20px;
 }
 
+.youtube-video-player {
+    width: 100%;
+}
+
 @media (max-width: 1400px) {
     .homepage-watch-app-demo-play-wrapper {
         width: 250px;

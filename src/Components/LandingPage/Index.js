@@ -11,7 +11,8 @@ import Dashboard from '../../assets/images/landing-page-dashboard.png';
 import PWA from '../../assets/images/landing-page-pwa.jpg';
 import Slide from 'react-reveal/Slide';
 import '../../../node_modules/react-modal-video/css/modal-video.css';
-import ModalVideo from 'react-modal-video'
+import ModalVideo from 'react-modal-video';
+import ReactPlayer from 'react-player/youtube';
 
 const LandingPage = () => {
     const [isOpen, setOpen] = React.useState(false)
@@ -56,6 +57,17 @@ const LandingPage = () => {
                     <Box className="homepage-image-box homepage-pwa-image">
                         <img src={PWA} alt="PWA"/>
                     </Box>
+                    
+                    <ReactPlayer
+                        url='https://www.youtube.com/watch?v=qmpPHmGhKc4'
+                        playing
+                        muted={true}
+                        controls={true}
+                        loop={true}
+                        width='100%'
+                        height='700px'
+                    />
+
                     <Box className="homepage-faq-title">Frequently Asked Questions</Box>
                     <Box className="homepage-faq-sub">
                         <h7>At SwingScalp, our mission is to help you maximize your profits by simplifying technical analysis. Our app is designed to help you master the art of swing trading. That said, we still want to make sure you have all the information you need before signing up for our app.</h7>
