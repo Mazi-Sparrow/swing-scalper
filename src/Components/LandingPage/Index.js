@@ -27,7 +27,7 @@ const LandingPage = () => {
                 </Box>
                 <Box className="homepage-content">
                     <Box className="homepage-background">
-                        <h1>Swingscalp University!</h1>
+                        <h1>Helping You Mitigate The Risks Of Short Term Trading</h1>
                         <h2>Your entry and exit levels play a crucial role in the success of a trade.</h2>
                         <article className="homepage-welcome-text">
                             <Box>We give you the tools to mitigate the risks of short/long term swing trading as you navigate these <b>Volatile Markets</b>. </Box>
@@ -50,10 +50,6 @@ const LandingPage = () => {
                         </Box>
 
                         <Button className="homepage-trial-btn large-button" size="large" variant="contained" href="/signup">14 DAYS TRIAL FOR $12.99</Button>
-                        <Box className="homepage-button-box">
-                            <Button className="homepage-btn default-button" size="large" variant="contained" href="/subscription">To INFORMATION</Button>
-                            <Button className="homepage-btn default-button" size="large" variant="contained" href="/information">To SUBSCRIPTION</Button>
-                        </Box>
 
                     </Box>
                     <Box className="homepage-pwa-title">No Downloads Needed</Box>
