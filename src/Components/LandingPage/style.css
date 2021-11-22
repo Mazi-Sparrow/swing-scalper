@@ -424,6 +424,17 @@ a:hover {
 }
 
 @media (max-width: 1025px) {
+    .react-responsive-modal-modal {
+        width: 80%;
+        height: 80vh;
+    }
+
+    .entry-modal-bottom-text,
+    .entry-modal-top-text {
+        padding: 20px;
+        font-size: 18px;
+    }
+    
     .homepage-watch-app-demo-play-wrapper {
         width: 150px;
         height: 75px;
@@ -526,6 +537,17 @@ a:hover {
 }
 
 @media (max-width: 470px) {
+    .react-responsive-modal-modal {
+        width: 90%;
+        height: 70vh;
+    }
+
+    .entry-modal-bottom-text,
+    .entry-modal-top-text {
+        padding: 10px;
+        font-size: 15px;
+    }
+
     .homepage-watch-app-demo-play-wrapper {
         width: 75px;
         height: 40px;
