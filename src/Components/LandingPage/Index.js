@@ -57,7 +57,7 @@ import fiveStars from '../../assets/images/stars-5.svg'
                     <Box className="entry-modal-bottom-text">
                         To view a few pages before you start your trial, please accept our <a href="terms-of-service">terms</a> and <a href="privacy-policy">conditions</a> and privacy policy, by clicking the button below.
                     </Box>
-                    <Button className="primary-btn-color default-btn-hover default-button">Close and Accept</Button>
+                    <Button className="primary-btn-color default-btn-hover default-button" onClick={() => setEntryModalOpen(false)}>Close and Accept</Button>
             </Modal>
             <Box className="row">
 
