@@ -384,7 +384,8 @@ export default function Index() {
             format="{0:c}"
             filterable={false}
             editable={true}
-            width={setWidth()}
+            // width={setWidth()}
+            width="150px"
           />
           <Column
             field="stopLoss"
@@ -400,7 +401,8 @@ export default function Index() {
             format="{0:c}"
             filterable={false}
             editable={true}
-            width={setWidth()}
+            // width={setWidth()}
+            width="150px"
           />
           <Column
             field="tradeRisk"
@@ -431,7 +433,7 @@ export default function Index() {
             title="STATUS"
             filterable={false}
             editable={false}
-            width="80px"
+            width="120px"
           />
           <Column
             field="sellPrice"
@@ -440,7 +442,8 @@ export default function Index() {
             format="{0:c}"
             filterable={false}
             editable={setEditable()}
-            width={setWidth()}
+            // width={setWidth()}
+            width="150px"
           />
           <Column
             field="updatedAt"
