@@ -1,3 +1,16 @@
+.react-responsive-modal-modal {
+    width: 60%;
+    height: 80vh;
+    /* padding-top: 50px !important; */
+    text-align: center !important;
+}
+.entry-modal-bottom-text,
+.entry-modal-top-text {
+    padding: 30px;
+    font-size: 20px;
+    text-align: left;
+}
+
 .homepage-content h1,
 .homepage-content h2,
 .homepage-content article {
@@ -224,6 +237,84 @@ a:hover {
     cursor: pointer;
 }
 
+
+/* REVIEWS */
+
+/* <Box className="reviews-block">
+<Box className="reviews">
+    <Box className="review">
+        <Box className="review-title-block">
+            <Box className="review-title-logo"></Box>
+            <Box className="review-title-stars"></Box>
+        </Box>
+        <Box className="review-author-name"></Box>
+        <Box className="review-content"></Box>
+    </Box>
+</Box>
+</Box> */
+
+.reviews-block {
+}
+
+.reviews {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.review {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-family: Roboto, sans-serif;
+    width: 30%;
+    /* margin: 0px 10px; */
+    padding: 40px;
+    min-width: 380px;
+}
+
+.review-title-block {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.review-title-logo {
+    width: 60px;
+    height: 60px;
+}
+.review-title-logo img {
+    width: 100%;
+    height: 100%;
+}
+
+.review-title-stars {
+    width: 200px;
+    height: 40px;
+    margin-left: 20px;
+}
+.review-title-stars img {
+    width: 100%;
+    height: 100%;
+}
+
+.review-author-name {
+    align-self: flex-start;
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.review-content {
+    text-align: left;
+    margin-top: 10px;
+    font-size: 20px;
+}
+/* END REVIEWS */
+
+
 .homepage-faq-title {
     color: #9C1265;
     font-size: 45px;
@@ -296,8 +387,9 @@ a:hover {
     margin-bottom: 20px;
 }
 
-.youtube-video-player {
+.youtube-player {
     width: 100%;
+    height: 700px;
 }
 
 @media (max-width: 1400px) {
@@ -312,6 +404,23 @@ a:hover {
         width: 200px;
         height: 100px;
     }
+}
+
+@media (max-width: 1150px) {
+    .review {
+        width: 70%;
+        align-items: center;
+    }
+
+    .review:nth-of-type(2) {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+    .review-author-name {
+        align-self: center;
+    }
+
 }
 
 @media (max-width: 1025px) {
@@ -378,6 +487,9 @@ a:hover {
         margin-top: -45px;
         border: 5px solid white;
     }
+    .youtube-player {
+        height: 500px !important;
+    }
     .homepage-faq-title {
         color: #9C1265;
         font-size: 36px;
@@ -389,6 +501,27 @@ a:hover {
     }
     .homepage-button-box button {
         font-size: 1rem !important;
+    }
+}
+
+@media (max-width: 700px) {
+    .review {
+        width: 100%;
+    }
+
+    .review:nth-of-type(2) {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+    .review-title-logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    .review-title-stars {
+        width: 150px;
+        height: 30px;
     }
 }
 
@@ -416,6 +549,9 @@ a:hover {
     }
     .homepage-watch-app-demo-box {
         margin-top: 40px;
+    }
+    .youtube-player {
+        height: 300px !important;
     }
     .homepage-faq-title {
         font-size: 28px;

@@ -152,7 +152,7 @@ export default function Index() {
           </Box>
 
           <Box id="dashboard-page-content" my={10} mb={15}>
-            <Box className="social-share-block">
+            {/* <Box className="social-share-block">
               <span>Share: </span>
               <Box className="social-share-icons">
                 <FacebookShareButton
@@ -194,7 +194,7 @@ export default function Index() {
                   <EmailIcon size={32} round />
                 </EmailShareButton>
               </Box>
-            </Box>
+            </Box> */}
             <div className="ffflex">
               <div className="asdasd">
                 <Chart

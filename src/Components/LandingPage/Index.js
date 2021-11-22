@@ -5,19 +5,60 @@ import Typography from '@mui/material/Typography';
 import Navbar from "../Navbar/NavbarComponent";
 import MobileNavbar from "../MobileNavbar/MobileNavbarComponent";
 import './style.css';
-import Watchlist from '../../assets/images/landing-page-watchlist.png';
-import Journal from '../../assets/images/landing-page-journal.png';
-import Dashboard from '../../assets/images/landing-page-dashboard.png';
-import PWA from '../../assets/images/landing-page-pwa.jpg';
 import Slide from 'react-reveal/Slide';
 import '../../../node_modules/react-modal-video/css/modal-video.css';
 import ModalVideo from 'react-modal-video';
 import ReactPlayer from 'react-player/youtube';
+import 'react-responsive-modal/styles.css';
+import { Modal } from 'react-responsive-modal';
 
-const LandingPage = () => {
-    const [isOpen, setOpen] = React.useState(false)
-    return (
+import Watchlist from '../../assets/images/landing-page-watchlist.png';
+import Journal from '../../assets/images/landing-page-journal.png';
+import Dashboard from '../../assets/images/landing-page-dashboard.png';
+import PWA from '../../assets/images/landing-page-pwa.jpg';
+import firstReviewLogo from '../../assets/images/landing-page-review1-logo.jpg'
+import secondReviewLogo from '../../assets/images/landing-page-review2-logo.jpg'
+import thirdReviewLogo from '../../assets/images/landing-page-review3-logo.jpg'
+import fiveStars from '../../assets/images/stars-5.svg'
+    
+    const LandingPage = () => {
+        const [isOpen, setOpen] = React.useState(false)
+        const [entryModalOpen, setEntryModalOpen] = React.useState(false);
+        const onOpenModal = () => setEntryModalOpen(true);
+        const onCloseModal = () => setEntryModalOpen(false);
+
+        React.useEffect(() => {
+            setTimeout(() => {
+                setEntryModalOpen(true);
+            }, 1500)
+        }, [])
+
+        return (
         <Box className="container-fluid homepage">
+            <Modal 
+                open={entryModalOpen} 
+                onClose={onCloseModal} 
+                center
+                animationDuration={500}
+            >
+                    <Box className="entry-modal-top-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                    </Box>
+                    <ReactPlayer
+                        className="youtube-player"
+                        url='https://www.youtube.com/watch?v=kUlffl8j3Es'
+                        playing
+                        muted={true}
+                        controls={true}
+                        loop={true}
+                        width='100%'
+                        height='70%'
+                    />
+                    <Box className="entry-modal-bottom-text">
+                        To view a few pages before you start your trial, please accept our <a href="terms-of-service">terms</a> and <a href="privacy-policy">conditions</a> and privacy policy, by clicking the button below.
+                    </Box>
+                    <Button className="primary-btn-color default-btn-hover default-button">Close and Accept</Button>
+            </Modal>
             <Box className="row">
 
                 <Box className="no-padding">
@@ -27,6 +68,7 @@ const LandingPage = () => {
                     <MobileNavbar />
                 </Box>
                 <Box className="homepage-content">
+                    {/* <ModalVideo channel='youtube' autoplay isOpen={isOpen} videoId="kUlffl8j3Es" onClose={() => setIntryModalOpen(false)} /> */}
                     <Box className="homepage-background">
                         <h1>Helping You Mitigate The Risks Of Short Term Trading!</h1>
                         <h2>Your entry and exit levels play a crucial role in the success of a trade.</h2>
@@ -45,7 +87,7 @@ const LandingPage = () => {
                     
                         <Box className="homepage-image-box homepage-dashboard-image">
                             <img onClick={() => { setOpen(true) }} src={Dashboard} alt="dashboard demo"/>
-                            <div className="homepage-watch-app-demo-play-wrapper">
+                            <div className="homepage-watch-app-demo-play-wrapper" onClick={() => { setOpen(true) }}>
                                 <div className="homepage-watch-app-demo-play-button" onClick={() => { setOpen(true) }}></div>
                             </div>
                         </Box>
@@ -53,12 +95,53 @@ const LandingPage = () => {
                         <Button className="homepage-trial-btn gradient-animation-reversed large-button" size="large" variant="contained" href="/signup">14 DAYS TRIAL FOR $12.99</Button>
 
                     </Box>
-                    <Box className="homepage-pwa-title">No Downloads Needed</Box>
+                    <Box className="reviews-block">
+                        <Box className="reviews">
+                            <Box className="review">
+                                <Box className="review-title-block">
+                                    <Box className="review-title-logo">
+                                        <img src={firstReviewLogo} alt=""/>
+                                    </Box>
+                                    <Box className="review-title-stars">
+                                        <img src={fiveStars} alt=""/>
+                                    </Box>
+                                </Box>
+                                <Box className="review-author-name">Tyler Joseph</Box>
+                                <Box className="review-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Box>
+                            </Box>
+                            <Box className="review">
+                                <Box className="review-title-block">
+                                    <Box className="review-title-logo">
+                                        <img src={secondReviewLogo} alt=""/>
+                                    </Box>
+                                    <Box className="review-title-stars">
+                                        <img src={fiveStars} alt=""/>
+                                    </Box>
+                                </Box>
+                                <Box className="review-author-name">Tyler Joseph</Box>
+                                <Box className="review-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Box>
+                            </Box>
+                            <Box className="review">
+                                <Box className="review-title-block">
+                                    <Box className="review-title-logo">
+                                        <img src={thirdReviewLogo} alt=""/>
+                                    </Box>
+                                    <Box className="review-title-stars">
+                                        <img src={fiveStars} alt=""/>
+                                    </Box>
+                                </Box>
+                                <Box className="review-author-name">Tyler Joseph</Box>
+                                <Box className="review-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Box>
+                            </Box>
+                        </Box>
+                    </Box>
+                    {/* <Box className="homepage-pwa-title">No Downloads Needed</Box>
                     <Box className="homepage-image-box homepage-pwa-image">
                         <img src={PWA} alt="PWA"/>
-                    </Box>
+                    </Box> */}
                     
                     <ReactPlayer
+                        className="youtube-player"
                         url='https://www.youtube.com/watch?v=qmpPHmGhKc4'
                         playing
                         muted={true}
