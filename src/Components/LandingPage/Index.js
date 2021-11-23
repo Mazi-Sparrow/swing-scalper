@@ -41,8 +41,8 @@ import fiveStars from '../../assets/images/stars-5.svg'
                 center
                 animationDuration={500}
             >
-                    <Box className="entry-modal-top-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                    <Box className="homepage-bottom-info">
+                    Easy To Follow Guide To Better Trading!
                     </Box>
                     <ReactPlayer
                         className="youtube-player"
@@ -54,8 +54,8 @@ import fiveStars from '../../assets/images/stars-5.svg'
                         width='100%'
                         height='70%'
                     />
-                    <Box className="entry-modal-bottom-text">
-                        To view a few pages before you start your trial, please accept our <a href="terms-of-service">terms</a> and <a href="privacy-policy">conditions</a> and privacy policy, by clicking the button below.
+                    <Box className="homepage-bottom-info">
+                    The information contained in this site is provided for informational purposes only, and should not be construed as financial advice on any subject matter., please accept our <a href="terms-of-service">Terms Of Service</a> and <a href="privacy-policy">Privacy Policy</a>, by clicking the button below.
                     </Box>
                     <Button className="primary-btn-color default-btn-hover default-button" onClick={() => setEntryModalOpen(false)}>Close and Accept</Button>
             </Modal>
@@ -149,6 +149,7 @@ import fiveStars from '../../assets/images/stars-5.svg'
                         loop={true}
                         width='100%'
                         height='700px'
+                        frameborder="0"
                     />
 
                     <Box className="homepage-faq-title">Frequently Asked Questions</Box>

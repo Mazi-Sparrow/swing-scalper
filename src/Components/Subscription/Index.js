@@ -96,7 +96,7 @@ function CardAction({ clickMe }) {
         href="#"
         onClick={clickMe}
       >
-        Buy Now
+        Select
       </Button>
     </div>
   );
