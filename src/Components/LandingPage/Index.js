@@ -71,10 +71,11 @@ import fiveStars from '../../assets/images/stars-5.svg'
                     {/* <ModalVideo channel='youtube' autoplay isOpen={isOpen} videoId="kUlffl8j3Es" onClose={() => setIntryModalOpen(false)} /> */}
                     <Box className="homepage-background">
                         <h1>Helping You Mitigate The Risks Of Short Term Trading!</h1>
-                        <h2>Your entry and exit levels play a crucial role in the success of a trade.</h2>
+                        <h2>Potential For Gain and Risk Of Loss Are Basic Realities Of Every Trade.</h2>
                         <article className="homepage-welcome-text">
                             <Box>We give you the tools to mitigate the risks of short/long term swing trading as you navigate these <b>Volatile Markets</b>. </Box>
                             <Box>Simplifying Chart Reading / Technical Analysis with easy to read components gives you a <b>Guided Edge</b> before you put your money to work. </Box>
+                            <Box>One Of The Biggest Challenges For Inexperienced Traders Is Deciding Which Information To Use And Which To Throw Out. </Box>
                             <Box><strong><span className="homepage-text-accent">YOU</span></strong> are just a few clicks from the easiest way to gain extraordinary confidence in your trades with <b>AI</b> generated <b>Entries & Exits</b> to match your desired <b>Risk to Reward</b>. </Box>
                             <Box>Enjoy Free Access to our <b>Trade Journal</b> to log and keep track of your trades with RealTime notifications on when to <b>Close or Cut</b> a trade with our <b>Premium Membership</b>.</Box>
                             <Box>For a <b>Limited Time</b>, We are giving you a $52.00/Monthly access value to try for <b>14 days at $12.99</b> which you can cancel anytime.</Box>
