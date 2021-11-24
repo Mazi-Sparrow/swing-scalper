@@ -56,6 +56,8 @@ export default function Index() {
     state: { token },
   } = React.useContext(AuthContext);
   const { listJournals } = useContext(JournalContext);
+  const [shouldDisplayPieChart, setShouldDisplayPieChart] = useState(false);
+  const [pieData, setPieData] = useState([]);
 
   const [state, setState] = useState({
     loading: true,
@@ -109,16 +111,23 @@ export default function Index() {
     };
   }, []);
 
-  const pieData = [
-    {
-      name: "LOSS",
-      share: state.profitLossSum !== 0 ? state.loss / state.profitLossSum : 0,
-    },
-    {
-      name: "PROFIT",
-      share: state.profitLossSum !== 0 ? state.profit / state.profitLossSum : 0,
-    },
-  ];
+  useEffect(() => {
+    if (!state.loading) {
+      setPieData(
+        [
+            {
+              name: "LOSS",
+              share: state.profitLossSum !== 0 ? state.loss / state.profitLossSum : 0,
+            },
+            {
+              name: "PROFIT",
+              share: state.profitLossSum !== 0 ? state.profit / state.profitLossSum : 0,
+            },
+        ]
+      )
+    }
+  }, [state])
+
 
   const series = [
     {
@@ -137,6 +146,18 @@ export default function Index() {
       data: state.profitLossValues,
     }
   ]
+
+  useEffect(() => {
+    let total = 0;
+    pieData.forEach(element => {
+      total += element.share;
+    });
+    if (total !== 0) {
+      setShouldDisplayPieChart(true);
+    } else {
+      setShouldDisplayPieChart(false);
+    }
+  }, [pieData])
 
   const UrlToShare = window.location.href;
 
@@ -197,35 +218,46 @@ export default function Index() {
             </Box> */}
             <div className="ffflex">
               <div className="asdasd">
-                <Chart
-                  style={{
-                    height: 350,
-                  }}
-                >
-                  <ChartTitle text="PERFORMANCE" />
-                  <ChartLegend position="top" orientation="horizontal" />
+                {shouldDisplayPieChart ? 
+                  (
+                    <Chart
+                      style={{
+                        height: 350,
+                      }}
+                      >
+                      <ChartTitle text="PERFORMANCE" />
+                      <ChartLegend position="top" orientation="horizontal" />
 
-                  <ChartSeries>
-                    <ChartSeriesItem
-                      labels={{
-                        visible: true,
-                        padding: 3,
-                        font: "bold 16px Arial, sans-serif",
-                        format: "p",
-                      }}
-                      type="pie"
-                      overlay={{
-                        gradient: "sharpBevel",
-                      }}
-                      tooltip={{
-                        visible: true,
-                      }}
-                      data={pieData}
-                      categoryField="name"
-                      field="share"
-                    />
-                  </ChartSeries>
-                </Chart>
+                        <ChartSeries>
+                          <ChartSeriesItem
+                            labels={{
+                              visible: true,
+                              padding: 3,
+                              font: "bold 16px Arial, sans-serif",
+                              format: "p",
+                            }}
+                            type="pie"
+                            overlay={{
+                              gradient: "sharpBevel",
+                            }}
+                            tooltip={{
+                              visible: true,
+                            }}
+                            data={pieData}
+                            categoryField="name"
+                            field="share"
+                          />
+                        </ChartSeries>
+                    </Chart>
+                  ) 
+                  : 
+                  (
+                    <Box textAlign="center">
+                      <span>PERFORMANCE</span>
+                      <Box marginTop="50px" fontSize="20px">Nothing to display</Box>
+                    </Box>
+                  )
+                }
               </div>
 
               <div className="asdasd">
