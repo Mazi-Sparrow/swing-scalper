@@ -86,6 +86,7 @@ export default function Index() {
 
 <Box className="information-page-content">
       <Box className="information-page-main-content">
+        <Box className="information-background">
         <Box className="information-page-leftside information-page-video-list">
           <Box className="video-list-title">SwingScalp Videos</Box>
           <Box className="first-video-popup video-popup">
@@ -113,9 +114,8 @@ export default function Index() {
           <form className="information-page-form" onSubmit={handleSubmit} noValidate autoComplete="off">
             <TextField
               onChange={(e) => setState({ ...state, title: e.target.value })}
-              className="form-field"
+              className="form-field information-page-form-field"
               variant="outlined"
-              color="secondary"
               fullWidth
               label="Title"
               required
@@ -125,9 +125,8 @@ export default function Index() {
 
             <TextField
               onChange={(e) => setState({ ...state, details: e.target.value })}
-              className="form-field"
+              className="form-field information-page-form-field"
               variant="outlined"
-              color="secondary"
               fullWidth
               multiline
               rows={4}
@@ -139,6 +138,7 @@ export default function Index() {
             <Button
               variant="contained"
               type="submit"
+              size="large"
               className="primary-btn-color default-btn-hover"
               endIcon={<SendIcon />}
             >
@@ -148,6 +148,7 @@ export default function Index() {
               Send
             </Button>
           </form>
+        </Box>
         </Box>
       </Box>
       <Box className="information-faq-title">Frequently Asked Questions</Box>
