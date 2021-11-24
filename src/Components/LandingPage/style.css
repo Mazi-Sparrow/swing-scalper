@@ -1,6 +1,6 @@
 .react-responsive-modal-modal {
     width: 60%;
-    height: 80vh;
+    height: 85vh;
     /* padding-top: 50px !important; */
     text-align: center !important;
 }
@@ -9,6 +9,9 @@
     padding: 30px;
     font-size: 20px;
     text-align: left;
+}
+.entry-close-btn {
+    margin-top: 20px;
 }
 
 .homepage-content h1,
@@ -237,22 +240,6 @@ a:hover {
     cursor: pointer;
 }
 
-
-/* REVIEWS */
-
-/* <Box className="reviews-block">
-<Box className="reviews">
-    <Box className="review">
-        <Box className="review-title-block">
-            <Box className="review-title-logo"></Box>
-            <Box className="review-title-stars"></Box>
-        </Box>
-        <Box className="review-author-name"></Box>
-        <Box className="review-content"></Box>
-    </Box>
-</Box>
-</Box> */
-
 .reviews-block {
 }
 
@@ -262,17 +249,27 @@ a:hover {
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    padding: 40px 0px;
 }
 
 .review {
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     font-family: Roboto, sans-serif;
-    width: 30%;
-    /* margin: 0px 10px; */
+    width: 70%; 
+    /* width: 28% for three reviews */
+    margin: 0px 10px;
     padding: 40px;
     min-width: 380px;
+    box-shadow: none;
+    transition: all 0.3s ease-in-out;
+}
+.review:hover {
+    -webkit-box-shadow: 6px 6px 24px 8px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 6px 6px 24px 8px rgba(34, 60, 80, 0.2);
+    box-shadow: 6px 6px 24px 8px rgba(34, 60, 80, 0.2);
 }
 
 .review-title-block {
