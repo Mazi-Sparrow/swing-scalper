@@ -9,6 +9,7 @@ import Signup from "./Components/Sign-up/Index";
 import Dashboard from "./Components/Dashboard/Index";
 import Journal from "./Components/Journal/Index";
 import Watchlist from "./Components/Watchlist/Index";
+import Analyzer from "./Components/Analyzer/Index";
 import { Redirect, Route, Switch } from "react-router-dom";
 import CssBaseline from "@mui/material/CssBaseline";
 import { StyledEngineProvider } from "@mui/material/styles";
@@ -85,7 +86,12 @@ function Root() {
 
         {state.isSubscribed === "true" || state.isSubscribed === true ? (
           <Route path="/watchlist" component={Watchlist} />
-        ) : null}
+          ) : null}
+          
+        {state.isSubscribed === "true" || state.isSubscribed === true ? (
+          <Route path="/analyzer" component={Analyzer} />
+          ) : null}
+
         <Route path="/information" component={Information} />
         <Route path="/subscription" component={Subscription} />
         <Route path="/redirect" component={CheckoutRedirect} />

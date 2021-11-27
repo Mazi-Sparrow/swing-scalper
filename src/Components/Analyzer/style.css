@@ -1,0 +1,52 @@
+.analyzer-page-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.analyzer-information-about-company {
+    margin-top: 60px;
+    width: 70%;
+    height: 200px;
+    background-color: #80808080;
+    align-self: center;
+}
+
+.analyzer-linear-indicators {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.analyzer-linear-indicator {
+    margin: 40px 0px;
+}
+
+.analyzer-block-indicators {
+    background-color: #80808080;
+    margin: 0 auto;
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0px 40px;
+    margin-top: 50px;
+}
+
+.analyzer-block-indicators-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.analyzer-block-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px 5px;
+    width: 200px;
+    height: 200px;
+    border: 3px solid white;
+    margin: 20px 0px;
+}
