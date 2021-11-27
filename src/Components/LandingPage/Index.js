@@ -277,7 +277,7 @@ const LandingPage = () => {
               controls={true}
               loop={true}
               width="100%"
-              height="700px"
+              height="1062px"
               frameborder="0"
             />
 

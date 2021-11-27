@@ -464,6 +464,9 @@ a:hover {
     .homepage-accordion {
         width: 45%;
     }
+    .youtube-player {
+        height: 580px !important;
+    }
 }
 
 .homepage-video-demo-modal {
@@ -581,6 +584,12 @@ a:hover {
     }
 }
 
+@media (max-width: 415px) {
+    .youtube-player {
+        height: 233px !important;
+    }
+}
+
 @media (max-width: 376px) {
     .homepage-pwa-title {
         font-size: 16px;
@@ -603,5 +612,8 @@ a:hover {
     }
     .homepage-button-box button {
         font-size: 0.8rem !important;
+    }
+    .youtube-player {
+        height: 212px !important;
     }
 }
