@@ -312,7 +312,24 @@ export default function Index() {
                 </Box>
             </Box>
         </Box>
+        <Box className="analyzer-news-block">
+            <Box className="analyzer-news-title">
+                NEWS
+            </Box>
+        </Box>
+        
+        <Box className="homepage-bottom-block">
+              <Box className="homepage-bottom-info">
+                The information contained in this site is provided for
+                informational purposes only, and should not be construed as
+                financial advice on any subject matter.
+              </Box>
+              <Box className="homepage-bottom-advice">
+                PLEASE ALWAYS DO YOUR RESEARCH OR CONSULT A FINANCIAL ADVISER.
+              </Box>
+        </Box>
     </div>
+    <Footer />
     </>
   )
 }

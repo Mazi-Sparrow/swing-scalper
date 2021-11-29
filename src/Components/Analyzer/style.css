@@ -58,3 +58,17 @@
     border: 3px solid white;
     margin: 20px 0px;
 }
+
+.analyzer-news-block {
+    margin: 40px auto;
+    background-color: #80808080;
+    width: 80%;
+    height: 40vh;
+}
+
+.analyzer-news-title {
+    margin: 20px 0px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}
