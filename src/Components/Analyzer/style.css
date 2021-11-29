@@ -1,3 +1,11 @@
+.positive {
+    background-color: #37B400;
+}
+
+.negative {
+    background-color: #F31700;
+}
+
 .analyzer-page-content {
     display: flex;
     flex-direction: column;

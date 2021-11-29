@@ -53,26 +53,26 @@ export default function Index() {
     };
     const tempPlotBands = [
         {
-        from: 30,
-        to: 45,
+        from: 80,
+        to: 100,
         color: "#e62325",
         opacity: 1,
         },
         {
-        from: 15,
-        to: 30,
+        from: 60,
+        to: 80,
         color: "#ffc000",
         opacity: 1,
         },
         {
-        from: 0,
-        to: 15,
+        from: 30,
+        to: 60,
         color: "#37b400",
         opacity: 1,
         },
         {
         from: -10,
-        to: 0,
+        to: 30,
         color: "#5392ff",
         opacity: 1,
         },
@@ -170,9 +170,6 @@ export default function Index() {
 
         <Box className="analyzer-linear-indicators">
             <Box className="analyzer-linear-indicator">
-                {/* <Box className="analyzer-indicator-title">
-                    RSI
-                </Box> */}
                 <Chart
                     style={{
                     height: 120,
@@ -180,7 +177,7 @@ export default function Index() {
                 >
                     <ChartTitle text="RSI" />
                     <ChartSeries>
-                    <ChartSeriesItem type="bullet" color="#fff" data={temp} />
+                    <ChartSeriesItem type="bullet" color="#fff" data={[[stateWatchList.rsi14, 0]]} />
                     </ChartSeries>
                     <ChartCategoryAxis>
                     <ChartCategoryAxisItem
@@ -193,7 +190,7 @@ export default function Index() {
                         majorGridLines={hidden}
                         minorTicks={hidden}
                         min={-10}
-                        max={45}
+                        max={100}
                         plotBands={tempPlotBands}
                     />
                     </ChartValueAxis>
@@ -202,9 +199,6 @@ export default function Index() {
             </Box>
 
             <Box className="analyzer-linear-indicator">
-                {/* <Box className="analyzer-indicator-title">
-                    PRICE TARGET 1
-                </Box> */}
                 <Chart
                     style={{
                     height: 120,
@@ -234,9 +228,6 @@ export default function Index() {
             </Box>
 
             <Box className="analyzer-linear-indicator">
-                {/* <Box className="analyzer-indicator-title">
-                    RSI
-                </Box> */}
                 <Chart
                     style={{
                     height: 120,
@@ -272,7 +263,7 @@ export default function Index() {
                         STOP LOSS
                     </Box>
                     <Box className="analyzer-block-indicator-value">
-                        1
+                        {stateWatchList ? (stateWatchList.stopLoss ? stateWatchList.stopLoss : '') : ''}
                     </Box>
                 </Box>
                 <Box className="analyzer-block-indicator">
@@ -280,7 +271,13 @@ export default function Index() {
                         PRICE TARGET 1
                     </Box>
                     <Box className="analyzer-block-indicator-value">
+                        {stateWatchList ? (stateWatchList.priceTargets ? (stateWatchList.priceTargets[0] ? stateWatchList.priceTargets[0] : '') : '') : ''}
+                    </Box>
+                    <Box className="analyzer-block-indicator-title">
                         PRICE TARGET 2
+                    </Box>
+                    <Box className="analyzer-block-indicator-value">
+                        {stateWatchList ? (stateWatchList.priceTargets ? (stateWatchList.priceTargets[1] ? stateWatchList.priceTargets[1] : '') : '') : ''}
                     </Box>
                 </Box>
             </Box>
@@ -290,7 +287,7 @@ export default function Index() {
                         RISK
                     </Box>
                     <Box className="analyzer-block-indicator-value">
-                        1
+                        {stateWatchList ? (stateWatchList.tradeRisk ? stateWatchList.tradeRisk : '') : ''}
                     </Box>
                 </Box>
                 <Box className="analyzer-block-indicator">
@@ -298,25 +295,19 @@ export default function Index() {
                         REWARD
                     </Box>
                     <Box className="analyzer-block-indicator-value">
-                        1
+                        {stateWatchList ? (stateWatchList.tradeReward ? stateWatchList.tradeReward : '') : ''}
                     </Box>
                 </Box>
             </Box>
             <Box className="analyzer-block-indicators-column">
-                <Box className="analyzer-block-indicator">
+                <Box className={`analyzer-block-indicator ${stateWatchList.buyZone === true ? 'positive' : (stateWatchList.buyZone === false ? 'negative' : '')}`}>
                     <Box className="analyzer-block-indicator-title">
                         BUY ZONE
                     </Box>
-                    <Box className="analyzer-block-indicator-value">
-                        1
-                    </Box>
                 </Box>
-                <Box className="analyzer-block-indicator">
+                <Box className={`analyzer-block-indicator ${stateWatchList.buyTrigger === true ? 'positive' : (stateWatchList.buyTrigger === false ? 'negative' : '')}`}>
                     <Box className="analyzer-block-indicator-title">
                         BUY TRIGGER
-                    </Box>
-                    <Box className="analyzer-block-indicator-value">
-                        1
                     </Box>
                 </Box>
             </Box>
