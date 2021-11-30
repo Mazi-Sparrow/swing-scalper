@@ -45,7 +45,7 @@ const LandingPage = () => {
           animationDuration={500}
         >
           <Box className="homepage-bottom-info">
-            Easy To Follow Guide To Better Trading!
+          Trade What's Happening… Not What You Think Is Going To Happen!
           </Box>
           <ReactPlayer
             className="youtube-player"
@@ -83,24 +83,26 @@ const LandingPage = () => {
           <Box className="homepage-content">
             {/* <ModalVideo channel='youtube' autoplay isOpen={isOpen} videoId="kUlffl8j3Es" onClose={() => setIntryModalOpen(false)} /> */}
             <Box className="homepage-background">
-              <h1>Helping You Mitigate The Risks Of Short Term Trading!</h1>
+              <h1>Imagine Being Able To Trade What's Happening, Not What You Think Is Going To Happen!</h1>
               <h2>
                 Potential For Gain and Risk Of Loss Are Basic Realities Of Every
                 Trade.
               </h2>
               <article className="homepage-welcome-text">
                 <Box>
-                  We give you the tools to mitigate the risks of short/long term
-                  swing trading as you navigate these <b>Volatile Markets</b>.{" "}
+                 <b>Who Is Our Customer? </b> Swing Traders. Swing Trading Is A Speculative Trading Strategy In Financial Markets Where A Tradable Asset Is Held For One Or More Days In An Effort To Profit From Price Changes Or 'Swings'.{" "}
                 </Box>
                 <Box>
-                  Simplifying Chart Reading / Technical Analysis with easy to
-                  read components gives you a <b>Guided Edge</b> before you put
-                  your money to work.{" "}
+                  <b>What Do They Want? </b> To Make Profits From Holding Shares For The Shortest Term Possible.{" "}
                 </Box>
                 <Box>
-                  One Of The Biggest Challenges For Inexperienced Traders Is
-                  Deciding Which Information To Use And Which To Throw Out.{" "}
+                <b>How Do We Make Your Life Easier? </b> Not Every Trade Called Out By Your Trade Guru Matches Your Risk Tolerance Which Is Why You Lose More Than You Profit. We Expose You To Daily Possible Trade Setups Based On Realtime Data. We Give You Tools To Analyse Share Prices To Determine Entries & Exits Within A SAFE MARGIN. You Have Free Access To A Trade Journal To Log Your Trades And Assess Your Progress. {" "}
+                </Box>
+                <Box>
+                <b>Our Competition And What We Have In Common! </b> The Emerging Dominance Of The Retail Trading Industry Is Currently Saturated With Trade Prediction Guru's. We All Want To See You Make Money. {" "}
+                </Box>
+                <Box>
+                <b>How We Are Different And Why You Should Care? </b> Our Tools Help You Mitigate Your Losses By Showing You A Safe Margin In Every Trade Setup. You Can Then Choose A Trade That Matches Your Desired RIsk/Reward Before You Put Your Money To Work.  {" "}
                 </Box>
                 <Box>
                   <strong>
@@ -114,8 +116,7 @@ const LandingPage = () => {
                 <Box>
                   Enjoy Free Access to our <b>Trade Journal</b> to log and keep
                   track of your trades with RealTime notifications on when to{" "}
-                  <b>Close or Cut</b> a trade with our <b>Premium Membership</b>
-                  .
+                  <b>Close or Cut</b> a trade.
                 </Box>
                 <Box>
                   For a <b>Limited Time</b>, We are giving you a $52.00/Monthly
