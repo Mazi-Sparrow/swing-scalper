@@ -83,7 +83,7 @@ const LandingPage = () => {
           <Box className="homepage-content">
             {/* <ModalVideo channel='youtube' autoplay isOpen={isOpen} videoId="kUlffl8j3Es" onClose={() => setIntryModalOpen(false)} /> */}
             <Box className="homepage-background">
-              <h1>Imagine Being Able To Trade What's Happening, Not What You Think Is Going To Happen!</h1>
+              <h1>Trade What's Happening, Not What You Think Is Going To Happen!</h1>
               <h2>
                 Potential For Gain and Risk Of Loss Are Basic Realities Of Every
                 Trade.
