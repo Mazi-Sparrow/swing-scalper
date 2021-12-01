@@ -110,6 +110,9 @@
     border: 3px solid white;
     margin: 20px 0px;
 }
+.analyzer-linear-indicator text {
+    /* font-size: 20px !important; */
+}
 
 .analyzer-block-indicator-buyZone,
 .analyzer-block-indicator-buyTrigger {

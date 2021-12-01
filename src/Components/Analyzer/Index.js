@@ -41,7 +41,7 @@ export default function Index() {
   } = React.useContext(WatchListContext);
 
   const [stateWatchList, setStateWatchList] = React.useState({});
-//   const [priceTargetIndicator, setPriceTargetIndicator] = React.useState([]);
+  const [priceTargetIndicator, setPriceTargetIndicator] = React.useState([]);
 
   const [ticker, setTicker] = React.useState("");
 
@@ -54,7 +54,7 @@ export default function Index() {
     const response = await getAnalyzer({ token, ticker });
     if (response) {
         setStateWatchList(response);
-        // setPriceTargetIndicator([])
+        setPriceTargetIndicator([stateWatchList?.open, stateWatchList?.open])
     }
   };
 
@@ -63,27 +63,33 @@ export default function Index() {
     };
     const tempPlotBands = [
         {
-        from: 80,
+        from: 85,
         to: 100,
-        color: "#e62325",
+        color: "#FF3333",
         opacity: 1,
         },
         {
-        from: 60,
-        to: 80,
-        color: "#ffc000",
+        from: 70,
+        to: 85,
+        color: "#FF9933",
         opacity: 1,
         },
         {
         from: 30,
-        to: 60,
-        color: "#37b400",
+        to: 70,
+        color: "#FFFF33",
         opacity: 1,
         },
         {
-        from: -10,
+        from: 15,
         to: 30,
-        color: "#5392ff",
+        color: "#33CC33",
+        opacity: 1,
+        },
+        {
+        from: 0,
+        to: 15,
+        color: "#3333CC",
         opacity: 1,
         },
     ];
@@ -97,6 +103,36 @@ export default function Index() {
         {
         from: 33,
         to: 66,
+        color: "#ccc",
+        opacity: 0.3,
+        },
+        {
+        from: 66,
+        to: 100,
+        color: "#ccc",
+        opacity: 0.3,
+        },
+        {
+        from: 100,
+        to: 133,
+        color: "#ccc",
+        opacity: 0.3,
+        },
+        {
+        from: 133,
+        to: 166,
+        color: "#ccc",
+        opacity: 0.3,
+        },
+        {
+        from: 166,
+        to: 200,
+        color: "#ccc",
+        opacity: 0.3,
+        },
+        {
+        from: 200,
+        to: 233,
         color: "#ccc",
         opacity: 0.3,
         },
@@ -175,164 +211,164 @@ export default function Index() {
         </Box>
 
         {Object.keys(stateWatchList).length !== 0 &&
-        
-        <Box className="analyzer-information-about-company">
-            <Box className="analyzer-information-about-company-column">
-                <Box className="analyzer-information-about-company-name">
-                    {stateWatchList?.company?.name ? stateWatchList.company.name : ''}
+            <Box className="analyzer-information-about-company">
+                <Box className="analyzer-information-about-company-column">
+                    <Box className="analyzer-information-about-company-name">
+                        {stateWatchList?.company?.name ? stateWatchList.company.name : ''}
+                    </Box>
+                    <Box className="analyzer-information-about-company-logo">
+                        {stateWatchList?.company?.logo ? 
+                            <img src={stateWatchList.company.logo} alt="company logo"/> 
+                        : ''}
+                    </Box>
                 </Box>
-                <Box className="analyzer-information-about-company-logo">
-                    {stateWatchList?.company?.logo ? 
-                        <img src={stateWatchList.company.logo} alt="company logo"/> 
-                    : ''}
+                <Box className="analyzer-information-about-company-column">
+                    <Box className="analyzer-information-about-company-indicators">
+                        <Box className="analyzer-information-about-company-title">
+                            PRICE
+                        </Box>
+                        <Box className="analyzer-information-about-company-price">
+                            {stateWatchList?.buyPrice ? stateWatchList.buyPrice : ''} 
+                        </Box>
+                    </Box>
+                    <Box className="analyzer-information-about-company-indicators">
+                        <Box className="analyzer-information-about-company-title">
+                            OPENING PRICE
+                        </Box>
+                        <Box className="analyzer-information-about-company-opening-price">
+                            {stateWatchList?.open ? stateWatchList.open : ''}
+                        </Box>
+                    </Box>
+                    <Box className="analyzer-information-about-company-indicators">
+                        <Box className="analyzer-information-about-company-title">
+                            PREVIOUS CLOSE
+                        </Box>
+                        <Box className="analyzer-information-about-company-previous-close">
+                            {stateWatchList?.previousClose ? stateWatchList.previousClose : ''}
+                        </Box>
+                    </Box>
+                </Box>
+                <Box className="analyzer-information-about-company-column">
+                    <Box className="analyzer-information-about-company-indicators">
+                        <Box className="analyzer-information-about-company-title">
+                            PRICE CHANGE
+                        </Box>
+                        <Box className="analyzer-information-about-company-price-change">
+                            {stateWatchList?.priceChange ? stateWatchList.priceChange : ''}
+                        </Box>
+                    </Box>
+                    <Box className="analyzer-information-about-company-indicators">
+                        <Box className="analyzer-information-about-company-title">
+                            VOLUME
+                        </Box>
+                        <Box className="analyzer-information-about-company-volume">
+                            {stateWatchList?.volume ? stateWatchList.volume : ''}    
+                        </Box>
+                    </Box>
+                    <Box className="analyzer-information-about-company-indicators">
+                        <Box className="analyzer-information-about-company-title">
+                            VWAP
+                        </Box>
+                        <Box className="analyzer-information-about-company-vwap">
+                            {stateWatchList?.vwap ? stateWatchList.vwap : ''}
+                        </Box>
+                    </Box>
                 </Box>
             </Box>
-            <Box className="analyzer-information-about-company-column">
-                <Box className="analyzer-information-about-company-indicators">
-                    <Box className="analyzer-information-about-company-title">
-                        PRICE
-                    </Box>
-                    <Box className="analyzer-information-about-company-price">
-                        {stateWatchList?.buyPrice ? stateWatchList.buyPrice : ''} 
-                    </Box>
+        }
+        { stateWatchList?.buyZone &&
+            <Box className="analyzer-linear-indicators">
+                <Box className="analyzer-linear-indicator">
+                    <Chart
+                        style={{
+                        height: 120,
+                        }}
+                    >
+                        <ChartTitle text="RSI" />
+                        <ChartSeries>
+                        <ChartSeriesItem type="bullet" color="#fff" data={[[stateWatchList.rsi14, 0]]} />
+                        </ChartSeries>
+                        <ChartCategoryAxis>
+                        <ChartCategoryAxisItem
+                            majorGridLines={hidden}
+                            minorGridLines={hidden}
+                        />
+                        </ChartCategoryAxis>
+                        <ChartValueAxis>
+                        <ChartValueAxisItem
+                            majorGridLines={hidden}
+                            minorTicks={hidden}
+                            min={0}
+                            max={100}
+                            plotBands={tempPlotBands}
+                        />
+                        </ChartValueAxis>
+                        <ChartTooltip render={tooltipRender} />
+                    </Chart>
                 </Box>
-                <Box className="analyzer-information-about-company-indicators">
-                    <Box className="analyzer-information-about-company-title">
-                        OPENING PRICE
-                    </Box>
-                    <Box className="analyzer-information-about-company-opening-price">
-                        {stateWatchList?.open ? stateWatchList.open : ''}
-                    </Box>
-                </Box>
-                <Box className="analyzer-information-about-company-indicators">
-                    <Box className="analyzer-information-about-company-title">
-                        PREVIOUS CLOSE
-                    </Box>
-                    <Box className="analyzer-information-about-company-previous-close">
-                        {stateWatchList?.previousClose ? stateWatchList.previousClose : ''}
-                    </Box>
-                </Box>
-            </Box>
-            <Box className="analyzer-information-about-company-column">
-                <Box className="analyzer-information-about-company-indicators">
-                    <Box className="analyzer-information-about-company-title">
-                        PRICE CHANGE
-                    </Box>
-                    <Box className="analyzer-information-about-company-price-change">
-                        {stateWatchList?.priceChange ? stateWatchList.priceChange : ''}
-                    </Box>
-                </Box>
-                <Box className="analyzer-information-about-company-indicators">
-                    <Box className="analyzer-information-about-company-title">
-                        VOLUME
-                    </Box>
-                    <Box className="analyzer-information-about-company-volume">
-                        {stateWatchList?.volume ? stateWatchList.volume : ''}    
-                    </Box>
-                </Box>
-                <Box className="analyzer-information-about-company-indicators">
-                    <Box className="analyzer-information-about-company-title">
-                        VWAP
-                    </Box>
-                    <Box className="analyzer-information-about-company-vwap">
-                        {stateWatchList?.vwap ? stateWatchList.vwap : ''}
-                    </Box>
-                </Box>
-            </Box>
-        </Box>
-}
 
-        <Box className="analyzer-linear-indicators">
-            <Box className="analyzer-linear-indicator">
-                <Chart
-                    style={{
-                    height: 120,
-                    }}
-                >
-                    <ChartTitle text="RSI" />
-                    <ChartSeries>
-                    <ChartSeriesItem type="bullet" color="#fff" data={[[stateWatchList.rsi14, 0]]} />
-                    </ChartSeries>
-                    <ChartCategoryAxis>
-                    <ChartCategoryAxisItem
-                        majorGridLines={hidden}
-                        minorGridLines={hidden}
-                    />
-                    </ChartCategoryAxis>
-                    <ChartValueAxis>
-                    <ChartValueAxisItem
-                        majorGridLines={hidden}
-                        minorTicks={hidden}
-                        min={-10}
-                        max={100}
-                        plotBands={tempPlotBands}
-                    />
-                    </ChartValueAxis>
-                    <ChartTooltip render={tooltipRender} />
-                </Chart>
-            </Box>
+                <Box className="analyzer-linear-indicator">
+                    <Chart
+                        style={{
+                        height: 120,
+                        }}
+                    >
+                        <ChartTitle text="SAFE MARGIN" />
+                        <ChartSeries>
+                        <ChartSeriesItem type="bullet" color="#0058e9" data={priceTargetIndicator} />
+                        </ChartSeries>
+                        <ChartCategoryAxis>
+                        <ChartCategoryAxisItem
+                            majorGridLines={hidden}
+                            minorGridLines={hidden}
+                        />
+                        </ChartCategoryAxis>
+                        <ChartValueAxis>
+                        <ChartValueAxisItem
+                            majorGridLines={hidden}
+                            minorTicks={hidden}
+                            min={stateWatchList?.buyPrice ? stateWatchList.buyPrice : 0}
+                            max={200}
+                            // max={stateWatchList?.priceTargets ? (stateWatchList.priceTargets[1] ? stateWatchList.priceTargets[1] : stateWatchList.priceTargets[0]) : 100}
+                            // min={0}
+                            // max={100}
+                            plotBands={humPlotBands}
+                        />
+                        </ChartValueAxis>
+                        <ChartTooltip render={tooltipRender} />
+                    </Chart>
+                </Box>
 
-            <Box className="analyzer-linear-indicator">
-                <Chart
-                    style={{
-                    height: 120,
-                    }}
-                >
-                    <ChartTitle text="PRICE" />
-                    <ChartSeries>
-                    <ChartSeriesItem type="bullet" color="#0058e9" data={hum} />
-                    </ChartSeries>
-                    <ChartCategoryAxis>
-                    <ChartCategoryAxisItem
-                        majorGridLines={hidden}
-                        minorGridLines={hidden}
-                    />
-                    </ChartCategoryAxis>
-                    <ChartValueAxis>
-                    <ChartValueAxisItem
-                        majorGridLines={hidden}
-                        minorTicks={hidden}
-                        // min={stateWatchList.buyPrice ? stateWatchList.buyPrice : 0}
-                        // max={stateWatchList.priceTargets ? stateWatchList.priceTargets[1] : 100}
-                        min={0}
-                        max={100}
-                        plotBands={humPlotBands}
-                    />
-                    </ChartValueAxis>
-                    <ChartTooltip render={tooltipRender} />
-                </Chart>
+                <Box className="analyzer-linear-indicator">
+                    <Chart
+                        style={{
+                        height: 120,
+                        }}
+                    >
+                        <ChartTitle text="DAILY RANGE" />
+                        <ChartSeries>
+                        <ChartSeriesItem type="bullet" color="#111" data={mmhg} />
+                        </ChartSeries>
+                        <ChartCategoryAxis>
+                        <ChartCategoryAxisItem
+                            majorGridLines={hidden}
+                            minorGridLines={hidden}
+                        />
+                        </ChartCategoryAxis>
+                        <ChartValueAxis>
+                        <ChartValueAxisItem
+                            majorGridLines={hidden}
+                            minorTicks={hidden}
+                            min={715}
+                            max={795}
+                            plotBands={mmhgPlotBands}
+                        />
+                        </ChartValueAxis>
+                        <ChartTooltip render={tooltipRender} />
+                    </Chart>
+                </Box>
             </Box>
-
-            <Box className="analyzer-linear-indicator">
-                <Chart
-                    style={{
-                    height: 120,
-                    }}
-                >
-                    <ChartTitle text="PRICE" />
-                    <ChartSeries>
-                    <ChartSeriesItem type="bullet" color="#111" data={mmhg} />
-                    </ChartSeries>
-                    <ChartCategoryAxis>
-                    <ChartCategoryAxisItem
-                        majorGridLines={hidden}
-                        minorGridLines={hidden}
-                    />
-                    </ChartCategoryAxis>
-                    <ChartValueAxis>
-                    <ChartValueAxisItem
-                        majorGridLines={hidden}
-                        minorTicks={hidden}
-                        min={715}
-                        max={795}
-                        plotBands={mmhgPlotBands}
-                    />
-                    </ChartValueAxis>
-                    <ChartTooltip render={tooltipRender} />
-                </Chart>
-            </Box>
-        </Box>
-        
+        }
         {Object.keys(stateWatchList).length !== 0 &&
         <Box className="analyzer-block-indicators">
             <Box className="analyzer-block-indicators-column">
