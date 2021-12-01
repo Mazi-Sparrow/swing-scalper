@@ -13,7 +13,7 @@
 
 .analyzer-information-about-company {
     margin-top: 60px;
-    width: 70%;
+    width: 90%;
     /* height: 200px; */
     /* background-color: #80808080; */
     /* border: 3px solid #9c34b4; */
@@ -28,11 +28,19 @@
 
 .analyzer-information-about-company-column {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 30%;
-    padding: 20px;
+    /* width: 30%; */
+    /* padding: 20px; */
+}
+
+.analyzer-information-about-company-main-column {
+    flex-direction: column;
+}
+.analyzer-information-about-company-main-column
+.analyzer-information-about-company-name {
+    margin: 0px;
 }
 
 .analyzer-information-about-company-name {
@@ -45,19 +53,21 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 40px;
+    font-size: 30px;
     margin-bottom: 20px;
-    border: 2px solid #9c34b4;
+    /* border: 2px solid #9c34b4; */
     border-radius: 10px;
-    padding: 20px;
+    /* padding: 20px; */
     width: 100%;
-    font-weight: 600;
+    font-weight: 400;
+    margin: 25px;
+    white-space: nowrap;
 }
 
 .analyzer-information-about-company-title {
     margin-right: 10px;
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .analyzer-linear-indicators {

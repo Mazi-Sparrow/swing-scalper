@@ -212,7 +212,7 @@ export default function Index() {
 
         {Object.keys(stateWatchList).length !== 0 &&
             <Box className="analyzer-information-about-company">
-                <Box className="analyzer-information-about-company-column">
+                <Box className="analyzer-information-about-company-column analyzer-information-about-company-main-column">
                     <Box className="analyzer-information-about-company-name">
                         {stateWatchList?.company?.name ? stateWatchList.company.name : ''}
                     </Box>
