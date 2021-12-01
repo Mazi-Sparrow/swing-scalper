@@ -88,7 +88,7 @@ export default function Index() {
   } = React.useContext(AuthContext);
   const {
     state: { errorMessage, isLoading },
-    getWatchlist,
+    getAnalyzer,
   } = React.useContext(WatchListContext);
 
   const [stateWatchList, setStateWatchList] = React.useState({});
@@ -96,7 +96,7 @@ export default function Index() {
   const [ticker, setTicker] = React.useState("");
 
   const handleSearch = async () => {
-    const response = await getWatchlist({ token, ticker });
+    const response = await getAnalyzer({ token, ticker });
     if (response) setStateWatchList(response);
   };
 

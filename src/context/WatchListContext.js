@@ -36,15 +36,15 @@ const watchListReducers = (state, action) => {
   }
 };
 
-const getWatchlist =
+const getAnalyzer =
   (dispatch) =>
   async ({ token, ticker }) => {
     try {
       dispatch({ type: "add_loading" });
       const response = await graphqlClient.request(
         gql`
-          query getWatchlist($ticker: String!) {
-            getWatchlist(ticker: $ticker) {
+          query getAnalyzer($ticker: String!) {
+            getAnalyzer(ticker: $ticker) {
               success
               errors
               id
@@ -60,6 +60,16 @@ const getWatchlist =
               sma20
               sma200
               rsi14
+              averageVolume
+              open
+              previousClose
+              priceChange
+              volume
+              vwap
+              company {
+                name
+                logo
+              }
             }
           }
         `,
@@ -67,10 +77,10 @@ const getWatchlist =
         { Authorization: `Bearer ${token}` }
       );
       dispatch({ type: "remove_loading" });
-      if (response.getWatchlist && response.getWatchlist.success && !response.getWatchlist.errors) {
-        dispatch({ action: "add_watchList", payload: response.getWatchlist });
+      if (response.getAnalyzer && response.getAnalyzer.success && !response.getAnalyzer.errors) {
+        dispatch({ action: "add_watchList", payload: response.getAnalyzer });
         dispatch({ type: "clear_errorMessage" });
-        return response.getWatchlist;
+        return response.getAnalyzer;
       }
       return false;
     } catch (error) {
@@ -91,7 +101,7 @@ export const { Context, Provider } = createDataContext(
   watchListReducers,
   {
     clearErrorMessage,
-    getWatchlist,
+    getAnalyzer,
   },
   { watchList: null, errorMessage: "", isLoading: false }
 );

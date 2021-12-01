@@ -33,19 +33,29 @@ import './style.css'
 export default function Index() {
   const {
     state: { token },
+    getToken
   } = React.useContext(AuthContext);
   const {
     state: { errorMessage, isLoading },
-    getWatchlist,
+    getAnalyzer,
   } = React.useContext(WatchListContext);
 
   const [stateWatchList, setStateWatchList] = React.useState({});
+//   const [priceTargetIndicator, setPriceTargetIndicator] = React.useState([]);
 
   const [ticker, setTicker] = React.useState("");
 
+  React.useEffect(() => {
+    getToken();
+  }, []);
+
   const handleSearch = async () => {
-    const response = await getWatchlist({ token, ticker });
-    if (response) setStateWatchList(response);
+    setStateWatchList({});
+    const response = await getAnalyzer({ token, ticker });
+    if (response) {
+        setStateWatchList(response);
+        // setPriceTargetIndicator([])
+    }
   };
 
     const hidden = {
@@ -164,9 +174,73 @@ export default function Index() {
           </MaterialGrid>
         </Box>
 
+        {Object.keys(stateWatchList).length !== 0 &&
+        
         <Box className="analyzer-information-about-company">
-            
+            <Box className="analyzer-information-about-company-column">
+                <Box className="analyzer-information-about-company-name">
+                    {stateWatchList?.company?.name ? stateWatchList.company.name : ''}
+                </Box>
+                <Box className="analyzer-information-about-company-logo">
+                    {stateWatchList?.company?.logo ? 
+                        <img src={stateWatchList.company.logo} alt="company logo"/> 
+                    : ''}
+                </Box>
+            </Box>
+            <Box className="analyzer-information-about-company-column">
+                <Box className="analyzer-information-about-company-indicators">
+                    <Box className="analyzer-information-about-company-title">
+                        PRICE
+                    </Box>
+                    <Box className="analyzer-information-about-company-price">
+                        {stateWatchList?.buyPrice ? stateWatchList.buyPrice : ''} 
+                    </Box>
+                </Box>
+                <Box className="analyzer-information-about-company-indicators">
+                    <Box className="analyzer-information-about-company-title">
+                        OPENING PRICE
+                    </Box>
+                    <Box className="analyzer-information-about-company-opening-price">
+                        {stateWatchList?.open ? stateWatchList.open : ''}
+                    </Box>
+                </Box>
+                <Box className="analyzer-information-about-company-indicators">
+                    <Box className="analyzer-information-about-company-title">
+                        PREVIOUS CLOSE
+                    </Box>
+                    <Box className="analyzer-information-about-company-previous-close">
+                        {stateWatchList?.previousClose ? stateWatchList.previousClose : ''}
+                    </Box>
+                </Box>
+            </Box>
+            <Box className="analyzer-information-about-company-column">
+                <Box className="analyzer-information-about-company-indicators">
+                    <Box className="analyzer-information-about-company-title">
+                        PRICE CHANGE
+                    </Box>
+                    <Box className="analyzer-information-about-company-price-change">
+                        {stateWatchList?.priceChange ? stateWatchList.priceChange : ''}
+                    </Box>
+                </Box>
+                <Box className="analyzer-information-about-company-indicators">
+                    <Box className="analyzer-information-about-company-title">
+                        VOLUME
+                    </Box>
+                    <Box className="analyzer-information-about-company-volume">
+                        {stateWatchList?.volume ? stateWatchList.volume : ''}    
+                    </Box>
+                </Box>
+                <Box className="analyzer-information-about-company-indicators">
+                    <Box className="analyzer-information-about-company-title">
+                        VWAP
+                    </Box>
+                    <Box className="analyzer-information-about-company-vwap">
+                        {stateWatchList?.vwap ? stateWatchList.vwap : ''}
+                    </Box>
+                </Box>
+            </Box>
         </Box>
+}
 
         <Box className="analyzer-linear-indicators">
             <Box className="analyzer-linear-indicator">
@@ -218,6 +292,8 @@ export default function Index() {
                     <ChartValueAxisItem
                         majorGridLines={hidden}
                         minorTicks={hidden}
+                        // min={stateWatchList.buyPrice ? stateWatchList.buyPrice : 0}
+                        // max={stateWatchList.priceTargets ? stateWatchList.priceTargets[1] : 100}
                         min={0}
                         max={100}
                         plotBands={humPlotBands}
@@ -256,6 +332,8 @@ export default function Index() {
                 </Chart>
             </Box>
         </Box>
+        
+        {Object.keys(stateWatchList).length !== 0 &&
         <Box className="analyzer-block-indicators">
             <Box className="analyzer-block-indicators-column">
                 <Box className="analyzer-block-indicator">
@@ -273,6 +351,8 @@ export default function Index() {
                     <Box className="analyzer-block-indicator-value">
                         {stateWatchList ? (stateWatchList.priceTargets ? (stateWatchList.priceTargets[0] ? stateWatchList.priceTargets[0] : '') : '') : ''}
                     </Box>
+                </Box>
+                <Box className="analyzer-block-indicator">
                     <Box className="analyzer-block-indicator-title">
                         PRICE TARGET 2
                     </Box>
@@ -300,18 +380,19 @@ export default function Index() {
                 </Box>
             </Box>
             <Box className="analyzer-block-indicators-column">
-                <Box className={`analyzer-block-indicator ${stateWatchList.buyZone === true ? 'positive' : (stateWatchList.buyZone === false ? 'negative' : '')}`}>
+                <Box className={`analyzer-block-indicator analyzer-block-indicator-buyZone ${stateWatchList.buyZone === true ? 'positive' : (stateWatchList.buyZone === false ? 'negative' : '')}`}>
                     <Box className="analyzer-block-indicator-title">
                         BUY ZONE
                     </Box>
                 </Box>
-                <Box className={`analyzer-block-indicator ${stateWatchList.buyTrigger === true ? 'positive' : (stateWatchList.buyTrigger === false ? 'negative' : '')}`}>
+                <Box className={`analyzer-block-indicator analyzer-block-indicator-buyTrigger ${stateWatchList.buyTrigger === true ? 'positive' : (stateWatchList.buyTrigger === false ? 'negative' : '')}`}>
                     <Box className="analyzer-block-indicator-title">
                         BUY TRIGGER
                     </Box>
                 </Box>
             </Box>
         </Box>
+        }
         <Box className="analyzer-news-block">
             <Box className="analyzer-news-title">
                 NEWS

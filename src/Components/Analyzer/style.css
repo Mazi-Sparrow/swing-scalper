@@ -14,9 +14,50 @@
 .analyzer-information-about-company {
     margin-top: 60px;
     width: 70%;
-    height: 200px;
-    background-color: #80808080;
+    /* height: 200px; */
+    /* background-color: #80808080; */
+    /* border: 3px solid #9c34b4; */
+    border-radius: 20px;
     align-self: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
+.analyzer-information-about-company-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    padding: 20px;
+}
+
+.analyzer-information-about-company-name {
+    font-size: 30px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.analyzer-information-about-company-indicators {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 40px;
+    margin-bottom: 20px;
+    border: 2px solid #9c34b4;
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+    font-weight: 600;
+}
+
+.analyzer-information-about-company-title {
+    margin-right: 10px;
+    font-size: 20px;
+    font-weight: 500;
 }
 
 .analyzer-linear-indicators {
@@ -29,9 +70,9 @@
 }
 
 .analyzer-block-indicators {
-    background-color: #80808080;
+    /* background-color: #80808080; */
     margin: 0 auto;
-    width: 60%;
+    width: 70%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -40,11 +81,22 @@
     margin-top: 50px;
 }
 
+.analyzer-block-indicator-title {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.analyzer-block-indicator-value {
+    font-size: 40px;
+    font-weight: 600;
+}
+
 .analyzer-block-indicators-column {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
 }
 
 .analyzer-block-indicator {
@@ -53,10 +105,16 @@
     align-items: center;
     justify-content: space-around;
     padding: 20px 5px;
-    width: 200px;
-    height: 200px;
+    /* width: 200px;
+    height: 200px; */
     border: 3px solid white;
     margin: 20px 0px;
+}
+
+.analyzer-block-indicator-buyZone,
+.analyzer-block-indicator-buyTrigger {
+    width: 230px;
+    height: 230px;
 }
 
 .analyzer-news-block {
