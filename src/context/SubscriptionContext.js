@@ -139,7 +139,8 @@ const confirmCheckout =
                   description
                   price
                   period
-                  period_unit 
+                  period_unit
+                  popular
                 } 
               } 
             }

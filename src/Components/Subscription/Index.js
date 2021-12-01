@@ -8,6 +8,7 @@ import MobileNavbar from "../MobileNavbar/MobileNavbarComponent";
 import Footer from "./Footer";
 
 import "./subscription.scss";
+import "./style.css";
 
 import { Context as AuthContext } from "../../context/AuthContext";
 
@@ -103,12 +104,12 @@ function CardAction({ clickMe }) {
 }
 
 function PricingCard(props) {
-  const { type, name, description, price, recurrency, period_unit, mostPopular, data, clickMe, id } =
+  const { type, name, description, price, recurrency, period_unit, mostPopular, popular, data, clickMe, id } =
     props;
 
   return (
     <div className={`card pricing-card ${type}`}>
-      {mostPopular ? <span className="most-popular">Most Popular</span> : null}
+      {popular ? <span className="most-popular">Most Popular</span> : null}
       <CardDescription title={name} description={description} />
       <CardBilling price={price} recurrency={recurrency} duration={period_unit} />
       <CardAction clickMe={clickMe} />
