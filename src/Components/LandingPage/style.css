@@ -53,8 +53,12 @@ a:hover {
     width: 70%;
 }
 
-.homepage-content article {
+article.homepage-welcome-text b {
     font-size: 24px;
+}
+
+.homepage-content article {
+    font-size: 19px;
 }
 
 .homepage-content {

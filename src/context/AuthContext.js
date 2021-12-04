@@ -406,6 +406,44 @@ const tryLocalSignin = (dispatch) => async () => {
   }
 };
 
+// const deleteUser =
+//   (dispatch) =>
+//   async ({ token }) => {
+//     try {
+//       const response = await graphqlClient.request(
+//         gql`
+//           query getUser {
+//             getUser {
+//               id
+//               firstname
+//               lastname
+//               email
+//               phone
+//               success
+//               errors
+//               subscriptions {
+//                 id
+//                 name
+//                 billing_period
+//                 description
+//               }
+//             }
+//           }
+//         `,
+//         {},
+//         { Authorization: `Bearer ${token}` }
+//       );
+
+//       if (!response.getUser.errors && response.getUser.success) {
+//         return response.getUser;
+//       }
+
+//       return false;
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+
 export const { Context, Provider } = createDataContext(
   authReducers,
   {

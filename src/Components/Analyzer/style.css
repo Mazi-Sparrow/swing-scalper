@@ -1,10 +1,46 @@
 .positive {
     background-color: #37B400;
 }
+.positive-text {
+    color: #37B400;
+}
 
 .negative {
-    background-color: #F31700;
+    background-color: #CC0000;
 }
+.negative-text {
+    color: #CC0000;
+}
+
+.analyzer-arrow-icon {
+    margin-left: 10px;
+}
+
+.arrow-up {
+    transform: rotate(45deg) scale(1.5) scaleX(0.5);
+}
+
+.arrow-down {
+    transform: rotate(135deg) scale(1.5) scaleX(0.5);
+}
+
+.analyzer-page-incorrect-ticker-text {
+    margin-top: 1.5em;
+    font-size: 30px;
+    font-weight: 500;
+    text-align: center;
+}
+.analyzer-page-no-sage-trade-setup {
+    margin-top: 1em;
+    font-size: 30px;
+    font-weight: 500;
+    text-align: center;
+    width: 100%;
+    border-top: 1px solid red;
+    border-bottom: 1px solid red;
+    padding: 1.5em;
+}
+
 
 .analyzer-page-content {
     display: flex;
@@ -49,6 +85,23 @@
     font-weight: 500;
 }
 
+.analyzer-information-about-company-price {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.analyzer-information-about-company-logo {
+    width: 128px;
+    height: 128px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.analyzer-information-about-company-logo img {
+    width: 100%;
+}
+
 .analyzer-information-about-company-indicators {
     display: flex;
     flex-direction: column;
@@ -79,6 +132,12 @@
     margin: 40px 0px;
 }
 
+.analyzer-block-title {
+    font-size: 34px;
+    text-align: center;
+    margin-top: 40px;
+}
+
 .analyzer-block-indicators {
     /* background-color: #80808080; */
     margin: 0 auto;
@@ -86,27 +145,38 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    /* justify-content: space-around; */
+    justify-content: center;
     padding: 0px 40px;
-    margin-top: 50px;
 }
 
 .analyzer-block-indicator-title {
-    font-size: 30px;
+    font-size: 20px;
     font-weight: 500;
+}
+.analyzer-block-indicator-title-box {
+    color: white;
+    font-size: 22px;
 }
 
 .analyzer-block-indicator-value {
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 600;
 }
 
 .analyzer-block-indicators-column {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
+    /* width: 100%; */
+}
+.analyzer-block-indicators-column-boxes {
+    justify-content: center;
+}
+.analyzer-block-indicators-column-boxes div {
+    margin: 0px 20px;
 }
 
 .analyzer-block-indicator {
@@ -118,7 +188,7 @@
     /* width: 200px;
     height: 200px; */
     border: 3px solid white;
-    margin: 20px 0px;
+    margin: 0px 40px 20px 40px;
 }
 .analyzer-linear-indicator text {
     /* font-size: 20px !important; */

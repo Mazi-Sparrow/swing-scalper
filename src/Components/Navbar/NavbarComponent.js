@@ -125,7 +125,7 @@ export default function ButtonAppBar() {
             </Button>
           </AppBarSection>
           <Box className="nav-button-box">
-            <Button className="navbar-button primary-btn-color default-btn-hover" color="inherit" variant="contained" href="/signin" >login</Button>
+            {/* <Button className="navbar-button primary-btn-color default-btn-hover" color="inherit" variant="contained" href="/signin" >login</Button> */}
             <Button className="navbar-button primary-btn-color default-btn-hover" color="inherit" variant="contained" href="/signup" >signup</Button>
           </Box>
         </>

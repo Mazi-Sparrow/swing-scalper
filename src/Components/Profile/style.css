@@ -1,3 +1,67 @@
 .profile-page-title {
     color: #9C1265;
 }
+
+.delete-user-text {
+    color: #9c34b4;
+    font-size: 24px;
+}
+
+.propt-deletion-box {
+    margin-top: 50px;
+    font-size: 30px;
+}
+
+.reason-deletion-box {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.reason-deletion-input {
+    width: 70%;
+    padding: 10px;
+}
+
+.delete-user-modal {
+    height: 48vh !important;
+}
+
+.delete-user-button-box-wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.delete-user-button-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+.cancel-subscription-button-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media (max-width: 1300px) {
+    
+}
+@media (max-width: 1100px) {
+    
+}
+@media (max-width: 900px) {
+    
+}
+@media (max-width: 700px) {
+    
+}
+@media (max-width: 450px) {
+    
+}

@@ -7,6 +7,8 @@ import { Button } from "@mui/material";
 import Navbar from "../Navbar/NavbarComponent";
 import MobileNavbar from "../MobileNavbar/MobileNavbarComponent";
 
+import { Modal } from 'react-responsive-modal';
+
 import Footer from "../Dashboard/Footer";
 import { Container, Grid, TextField } from "@mui/material";
 
@@ -21,6 +23,7 @@ export default function Profile() {
 
   const [user, setUser] = useState(null);
   const [subscriptionId, setSubscriptionId] = useState('');
+  const [deleteUserModalOpen, setDeleteUserModalOpen] = useState(false);
 
   useEffect(() => {
     if (token) {
@@ -45,16 +48,73 @@ export default function Profile() {
       getUser({ token }).then((res) => setUser(res));
     }
     console.log(isSuccess);
-  }
+  };
+
+  const handleDeleteUserClick = async () => {
+    setDeleteUserModalOpen(true);
+  };
+  const onCloseModal = () => setDeleteUserModalOpen(false);
+
+  const deleteUserHandler = async () => {
+    console.log("Deleting user")
+  };
+
+  // const modalRef=React.createRef();
+  // useEffect(() => {
+  //   if (document.getElementsByClassName('react-responsive-modal-modal')) {
+  //     console.log(document.getElementsByClassName('react-responsive-modal-modal'))
+  //   }
+  //   if (modalRef.current) {
+  //     console.log("HELLO")
+  //   }
+  // }, [modalRef, deleteUserModalOpen])
 
   return (
-    <div>
+    <div className="profile-page">
       <Box>
         <Navbar />
       </Box>
       <Box>
         <MobileNavbar />
       </Box>
+      
+      <Modal
+          open={deleteUserModalOpen}
+          onClose={onCloseModal}
+          center
+          animationDuration={500}
+          classNames={{modal:"delete-user-modal"}}
+          data-testid="2"
+          // ref={modalRef}
+        >
+          <Box className="delete-user-modal-container">
+            <Box className="delete-user-text propt-deletion-box">
+              Are you sure you want to delete your Profile?
+            </Box>
+            <Box className="reason-deletion-box">
+              <Box className="delete-user-text reason-deletion-box">
+                Please type in the reason
+              </Box>
+              <input className="delete-user-text reason-deletion-input"></input>
+            </Box>
+            <Box className="delete-user-button-box-wrapper">
+              <Box className="delete-user-button-box">
+                <Button 
+                  className="primary-btn-color default-btn-hover default-button delete-user-button-cancel "
+                  onClick={() => setDeleteUserModalOpen(false)}
+                >
+                  CANCEL
+                </Button>
+                <Button 
+                  className="alert-btn-color alert-btn-hover default-button delete-user-button-delete"
+                  onClick={() => deleteUserHandler()}
+                >
+                  DELETE
+                </Button>
+              </Box>
+            </Box>
+          </Box>
+      </Modal>
 
       {user ? (
         <Container
@@ -167,10 +227,13 @@ export default function Profile() {
               />
             </div>
           </div>
-          <div className="cancel-subction-button-box">
-            <Button className="navbar-button primary-btn-color default-btn-hover" onClick={handleCancelSubscriptionClick}>
+          <div className="cancel-subscription-button-box">
+            <Button className="navbar-button alert-btn-color alert-btn-hover" onClick={handleCancelSubscriptionClick}>
             {/* <Button className="navbar-button" onClick={() => {cancelSubscription(subscriptionId)}}> */}
                 Cancel subscription
+            </Button>
+            <Button className="navbar-button alert-btn-color alert-btn-hover" onClick={handleDeleteUserClick}>
+                Delete user
             </Button>
           </div>
         </Container>

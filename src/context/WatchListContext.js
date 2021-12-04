@@ -49,7 +49,7 @@ const getAnalyzer =
               errors
               id
               buyTrigger
-              buyPrice
+              currentPrice
               priceTargets
               buyZone
               ticker
@@ -66,6 +66,8 @@ const getAnalyzer =
               priceChange
               volume
               vwap
+              high
+              low
               company {
                 name
                 logo
