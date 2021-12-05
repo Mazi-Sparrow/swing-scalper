@@ -96,13 +96,7 @@ const LandingPage = () => {
                   <b>What Do They Want? </b> To Make Profits From Holding Shares For The Shortest Term Possible.{" "}
                 </Box>
                 <Box>
-                <b>How Do We Make Your Life Easier? </b> Not Every Trade Called Out By Your Trade Guru Matches Your Risk Tolerance Which Is Why You Lose More Than You Profit. We Expose You To Daily Possible Trade Setups Based On Realtime Data. We Give You Tools To Analyse Share Prices To Determine Entries & Exits Within A SAFE MARGIN. You Have Free Access To A Trade Journal To Log Your Trades And Assess Your Progress. {" "}
-                </Box>
-                <Box>
-                <b>Our Competition And What We Have In Common! </b> The Emerging Dominance Of The Retail Trading Industry Is Currently Saturated With Trade Prediction Guru's. We All Want To See You Make Money. {" "}
-                </Box>
-                <Box>
-                <b>How We Are Different And Why You Should Care? </b> Our Tools Help You Mitigate Your Losses By Showing You A Safe Margin In Every Trade Setup. You Can Then Choose A Trade That Matches Your Desired RIsk/Reward Before You Put Your Money To Work.  {" "}
+                <b>How Do We Make Your Life Easier? </b> Not Every Trade Called Out By "Your Trade Guru" Matches Your Risk Tolerance Which Is Why You Lose More Than You Profit From Your Trades. Our Tools Help You Mitigate Your Losses By Showing You A Safe Margin In Every Trade Setup. You Can Then Choose A Trade That Matches Your Desired RIsk/Reward Before You Put Your Money To Work. Our <b>Watchlist</b> Show Stocks At Stage One Breakout Price Action In Realtime For Your Daily Trade Setups. The <b>Swingscalp Analyzer</b> Generates Metrics That Point You To Trade Entries & Exits Within A SAFE MARGIN, Keeps Track Of Your Risk/Reward Before You Enter A Trade And Recommends Stop Loses And Price Targets. Our <b>Trade Streams</b> Gives You Access To <b>Block Institutional Trades</b> Executed Daily Market Data from All 19 Exchanges Including Darkpools. You Also Get Complimentary Access To Our Easy To Use Trade Journal To Log Your Trades And Assess Your Progress. {" "}
                 </Box>
                 <Box>
                   <strong>
