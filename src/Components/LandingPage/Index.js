@@ -43,9 +43,10 @@ const LandingPage = () => {
           onClose={onCloseModal}
           center
           animationDuration={500}
+          focusTrapped={false}
         >
           <Box className="homepage-bottom-info">
-          Trade What's Happening… Not What You Think Is Going To Happen!
+            Trade What's Happening… Not What You Think Is Going To Happen!
           </Box>
           <ReactPlayer
             className="youtube-player"

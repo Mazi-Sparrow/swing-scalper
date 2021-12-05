@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import { Context as AuthContext } from "../../context/AuthContext";
 import { Context as SubscriptionContext } from "../../context/SubscriptionContext";
 import { Box } from "@mui/system";
@@ -16,14 +17,19 @@ import './style.css';
 
 export default function Profile() {
   const {
-    state: { token },
+    state: { token, isSubscribed },
     getUser,
   } = useContext(AuthContext);
-  const { cancelSubscription } = useContext(SubscriptionContext);
+  const { createCheckout, cancelSubscription } = useContext(SubscriptionContext);
+
+
+  const history = useHistory();
+  const goToPage = React.useCallback((page) => history.push(`/${page}`), [history]);
 
   const [user, setUser] = useState(null);
   const [subscriptionId, setSubscriptionId] = useState('');
   const [deleteUserModalOpen, setDeleteUserModalOpen] = useState(false);
+  const [callToActionSubscribeModalOpen, setCallToActionSubscribeModalOpen] = useState(false);
 
   useEffect(() => {
     if (token) {
@@ -32,10 +38,35 @@ export default function Profile() {
   }, []);
 
   useEffect(() => {
+    const choosenPlanId = localStorage.getItem('choosenPlanId');
+    const freePlan = localStorage.getItem('freePlan');
+    async function handleProfileOpen() {
+      if (choosenPlanId !== null) {
+        if (choosenPlanId) {
+          const checkoutUrl = await createCheckout({ token, planId: choosenPlanId });
+          if (checkoutUrl) {
+            localStorage.removeItem('choosenPlanId');
+            window.location.replace(checkoutUrl);
+          }
+        }
+      } else if (freePlan !== null || !isSubscribed) {
+        setCallToActionSubscribeModalOpen(true);
+      }
+    }
+
+    handleProfileOpen();
+  }, [])
+
+  useEffect(() => {
     if (user) {
       // console.log(user);
       // console.log(user.subscriptions[0].id);
-      setSubscriptionId(user.subscriptions[0].id)
+      if (user.subscriptions.length !== 0) {
+        setSubscriptionId(user.subscriptions[0].id)
+        localStorage.removeItem('freePlan');
+      } else {
+        localStorage.setItem('freePlan', 'true');
+      }
     }
   }, [user])
 
@@ -53,7 +84,15 @@ export default function Profile() {
   const handleDeleteUserClick = async () => {
     setDeleteUserModalOpen(true);
   };
-  const onCloseModal = () => setDeleteUserModalOpen(false);
+  const onCloseDeleteUserModal = () => setDeleteUserModalOpen(false);
+
+  const onCloseSubscribeModal = () => {
+    setCallToActionSubscribeModalOpen(false);
+  }
+  const callToActionModalButtonClick = () => {
+    goToPage('subscription');
+    setCallToActionSubscribeModalOpen(false);
+  }
 
   const deleteUserHandler = async () => {
     console.log("Deleting user")
@@ -77,14 +116,41 @@ export default function Profile() {
       <Box>
         <MobileNavbar />
       </Box>
+
+      <Modal
+          open={callToActionSubscribeModalOpen}
+          onClose={onCloseSubscribeModal}
+          center
+          animationDuration={500}
+          classNames={{modal:"subscription-modal"}}
+          data-testid="2"
+          focusTrapped={false}
+          // ref={modalRef}
+        >
+          <Box className="subscription-modal-container">
+            Hello!
+          </Box>
+          
+          <Button
+            className="primary-btn-color default-btn-hover default-button entry-close-btn"
+            onClick={() => {
+                goToPage('subscription');
+                setCallToActionSubscribeModalOpen(false);
+              }
+            }
+          >
+            Close and Accept
+          </Button>
+      </Modal>
       
       <Modal
           open={deleteUserModalOpen}
-          onClose={onCloseModal}
+          onClose={onCloseDeleteUserModal}
           center
           animationDuration={500}
           classNames={{modal:"delete-user-modal"}}
           data-testid="2"
+          focusTrapped={false}
           // ref={modalRef}
         >
           <Box className="delete-user-modal-container">
@@ -228,10 +294,14 @@ export default function Profile() {
             </div>
           </div>
           <div className="cancel-subscription-button-box">
-            <Button className="navbar-button alert-btn-color alert-btn-hover" onClick={handleCancelSubscriptionClick}>
+            {subscriptionId ?
+              <Button className="navbar-button alert-btn-color alert-btn-hover" onClick={handleCancelSubscriptionClick}>
             {/* <Button className="navbar-button" onClick={() => {cancelSubscription(subscriptionId)}}> */}
                 Cancel subscription
             </Button>
+              :
+              <Box></Box>
+            }
             <Button className="navbar-button alert-btn-color alert-btn-hover" onClick={handleDeleteUserClick}>
                 Delete user
             </Button>

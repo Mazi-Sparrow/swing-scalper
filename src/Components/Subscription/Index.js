@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import { Box } from "@mui/system";
 import Button from "@mui/material/Button";
 
@@ -16,6 +17,10 @@ import { Context as SubscriptionContext } from "../../context/SubscriptionContex
 
 export default function Index() {
   const [availablePlans, setAvailablePlans] = useState([]);
+
+  const location = useLocation();
+  const history = useHistory();
+  const goToPage = React.useCallback((page) => history.push(`/${page}`), [history]);
 
   const {
     state: { token },
@@ -37,10 +42,15 @@ export default function Index() {
   async function handleClick(plan) {
     // make request to the checkout
 
-    const checkoutUrl = await createCheckout({ token, planId: plan.id });
-    if (checkoutUrl) {
-      window.location.replace(checkoutUrl);
-    }
+    const choosenPlanId = plan.id;
+
+    localStorage.setItem('choosenPlanId', choosenPlanId);
+
+    goToPage("signup");
+
+    // if (checkoutUrl) {
+    //   window.location.replace(checkoutUrl);
+    // }
   }
 
   return (

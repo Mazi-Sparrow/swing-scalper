@@ -42,7 +42,16 @@ export default function Confirm() {
     const code = data.get("code");
 
     const isConfirmed = await confirmEmail({ email, code });
-    if (isConfirmed) goToPage("subscription");
+    const isCheckoutUrl = localStorage.getItem('checkoutUrl');
+    if (isConfirmed) {
+      if (isCheckoutUrl) {
+        localStorage.removeItem('checkoutUrl');
+        window.location.replace(isCheckoutUrl);
+      } else {
+        localStorage.setItem('freePlan', 'true');
+        goToPage("profile");
+      }
+    }
   };
 
   return (

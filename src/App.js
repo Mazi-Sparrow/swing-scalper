@@ -99,7 +99,7 @@ function Root() {
         <Route path="/privacy-policy" component={PrivacyPolicy} />
         <Route path="/terms-of-service" component={TermsOfService} />
         <Route path="*" exact>
-          <Redirect to="/dashboard" />
+          <Redirect to="/profile" />
         </Route>
       </Switch>
     </>
