@@ -457,7 +457,7 @@ const LandingPage = () => {
             </Box>
             <Box className="homepage-button-box">
               <Button
-                className="homepage-terms-of-service-btn default-button"
+                className="homepage-terms-of-service-btn primary-btn-color logged-out-button-style"
                 size="large"
                 variant="contained"
                 href="/terms-of-service"
@@ -465,7 +465,7 @@ const LandingPage = () => {
                 Terms of Service
               </Button>
               <Button
-                className="homepage-privacy-policy-btn default-button"
+                className="homepage-privacy-policy-btn primary-btn-color logged-out-button-style"
                 size="large"
                 variant="contained"
                 href="/privacy-policy"
