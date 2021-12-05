@@ -23,6 +23,24 @@
     color: red;
 }
 
+.logged-out-button-style {
+    font-size: 16px;
+    background-color: transparent !important;
+    color: black !important;
+    border-bottom: 2px solid transparent;
+    box-shadow: none;
+}
+.logged-out-button-style:hover {
+    transition: all 0.5s ease-in-out;
+    background-color: transparent !important;
+    border-bottom: 2px solid black;
+    box-shadow: none;
+}
+
+.signin-button {
+    margin-right: 30px;
+}
+
 @media (max-width: 1200px) {
     .navbar-button {
         font-size: 12px;
