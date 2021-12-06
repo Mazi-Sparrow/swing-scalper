@@ -57,7 +57,7 @@ export default function ButtonAppBar() {
                   <Button className="primary-btn-color default-btn-hover navbar-button" color="inherit" href="/journal">
                     JOURNAL
                   </Button>
-                  <Button className="primary-btn-color default-btn-hover navbar-button" color="inherit" href="/watchlist">
+                  <Button className="primary-btn-color default-btn-hover navbar-button" color="inherit" href="/analyzer">
                     ANALYZER
                   </Button>
                 </>
