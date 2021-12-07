@@ -63,7 +63,7 @@ export default function Index() {
         setStateWatchList(response);
         setPriceTargetIndicator([stateWatchList?.open, stateWatchList?.open])
         setIsTickerExist(true);
-    } else if (!response.ticker) {
+    } else if (!response?.ticker) {
         setShowIncorrectTicker(true);
     }
   };
@@ -293,7 +293,7 @@ export default function Index() {
                     </Box>
                 </Box>
             }
-            { stateWatchList?.buyZone ?
+            {stateWatchList?.buyZone ?
                 <Box className="analyzer-linear-indicators">
                     <Box className="analyzer-linear-indicator">
                         <Chart
@@ -391,54 +391,54 @@ export default function Index() {
                 </Box>
             }
             {Object.keys(stateWatchList).length !== 0 &&
-            <Box>
-                <Box className="analyzer-block-title">Analysis</Box>
-                <Box className="analyzer-block-indicators">
-                    <Box className="analyzer-block-indicators-column">
-                        <Box className="analyzer-block-indicator">
-                            <Box className="analyzer-block-indicator-title">
-                                STOP LOSS
+                <Box>
+                    <Box className="analyzer-block-title">Analysis</Box>
+                    <Box className="analyzer-block-indicators">
+                        <Box className="analyzer-block-indicators-column">
+                            <Box className="analyzer-block-indicator">
+                                <Box className="analyzer-block-indicator-title">
+                                    STOP LOSS
+                                </Box>
+                                <Box className="analyzer-block-indicator-value">
+                                    {stateWatchList ? (stateWatchList.stopLoss ? stateWatchList.stopLoss : '') : ''}
+                                </Box>
                             </Box>
-                            <Box className="analyzer-block-indicator-value">
-                                {stateWatchList ? (stateWatchList.stopLoss ? stateWatchList.stopLoss : '') : ''}
+                            <Box className="analyzer-block-indicator">
+                                <Box className="analyzer-block-indicator-title">
+                                    PRICE TARGET 1
+                                </Box>
+                                <Box className="analyzer-block-indicator-value">
+                                    {stateWatchList ? (stateWatchList.priceTargets ? (stateWatchList.priceTargets[0] ? stateWatchList.priceTargets[0] : '') : '') : ''}
+                                </Box>
+                            </Box>
+                            <Box className="analyzer-block-indicator">
+                                <Box className="analyzer-block-indicator-title">
+                                    PRICE TARGET 2
+                                </Box>
+                                <Box className="analyzer-block-indicator-value">
+                                    {stateWatchList ? (stateWatchList.priceTargets ? (stateWatchList.priceTargets[1] ? stateWatchList.priceTargets[1] : '') : '') : ''}
+                                </Box>
                             </Box>
                         </Box>
-                        <Box className="analyzer-block-indicator">
-                            <Box className="analyzer-block-indicator-title">
-                                PRICE TARGET 1
+                        <Box className="analyzer-block-indicators-column">
+                            <Box className="analyzer-block-indicator">
+                                <Box className="analyzer-block-indicator-title">
+                                    RISK
+                                </Box>
+                                <Box className="analyzer-block-indicator-value negative-text">
+                                    {stateWatchList ? (stateWatchList.tradeRisk ? stateWatchList.tradeRisk : '') : ''}
+                                </Box>
                             </Box>
-                            <Box className="analyzer-block-indicator-value">
-                                {stateWatchList ? (stateWatchList.priceTargets ? (stateWatchList.priceTargets[0] ? stateWatchList.priceTargets[0] : '') : '') : ''}
-                            </Box>
-                        </Box>
-                        <Box className="analyzer-block-indicator">
-                            <Box className="analyzer-block-indicator-title">
-                                PRICE TARGET 2
-                            </Box>
-                            <Box className="analyzer-block-indicator-value">
-                                {stateWatchList ? (stateWatchList.priceTargets ? (stateWatchList.priceTargets[1] ? stateWatchList.priceTargets[1] : '') : '') : ''}
+                            <Box className="analyzer-block-indicator">
+                                <Box className="analyzer-block-indicator-title analyzer-block-indicator-reward">
+                                    REWARD
+                                </Box>
+                                <Box className={"analyzer-block-indicator-value " + (stateWatchList?.tradeReward < 0 ? "negative-text" : (stateWatchList?.tradeReward < stateWatchList?.tradeRisk ? "negative-text" : "positive-text"))}>
+                                    {stateWatchList ? (stateWatchList.tradeReward ? stateWatchList.tradeReward : '') : ''}
+                                </Box>
                             </Box>
                         </Box>
                     </Box>
-                    <Box className="analyzer-block-indicators-column">
-                        <Box className="analyzer-block-indicator">
-                            <Box className="analyzer-block-indicator-title">
-                                RISK
-                            </Box>
-                            <Box className="analyzer-block-indicator-value negative-text">
-                                {stateWatchList ? (stateWatchList.tradeRisk ? stateWatchList.tradeRisk : '') : ''}
-                            </Box>
-                        </Box>
-                        <Box className="analyzer-block-indicator">
-                            <Box className="analyzer-block-indicator-title analyzer-block-indicator-reward">
-                                REWARD
-                            </Box>
-                            <Box className={"analyzer-block-indicator-value " + (stateWatchList?.tradeReward < 0 ? "negative-text" : (stateWatchList?.tradeReward < stateWatchList?.tradeRisk ? "negative-text" : "positive-text"))}>
-                                {stateWatchList ? (stateWatchList.tradeReward ? stateWatchList.tradeReward : '') : ''}
-                            </Box>
-                        </Box>
-                    </Box>
-            </Box>
                     <Box className="analyzer-block-indicators-column analyzer-block-indicators-column-boxes">
                         <Box className={`analyzer-block-indicator analyzer-block-indicator-buyZone ${stateWatchList.buyZone === true ? 'positive' : (stateWatchList.buyZone === false ? 'negative' : '')}`}>
                             <Box className="analyzer-block-indicator-title analyzer-block-indicator-title-box">
@@ -453,11 +453,27 @@ export default function Index() {
                     </Box>
                 </Box>
             }
-            <Box className="analyzer-news-block">
-                <Box className="analyzer-news-title">
-                    NEWS
+                <Box className="analyzer-news-block">
+                    <Box className="analyzer-news-title">
+                        NEWS
+                    </Box>
+                        {stateWatchList.news.map((item, index) => {
+                            return (
+                                    <Box key={index} className="analyzer-news-item-wrapper">
+                                        <a href={item.url} className="analyzer-news-item">
+                                            <Box className="analyzer-news-item-image">
+                                                <img src={item.image} alt="news"/>
+                                            </Box>
+                                            <Box className="analyzer-news-item-info">
+                                                <Box className="analyzer-news-item-title">{item.title}</Box>
+                                                <Box className="analyzer-news-item-description">{item.description}</Box>
+                                            </Box>
+                                        </a>
+                                    </Box>
+                                )
+                            })
+                        }
                 </Box>
-            </Box>
             </>
         :
         <>

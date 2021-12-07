@@ -68,6 +68,12 @@ const getAnalyzer =
               vwap
               high
               low
+              news {
+                title
+                url
+                image
+                description
+              }
               company {
                 name
                 logo
