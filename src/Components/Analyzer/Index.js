@@ -466,7 +466,7 @@ export default function Index() {
                                             </Box>
                                             <Box className="analyzer-news-item-info">
                                                 <Box className="analyzer-news-item-title">{item.title}</Box>
-                                                <Box className="analyzer-news-item-description">{item.description}</Box>
+                                                <Box className="analyzer-news-item-description">{item.description?.length > 300 ? (item.description?.substring(0, 300) + '...') : item.description}</Box>
                                             </Box>
                                         </a>
                                     </Box>
