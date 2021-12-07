@@ -42,6 +42,7 @@ const LandingPage = () => {
           open={entryModalOpen}
           onClose={onCloseModal}
           center
+          classNames={{modal:"landing-page-modal responsive-modal"}}
           animationDuration={500}
           focusTrapped={false}
         >

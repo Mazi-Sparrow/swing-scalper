@@ -1,6 +1,9 @@
+.landing-page-modal {
+    height: 85vh;
+}
+
 .react-responsive-modal-modal {
     width: 60%;
-    height: 85vh;
     /* padding-top: 50px !important; */
     text-align: center !important;
 }
@@ -425,9 +428,11 @@ article.homepage-welcome-text b {
 }
 
 @media (max-width: 1025px) {
+    .landing-page-modal {
+        height: 80vh;
+    }
     .react-responsive-modal-modal {
         width: 80%;
-        height: 80vh;
     }
 
     .entry-modal-bottom-text,
@@ -541,8 +546,10 @@ article.homepage-welcome-text b {
 }
 
 @media (max-width: 470px) {
-    .react-responsive-modal-modal {
+    .landing-page-modal {
         width: 90%;
+    }
+    .react-responsive-modal-modal {
         height: 70vh;
     }
 

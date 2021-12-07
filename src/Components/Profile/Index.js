@@ -30,6 +30,7 @@ export default function Profile() {
   const [subscriptionId, setSubscriptionId] = useState('');
   const [deleteUserModalOpen, setDeleteUserModalOpen] = useState(false);
   const [callToActionSubscribeModalOpen, setCallToActionSubscribeModalOpen] = useState(false);
+  // const [callToActionSubscribeModalOpen, setCallToActionSubscribeModalOpen] = useState(false);
 
   useEffect(() => {
     if (token) {
@@ -63,10 +64,11 @@ export default function Profile() {
       // console.log(user.subscriptions[0].id);
       if (user.subscriptions.length !== 0) {
         setSubscriptionId(user.subscriptions[0].id)
-        localStorage.removeItem('freePlan');
-      } else {
-        localStorage.setItem('freePlan', 'true');
-      }
+        // localStorage.removeItem('freePlan');
+      } 
+      // else {
+      //   localStorage.setItem('freePlan', 'true');
+      // }
     }
   }, [user])
 
@@ -122,25 +124,47 @@ export default function Profile() {
           onClose={onCloseSubscribeModal}
           center
           animationDuration={500}
-          classNames={{modal:"subscription-modal"}}
+          classNames={{modal:"subscription-modal responsive-modal"}}
           data-testid="2"
           focusTrapped={false}
           // ref={modalRef}
         >
-          <Box className="subscription-modal-container">
-            Hello!
+          <Box className="subscription-modal-container modal-title">
+            What you get with the free plan
+          </Box>
+          <Box className="subscription-modal-features">
+            <Box className="subscription-modal-feature">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in imperdiet libero. Fusce posuere arcu ut eros finibus accumsan. Morbi tempor tortor libero, quis varius quam pharetra ut. Nulla ut diam ut orci auctor facilisis eget at leo. Nunc et tortor sed nunc porttitor tempus ut ac augue. Morbi hendrerit augue lobortis augue laoreet dapibus.
+            </Box>
+            <Box className="subscription-modal-feature">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in imperdiet libero. Fusce posuere arcu ut eros finibus accumsan. Morbi tempor tortor libero, quis varius quam pharetra ut. Nulla ut diam ut orci auctor facilisis eget at leo. Nunc et tortor sed nunc porttitor tempus ut ac augue. Morbi hendrerit augue lobortis augue laoreet dapibus.
+            </Box>
+            <Box className="subscription-modal-feature">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in imperdiet libero. Fusce posuere arcu ut eros finibus accumsan. Morbi tempor tortor libero, quis varius quam pharetra ut. Nulla ut diam ut orci auctor facilisis eget at leo. Nunc et tortor sed nunc porttitor tempus ut ac augue. Morbi hendrerit augue lobortis augue laoreet dapibus.
+            </Box>
           </Box>
           
-          <Button
-            className="primary-btn-color default-btn-hover default-button entry-close-btn"
-            onClick={() => {
-                goToPage('subscription');
-                setCallToActionSubscribeModalOpen(false);
+          <Box className="delete-user-button-box">
+            <Button
+              className="primary-btn-color default-btn-hover default-button entry-close-btn"
+              onClick={() => {
+                  goToPage('subscription');
+                  setCallToActionSubscribeModalOpen(false);
+                }
               }
-            }
-          >
-            Close and Accept
-          </Button>
+            >
+              UPGRADE FOR MORE
+            </Button>
+            <Button
+              className="primary-btn-color default-btn-hover default-button entry-close-btn"
+              onClick={() => {
+                  setCallToActionSubscribeModalOpen(false);
+                }
+              }
+            >
+              CONTINUE
+            </Button>
+          </Box>
       </Modal>
       
       <Modal

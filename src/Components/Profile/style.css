@@ -8,12 +8,12 @@
 }
 
 .propt-deletion-box {
-    margin-top: 50px;
+    margin-top: 30px;
     font-size: 30px;
 }
 
 .reason-deletion-box {
-    margin-top: 50px;
+    margin-top: 30px;
     margin-bottom: 20px;
     font-size: 24px;
 }
@@ -24,14 +24,7 @@
 }
 
 .delete-user-modal {
-    height: 48vh !important;
-}
-
-.delete-user-button-box-wrapper {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    /* height: 48vh !important; */
 }
 
 .delete-user-button-box {
@@ -39,8 +32,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 20px;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 .cancel-subscription-button-box {
@@ -49,6 +41,53 @@
     align-items: center;
     justify-content: space-between;
 }
+
+/* MODALS */
+
+.subscription-modal {
+    width: 70% !important;
+    max-width: none !important;
+}
+
+.subscription-modal-container {
+    margin-top: 30px;
+}
+
+.subscription-modal-features {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.subscription-modal-feature {
+    width: 33%;
+    -webkit-box-shadow: 4px 4px 30px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 4px 4px 30px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 4px 4px 30px 0px rgba(34, 60, 80, 0.2);
+    margin: 0px 10px;
+}
+
+
+@media (max-width: 1000px) {
+    .subscription-modal-features {
+        flex-direction: column;
+    } 
+    .subscription-modal-feature {
+        width: 100%;
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 700px) {
+    .subscription-modal-feature {
+        width: 100%;
+    }
+}
+
+/* END MODALS */
 
 @media (max-width: 1300px) {
     
