@@ -74,6 +74,11 @@ export default function ButtonAppBar() {
                 <Button className="primary-btn-color default-btn-hover navbar-button" color="inherit" href="/profile">
                   Profile
                 </Button>
+
+                
+                <Button className="primary-btn-color default-btn-hover navbar-button" color="inherit" href="/support">
+                  Support
+                </Button>
                 
           </AppBarSection>
 

@@ -40,6 +40,7 @@ export default function TemporaryDrawer() {
     {name: "INFORMATION", link:"/information"},
     // {name: "SUBSCRIPTION", link:"/subscription"},
     {name: "PROFILE", link:"/profile"},
+    {name: "SUPPORT", link:"/support"},
   ]
 
   const LoggedOutData=[
