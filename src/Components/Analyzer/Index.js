@@ -183,13 +183,14 @@ export default function Index() {
             {errorMessage ? <h4 style={{ color: "red", textAlign: "center" }}>{errorMessage}</h4> : null}
             <Box component="form" noValidate sx={{ mt: 3 }}>
             <MaterialGrid container justifyContent="center" style={{ marginTop: "30px" }}>
-                <Paper sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: "50%" }}>
+                <Paper sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: "50%" }} className="input-search-field">
                 <InputBase
                     sx={{ ml: 1, flex: 1, fontSize: "1.5rem" }}
                     placeholder="Enter a Ticker"
                     inputProps={{ "aria-label": "search watchList" }}
                     value={ticker}
                     onChange={(e) => setTicker(e.target.value)}
+                    className="input-search-field"
                 />
 
                 <IconButton
@@ -274,6 +275,14 @@ export default function Index() {
                             </Box>
                             <Box className="analyzer-information-about-company-volume">
                                 {stateWatchList?.volume ? stateWatchList.volume : ''}    
+                            </Box>
+                        </Box>
+                        <Box className="analyzer-information-about-company-indicators">
+                            <Box className="analyzer-information-about-company-title">
+                                AVERAGE VOLUME
+                            </Box>
+                            <Box className="analyzer-information-about-company-average-volume">
+                                {stateWatchList?.averageVolume ? stateWatchList.averageVolume : ''}    
                             </Box>
                         </Box>
                         <Box className="analyzer-information-about-company-indicators">
@@ -390,6 +399,18 @@ export default function Index() {
                     No Safe Trade Setup
                 </Box>
             }
+            <Box className="analyzer-block-indicators-column analyzer-block-indicators-column-boxes">
+                <Box className={`analyzer-block-indicator analyzer-block-indicator-buyZone ${stateWatchList.buyZone === true ? 'positive' : (stateWatchList.buyZone === false ? 'negative' : '')}`}>
+                    <Box className="analyzer-block-indicator-title analyzer-block-indicator-title-box">
+                        BUY ZONE
+                    </Box>
+                </Box>
+                <Box className={`analyzer-block-indicator analyzer-block-indicator-buyTrigger ${stateWatchList.buyTrigger === true ? 'positive' : (stateWatchList.buyTrigger === false ? 'negative' : '')}`}>
+                    <Box className="analyzer-block-indicator-title analyzer-block-indicator-title-box">
+                        BUY TRIGGER
+                    </Box>
+                </Box>
+            </Box>
             {Object.keys(stateWatchList).length !== 0 &&
                 <Box>
                     <Box className="analyzer-block-title">Analysis</Box>
@@ -439,18 +460,6 @@ export default function Index() {
                             </Box>
                         </Box>
                     </Box>
-                    <Box className="analyzer-block-indicators-column analyzer-block-indicators-column-boxes">
-                        <Box className={`analyzer-block-indicator analyzer-block-indicator-buyZone ${stateWatchList.buyZone === true ? 'positive' : (stateWatchList.buyZone === false ? 'negative' : '')}`}>
-                            <Box className="analyzer-block-indicator-title analyzer-block-indicator-title-box">
-                                BUY ZONE
-                            </Box>
-                        </Box>
-                        <Box className={`analyzer-block-indicator analyzer-block-indicator-buyTrigger ${stateWatchList.buyTrigger === true ? 'positive' : (stateWatchList.buyTrigger === false ? 'negative' : '')}`}>
-                            <Box className="analyzer-block-indicator-title analyzer-block-indicator-title-box">
-                                BUY TRIGGER
-                            </Box>
-                        </Box>
-                    </Box>
                 </Box>
             }
                 <Box className="analyzer-news-block">
@@ -458,19 +467,21 @@ export default function Index() {
                         NEWS
                     </Box>
                         {stateWatchList.news.map((item, index) => {
-                            return (
-                                    <Box key={index} className="analyzer-news-item-wrapper">
-                                        <a href={item.url} className="analyzer-news-item">
-                                            <Box className="analyzer-news-item-image">
-                                                <img src={item.image} alt="news"/>
-                                            </Box>
-                                            <Box className="analyzer-news-item-info">
-                                                <Box className="analyzer-news-item-title">{item.title}</Box>
-                                                <Box className="analyzer-news-item-description">{item.description?.length > 300 ? (item.description?.substring(0, 300) + '...') : item.description}</Box>
-                                            </Box>
-                                        </a>
-                                    </Box>
-                                )
+                            if (index < 2) {
+                                return (
+                                        <Box key={index} className="analyzer-news-item-wrapper">
+                                            <a href={item.url} className="analyzer-news-item">
+                                                <Box className="analyzer-news-item-image">
+                                                    <img src={item.image} alt="news"/>
+                                                </Box>
+                                                <Box className="analyzer-news-item-info">
+                                                    <Box className="analyzer-news-item-title">{item.title}</Box>
+                                                    <Box className="analyzer-news-item-description">{item.description?.length > 300 ? (item.description?.substring(0, 300) + '...') : item.description}</Box>
+                                                </Box>
+                                            </a>
+                                        </Box>
+                                    )
+                                }
                             })
                         }
                 </Box>
