@@ -37,6 +37,7 @@ import Profile from "./Components/Profile/Index";
 import LandingPage from './Components/LandingPage/Index';
 import PrivacyPolicy from './Components/PrivacyPolicy/Index';
 import TermsOfService from "./Components/TermsOfService/Index";
+import Support from "./Components/Support/Index";
 
 Amplify.configure(awsconfig);
 
@@ -98,6 +99,7 @@ function Root() {
         <Route path="/profile" component={Profile} />
         <Route path="/privacy-policy" component={PrivacyPolicy} />
         <Route path="/terms-of-service" component={TermsOfService} />
+        <Route path="/support" component={Support} />
         <Route path="*" exact>
           <Redirect to="/profile" />
         </Route>
