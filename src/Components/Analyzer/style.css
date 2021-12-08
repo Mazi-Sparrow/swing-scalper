@@ -49,10 +49,11 @@ a {
 .analyzer-page-content {
     display: flex;
     flex-direction: column;
+    margin-top: 0 !important;
 }
 
 .analyzer-information-about-company {
-    margin-top: 60px;
+    /* margin-top: 20px; */
     width: 90%;
     /* height: 200px; */
     /* background-color: #80808080; */
@@ -63,7 +64,7 @@ a {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    padding: 15px;
+    padding-top: 15px;
 }
 
 .analyzer-information-about-company-column {
@@ -133,13 +134,13 @@ a {
 }
 
 .analyzer-linear-indicator {
-    margin: 40px 0px;
+    margin: 10px 0px;
 }
 
 .analyzer-block-title {
     font-size: 34px;
     text-align: center;
-    margin-top: 40px;
+    margin-top: 10px;
 }
 
 .analyzer-block-indicators {
@@ -160,7 +161,7 @@ a {
 }
 .analyzer-block-indicator-title-box {
     color: white;
-    font-size: 22px;
+    font-size: 18px;
 }
 
 .analyzer-block-indicator-value {
@@ -200,14 +201,14 @@ a {
 
 .analyzer-block-indicator-buyZone,
 .analyzer-block-indicator-buyTrigger {
-    width: 230px;
-    height: 230px;
+    width: 200px;
+    height: 125px;
 }
 
 /* NEWS */
 
 .analyzer-news-block {
-    margin: 40px auto;
+    margin: 0px auto;
     background-color: #80808020;
     width: 80%;
     border-radius: 20px;
@@ -268,3 +269,47 @@ a {
 }
 
 /* END NEWS */
+
+@media (max-width: 1400px) {
+    .analyzer-information-about-company {
+        flex-direction: column;
+    }
+    .analyzer-block-indicators {
+        width: 90%;
+        flex-direction: column;
+    }
+    .analyzer-block-indicator {
+        margin: 10px 20px;
+    }
+    .analyzer-block-title {
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    .input-search-field {
+        width: 80%;
+    }
+    .analyzer-information-about-company-column {
+        flex-direction: column;
+    }
+    .analyzer-block-indicators-column-boxes {
+        flex-direction: column;
+        margin: 20px 0px;
+    }
+    .analyzer-block-indicators-column-boxes div {
+        margin: 10px 0px;
+    }
+    .analyzer-news-item {
+        flex-direction: column;
+    }
+    .analyzer-news-item div {
+        margin: 10px 0px;
+    }
+    .analyzer-news-item-info {
+        max-width: 100%;
+    }
+    .analyzer-block-indicators-column {
+        flex-direction: column;
+    }
+}
