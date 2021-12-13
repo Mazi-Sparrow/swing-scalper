@@ -65,6 +65,7 @@ const getAnalyzer =
               previousClose
               priceChange
               volume
+              averageVolume
               vwap
               high
               low
@@ -101,6 +102,52 @@ const getAnalyzer =
     }
   };
 
+  const listWatchlist =
+  (dispatch) =>
+  async ({ token, ticker }) => {
+    try {
+      dispatch({ type: "add_loading" });
+      const response = await graphqlClient.request(
+        gql`
+          query listWatchlist {
+            listWatchlist {
+              items {
+                company {
+                  name
+                  logo
+                }
+                currentPrice
+                buyTrigger
+                buyZone
+                tradeReward
+                tradeRisk
+                ticker
+              }
+            }
+          }
+        `,
+        { ticker },
+        { Authorization: `Bearer ${token}` }
+      );
+      dispatch({ type: "remove_loading" });
+      // console.log(response);
+      if (response.listWatchlist) {
+        dispatch({ action: "add_watchList", payload: response.listWatchlist });
+        dispatch({ type: "clear_errorMessage" });
+        return response.listWatchlist;
+      }
+      return false;
+    } catch (error) {
+      dispatch({ type: "remove_loading" });
+
+      dispatch({
+        type: "add_error",
+        payload: `Invalid Request`,
+      });
+    }
+  };
+
+
 const clearErrorMessage = (dispatch) => () => {
   dispatch({ type: "clear_errorMessage" });
 };
@@ -110,6 +157,7 @@ export const { Context, Provider } = createDataContext(
   {
     clearErrorMessage,
     getAnalyzer,
+    listWatchlist,
   },
   { watchList: null, errorMessage: "", isLoading: false }
 );
