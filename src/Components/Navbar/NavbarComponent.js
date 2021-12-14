@@ -60,6 +60,10 @@ export default function ButtonAppBar() {
                   <Button className="primary-btn-color default-btn-hover navbar-button" color="inherit" href="/analyzer">
                     ANALYZER
                   </Button>
+                  <Button className="primary-btn-color default-btn-hover navbar-button" color="inherit" href="/trade-streams">
+                    TRADE STREAMS
+                  </Button>
+                  
                 </>
               ) : null}
 

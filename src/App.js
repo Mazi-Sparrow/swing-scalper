@@ -38,7 +38,7 @@ import LandingPage from './Components/LandingPage/Index';
 import PrivacyPolicy from './Components/PrivacyPolicy/Index';
 import TermsOfService from "./Components/TermsOfService/Index";
 import Support from "./Components/Support/Index";
-// import TradeStreams from "./Components/TradeStreams/Index";
+import TradeStreams from "./Components/TradeStreams/Index";
 import NewWatchList from "./Components/NewWatchlist/Index";
 
 Amplify.configure(awsconfig);
@@ -102,7 +102,7 @@ function Root() {
         <Route path="/privacy-policy" component={PrivacyPolicy} />
         <Route path="/terms-of-service" component={TermsOfService} />
         <Route path="/support" component={Support} />
-        {/* <Route path="/trade-streams" component={TradeStreams} /> */}
+        <Route path="/trade-streams" component={TradeStreams} />
         <Route path="/watch-list" component={NewWatchList} />
         <Route path="*" exact>
           <Redirect to="/profile" />
