@@ -470,7 +470,7 @@ export default function Index() {
                             if (index < 2) {
                                 return (
                                         <Box key={index} className="analyzer-news-item-wrapper">
-                                            <a href={item.url} className="analyzer-news-item">
+                                            <a href={item.url} target="_blank" className="analyzer-news-item">
                                                 <Box className="analyzer-news-item-image">
                                                     <img src={item.image} alt="news"/>
                                                 </Box>

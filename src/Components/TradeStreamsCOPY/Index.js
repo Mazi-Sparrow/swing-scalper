@@ -5,8 +5,6 @@ import Button from "@mui/material/Button";
 // import { Box } from "@mui/system";
 import Box from "@mui/material/Box";
 import { Grid, GridColumn as Column } from "@progress/kendo-react-grid";
-import { DropDownList } from "@progress/kendo-react-dropdowns";
-import Select from 'react-select'
 import { CardHeader, CircularProgress } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import { Grid as MaterialGrid } from "@mui/material";
@@ -18,8 +16,6 @@ import Footer from "./Footer";
 import { Context as AuthContext } from "../../context/AuthContext";
 import { Context as WatchListContext } from "../../context/WatchListContext";
 
-import './style.css'
-
 export default function Index() {
   const {
     state: { token },
@@ -29,103 +25,50 @@ export default function Index() {
     listTrades,
   } = React.useContext(WatchListContext);
 
-  async function loadData () {
-    const response = await listTrades({ token, ticker, sortDirection, limit, sortBy });
-    if (response) {
-      prepareData(response);
-    }
-  }
-  const getRealTimeData = () => {
-    setInterval(() => {
-      loadData()
-    }, 5000)
-  }
-  React.useEffect(() => {
-    getRealTimeData();
-  }, [])
-
 
   const [stateTrades, setStateTrades] = React.useState([]);
   const [ticker, setTicker] = React.useState("");
   const [sortDirection, setSortDirection] = React.useState("ASC");
   const [limit, setLimit] = React.useState(20);
-  const [sortBy, setSortBy] = React.useState("Time");
+  const [sortBy, setSortBy] = React.useState("TIME");
 
 
-  // const sortDirectionList = ["ASC", "DESC"];
-  // const sortByList = ["TICKER", "SIZE", "PRICE", "TIME"];
-
-  const sortByList = [
-    { value: 'TICKER', label: 'Ticker' },
-    { value: 'SIZE', label: 'Size' },
-    { value: 'PRICE', label: 'Price' },
-    { value: 'TIME', label: 'Time' },
-  ];
-
-  const sortDirectionList = [
-    { value: 'ASC', label: 'Ascending' },
-    { value: 'DESC', label: 'Descending' },
-  ];
-
-
-  const prepareData = (data) => {
-    let trades = data;
-    trades.forEach(item => {
-      let conditions = [];
-      item.conditions.forEach((item, index, array) => {
-        let condition = ''
-        if (array.length > 1 && index === 0) {
-          condition += '1) ';
-        }
-        if (index !== 0) {
-          condition += (index+1) + ') ';
-        }
-        condition += item.title + ': ' + item.description;
-        conditions.push(condition);
+  const handleSearch = async () => {
+    const response = await listTrades({ token, ticker, sortDirection, limit, sortBy});
+    if (response) {
+      let trades = response;
+      trades.forEach(item => {
+        let conditions = [];
+        item.conditions.forEach((item, index, array) => {
+          let condition = ''
+          if (array.length > 1 && index === 0) {
+            condition += '1) ';
+          }
+          if (index !== 0) {
+            condition += (index+1) + ') ';
+          }
+          condition += item.title + ': ' + item.description;
+          conditions.push(condition);
+        });
+        let conditionString = conditions.join('; ');
+        item.conditions = conditionString;
       });
-      let conditionString = conditions.join('; ');
-      item.conditions = conditionString;
-    });
-    setStateTrades(trades);
+      setStateTrades(trades);
+    }
   };
-
-
-  // const handleSearch = async () => {
-  //   const response = await listTrades({ token, ticker, sortDirection, limit, sortBy});
-  //   if (response) {
-  //     let trades = response;
-  //     trades.forEach(item => {
-  //       let conditions = [];
-  //       item.conditions.forEach((item, index, array) => {
-  //         let condition = ''
-  //         if (array.length > 1 && index === 0) {
-  //           condition += '1) ';
-  //         }
-  //         if (index !== 0) {
-  //           condition += (index+1) + ') ';
-  //         }
-  //         condition += item.title + ': ' + item.description;
-  //         conditions.push(condition);
-  //       });
-  //       let conditionString = conditions.join('; ');
-  //       item.conditions = conditionString;
-  //     });
-  //     setStateTrades(trades);
-  //   }
-  // };
 
 
 
   // responsive columns on window resize  
   const columns = document.getElementsByClassName('k-header');
-  const [columnWidth, setColumnWidth] = React.useState((window.innerWidth)/columns.length);
+  const [columnWidth, setColumnWidth] = React.useState((window.innerWidth+3800)/columns.length);
   React.useEffect(() => {
     window.addEventListener("resize", handleResize);
     handleResize();
   }, []);
   const handleResize = () => {
     if ((window.innerWidth/columns.length) > 100) {
-      setColumnWidth(((window.innerWidth)/columns.length) + 'px');
+      setColumnWidth(((window.innerWidth+3800)/columns.length) + 'px');
     }
     else {
       setColumnWidth('100px');
@@ -148,17 +91,6 @@ export default function Index() {
   };
 
 
-  const handleOptionSortByChange = (selectedOption) => {
-    setSortBy(selectedOption.value);
-    loadData();
-  }
-  const handleOptionSortDirectionChange = (selectedOption) => {
-    setSortDirection(selectedOption.value);
-    loadData();
-  }
-
-
-
   return (
     <>
       <Box>
@@ -170,7 +102,7 @@ export default function Index() {
 
       <div className="watchlist-page-content page-content">
         {errorMessage ? <h4 style={{ color: "red", textAlign: "center" }}>{errorMessage}</h4> : null}
-        {/* <Box component="form" noValidate sx={{ mt: 3 }}>
+        <Box component="form" noValidate sx={{ mt: 3 }}>
           <MaterialGrid container justifyContent="center" style={{ marginTop: "30px" }}>
             <Paper sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: "50%" }}>
               <InputBase
@@ -200,35 +132,7 @@ export default function Index() {
               </IconButton>
             </Paper>
           </MaterialGrid>
-        </Box> */}
-        <div className="options-block">
-          <Box className="filter-option">
-            <Box className="filter-option-name">
-              Sort by
-            </Box>
-            <Select
-              options={sortByList}
-              onChange={handleOptionSortByChange} 
-            />
-          </Box>
-          <Box className="filter-option">
-            <Box className="filter-option-name">
-              Sort direction
-            </Box>
-            <Select
-              options={sortDirectionList}
-              onChange={handleOptionSortDirectionChange}
-            />
-          </Box>
-          {/* <Box className="filter-option">
-            <Box className="filter-option-name">
-
-            </Box>
-            <Select
-              options={sortByList}
-            />
-          </Box> */}
-        </div>
+        </Box>
 
         <div
           // style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%" }}
@@ -262,14 +166,6 @@ export default function Index() {
                 editable={false} 
                 width={setWidth()}
               /> */}
-              <Column
-                field="ticker"
-                title="Ticker"
-                filterable={false}
-                editable={false}
-                // width={setWidth()}
-                width="100px"
-              />
               <Column
                 field="price"
                 title="Price $"
@@ -316,7 +212,7 @@ export default function Index() {
                 filterable={false} 
                 editable={false}
                 // width={setWidth()}
-                width="750px"
+                width="850px"
               />
             </Grid>
           </Box>
