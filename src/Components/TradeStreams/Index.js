@@ -4,7 +4,7 @@ import InputBase from "@mui/material/InputBase";
 import Button from "@mui/material/Button";
 // import { Box } from "@mui/system";
 import Box from "@mui/material/Box";
-import { Grid, GridColumn as Column } from "@progress/kendo-react-grid";
+import { Grid, GridColumn as Column, GridToolbar } from "@progress/kendo-react-grid";
 import { DropDownList } from "@progress/kendo-react-dropdowns";
 import Select from 'react-select'
 import { CardHeader, CircularProgress } from "@mui/material";
@@ -35,21 +35,31 @@ export default function Index() {
       prepareData(response);
     }
   }
+  
   const getRealTimeData = () => {
-    setInterval(() => {
-      loadData()
+    let currentIntervalId = setInterval(() => {
+      loadData();
     }, 5000)
+    setIntervalId(currentIntervalId);
   }
+
   React.useEffect(() => {
+    loadData();
     getRealTimeData();
   }, [])
+
+
+  const [intervalId, setIntervalId] = React.useState(0);
 
 
   const [stateTrades, setStateTrades] = React.useState([]);
   const [ticker, setTicker] = React.useState("");
   const [sortDirection, setSortDirection] = React.useState("ASC");
   const [limit, setLimit] = React.useState(20);
-  const [sortBy, setSortBy] = React.useState("Time");
+  const [sortBy, setSortBy] = React.useState("TIME");
+
+  
+  const [dataLoaded, setDataLoaded] = React.useState(true);
 
 
   // const sortDirectionList = ["ASC", "DESC"];
@@ -87,34 +97,17 @@ export default function Index() {
       item.conditions = conditionString;
     });
     setStateTrades(trades);
+    console.log("State current:")
+    console.log(stateTrades);
+    // setDataLoaded(false);
+    // setDataLoaded(true);
   };
 
-
-  // const handleSearch = async () => {
-  //   const response = await listTrades({ token, ticker, sortDirection, limit, sortBy});
-  //   if (response) {
-  //     let trades = response;
-  //     trades.forEach(item => {
-  //       let conditions = [];
-  //       item.conditions.forEach((item, index, array) => {
-  //         let condition = ''
-  //         if (array.length > 1 && index === 0) {
-  //           condition += '1) ';
-  //         }
-  //         if (index !== 0) {
-  //           condition += (index+1) + ') ';
-  //         }
-  //         condition += item.title + ': ' + item.description;
-  //         conditions.push(condition);
-  //       });
-  //       let conditionString = conditions.join('; ');
-  //       item.conditions = conditionString;
-  //     });
-  //     setStateTrades(trades);
-  //   }
-  // };
-
-
+  const updateData = () => {
+    clearInterval(intervalId);
+    loadData();
+    getRealTimeData();
+  }
 
   // responsive columns on window resize  
   const columns = document.getElementsByClassName('k-header');
@@ -150,11 +143,11 @@ export default function Index() {
 
   const handleOptionSortByChange = (selectedOption) => {
     setSortBy(selectedOption.value);
-    loadData();
+    // loadData();
   }
   const handleOptionSortDirectionChange = (selectedOption) => {
     setSortDirection(selectedOption.value);
-    loadData();
+    // loadData();
   }
 
 
@@ -220,20 +213,20 @@ export default function Index() {
               onChange={handleOptionSortDirectionChange}
             />
           </Box>
-          {/* <Box className="filter-option">
-            <Box className="filter-option-name">
+          <Button
+              className="primary-btn-color default-btn-hover default-button entry-close-btn"
+              onClick={updateData}
+            >
+              APPLY FILTERS
+          </Button>
 
-            </Box>
-            <Select
-              options={sortByList}
-            />
-          </Box> */}
         </div>
-
+      {dataLoaded && 
+      <>
         <div
           // style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%" }}
         >
-          <Box my={12} mb={15}>
+          <Box my={3} mb={15}>
             <Grid
               style={{
                 textAlign: "justify",
@@ -248,6 +241,16 @@ export default function Index() {
               pageable={true}
               onPageChange={pageChange}
             >
+            <GridToolbar>
+              <Button
+                title="Refresh"
+                className="k-primary k-button k-grid-edit-command"
+                style={{ padding: "5px 10px" }}
+                onClick={updateData}
+              >
+                Refresh
+              </Button>
+            </GridToolbar>
               {/* <Column 
                 field="exchangeID" 
                 title="Exchange ID" 
@@ -321,6 +324,8 @@ export default function Index() {
             </Grid>
           </Box>
         </div>
+      </>
+      }
       </div>
       <Footer />
     </>

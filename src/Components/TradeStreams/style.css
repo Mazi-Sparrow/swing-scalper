@@ -20,12 +20,14 @@
 .filter-option {
     width: 20%;
     margin-right: 20px;
-    margin-bottom: -60px;
-    margin-top: 40px;
     display: flex;
     flex-direction: column;
 }
 .filter-option-name {
     margin-left: 10px;
     margin-bottom: 10px;
+}
+
+.options-block button {
+    font-size: 1rem !important;
 }

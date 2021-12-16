@@ -4,7 +4,7 @@ import InputBase from "@mui/material/InputBase";
 import Button from "@mui/material/Button";
 // import { Box } from "@mui/system";
 import Box from "@mui/material/Box";
-import { Grid, GridColumn as Column } from "@progress/kendo-react-grid";
+import { Grid, GridColumn as Column, GridToolbar } from "@progress/kendo-react-grid";
 import { CardHeader, CircularProgress } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import { Grid as MaterialGrid } from "@mui/material";
@@ -47,7 +47,7 @@ const zoneBackGround = (props) => {
 const triggerBackGround = (props) => {
   const buyTrigger = props.dataItem.buyTrigger;
 
-  if (buyTrigger == true ) {
+  if (buyTrigger === true ) {
     return (
       <td
         style={{
@@ -107,13 +107,13 @@ export default function Index() {
     }, 5000)
   }
   React.useEffect(() => {
+    loadData();
     getRealTimeData();
   }, [])
 
 
   React.useEffect(() => {
     if (stateWatchList?.items?.length !== 0) {
-      console.log(stateWatchList);
       setDataLoaded(false);
       setLoading(false);
       setDataLoaded(true);
@@ -128,7 +128,6 @@ export default function Index() {
     window.addEventListener("resize", handleResize);
     handleResize();
   }, []);
-
   const handleResize = () => {
     if ((window.innerWidth/columns.length) > 100) {
       setColumnWidth(((window.innerWidth-50)/columns.length) + 'px');
@@ -137,9 +136,12 @@ export default function Index() {
       setColumnWidth('100px');
     }
   }
-
   const setWidth = () => {
     return columnWidth;
+  }
+
+  const updateData = () => {
+    loadData();
   }
 
   return (
@@ -168,6 +170,16 @@ export default function Index() {
                   }}
                   data={stateWatchList.items}
                 >
+                  <GridToolbar>
+                    <Button
+                      title="Refresh"
+                      className="k-primary k-button k-grid-edit-command"
+                      style={{ padding: "5px 10px" }}
+                      onClick={updateData}
+                    >
+                      Refresh
+                    </Button>
+                  </GridToolbar>
                   <Column 
                     field="ticker" 
                     title="Ticker" 
