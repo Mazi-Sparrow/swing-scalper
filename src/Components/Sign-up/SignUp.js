@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import Avatar from "@mui/material/Avatar";
+import Shake from 'react-reveal/Shake';
+import Slide from 'react-reveal/Slide';
+
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import Link from "@mui/material/Link";
@@ -115,170 +117,181 @@ export default function SignUp() {
         }}
       >
         <div style={{ marginTop: "1.5em" }}></div>
-        {errorMessage ? <Typography style={{ color: "red" }}>{errorMessage}</Typography> : null}
+        {errorMessage ? 
+        <Shake>
+          <Box className="enter-pages-error-message">
+            {errorMessage}
+          </Box> 
+        </Shake>
+          : 
+        null}
 
         {state.formError ? (
-          <Typography style={{ color: "red" }}>{state.formError}</Typography>
+          <Shake>
+            <Box className="enter-pages-error-message">
+              {state.formError}
+            </Box>
+          </Shake>
         ) : null}
-        {/* <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-          <LockOutlinedIcon />
-        </Avatar> */}
-        <Box className="enter-pages-title">
-          Welcome!
-        </Box>
-        <Box className="enter-pages-subtitle">
-          Create Your Account
-        </Box>
-        
-        <Box className="sign-up-form-controls" component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                className="enter-pages-text-field"
-                autoComplete="given-name"
-                name="firstName"
-                onChange={onChange}
-                value={state.firstName}
-                required
-                fullWidth
-                id="firstName"
-                // label="First Name"
-                placeholder="First Name"
-                autoFocus
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <PersonIcon />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                className="enter-pages-text-field"
-                required
-                fullWidth
-                onChange={onChange}
-                value={state.lastName}
-                id="lastName"
-                // label="Last Name"
-                placeholder="Last Name"
-                name="lastName"
-                autoComplete="family-name"
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <PersonIcon />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                className="enter-pages-text-field"
-                required
-                fullWidth
-                onChange={onChange}
-                value={state.email}
-                id="email"
-                // label="Email Address"
-                placeholder="Email Address"
-                name="email"
-                autoComplete="email"
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <MailOutlineIcon />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                className="enter-pages-text-field"
-                required
-                fullWidth
-                onChange={onChange}
-                value={state.password}
-                name="password"
-                // label="Password"
-                placeholder="Create Password"
-                type={showPassword ? "text" : "password"}
-                id="password"
-                autoComplete="new-password"
-                InputProps={{ // <-- This is where the toggle button is added.
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <PasswordIcon />
-                    </InputAdornment>
-                  ),
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                      >
-                        {showPassword ? <Visibility /> : <VisibilityOff />}
-                      </IconButton>
-                    </InputAdornment>
-                  )
-                }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                className="enter-pages-text-field"
-                required
-                fullWidth
-                onChange={onChange}
-                value={state.confirmPassword}
-                name="confirmPassword"
-                // label="confirmPassword"
-                placeholder="Confirm Password"
-                type={showPasswordConfirm ? "text" : "password"}
-                id="password"
-                autoComplete="new-password"
-                InputProps={{ // <-- This is where the toggle button is added.
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <PasswordIcon />
-                    </InputAdornment>
-                  ),
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPasswordConfirm}
-                        onMouseDown={handleMouseDownPasswordConfirm}
-                      >
-                        {showPasswordConfirm ? <Visibility /> : <VisibilityOff />}
-                      </IconButton>
-                    </InputAdornment>
-                  )
-                }}
-              />
-            </Grid>
-          </Grid>
-          <CardActions className="enter-pages-buttons-box">
-            <Button
-              className="primary-btn-color default-btn-hover default-button"
-              type="submit"
-              disabled={state.password !== state.confirmPassword}
-            >
-              Create Account
-            </Button>
-          </CardActions>
-          <Box className="enter-pages-after-form-text">
-            Already registered? 
-            <Link href="/signin" variant="body2">
-              Login
-            </Link>
+
+        <Slide left>
+          <Box className="enter-pages-title">
+            Welcome!
           </Box>
-        </Box>
+          <Box className="enter-pages-subtitle">
+            Create Your Account
+          </Box>
+          
+          <Box className="sign-up-form-controls" component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  className="enter-pages-text-field"
+                  autoComplete="given-name"
+                  name="firstName"
+                  onChange={onChange}
+                  value={state.firstName}
+                  required
+                  fullWidth
+                  id="firstName"
+                  // label="First Name"
+                  placeholder="First Name"
+                  autoFocus
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <PersonIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  className="enter-pages-text-field"
+                  required
+                  fullWidth
+                  onChange={onChange}
+                  value={state.lastName}
+                  id="lastName"
+                  // label="Last Name"
+                  placeholder="Last Name"
+                  name="lastName"
+                  autoComplete="family-name"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <PersonIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  className="enter-pages-text-field"
+                  required
+                  fullWidth
+                  onChange={onChange}
+                  value={state.email}
+                  id="email"
+                  // label="Email Address"
+                  placeholder="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <MailOutlineIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  className="enter-pages-text-field"
+                  required
+                  fullWidth
+                  onChange={onChange}
+                  value={state.password}
+                  name="password"
+                  // label="Password"
+                  placeholder="Create Password"
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  autoComplete="new-password"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <PasswordIcon />
+                      </InputAdornment>
+                    ),
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                        >
+                          {showPassword ? <Visibility /> : <VisibilityOff />}
+                        </IconButton>
+                      </InputAdornment>
+                    )
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  className="enter-pages-text-field"
+                  required
+                  fullWidth
+                  onChange={onChange}
+                  value={state.confirmPassword}
+                  name="confirmPassword"
+                  // label="confirmPassword"
+                  placeholder="Confirm Password"
+                  type={showPasswordConfirm ? "text" : "password"}
+                  id="password"
+                  autoComplete="new-password"
+                  InputProps={{ // <-- This is where the toggle button is added.
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <PasswordIcon />
+                      </InputAdornment>
+                    ),
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPasswordConfirm}
+                          onMouseDown={handleMouseDownPasswordConfirm}
+                        >
+                          {showPasswordConfirm ? <Visibility /> : <VisibilityOff />}
+                        </IconButton>
+                      </InputAdornment>
+                    )
+                  }}
+                />
+              </Grid>
+            </Grid>
+            <CardActions className="enter-pages-buttons-box">
+              <Button
+                className="primary-btn-color default-btn-hover default-button"
+                type="submit"
+                disabled={state.password !== state.confirmPassword}
+              >
+                Create Account
+              </Button>
+            </CardActions>
+            <Box className="enter-pages-after-form-text">
+              Already registered? 
+              <Link href="/signin" variant="body2">
+                Login
+              </Link>
+            </Box>
+          </Box>
+        </Slide>
       </Box>
     </Container>
   );

@@ -71,13 +71,15 @@
     font-weight: bold;
     font-size: 36px;
     line-height: 46px;
+    text-align: center;
 }
 
 .enter-pages-subtitle {
     font-weight: 500;
     font-size: 18px;
-    line-height: 22px;
+    line-height: 30px;
     color: #000;
+    text-align: center;
 }
 
 .enter-pages-text-field {
@@ -99,7 +101,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 .enter-pages-buttons-box button {
     width: 100%;
@@ -129,6 +131,10 @@
     text-align: justify;
     font-weight: 900;
     padding: 0 10%;
+}
+
+.entry-page-right-side-grid > div {
+    height: 100%;
 }
 
 .entry-page-right-side-image-box {
@@ -195,4 +201,13 @@
         font-size: 30px;
         padding: 0px 10% 0px 25%;
     }
+}
+.enter-pages-error-message {
+    width: 100%;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: #FF9A02;
+    color: white;
+    margin-bottom: 10px;
+    text-align: center;
 }

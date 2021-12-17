@@ -1,0 +1,12 @@
+.forgot-password-form-controls {
+    width: 100%;
+}
+.forgot-password-after-form-text {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.forgot-password-form > div {
+    width: 100%;
+}

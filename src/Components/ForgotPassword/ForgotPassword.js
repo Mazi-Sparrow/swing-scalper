@@ -1,6 +1,9 @@
 import * as React from "react";
 import { useHistory } from "react-router-dom";
-import Avatar from "@mui/material/Avatar";
+import Slide from 'react-reveal/Slide';
+import Shake from 'react-reveal/Shake';
+
+
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -14,6 +17,10 @@ import Container from "@mui/material/Container";
 import { Context as AuthContext } from "../../context/AuthContext";
 import { CardActions } from "@mui/material";
 
+import InputAdornment from '@mui/material/InputAdornment';
+import PersonIcon from '@mui/icons-material/Person';
+
+import './style.css';
 
 export default function ForgotPassword() {
   const history = useHistory();
@@ -49,6 +56,7 @@ export default function ForgotPassword() {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <Box
+        className="forgot-password-form"
         sx={{
           marginTop: 8,
           display: "flex",
@@ -56,57 +64,60 @@ export default function ForgotPassword() {
           alignItems: "center",
         }}
       >
-        {state.errorMessage ? (
-          <Typography style={{ color: "red" }}>{state.errorMessage}</Typography>
-        ) : null}
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-          <LockOutlinedIcon />
-        </Avatar>
-
-        <Typography variant="body2" className="RELIABLE2">
-          Forgot Password
-        </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-          />
-
-          <CardActions>
-            <Button size="small" color="primary" type="submit">
-              Forgot Password
-            </Button>
-          </CardActions>
-
-          <Grid container>
-            <Grid item>
+          {state.errorMessage ? 
+            <Shake>
+              <Box className="enter-pages-error-message">
+                {state.errorMessage}
+              </Box> 
+            </Shake>
+            : 
+          null}
+        
+        <Slide left>
+          <Box className="enter-pages-title">
+            Welcome Back!
+          </Box>
+          <Box className="enter-pages-subtitle">
+            Forgot Password
+          </Box>
+          <Box className="forgot-password-form-controls" component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <TextField
+              className="enter-pages-text-field"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              // label="Email Address"
+              placeholder="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <PersonIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <CardActions className="enter-pages-buttons-box">
+              <Button 
+                className="primary-btn-color default-btn-hover default-button" 
+                type="submit"
+              >
+                Forgot Password
+              </Button>
+            </CardActions>
+            <Box className="enter-pages-after-form-text forgot-password-after-form-text">
               <Link href="/" variant="body2">
                 {"Sign In"}
               </Link>
-            </Grid>
-
-            <Grid item style={{ marginLeft: 10 }}>
               <Link href="/confirmForgotPassword" variant="body2">
                 {"Confirm Forgot Password"}
               </Link>
-            </Grid>
-          </Grid>
-        </Box>
-
-        <Box
-          sx={{
-            marginTop: 2,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        ></Box>
+            </Box>
+          </Box>
+        </Slide>
       </Box>
     </Container>
   );

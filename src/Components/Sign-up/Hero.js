@@ -7,6 +7,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import Logo from "../../assets/images/logo.png";
 import SignUp from "./SignUp";
 import RightSideImage from '../../../src/assets/images/entry-page-right-side-image.png'
+import Slide from 'react-reveal/Slide';
 
 export default function Hero() {
   return (
@@ -22,25 +23,26 @@ export default function Hero() {
               </CardContent>
               <CardContent>
                 <Box className="enter-pages-buttom-text">
-                  The information contained in this site is provided for informational purposes only, and should not be construed as financial advice on any subject matter.
+                  <Slide bottom cascade>
+                    The information contained in this site is provided for informational purposes only, and should not be construed as financial advice on any subject matter.
+                  </Slide>
                 </Box>
               </CardContent>
             </Card>
           </Grid>
-          <Grid item lg={6} mt={2} md={6} sm={7} xs={12}>
-            {/* <Box className="hero-reliable"></Box> */}
-            <Box className="entry-page-right-side-image-box" style={{backgroundImage:`url(${RightSideImage})`}}>
-              {/* <img src={RightSideImage} width="100%" height="auto" alt="swing-scalp logo"/> */}
-              <Box></Box>
-              <Box className="entry-page-right-side-image-text">
-                Smart Entry and Exit Setups for your swing trade
+          <Grid className="entry-page-right-side-grid" item lg={6} mt={2} md={6} sm={7} xs={12}>
+            <Slide right>
+              <Box className="entry-page-right-side-image-box" style={{backgroundImage:`url(${RightSideImage})`}}>
+                <Box></Box>
+                <Box className="entry-page-right-side-image-text">
+                  Smart Entry and Exit Setups for your swing trade
+                </Box>
+                <Typography variant="body2" className="entry-page-evaluate-risk-text">
+                    Always evaluate <span className="plan3"> RISK</span> before{" "}
+                    <span className="plan">REWARD.</span>
+                </Typography>
               </Box>
-              <Typography variant="body2" className="entry-page-evaluate-risk-text">
-                  Always evaluate <span className="plan3"> RISK</span> before{" "}
-                  <span className="plan">REWARD.</span>
-              </Typography>
-            </Box>
-            {/* <Box className="hero-reliable"></Box> */}
+            </Slide>
           </Grid>
         </Grid>
       </Container>
