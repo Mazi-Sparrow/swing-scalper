@@ -39,7 +39,7 @@ export default function Index() {
   const getRealTimeData = () => {
     let currentIntervalId = setInterval(() => {
       loadData();
-    }, 5000)
+    }, 3000)
     setIntervalId(currentIntervalId);
   }
 

@@ -119,7 +119,7 @@ export default function Index() {
   const getRealTimeData = () => {
     setInterval(() => {
       loadData()
-    }, 5000)
+    }, 3000)
   }
   React.useEffect(() => {
     getToken()
