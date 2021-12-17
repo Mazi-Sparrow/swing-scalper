@@ -64,3 +64,135 @@
 }
 
 /* END MODALS */
+
+
+.enter-pages-title {
+    font-size: 36px;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 46px;
+}
+
+.enter-pages-subtitle {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000;
+}
+
+.enter-pages-text-field {
+    border: 1px solid black;
+    border-radius: 15px;
+    margin-top: 10px;
+}
+.enter-pages-text-field fieldset {
+    border: none;
+    top: 0px;
+}
+.enter-pages-text-field input {
+    padding: 10px;
+}
+
+.enter-pages-buttons-box {
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3rem;
+}
+.enter-pages-buttons-box button {
+    width: 100%;
+    border-radius: 15px;
+    padding: 10px !important;
+    text-transform: none;
+    font-size: 18px !important;
+}
+
+.enter-pages-after-form-text {
+    margin-top: 30px;
+    text-align: center;
+    color: #000;
+    font-weight: 500;
+}
+.enter-pages-after-form-text a {
+    margin-left: 10px;
+    color: #9C34B4;
+    text-decoration: none;
+    font-style: italic;
+}
+.enter-pages-after-form-text a:visited {
+    color: #9C34B4;
+}
+
+.enter-pages-buttom-text {
+    text-align: justify;
+    font-weight: 900;
+    padding: 0 10%;
+}
+
+.entry-page-right-side-image-box {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.entry-page-right-side-image-box div {
+    padding: 0px 10% 0px 25%;
+    color: #fff;
+    font-size: 30px;
+    font-weight: 900;
+    min-height: 300px;
+}
+.entry-page-evaluate-risk-text {
+    font-size: 24px;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 374px) and (max-width: 1100px) {
+    .card-main>div {
+        padding: 0px;
+    }
+    .enter-pages-buttom-text {
+        margin-top: 20px;
+        padding: 0px 30px;
+    }
+}
+@media (min-width: 374px) {
+    .entry-page-right-side-image-box div {
+        font-size: 24px;
+        padding: 0px 10%;
+    }
+    .entry-page-evaluate-risk-text {
+        font-size: 18px;
+    }
+}
+@media (max-width: 600px) {
+    .hero-section {
+        padding: 0px;
+    }
+    .hero-section>div {
+        padding: 0px;
+    }
+}
+@media (min-width: 600px) {
+    .entry-page-right-side-image-box div {
+        font-size: 26px;
+        padding: 0px 12%;
+    }    
+}
+@media (min-width: 900px) {
+    .entry-page-right-side-image-box div {
+        font-size: 28px;
+        padding: 0px 14%;
+    }
+}
+@media (min-width: 1200px) {
+    .entry-page-right-side-image-box div {
+        font-size: 30px;
+        padding: 0px 10% 0px 25%;
+    }
+}

@@ -146,7 +146,7 @@ body {
 }
 .hero-section {
   .card-main {
-    margin-top: 50px;
+    box-shadow: none;
     @include tablet {
       margin-top: 30px;
     }

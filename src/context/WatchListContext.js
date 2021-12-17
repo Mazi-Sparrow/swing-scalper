@@ -109,7 +109,7 @@ const getAnalyzer =
       dispatch({ type: "add_loading" });
       const response = await graphqlClient.request(
         gql`
-          query listWatchlist {
+          query{
             listWatchlist {
               items {
                 company {
