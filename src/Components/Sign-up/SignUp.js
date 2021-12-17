@@ -254,7 +254,7 @@ export default function SignUp() {
                   type={showPasswordConfirm ? "text" : "password"}
                   id="password"
                   autoComplete="new-password"
-                  InputProps={{ // <-- This is where the toggle button is added.
+                  InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
                         <PasswordIcon />

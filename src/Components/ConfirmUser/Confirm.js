@@ -14,6 +14,16 @@ import Container from "@mui/material/Container";
 import { Context as AuthContext } from "../../context/AuthContext";
 import { CardActions } from "@mui/material";
 
+import Shake from 'react-reveal/Shake';
+import Slide from 'react-reveal/Slide';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import PasswordIcon from '@mui/icons-material/Password';
+import VpnKeyIcon from '@mui/icons-material/VpnKey';
+
 export default function Confirm() {
   const location = useLocation();
 
@@ -65,62 +75,81 @@ export default function Confirm() {
           alignItems: "center",
         }}
       >
-        {state.errorMessage ? (
-          <Typography style={{ color: "red" }}>{state.errorMessage}</Typography>
-        ) : null}
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography variant="body2" className="RELIABLE2">
-          Confirm Email
-        </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            autoFocus
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            name="code"
-            label="Code"
-            type="text"
-            id="code"
-            autoComplete="confirm-code"
-          />
+        {state.errorMessage ? 
+        <Shake>
+          <Box className="enter-pages-error-message">
+            {state.errorMessage}
+          </Box> 
+        </Shake>
+          : 
+        null}
 
-          <CardActions>
-            <Button size="small" color="primary" type="submit">
-              Confirm Email
-            </Button>
-          </CardActions>
+        <Slide left>
+          <Box className="enter-pages-title">
+            Welcome!
+          </Box>
+          <Box className="enter-pages-subtitle">
+            Confirm Email
+          </Box>
+          <Box className="confirm-email-form-controls" component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <TextField
+              className="enter-pages-text-field"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              // label="Email Address"
+              placeholder="Email Address"
+              name="email"
+              autoComplete="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              autoFocus
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <MailOutlineIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              className="enter-pages-text-field"
+              margin="normal"
+              required
+              fullWidth
+              name="code"
+              // label="Code"
+              placeholder="Code"
+              type="text"
+              id="code"
+              autoComplete="confirm-code"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <VpnKeyIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
 
-          <Grid container>
-            <Grid item>
-              <Link href="/" variant="body2">
-                {"Sign In"}
-              </Link>
-            </Grid>
-          </Grid>
-        </Box>
+            <CardActions className="enter-pages-buttons-box">
+              <Button
+                    className="primary-btn-color default-btn-hover default-button"
+                    type="submit"
+                  >
+                    Confirm Forgot Password
+              </Button>
+            </CardActions>
 
-        <Box
-          sx={{
-            marginTop: 2,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        ></Box>
+            <Box className="enter-pages-after-form-text">
+                  Already registered? 
+                  <Link href="/signin" variant="body2">
+                    Login
+                  </Link>
+            </Box>
+          </Box>
+        </Slide>
       </Box>
     </Container>
   );

@@ -17,8 +17,6 @@ export default function Hero() {
           <Grid item lg={6} mt={2} md={8} sm={8} xs={12}>
             <Card sx={{ maxWidth: 1000 }} className="card-main">
               <CardContent>
-                 <Typography className="RELIABLE3">
-                </Typography>
                 <SignUp />
               </CardContent>
               <CardContent>
