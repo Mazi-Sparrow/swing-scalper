@@ -97,10 +97,6 @@ export default function Index() {
       item.conditions = conditionString;
     });
     setStateTrades(trades);
-    console.log("State current:")
-    console.log(stateTrades);
-    // setDataLoaded(false);
-    // setDataLoaded(true);
   };
 
   const updateData = () => {

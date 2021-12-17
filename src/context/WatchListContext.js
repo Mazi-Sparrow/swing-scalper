@@ -104,7 +104,7 @@ const getAnalyzer =
 
   const listWatchlist =
   (dispatch) =>
-  async ({ token, ticker }) => {
+  async ({ token }) => {
     try {
       dispatch({ type: "add_loading" });
       const response = await graphqlClient.request(
@@ -123,14 +123,16 @@ const getAnalyzer =
                 tradeRisk
                 ticker
               }
+              errors
+              success
             }
           }
         `,
-        { ticker },
+        {},
         { Authorization: `Bearer ${token}` }
       );
       dispatch({ type: "remove_loading" });
-      // console.log(response);
+      console.log(response);
       if (response.listWatchlist) {
         dispatch({ action: "add_watchList", payload: response.listWatchlist });
         dispatch({ type: "clear_errorMessage" });

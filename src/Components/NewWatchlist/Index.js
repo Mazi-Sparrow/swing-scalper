@@ -5,6 +5,8 @@ import Button from "@mui/material/Button";
 // import { Box } from "@mui/system";
 import Box from "@mui/material/Box";
 import { Grid, GridColumn as Column, GridToolbar } from "@progress/kendo-react-grid";
+import { Checkbox } from "@progress/kendo-react-inputs";
+
 import { CardHeader, CircularProgress } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import { Grid as MaterialGrid } from "@mui/material";
@@ -18,6 +20,8 @@ import { RadialGaugeComponent } from "./RadialGaugeComponent";
 import { ArcGaugeComponent } from "./ArcGaugeComponent";
 import { Context as AuthContext } from "../../context/AuthContext";
 import { Context as WatchListContext } from "../../context/WatchListContext";
+
+import './style.css';
 
 const zoneBackGround = (props) => {
   const buyZone = props.dataItem.buyZone;
@@ -85,6 +89,7 @@ const MyArcGaugeComponent = (props) => {
 export default function Index() {
   const {
     state: { token },
+    getToken
   } = React.useContext(AuthContext);
   const {
     state: { errorMessage, isLoading },
@@ -94,11 +99,21 @@ export default function Index() {
   const [stateWatchList, setStateWatchList] = React.useState({});
   const [dataLoaded, setDataLoaded] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
+  const [showRewardHigherThanRisk, setShowRewardHigherThanRisk] = React.useState(false);
+
+
+  // const prepareData = (response) => {
+  //   response.forEach(element => {
+      
+  //   });
+  //   setStateWatchList(response);
+  // }
 
   async function loadData () {
     const response = await listWatchlist({ token });
     if (response) {
       setStateWatchList(response);
+      // prepareData(response);
     }
   }
   const getRealTimeData = () => {
@@ -107,6 +122,7 @@ export default function Index() {
     }, 5000)
   }
   React.useEffect(() => {
+    getToken()
     loadData();
     getRealTimeData();
   }, [])
@@ -144,6 +160,10 @@ export default function Index() {
     loadData();
   }
 
+  const handleShowRewardHigherThanRiskCheckboxChanged = (event) => {
+    setShowRewardHigherThanRisk(event.value);
+  }
+
   return (
     <>
       <Box>
@@ -179,6 +199,12 @@ export default function Index() {
                     >
                       Refresh
                     </Button>
+                    <Checkbox
+                      className="reward-higher-than-risk-checkbox"
+                      checked={showRewardHigherThanRisk}
+                      onChange={handleShowRewardHigherThanRiskCheckboxChanged}
+                      label={"Show only Reward higher than Risk"}
+                    />
                   </GridToolbar>
                   <Column 
                     field="ticker" 
