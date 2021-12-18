@@ -58,6 +58,17 @@ export default function Index() {
   const { listJournals } = useContext(JournalContext);
   const [shouldDisplayPieChart, setShouldDisplayPieChart] = useState(false);
   const [pieData, setPieData] = useState([]);
+  const [journalNewsList, setJournalNewsList] = useState([]);
+
+  const setNews = (res) => {
+    let journalNews = [];
+    res.forEach(element => {
+      if (element.tradeStatus === 'Open') {
+        journalNews.concat(element.news);
+      }
+    });
+    setJournalNewsList(journalNews);
+  }
 
   const [state, setState] = useState({
     loading: true,
@@ -74,6 +85,8 @@ export default function Index() {
   useEffect(() => {
     let isMounted = true;
     listJournals({ token }).then((res) => {
+      setNews(res);
+      console.log(res);
       if (isMounted) {
         const { profitLossSum, profit, loss, openTrades, riskValues, rewardValues, profitLossValues } = dashboardValues(res);
 
@@ -172,7 +185,7 @@ export default function Index() {
             <MobileNavbar />
           </Box>
 
-          <Box id="dashboard-page-content" my={10} mb={15}>
+          <Box id="dashboard-page-content" my={10} mb={8}>
             {/* <Box className="social-share-block">
               <span>Share: </span>
               <Box className="social-share-icons">
@@ -340,6 +353,37 @@ export default function Index() {
                 ))}
               </ChartSeries>
             </Chart>
+          </Box>
+          <Box className="analyzer-news-block">
+            <Box className="analyzer-news-title">
+                NEWS
+            </Box>
+            {(journalNewsList?.news !== undefined) ?
+              <>
+                {journalNewsList?.news?.map((item, index) => {
+                    if (index < 2) {
+                        return (
+                                <Box key={index} className="analyzer-news-item-wrapper">
+                                    <a href={item.url} target="_blank" className="analyzer-news-item">
+                                        <Box className="analyzer-news-item-image">
+                                            <img src={item.image} alt="news"/>
+                                        </Box>
+                                        <Box className="analyzer-news-item-info">
+                                            <Box className="analyzer-news-item-title">{item.title}</Box>
+                                            <Box className="analyzer-news-item-description">{item.description?.length > 300 ? (item.description?.substring(0, 300) + '...') : item.description}</Box>
+                                        </Box>
+                                    </a>
+                                </Box>
+                            )
+                        }
+                    })
+                }
+              </>
+              :
+              <Box className="analyzer-news-title">
+                There is no News to display
+              </Box>
+          }
           </Box>
           <Footer />
         </div>
