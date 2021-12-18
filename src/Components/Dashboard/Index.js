@@ -64,7 +64,7 @@ export default function Index() {
     let journalNews = [];
     res.forEach(element => {
       if (element.tradeStatus === 'Open') {
-        journalNews.concat(element.news);
+        journalNews.push.apply(journalNews, element.news);
       }
     });
     setJournalNewsList(journalNews);
@@ -358,9 +358,9 @@ export default function Index() {
             <Box className="analyzer-news-title">
                 NEWS
             </Box>
-            {(journalNewsList?.news !== undefined) ?
+            {(journalNewsList !== undefined) ?
               <>
-                {journalNewsList?.news?.map((item, index) => {
+                {journalNewsList?.map((item, index) => {
                     if (index < 2) {
                         return (
                                 <Box key={index} className="analyzer-news-item-wrapper">
