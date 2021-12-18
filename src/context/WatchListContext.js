@@ -121,7 +121,10 @@ const getAnalyzer =
                 buyZone
                 tradeReward
                 tradeRisk
+                rsi14
+                stopLoss
                 ticker
+                priceTargets
               }
               errors
               success

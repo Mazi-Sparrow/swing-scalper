@@ -96,30 +96,36 @@ export default function Index() {
     listWatchlist,
   } = React.useContext(WatchListContext);
 
-  const [stateWatchList, setStateWatchList] = React.useState({});
+  const [stateWatchList, setStateWatchList] = React.useState([]);
   const [dataLoaded, setDataLoaded] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
   const [showRewardHigherThanRisk, setShowRewardHigherThanRisk] = React.useState(false);
+  const [showRiskHigherThanReward, setShowRiskHigherThanReward] = React.useState(false);
 
-
-  // const prepareData = (response) => {
-  //   response.forEach(element => {
-      
-  //   });
-  //   setStateWatchList(response);
-  // }
+  const prepareData = (response) => {
+    let resultData = [];
+    if (showRewardHigherThanRisk) {
+      resultData = response.items.filter(item => item.tradeReward > item.tradeRisk)
+      setStateWatchList(resultData);
+    } else if (showRiskHigherThanReward) {
+      resultData = response.items.filter(item => item.tradeRisk > item.tradeReward)
+      setStateWatchList(resultData);  
+    } else {
+      resultData = response.items;
+      setStateWatchList(resultData);
+    }
+  }
 
   async function loadData () {
     const response = await listWatchlist({ token });
     if (response) {
-      setStateWatchList(response);
-      // prepareData(response);
+      prepareData(response);
     }
   }
   const getRealTimeData = () => {
     setInterval(() => {
       loadData()
-    }, 3000)
+    }, 50000)
   }
   React.useEffect(() => {
     getToken()
@@ -161,7 +167,12 @@ export default function Index() {
   }
 
   const handleShowRewardHigherThanRiskCheckboxChanged = (event) => {
+    setShowRiskHigherThanReward(false);
     setShowRewardHigherThanRisk(event.value);
+  }
+  const handleShowRiskHigherThanRewardCheckboxChanged = (event) => {
+    setShowRewardHigherThanRisk(false);
+    setShowRiskHigherThanReward(event.value);
   }
 
   return (
@@ -188,7 +199,7 @@ export default function Index() {
                     width: "100%",
                     height: "100%",
                   }}
-                  data={stateWatchList.items}
+                  data={stateWatchList}
                 >
                   <GridToolbar>
                     <Button
@@ -203,7 +214,13 @@ export default function Index() {
                       className="reward-higher-than-risk-checkbox"
                       checked={showRewardHigherThanRisk}
                       onChange={handleShowRewardHigherThanRiskCheckboxChanged}
-                      label={"Show only Reward higher than Risk"}
+                      label={"Reward > Risk"}
+                    />
+                    <Checkbox
+                      className="risk-higher-than-reward-checkbox"
+                      checked={showRiskHigherThanReward}
+                      onChange={handleShowRiskHigherThanRewardCheckboxChanged}
+                      label={"Risk > Reward"}
                     />
                   </GridToolbar>
                   <Column 
