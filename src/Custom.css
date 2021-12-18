@@ -93,6 +93,8 @@
 }
 .enter-pages-text-field input {
     padding: 10px;
+    border-top-right-radius: 15px !important;
+    border-bottom-right-radius: 15px !important;
 }
 
 .enter-pages-buttons-box {
