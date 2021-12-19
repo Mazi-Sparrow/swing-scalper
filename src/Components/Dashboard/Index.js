@@ -362,21 +362,19 @@ export default function Index() {
               {(journalNewsList !== undefined) ?
                 <>
                   {journalNewsList?.map((item, index) => {
-                      if (index < 2) {
-                          return (
-                                  <Box key={index} className="dashboard-news-item-wrapper">
-                                      <a href={item.url} target="_blank" className="dashboard-news-item">
-                                          <Box className="dashboard-news-item-image">
-                                              <img src={item.image} alt="news"/>
-                                          </Box>
-                                          <Box className="dashboard-news-item-info">
-                                              <Box className="dashboard-news-item-title">{item.title}</Box>
-                                              <Box className="dashboard-news-item-description">{item.description?.length > 300 ? (item.description?.substring(0, 300) + '...') : item.description}</Box>
-                                          </Box>
-                                      </a>
-                                  </Box>
-                              )
-                          }
+                        return (
+                                <Box key={index} className="dashboard-news-item-wrapper">
+                                    <a href={item.url} target="_blank" className="dashboard-news-item">
+                                        <Box className="dashboard-news-item-image">
+                                            <img src={item.image} alt="news"/>
+                                        </Box>
+                                        <Box className="dashboard-news-item-info">
+                                            <Box className="dashboard-news-item-title">{item.title}</Box>
+                                            <Box className="dashboard-news-item-description">{item.description?.length > 300 ? (item.description?.substring(0, 300) + '...') : item.description}</Box>
+                                        </Box>
+                                    </a>
+                                </Box>
+                            )
                       })
                   }
                 </>
