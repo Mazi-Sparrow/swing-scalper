@@ -33,6 +33,7 @@ const initialDataState = {
 export default function Index() {
   const {
     state: { token },
+    getToken
   } = React.useContext(AuthContext);
   const {
     listJournals,
@@ -49,6 +50,7 @@ export default function Index() {
   const [promptDeletionVisible, setPromptDeletionVisible] = React.useState(false);
   const [currentDataItem, setCurrentDataItem] = React.useState(null);
   const [notificationVisible, setNotificationVisible] = React.useState(false);
+
   
   const toggleDialog = () => {
     setPromptDeletionVisible(!promptDeletionVisible);
@@ -62,6 +64,10 @@ export default function Index() {
     return () => {
       isMounted = false;
     };
+  }, []);
+  
+  React.useEffect(() => {
+    getToken();
   }, []);
 
   const CommandCell = (props) => (
