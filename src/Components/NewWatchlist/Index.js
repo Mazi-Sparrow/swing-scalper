@@ -206,7 +206,7 @@ export default function Index() {
                     width: "100%",
                     height: "100%",
                   }}
-                  data={stateWatchList.slice(page.skip, page.take + page.skip)}
+                  data={stateWatchList?.slice(page.skip, page.take + page.skip)}
                   skip={page.skip}
                   take={page.take}
                   total={stateWatchList.length}
