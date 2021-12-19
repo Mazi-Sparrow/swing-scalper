@@ -50,7 +50,6 @@ export default function Index() {
   const [promptDeletionVisible, setPromptDeletionVisible] = React.useState(false);
   const [currentDataItem, setCurrentDataItem] = React.useState(null);
   const [notificationVisible, setNotificationVisible] = React.useState(false);
-
   
   const toggleDialog = () => {
     setPromptDeletionVisible(!promptDeletionVisible);
