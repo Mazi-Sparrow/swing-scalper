@@ -175,6 +175,15 @@ export default function Index() {
     setShowRiskHigherThanReward(event.value);
   }
 
+  const initialDataState = {
+    skip: 0,
+    take: 10,
+  };
+  const [page, setPage] = React.useState(initialDataState);
+  const pageChange = (event) => {
+    setPage(event.page);
+  };
+
   return (
     <>
       <Box>
@@ -188,9 +197,7 @@ export default function Index() {
         {dataLoaded && 
         <>
           {errorMessage ? <h4 style={{ color: "red", textAlign: "center" }}>{errorMessage}</h4> : null}
-            <div
-              // style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%" }}
-            >
+            <div>
               <Box my={12} mb={15}>
                 <Grid
                   style={{
@@ -199,7 +206,12 @@ export default function Index() {
                     width: "100%",
                     height: "100%",
                   }}
-                  data={stateWatchList}
+                  data={stateWatchList.slice(page.skip, page.take + page.skip)}
+                  skip={page.skip}
+                  take={page.take}
+                  total={stateWatchList.length}
+                  pageable={true}
+                  onPageChange={pageChange}
                 >
                   <GridToolbar>
                     <Button
