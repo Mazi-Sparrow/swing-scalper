@@ -232,6 +232,32 @@ export default function Index() {
     setPage(event.page);
   };
 
+  const GreenRedCell = (props) => {
+    const profitLossPercentage = props.dataItem.profitLossPercentage;
+  
+    if (profitLossPercentage >= 0 ) {
+      return (
+        <td
+          style={{
+            backgroundColor: "rgb(55, 180, 0,0.32)",
+          }}
+        >
+          {profitLossPercentage}
+        </td>
+      );
+    }
+  
+    return (
+      <td
+        style={{
+          backgroundColor: "rgb(243, 23, 0, 0.32)",
+        }}
+      >
+        {profitLossPercentage}
+      </td>
+    );
+  };
+
   const cellRender = (tdElement, cellProps) => {
     // console.log(cellProps);
     if (cellProps.dataItem.tradeStatus === 'Closed') {
@@ -431,6 +457,7 @@ export default function Index() {
             format="{0:#.00\%}"
             filterable={false}
             editable={false}
+            cell={GreenRedCell}
             width={setWidth()}
           />
           <Column
