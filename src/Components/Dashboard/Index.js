@@ -317,7 +317,9 @@ export default function Index() {
               </div>
             </div>
 
+          <Box className="dashboard-graph-news-box">
             <Chart
+              className="trend-line-chart"
               style={{
                 height: 350,
               }}
@@ -353,37 +355,39 @@ export default function Index() {
                 ))}
               </ChartSeries>
             </Chart>
-          </Box>
-          <Box className="analyzer-news-block">
-            <Box className="analyzer-news-title">
-                NEWS
-            </Box>
-            {(journalNewsList !== undefined) ?
-              <>
-                {journalNewsList?.map((item, index) => {
-                    if (index < 2) {
-                        return (
-                                <Box key={index} className="analyzer-news-item-wrapper">
-                                    <a href={item.url} target="_blank" className="analyzer-news-item">
-                                        <Box className="analyzer-news-item-image">
-                                            <img src={item.image} alt="news"/>
-                                        </Box>
-                                        <Box className="analyzer-news-item-info">
-                                            <Box className="analyzer-news-item-title">{item.title}</Box>
-                                            <Box className="analyzer-news-item-description">{item.description?.length > 300 ? (item.description?.substring(0, 300) + '...') : item.description}</Box>
-                                        </Box>
-                                    </a>
-                                </Box>
-                            )
-                        }
-                    })
-                }
-              </>
-              :
-              <Box className="analyzer-news-title">
-                There is no News to display
+            <Box className="dashboard-news-block">
+              <Box className="dashboard-news-title">
+                  NEWS
               </Box>
-          }
+              {(journalNewsList !== undefined) ?
+                <>
+                  {journalNewsList?.map((item, index) => {
+                      if (index < 2) {
+                          return (
+                                  <Box key={index} className="dashboard-news-item-wrapper">
+                                      <a href={item.url} target="_blank" className="dashboard-news-item">
+                                          <Box className="dashboard-news-item-image">
+                                              <img src={item.image} alt="news"/>
+                                          </Box>
+                                          <Box className="dashboard-news-item-info">
+                                              <Box className="dashboard-news-item-title">{item.title}</Box>
+                                              <Box className="dashboard-news-item-description">{item.description?.length > 300 ? (item.description?.substring(0, 300) + '...') : item.description}</Box>
+                                          </Box>
+                                      </a>
+                                  </Box>
+                              )
+                          }
+                      })
+                  }
+                </>
+                :
+                <Box className="dashboard-news-title">
+                  There is no News to display
+                </Box>
+            }
+            </Box>
+          </Box>
+
           </Box>
           <Footer />
         </div>
