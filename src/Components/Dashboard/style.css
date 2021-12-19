@@ -23,6 +23,7 @@
     align-items: flex-start;
 }
 
+
 .trend-line-chart {
     width: 40%;
 }
@@ -91,3 +92,24 @@
 }
 
 /* END NEWS */
+
+
+@media (max-width: 1200px) {
+    .dashboard-graph-news-box {
+        flex-direction: column;
+    }
+    .trend-line-chart {
+        width: 100%;
+        text-align: center;
+    }
+    .dashboard-news-block {
+        margin-top: 40px;
+        width: 80%;
+    }
+}
+
+@media (max-width: 500px) {
+    .dashboard-news-block {
+        width: 95%;
+    }
+}
