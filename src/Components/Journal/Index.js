@@ -242,7 +242,7 @@ export default function Index() {
             color: "rgb(55, 180, 0)",
           }}
         >
-          {profitLossPercentage}
+          {profitLossPercentage}%
         </td>
       );
     }
@@ -253,7 +253,7 @@ export default function Index() {
           color: "rgb(243, 23, 0)",
         }}
       >
-        {profitLossPercentage}
+        {profitLossPercentage}%
       </td>
     );
   };
@@ -454,7 +454,7 @@ export default function Index() {
           <Column
             field="profitLossPercentage"
             title="P/L"
-            format="{0:#.00\%}"
+            // format="{0%}"
             filterable={false}
             editable={false}
             cell={GreenRedTextCell}
