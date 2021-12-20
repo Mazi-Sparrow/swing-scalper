@@ -1,8 +1,47 @@
-img {  
+.spinner-loader {
+    width: 50px;
+    height: 50px;
+    display: grid;
+    border: 4px solid #0000;
+    border-radius: 50%;
+    border-right-color: #9c34b4;
+    animation: s5 1s infinite linear;
+}
+
+.spinner-loader::before,
+.spinner-loader::after {
+    content: "";
+    grid-area: 1/1;
+    margin: 2px;
+    border: inherit;
+    border-radius: 50%;
+    animation: s5 2s infinite;
+}
+
+.spinner-loader::after {
+    margin: 8px;
+    animation-duration: 3s;
+}
+
+.grid-loading-panel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes s5 {
+    100% {
+        transform: rotate(1turn)
+    }
+}
+
+
+img {
     position: relative;
-  }
-  
-img[alt]:after {  
+}
+
+img[alt]:after {
     display: block;
     position: absolute;
     top: 0;
@@ -12,7 +51,7 @@ img[alt]:after {
     background-color: #fff;
     font-family: 'Helvetica';
     font-weight: 300;
-    line-height: 2;  
+    line-height: 2;
     text-align: center;
     content: attr(alt);
 }
@@ -20,11 +59,13 @@ img[alt]:after {
 .red-color-column {
     color: rgb(243, 23, 0);
 }
+
 .green-color-column {
     color: rgb(55, 180, 0);
 }
+
 .multiline-td {
-    white-space:pre;
+    white-space: pre;
 }
 
 .default-button {
@@ -67,13 +108,13 @@ img[alt]:after {
 @media (max-width: 600px) {
     .large-button {
         font-size: 1.6rem !important;
-    }    
+    }
 }
 
 @media (max-width: 470px) {
     .large-button {
         font-size: 1.2rem !important;
-    }    
+    }
 }
 
 .large-button:hover {
@@ -86,6 +127,7 @@ img[alt]:after {
     font-size: 28px;
     font-weight: 600;
 }
+
 @media (max-width:1000px) {
     .modal-title {
         font-size: 24px;
@@ -116,10 +158,12 @@ img[alt]:after {
     border-radius: 15px;
     margin-top: 10px;
 }
+
 .enter-pages-text-field fieldset {
     border: none;
     top: 0px;
 }
+
 .enter-pages-text-field input {
     padding: 10px;
     border-top-right-radius: 15px !important;
@@ -134,6 +178,7 @@ img[alt]:after {
     justify-content: center;
     margin-top: 2rem;
 }
+
 .enter-pages-buttons-box button {
     width: 100%;
     border-radius: 15px;
@@ -148,12 +193,14 @@ img[alt]:after {
     color: #000;
     font-weight: 500;
 }
+
 .enter-pages-after-form-text a {
     margin-left: 10px;
     color: #9C34B4;
     text-decoration: none;
     font-style: italic;
 }
+
 .enter-pages-after-form-text a:visited {
     color: #9C34B4;
 }
@@ -164,7 +211,7 @@ img[alt]:after {
     padding: 0 10%;
 }
 
-.entry-page-right-side-grid > div {
+.entry-page-right-side-grid>div {
     height: 100%;
 }
 
@@ -175,6 +222,7 @@ img[alt]:after {
     align-items: center;
     justify-content: space-between;
 }
+
 .entry-page-right-side-image-box div {
     padding: 0px 10% 0px 25%;
     color: #fff;
@@ -182,6 +230,7 @@ img[alt]:after {
     font-weight: 900;
     min-height: 300px;
 }
+
 .entry-page-evaluate-risk-text {
     font-size: 24px;
     font-weight: 900;
@@ -193,46 +242,55 @@ img[alt]:after {
     .card-main>div {
         padding: 0px;
     }
+
     .enter-pages-buttom-text {
         margin-top: 20px;
         padding: 0px 30px;
     }
 }
+
 @media (min-width: 374px) {
     .entry-page-right-side-image-box div {
         font-size: 24px;
         padding: 0px 10%;
     }
+
     .entry-page-evaluate-risk-text {
         font-size: 18px;
     }
 }
+
 @media (max-width: 600px) {
     .hero-section {
         padding: 0px;
     }
+
     .hero-section>div {
         padding: 0px;
     }
 }
+
 @media (min-width: 600px) {
     .entry-page-right-side-image-box div {
         font-size: 26px;
         padding: 0px 12%;
-    }    
+    }
 }
+
 @media (min-width: 900px) {
     .entry-page-right-side-image-box div {
         font-size: 28px;
         padding: 0px 14%;
     }
 }
+
 @media (min-width: 1200px) {
     .entry-page-right-side-image-box div {
         font-size: 30px;
         padding: 0px 10% 0px 25%;
     }
 }
+
 .enter-pages-error-message {
     width: 100%;
     padding: 10px;

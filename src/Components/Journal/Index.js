@@ -211,7 +211,7 @@ export default function Index() {
 
   React.useEffect(() => {
     window.addEventListener("resize", handleResize);
-    handleResize();
+    // handleResize();
   }, []);
 
   const handleResize = () => {
@@ -338,9 +338,15 @@ export default function Index() {
           </DialogActionsBar>
         </Dialog>
       )}      
-      <Box className="journal-page-content page-content" my={12} mb={15}>
+      <Box className="journal-page-content page-content" my={12} mb={8}>
         {errorMessage ? <Typography style={{ color: "red" }}>{errorMessage}</Typography> : null}
-        <Grid
+        {/* {Object.keys(data).length === 0 && <Box className="grid-loading-panel">Loading</Box> } */}
+        {Object.keys(data).length === 0 && 
+          <Box className="grid-loading-panel">
+            <Box className="spinner-loader"></Box>
+          </Box>
+        }
+        {Object.keys(data).length !== 0 && <Grid
           pageable={true}
           skip={page.skip}
           take={page.take}
@@ -384,7 +390,8 @@ export default function Index() {
           <Column
             cell={CommandCell}
             filterable={false}
-            width={setWidth()}
+            // width={setWidth()}
+            width="100px"
           />
 
           <Column
@@ -393,7 +400,8 @@ export default function Index() {
             cell={CustomDate}
             filterable={false}
             editable={false}
-            width={setWidth()}
+            // width={setWidth()}
+            width="100px"
           />
           <Column
             field="ticker"
@@ -416,7 +424,8 @@ export default function Index() {
             format="{0:c}"
             filterable={false}
             editable={true}
-            width={setWidth()}
+            // width={setWidth()}
+            width="150px"
           />
           <Column
             field="stopLoss"
@@ -432,7 +441,8 @@ export default function Index() {
             format="{0:c}"
             filterable={false}
             editable={true}
-            width={setWidth()}
+            // width={setWidth()}
+            width="130px"
           />
           <Column
             field="tradeRisk"
@@ -448,7 +458,8 @@ export default function Index() {
             format="{0:c}"
             filterable={false}
             editable={false}
-            width={setWidth()}
+            // width={setWidth()}
+            width="130px"
           />
           <Column
             field="profitLossPercentage"
@@ -463,7 +474,8 @@ export default function Index() {
             title="STATUS"
             filterable={false}
             editable={false}
-            width={setWidth()}
+            // width={setWidth()}
+            width="100px"
           />
           <Column
             field="sellPrice"
@@ -472,7 +484,8 @@ export default function Index() {
             format="{0:c}"
             filterable={false}
             editable={setEditable()}
-            width={setWidth()}
+            // width={setWidth()}
+            width="130px"
           />
           <Column
             field="updatedAt"
@@ -482,9 +495,10 @@ export default function Index() {
             cell={CustomDate}
             filterable={false}
             editable={false}
-            width={setWidth()}
+            // width={setWidth()}
+            width="100px"
           />
-        </Grid>
+        </Grid>}
       </Box>
 
       <Footer />
