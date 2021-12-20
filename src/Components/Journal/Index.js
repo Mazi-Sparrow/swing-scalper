@@ -232,14 +232,14 @@ export default function Index() {
     setPage(event.page);
   };
 
-  const GreenRedCell = (props) => {
+  const GreenRedTextCell = (props) => {
     const profitLossPercentage = props.dataItem.profitLossPercentage;
   
     if (profitLossPercentage >= 0 ) {
       return (
         <td
           style={{
-            backgroundColor: "rgb(55, 180, 0,0.32)",
+            color: "rgb(55, 180, 0)",
           }}
         >
           {profitLossPercentage}
@@ -250,7 +250,7 @@ export default function Index() {
     return (
       <td
         style={{
-          backgroundColor: "rgb(243, 23, 0, 0.32)",
+          color: "rgb(243, 23, 0)",
         }}
       >
         {profitLossPercentage}
@@ -457,7 +457,7 @@ export default function Index() {
             format="{0:#.00\%}"
             filterable={false}
             editable={false}
-            cell={GreenRedCell}
+            cell={GreenRedTextCell}
             width={setWidth()}
           />
           <Column
