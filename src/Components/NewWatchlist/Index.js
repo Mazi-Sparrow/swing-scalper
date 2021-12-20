@@ -74,6 +74,20 @@ const triggerBackGround = (props) => {
   );
 };
 
+const priceTargetsCell = (props) => {
+  const priceTargets = props.dataItem.priceTargets;
+  let priceTargetsText = ""
+  priceTargets.forEach((element, index, array) => {
+    priceTargetsText += "$" + element + (array.length > (index + 1) ? "; " : "");
+  });
+
+  return (
+    <td>
+      {priceTargetsText}
+    </td>
+  );
+};
+
 const MyLinearGaugeComponent = (props) => {
   return <LinearGaugeComponent {...props} />;
 };
@@ -249,6 +263,7 @@ export default function Index() {
                     filterable={false} 
                     editable={false} 
                     width={setWidth()}
+                    format="{0:c}"
                   />
                   <Column 
                     field="stopLoss" 
@@ -256,12 +271,14 @@ export default function Index() {
                     filterable={false} 
                     editable={false} 
                     width={setWidth()}
+                    format="{0:c}"
                   />
                   <Column
                     field="priceTargets"
                     title="Price Target $"
                     filterable={false}
                     editable={false}
+                    cell={priceTargetsCell}
                     width={setWidth()}
                   />
                   <Column 
@@ -272,18 +289,22 @@ export default function Index() {
                     width={setWidth()}
                   />
                   <Column 
+                    className="red-color-column"
                     field="tradeRisk" 
                     title="Risk $" 
                     filterable={false} 
                     editable={false} 
                     width={setWidth()}
+                    format="{0:c}"
                   />
                   <Column 
+                    className="green-color-column"
                     field="tradeReward" 
                     title="Reward $" 
                     filterable={false} 
                     editable={false} 
                     width={setWidth()}
+                    format="{0:c}"
                   />
                   <Column 
                     field="buyZone" 
