@@ -21,7 +21,7 @@ export default function Hero() {
               </CardContent>
               <CardContent>
               <Box className="enter-pages-buttom-text">
-                <Slide bottom cascade>
+                <Slide bottom>
                   The information contained in this site is provided for informational purposes only, and should not be construed as financial advice on any subject matter.
                 </Slide>
               </Box>
