@@ -380,7 +380,7 @@ export default function Index() {
                 </>
                 :
                 <Box className="dashboard-news-title">
-                  There is no News to display
+                  No Open Trades
                 </Box>
             }
             </Box>
