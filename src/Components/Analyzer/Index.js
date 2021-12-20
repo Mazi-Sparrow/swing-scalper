@@ -205,6 +205,7 @@ export default function Index() {
                     // style={{ backgroundColor: "#9c27b0", color: "white" }}
                     variant="contained"
                     href="#"
+                    autoFocus
                     >
                     {isLoading ? <CircularProgress size={20} /> : null}
                     Analyze
@@ -223,8 +224,8 @@ export default function Index() {
                             {stateWatchList?.company?.name ? stateWatchList.company.name : ''}
                         </Box>
                         <Box className="analyzer-information-about-company-logo">
-                            {stateWatchList?.company?.logo ? 
-                                <img src={stateWatchList.company.logo} alt="company logo"/> 
+                            {stateWatchList?.company?.logo ?
+                                <img src={stateWatchList.company.logo} onError={(e) => {e.target.onerror = null; e.target.alt=stateWatchList?.ticker}} alt=""/> 
                             : ''}
                         </Box>
                     </Box>

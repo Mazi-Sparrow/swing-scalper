@@ -102,6 +102,8 @@ a {
     display: flex;
     flex-direction: row;
     align-items: center;
+    font-weight: 900;
+    font-size: 30px;
 }
 .analyzer-information-about-company-logo img {
     width: 100%;
@@ -273,6 +275,10 @@ a {
 @media (max-width: 1400px) {
     .analyzer-information-about-company {
         flex-direction: column;
+    }
+    .analyzer-information-about-company-name {
+        text-align: center;
+        margin-top: 20px;
     }
     .analyzer-block-indicators {
         width: 90%;

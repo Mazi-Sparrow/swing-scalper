@@ -346,7 +346,7 @@ export default function Index() {
                     data={item.data}
                     name={item.name}
                     labels={{
-                      visible: true,
+                      visible: false,
                       padding: 3,
                       font: "bold 16px Arial, sans-serif",
                       format: "c2",
