@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { Grid, GridColumn as Column, GridToolbar } from "@progress/kendo-react-grid";
 import { Checkbox } from "@progress/kendo-react-inputs";
+import { orderBy } from "@progress/kendo-data-query";
 
 import { CardHeader, CircularProgress } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
@@ -78,11 +79,11 @@ const priceTargetsCell = (props) => {
   const priceTargets = props.dataItem.priceTargets;
   let priceTargetsText = ""
   priceTargets.forEach((element, index, array) => {
-    priceTargetsText += "$" + element + (array.length > (index + 1) ? "; " : "");
+    priceTargetsText += "$" + element + (array.length > (index + 1) ? "; \n" : "");
   });
 
   return (
-    <td>
+    <td className="multiline-td">
       {priceTargetsText}
     </td>
   );
@@ -115,6 +116,15 @@ export default function Index() {
   const [loading, setLoading] = React.useState(true);
   const [showRewardHigherThanRisk, setShowRewardHigherThanRisk] = React.useState(false);
   const [showRiskHigherThanReward, setShowRiskHigherThanReward] = React.useState(false);
+
+  
+  const initialSort = [
+    {
+      field: "rsi14",
+      dir: "asc",
+    },
+  ];
+  const [sort, setSort] = React.useState(initialSort);
 
   const prepareData = (response) => {
     let resultData = [];
@@ -158,15 +168,15 @@ export default function Index() {
 
   // responsive columns on window resize  
   const columns = document.getElementsByClassName('k-header');
-  const [columnWidth, setColumnWidth] = React.useState((window.innerWidth-50)/columns.length);
+  const [columnWidth, setColumnWidth] = React.useState((window.innerWidth/columns.length) + 'px');
 
   React.useEffect(() => {
-    window.addEventListener("resize", handleResize);
+    // window.addEventListener("resize", handleResize);
     handleResize();
   }, []);
   const handleResize = () => {
     if ((window.innerWidth/columns.length) > 100) {
-      setColumnWidth(((window.innerWidth-50)/columns.length) + 'px');
+      setColumnWidth(((window.innerWidth)/columns.length) + 'px');
     }
     else {
       setColumnWidth('100px');
@@ -191,7 +201,7 @@ export default function Index() {
 
   const initialDataState = {
     skip: 0,
-    take: 10,
+    take: 25,
   };
   const [page, setPage] = React.useState(initialDataState);
   const pageChange = (event) => {
@@ -220,12 +230,17 @@ export default function Index() {
                     width: "100%",
                     height: "100%",
                   }}
-                  data={stateWatchList?.slice(page.skip, page.take + page.skip)}
+                  data={orderBy(stateWatchList?.slice(page.skip, page.take + page.skip), sort)}
                   skip={page.skip}
                   take={page.take}
                   total={stateWatchList.length}
                   pageable={true}
                   onPageChange={pageChange}
+                  sortable={true}
+                  sort={sort}
+                  onSortChange={(e) => {
+                    setSort(e.sort);
+                  }}
                 >
                   <GridToolbar>
                     <Button
@@ -254,15 +269,16 @@ export default function Index() {
                     title="Ticker" 
                     filterable={false} 
                     editable={false}
-                    // width="100px" 
                     width={setWidth()}
+                    // width="100px"
                   />
                   <Column 
                     field="buyPrice" 
                     title="Price $" 
                     filterable={false} 
                     editable={false} 
-                    width={setWidth()}
+                    // width={setWidth()}
+                    width="150px"
                     format="{0:c}"
                   />
                   <Column 
@@ -270,7 +286,8 @@ export default function Index() {
                     title="Stop Loss $" 
                     filterable={false} 
                     editable={false} 
-                    width={setWidth()}
+                    // width={setWidth()}
+                    width="150px"
                     format="{0:c}"
                   />
                   <Column
@@ -279,14 +296,16 @@ export default function Index() {
                     filterable={false}
                     editable={false}
                     cell={priceTargetsCell}
-                    width={setWidth()}
+                    // width={setWidth()}
+                    width="150px"
                   />
                   <Column 
                     field="rsi14" 
                     title="RSI" 
                     filterable={false} 
                     editable={false} 
-                    width={setWidth()}
+                    // width={setWidth()}
+                    width="100px"
                   />
                   <Column 
                     className="red-color-column"
@@ -294,7 +313,8 @@ export default function Index() {
                     title="Risk $" 
                     filterable={false} 
                     editable={false} 
-                    width={setWidth()}
+                    // width={setWidth()}
+                    width="100px"
                     format="{0:c}"
                   />
                   <Column 
@@ -303,7 +323,8 @@ export default function Index() {
                     title="Reward $" 
                     filterable={false} 
                     editable={false} 
-                    width={setWidth()}
+                    // width={setWidth()}
+                    width="100px"
                     format="{0:c}"
                   />
                   <Column 
@@ -312,7 +333,8 @@ export default function Index() {
                     cell={zoneBackGround} 
                     filterable={false} 
                     editable={false} 
-                    width={setWidth()}
+                    // width={setWidth()}
+                    width="150px"
                   />
                   <Column 
                     field="buyTrigger" 
@@ -320,7 +342,8 @@ export default function Index() {
                     cell={triggerBackGround} 
                     filterable={false} 
                     editable={false}
-                    width={setWidth()}
+                    // width={setWidth()}
+                    width="150px"
                   />
                 </Grid>
               </Box>

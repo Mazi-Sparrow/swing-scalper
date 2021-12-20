@@ -1,3 +1,13 @@
+.red-color-column {
+    color: rgb(243, 23, 0);
+}
+.green-color-column {
+    color: rgb(55, 180, 0);
+}
+.multiline-td {
+    white-space:pre;
+}
+
 .default-button {
     /* background-color: #9C1265 !important; */
     background-color: #9c34b4 !important;
