@@ -31,7 +31,10 @@ export default function Index() {
 
   async function loadData () {
     const response = await listTrades({ token, ticker, sortDirection, limit, sortBy });
+    console.log(response);
     if (response) {
+      console.log("Есть респонс");
+      console.log(response);
       prepareData(response);
     }
   }
@@ -39,7 +42,7 @@ export default function Index() {
   const getRealTimeData = () => {
     let currentIntervalId = setInterval(() => {
       loadData();
-    }, 3000)
+    }, 50000)
     setIntervalId(currentIntervalId);
   }
 
@@ -55,7 +58,7 @@ export default function Index() {
   const [stateTrades, setStateTrades] = React.useState([]);
   const [ticker, setTicker] = React.useState("");
   const [sortDirection, setSortDirection] = React.useState("ASC");
-  const [limit, setLimit] = React.useState(20);
+  const [limit, setLimit] = React.useState(1000);
   const [sortBy, setSortBy] = React.useState("TIME");
 
   
@@ -96,6 +99,7 @@ export default function Index() {
       let conditionString = conditions.join('; ');
       item.conditions = conditionString;
     });
+    console.log(trades)
     setStateTrades(trades);
   };
 
@@ -113,11 +117,11 @@ export default function Index() {
     handleResize();
   }, []);
   const handleResize = () => {
-    if ((window.innerWidth/columns.length) > 100) {
-      setColumnWidth(((window.innerWidth)/columns.length) + 'px');
+    if (window.innerWidth < 1000) {
+      setColumnWidth('150px');
     }
     else {
-      setColumnWidth('100px');
+      setColumnWidth(((window.innerWidth)/columns.length) + 'px');
     }
   }
   const setWidth = () => {
@@ -159,37 +163,6 @@ export default function Index() {
 
       <div className="watchlist-page-content page-content">
         {errorMessage ? <h4 style={{ color: "red", textAlign: "center" }}>{errorMessage}</h4> : null}
-        {/* <Box component="form" noValidate sx={{ mt: 3 }}>
-          <MaterialGrid container justifyContent="center" style={{ marginTop: "30px" }}>
-            <Paper sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: "50%" }}>
-              <InputBase
-                sx={{ ml: 1, flex: 1, fontSize: "1.5rem" }}
-                placeholder="Enter a Ticker"
-                inputProps={{ "aria-label": "search watchList" }}
-                value={ticker}
-                onChange={(e) => setTicker(e.target.value)}
-              />
-
-              <IconButton
-                type="submit"
-                sx={{ p: "10px", alignSelf: "center" }}
-                aria-label="search"
-                onClick={() => handleSearch()}
-                disabled={ticker.length === 0}
-              >
-                <Button
-                  className="primary-btn-color"
-                  // style={{ backgroundColor: "#9c27b0", color: "white" }}
-                  variant="contained"
-                  href="#"
-                >
-                  {isLoading ? <CircularProgress size={20} /> : null}
-                  Analyze
-                </Button>
-              </IconButton>
-            </Paper>
-          </MaterialGrid>
-        </Box> */}
         <div className="options-block">
           <Box className="filter-option">
             <Box className="filter-option-name">
@@ -266,48 +239,48 @@ export default function Index() {
                 title="Ticker"
                 filterable={false}
                 editable={false}
-                // width={setWidth()}
-                width="100px"
+                width={setWidth()}
+                // width="100px"
               />
               <Column
                 field="price"
                 title="Price $"
                 filterable={false}
                 editable={false}
-                // width={setWidth()}
-                width="150px"
+                width={setWidth()}
+                // width="150px"
               />
               <Column 
                 field="size" 
                 title="Size" 
                 filterable={false} 
                 editable={false}
-                // width={setWidth()}
-                width="125px"
+                width={setWidth()}
+                // width="125px"
               />
               <Column 
                 field="tape" 
                 title="Tape" 
                 filterable={false} 
                 editable={false} 
-                // width={setWidth()}
-                width="100px"
+                width={setWidth()}
+                // width="100px"
               />
               <Column 
                 field="time" 
                 title="Time" 
                 filterable={false} 
                 editable={false} 
-                // width={setWidth()}
-                width="150px"
+                width={setWidth()}
+                // width="150px"
               />
               <Column 
                 field="isSSR" 
                 title="is SSR"  
                 filterable={false} 
                 editable={false} 
-                // width={setWidth()}
-                width="100px"
+                width={setWidth()}
+                // width="100px"
               />
               <Column 
                 field="conditions" 

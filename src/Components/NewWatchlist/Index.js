@@ -89,18 +89,6 @@ const priceTargetsCell = (props) => {
   );
 };
 
-const MyLinearGaugeComponent = (props) => {
-  return <LinearGaugeComponent {...props} />;
-};
-
-const MyRadialGaugeComponent = (props) => {
-  return <RadialGaugeComponent {...props} />;
-};
-
-const MyArcGaugeComponent = (props) => {
-  return <ArcGaugeComponent {...props} />;
-};
-
 export default function Index() {
   const {
     state: { token },
@@ -171,15 +159,15 @@ export default function Index() {
   const [columnWidth, setColumnWidth] = React.useState((window.innerWidth/columns.length) + 'px');
 
   React.useEffect(() => {
-    // window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleResize);
     handleResize();
   }, []);
   const handleResize = () => {
-    if ((window.innerWidth/columns.length) > 100) {
-      setColumnWidth(((window.innerWidth)/columns.length) + 'px');
+    if (window.innerWidth < 1000) {
+      setColumnWidth('150px');
     }
     else {
-      setColumnWidth('100px');
+      setColumnWidth(((window.innerWidth)/columns.length) + 'px');
     }
   }
   const setWidth = () => {
@@ -270,15 +258,13 @@ export default function Index() {
                     filterable={false} 
                     editable={false}
                     width={setWidth()}
-                    // width="100px"
                   />
                   <Column 
                     field="buyPrice" 
                     title="Price $" 
                     filterable={false} 
                     editable={false} 
-                    // width={setWidth()}
-                    width="150px"
+                    width={setWidth()}
                     format="{0:c}"
                   />
                   <Column 
@@ -286,8 +272,7 @@ export default function Index() {
                     title="Stop Loss $" 
                     filterable={false} 
                     editable={false} 
-                    // width={setWidth()}
-                    width="150px"
+                    width={setWidth()}
                     format="{0:c}"
                   />
                   <Column
@@ -296,16 +281,14 @@ export default function Index() {
                     filterable={false}
                     editable={false}
                     cell={priceTargetsCell}
-                    // width={setWidth()}
-                    width="150px"
+                    width={setWidth()}
                   />
                   <Column 
                     field="rsi14" 
                     title="RSI" 
                     filterable={false} 
                     editable={false} 
-                    // width={setWidth()}
-                    width="100px"
+                    width={setWidth()}
                   />
                   <Column 
                     className="red-color-column"
@@ -313,8 +296,7 @@ export default function Index() {
                     title="Risk $" 
                     filterable={false} 
                     editable={false} 
-                    // width={setWidth()}
-                    width="100px"
+                    width={setWidth()}
                     format="{0:c}"
                   />
                   <Column 
@@ -323,8 +305,7 @@ export default function Index() {
                     title="Reward $" 
                     filterable={false} 
                     editable={false} 
-                    // width={setWidth()}
-                    width="100px"
+                    width={setWidth()}
                     format="{0:c}"
                   />
                   <Column 
@@ -333,8 +314,7 @@ export default function Index() {
                     cell={zoneBackGround} 
                     filterable={false} 
                     editable={false} 
-                    // width={setWidth()}
-                    width="150px"
+                    width={setWidth()}
                   />
                   <Column 
                     field="buyTrigger" 
@@ -342,8 +322,7 @@ export default function Index() {
                     cell={triggerBackGround} 
                     filterable={false} 
                     editable={false}
-                    // width={setWidth()}
-                    width="150px"
+                    width={setWidth()}
                   />
                 </Grid>
               </Box>

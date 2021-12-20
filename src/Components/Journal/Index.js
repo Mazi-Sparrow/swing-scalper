@@ -206,6 +206,7 @@ export default function Index() {
   };
 
   // responsive columns on window resize
+  const columns = document.getElementsByClassName('k-header');
   const [columnWidth, setColumnWidth] = React.useState((window.innerWidth - 530)/9);
 
   React.useEffect(() => {
@@ -214,11 +215,11 @@ export default function Index() {
   }, []);
 
   const handleResize = () => {
-    if (((window.innerWidth - 530)/9) > 100) {
-      setColumnWidth(((window.innerWidth - 530)/9) + 'px');
+    if (window.innerWidth < 1500) {
+      setColumnWidth('150px');
     }
     else {
-      setColumnWidth('100px');
+      setColumnWidth(((window.innerWidth)/columns.length) + 'px');
     }
   }
 
@@ -383,7 +384,7 @@ export default function Index() {
           <Column
             cell={CommandCell}
             filterable={false}
-            width="100px"
+            width={setWidth()}
           />
 
           <Column
@@ -392,7 +393,7 @@ export default function Index() {
             cell={CustomDate}
             filterable={false}
             editable={false}
-            width="150px"
+            width={setWidth()}
           />
           <Column
             field="ticker"
@@ -415,8 +416,7 @@ export default function Index() {
             format="{0:c}"
             filterable={false}
             editable={true}
-            // width={setWidth()}
-            width="150px"
+            width={setWidth()}
           />
           <Column
             field="stopLoss"
@@ -432,8 +432,7 @@ export default function Index() {
             format="{0:c}"
             filterable={false}
             editable={true}
-            // width={setWidth()}
-            width="150px"
+            width={setWidth()}
           />
           <Column
             field="tradeRisk"
@@ -454,7 +453,6 @@ export default function Index() {
           <Column
             field="profitLossPercentage"
             title="P/L"
-            // format="{0%}"
             filterable={false}
             editable={false}
             cell={GreenRedTextCell}
@@ -465,7 +463,7 @@ export default function Index() {
             title="STATUS"
             filterable={false}
             editable={false}
-            width="120px"
+            width={setWidth()}
           />
           <Column
             field="sellPrice"
@@ -474,8 +472,7 @@ export default function Index() {
             format="{0:c}"
             filterable={false}
             editable={setEditable()}
-            // width={setWidth()}
-            width="150px"
+            width={setWidth()}
           />
           <Column
             field="updatedAt"
@@ -485,7 +482,7 @@ export default function Index() {
             cell={CustomDate}
             filterable={false}
             editable={false}
-            width="150px"
+            width={setWidth()}
           />
         </Grid>
       </Box>
