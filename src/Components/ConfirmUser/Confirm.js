@@ -138,7 +138,7 @@ export default function Confirm() {
                     className="primary-btn-color default-btn-hover default-button"
                     type="submit"
                   >
-                    Confirm Forgot Password
+                    Confirm Email
               </Button>
             </CardActions>
 

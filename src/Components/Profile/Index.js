@@ -130,17 +130,17 @@ export default function Profile() {
           // ref={modalRef}
         >
           <Box className="subscription-modal-container modal-title">
-            What you get with the free plan
+            What you get with the Free Plan.
           </Box>
           <Box className="subscription-modal-features">
             <Box className="subscription-modal-feature">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in imperdiet libero. Fusce posuere arcu ut eros finibus accumsan. Morbi tempor tortor libero, quis varius quam pharetra ut. Nulla ut diam ut orci auctor facilisis eget at leo. Nunc et tortor sed nunc porttitor tempus ut ac augue. Morbi hendrerit augue lobortis augue laoreet dapibus.
+              Free Trade Journal to Log Your Trades with restrictions. Upgrade for Unlimited Access with RealTime Alerts on when to Close or Cut a Trade depending on your Stop Loss or Price Target.
             </Box>
             <Box className="subscription-modal-feature">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in imperdiet libero. Fusce posuere arcu ut eros finibus accumsan. Morbi tempor tortor libero, quis varius quam pharetra ut. Nulla ut diam ut orci auctor facilisis eget at leo. Nunc et tortor sed nunc porttitor tempus ut ac augue. Morbi hendrerit augue lobortis augue laoreet dapibus.
+             5 Daily Analyzer Queries. Upgrade for Unlimited Queries.
             </Box>
             <Box className="subscription-modal-feature">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in imperdiet libero. Fusce posuere arcu ut eros finibus accumsan. Morbi tempor tortor libero, quis varius quam pharetra ut. Nulla ut diam ut orci auctor facilisis eget at leo. Nunc et tortor sed nunc porttitor tempus ut ac augue. Morbi hendrerit augue lobortis augue laoreet dapibus.
+              Free Round the Clock Support and Access to our Social Discord Lounge.
             </Box>
           </Box>
           
