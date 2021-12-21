@@ -260,7 +260,7 @@ export default function Index() {
                     width={setWidth()}
                   />
                   <Column 
-                    field="buyPrice" 
+                    field="currentPrice" 
                     title="Price $" 
                     filterable={false} 
                     editable={false} 
