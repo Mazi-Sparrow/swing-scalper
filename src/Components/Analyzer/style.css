@@ -33,6 +33,7 @@ a {
     font-size: 30px;
     font-weight: 500;
     text-align: center;
+    font-family: 'Metropolis-Bold';
 }
 .analyzer-page-no-sage-trade-setup {
     margin-top: 1em;
@@ -88,6 +89,7 @@ a {
     font-size: 30px;
     margin-bottom: 20px;
     font-weight: 500;
+    font-family: 'Metropolis-SemiBold';
 }
 
 .analyzer-information-about-company-price {
@@ -102,6 +104,8 @@ a {
     display: flex;
     flex-direction: row;
     align-items: center;
+    font-weight: 900;
+    font-size: 30px;
 }
 .analyzer-information-about-company-logo img {
     width: 100%;
@@ -126,6 +130,10 @@ a {
     margin-right: 10px;
     font-size: 20px;
     font-weight: 600;
+    font-family: 'Metropolis-Light';
+}
+.analyzer-information-about-company-indicator {
+    font-family: 'Metropolis-ExtraLight';
 }
 
 .analyzer-linear-indicators {
@@ -141,6 +149,7 @@ a {
     font-size: 34px;
     text-align: center;
     margin-top: 10px;
+    font-family: 'Metropolis-Regular';
 }
 
 .analyzer-block-indicators {
@@ -192,8 +201,9 @@ a {
     padding: 20px 5px;
     /* width: 200px;
     height: 200px; */
-    border: 3px solid white;
+    /* border: 3px solid white; */
     margin: 0px 40px 20px 40px;
+    font-family: 'Metropolis-SemiBold';
 }
 .analyzer-linear-indicator text {
     /* font-size: 20px !important; */
@@ -217,8 +227,9 @@ a {
 .analyzer-news-title {
     margin: 20px 0px;
     font-size: 30px;
-    font-weight: bold;
+    /* font-weight: bold; */
     text-align: center;
+    font-family: 'Metropolis-Bold';
 }
 
 .analyzer-news-item-wrapper {
@@ -257,7 +268,8 @@ a {
     color: rgb(10, 10, 10);
     font-weight: 700;
     font-size: 22px;
-    line-height: 1.25rem;
+    line-height: 1.5rem;
+    font-family: 'Metropolis-SemiBold';
 }
 
 .analyzer-news-item-description {
@@ -265,14 +277,43 @@ a {
     color: rgb(107, 107, 107);
     font-weight: 400;
     font-size: 18px;
-    line-height: 1.25rem;
+    line-height: 1.3rem;
+    font-family: 'Metropolis-Light';
 }
 
 /* END NEWS */
 
+
+.analyzer-bottom-block {
+    text-align: center;
+    width: 100%;
+    padding: 10px 30px;
+    -webkit-box-shadow: 1px 7px 8px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 1px 7px 8px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 1px 7px 8px 0px rgba(34, 60, 80, 0.2);
+    font-family: 'Metropolis-Light';
+}
+
+.analyzer-bottom-info {
+    margin-top: 35px;
+    color: #9c34b4;
+}
+
+.analyzer-bottom-advice {
+    margin-top: 10px;
+    font-size: 12px;;
+    color: #9c34b4;
+}
+
+
+
 @media (max-width: 1400px) {
     .analyzer-information-about-company {
         flex-direction: column;
+    }
+    .analyzer-information-about-company-name {
+        text-align: center;
+        margin-top: 20px;
     }
     .analyzer-block-indicators {
         width: 90%;

@@ -1,19 +1,30 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import Avatar from "@mui/material/Avatar";
+import Shake from 'react-reveal/Shake';
+import Slide from 'react-reveal/Slide';
+
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import PersonIcon from '@mui/icons-material/Person';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import PasswordIcon from '@mui/icons-material/Password';
 import { Context as AuthContext } from "../../context/AuthContext";
 import { CardActions, FormControlLabel, Checkbox } from "@mui/material";
+import './style.css';
 
 const passwordPattern = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-+_!@#$%^&*.,?]).+$");
+
 
 export default function SignUp() {
   const [state, setState] = useState({
@@ -87,6 +98,13 @@ export default function SignUp() {
     if (isSignedIn) goToPage("confirm", state.email);
   };
 
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
+  const handleMouseDownPassword = () => setShowPassword(!showPassword);
+  const handleClickShowPasswordConfirm = () => setShowPasswordConfirm(!showPasswordConfirm);
+  const handleMouseDownPasswordConfirm = () => setShowPasswordConfirm(!showPasswordConfirm);
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -99,113 +117,181 @@ export default function SignUp() {
         }}
       >
         <div style={{ marginTop: "1.5em" }}></div>
-        {errorMessage ? <Typography style={{ color: "red" }}>{errorMessage}</Typography> : null}
+        {errorMessage ? 
+        <Shake>
+          <Box className="enter-pages-error-message">
+            {errorMessage}
+          </Box> 
+        </Shake>
+          : 
+        null}
 
         {state.formError ? (
-          <Typography style={{ color: "red" }}>{state.formError}</Typography>
+          <Shake>
+            <Box className="enter-pages-error-message">
+              {state.formError}
+            </Box>
+          </Shake>
         ) : null}
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography variant="body2" className="RELIABLE2">
-          Sign Up
-        </Typography>
-        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="given-name"
-                name="firstName"
-                onChange={onChange}
-                value={state.firstName}
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                required
-                fullWidth
-                onChange={onChange}
-                value={state.lastName}
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="family-name"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                onChange={onChange}
-                value={state.email}
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                onChange={onChange}
-                value={state.password}
-                name="password"
-                label="Password"
-                type={state.passwordShown ? "text" : "password"}
-                id="password"
-                autoComplete="new-password"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                onChange={onChange}
-                value={state.confirmPassword}
-                name="confirmPassword"
-                label="confirmPassword"
-                type={state.passwordShown ? "text" : "password"}
-                id="confirmPassword"
-                autoComplete="new-password"
-              />
-            </Grid>
-          </Grid>
-          <FormControlLabel
-            control={
-              <Checkbox
-                value={state.passwordShown}
-                color="primary"
-                onChange={(e) => {
-                  setState({ ...state, passwordShown: !state.passwordShown });
-                }}
-              />
-            }
-            label="Show Password"
-          />
 
-          <CardActions>
-            <Button
-              className="primary-btn-color default-btn-hover default-button"
-              type="submit"
-              disabled={state.password !== state.confirmPassword}
-            >
-              Sign up
-            </Button>
-          </CardActions>
-          <Grid container justifyContent="flex-end">
-            <Grid item>
-              <Link href="/signin" variant="body2">
-                Already have an account? Sign in
-              </Link>
+        <Slide left>
+          <Box className="enter-pages-title">
+            Welcome!
+          </Box>
+          <Box className="enter-pages-subtitle">
+            Create Your Account
+          </Box>
+          
+          <Box className="sign-up-form-controls" component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  className="enter-pages-text-field"
+                  autoComplete="given-name"
+                  name="firstName"
+                  onChange={onChange}
+                  value={state.firstName}
+                  required
+                  fullWidth
+                  id="firstName"
+                  // label="First Name"
+                  placeholder="First Name"
+                  autoFocus
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <PersonIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  className="enter-pages-text-field"
+                  required
+                  fullWidth
+                  onChange={onChange}
+                  value={state.lastName}
+                  id="lastName"
+                  // label="Last Name"
+                  placeholder="Last Name"
+                  name="lastName"
+                  autoComplete="family-name"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <PersonIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  className="enter-pages-text-field"
+                  required
+                  fullWidth
+                  onChange={onChange}
+                  value={state.email}
+                  id="email"
+                  // label="Email Address"
+                  placeholder="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <MailOutlineIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  className="enter-pages-text-field"
+                  required
+                  fullWidth
+                  onChange={onChange}
+                  value={state.password}
+                  name="password"
+                  // label="Password"
+                  placeholder="Create Password"
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  autoComplete="new-password"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <PasswordIcon />
+                      </InputAdornment>
+                    ),
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                        >
+                          {showPassword ? <Visibility /> : <VisibilityOff />}
+                        </IconButton>
+                      </InputAdornment>
+                    )
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  className="enter-pages-text-field"
+                  required
+                  fullWidth
+                  onChange={onChange}
+                  value={state.confirmPassword}
+                  name="confirmPassword"
+                  // label="confirmPassword"
+                  placeholder="Confirm Password"
+                  type={showPasswordConfirm ? "text" : "password"}
+                  id="password"
+                  autoComplete="new-password"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <PasswordIcon />
+                      </InputAdornment>
+                    ),
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPasswordConfirm}
+                          onMouseDown={handleMouseDownPasswordConfirm}
+                        >
+                          {showPasswordConfirm ? <Visibility /> : <VisibilityOff />}
+                        </IconButton>
+                      </InputAdornment>
+                    )
+                  }}
+                />
+              </Grid>
             </Grid>
-          </Grid>
-        </Box>
+            <CardActions className="enter-pages-buttons-box">
+              <Button
+                className="primary-btn-color default-btn-hover default-button"
+                type="submit"
+                disabled={state.password !== state.confirmPassword}
+              >
+                Create Account
+              </Button>
+            </CardActions>
+            <Box className="enter-pages-after-form-text">
+              Already registered? 
+              <Link href="/signin" variant="body2">
+                Login
+              </Link>
+            </Box>
+          </Box>
+        </Slide>
       </Box>
     </Container>
   );

@@ -15,7 +15,7 @@ export default function TemporaryDrawer() {
 
   const {
     logout,
-    state: { token },
+    state: { isSubscribed, token },
   } = React.useContext(AuthContext);
 
   const [state, setState] = React.useState({
@@ -34,18 +34,19 @@ export default function TemporaryDrawer() {
   };
 
   const Data=[
-    {name:"DASHBOARD",  link:"/dashboard"},
-    {name:"JOURNAL",  link:"/journal"},
-    {name:"ANALYZER",  link:"/watchlist"},
-    {name: "INFORMATION", link:"/information"},
-    // {name: "SUBSCRIPTION", link:"/subscription"},
-    {name: "PROFILE", link:"/profile"},
-    {name: "SUPPORT", link:"/support"},
+    {name: "DASHBOARD",  link:"/dashboard", subscription:"false"},
+    {name: "JOURNAL",  link:"/journal", subscription:"true"},
+    {name: "ANALYZER",  link:"/analyzer", subscription:"true"},
+    {name: "TRADE STREAMS", link:"/trade-streams", subscription:"true"},
+    {name: "WATCHLIST", link:"/watch-list", subscription:"true"},
+    {name: "INFORMATION", link:"/information", subscription:"false"}, 
+    {name: "PROFILE", link:"/profile", subscription:"false"},
+    {name: "SUPPORT", link:"/support", subscription:"false"},
   ]
 
   const LoggedOutData=[
     {name:"INFORMATION",  link:"/information"},
-    {name:"SUBSCRIPTION",  link:"/subscription"},
+    {name:"PRICING",  link:"/subscription"},
     // {name:"LOGIN",  link:"/signin"},
     // {name:"SIGNUP",  link:"/signup"},
   ]
@@ -61,12 +62,17 @@ export default function TemporaryDrawer() {
         {isLoggedIn === 'true' ? 
           (
             <>
-              {Data.map((text, index) => (
-              
-                <ListItem button key={text}   >
-                  <Button href={text.link} > <ListItemText primary={text.name} className="mob-btn" /></Button>
-                </ListItem>
-              ))}
+              {Data.map((text, index) => {
+                if (text.subscription === "false" || ((text.subscription === "true") && isSubscribed)) {
+                  return <> 
+                  <ListItem button key={text}>
+                    <Button href={text.link}> 
+                    <ListItemText primary={text.name} className="mob-btn" /></Button>
+                  </ListItem>
+                  </>
+                }
+                return null
+              })}
             <Button className="mob-btn logout-mobile-btn" onClick={() => logout().then(() => goToPage(""))}>
                 Logout
             </Button>

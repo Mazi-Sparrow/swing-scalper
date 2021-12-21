@@ -12,6 +12,46 @@
   src: url("../src/assets/font-family/Roboto-Regular.ttf");
 }
 
+@font-face {
+  font-family: Metropolis-Bold;
+  src: url("../src/assets/font-family/metropolis/Metropolis-Bold.otf");
+}
+
+@font-face {
+  font-family: Metropolis-ExtraBold;
+  src: url("../src/assets/font-family/metropolis/Metropolis-ExtraBold.otf");
+}
+
+@font-face {
+  font-family: Metropolis-ExtraLight;
+  src: url("../src/assets/font-family/metropolis/Metropolis-ExtraLight.otf");
+}
+
+@font-face {
+  font-family: Metropolis-Light;
+  src: url("../src/assets/font-family/metropolis/Metropolis-Light.otf");
+}
+
+@font-face {
+  font-family: Metropolis-Medium;
+  src: url("../src/assets/font-family/metropolis/Metropolis-Medium.otf");
+}
+
+@font-face {
+  font-family: Metropolis-Regular;
+  src: url("../src/assets/font-family/metropolis/Metropolis-Regular.otf");
+}
+
+@font-face {
+  font-family: Metropolis-SemiBold;
+  src: url("../src/assets/font-family/metropolis/Metropolis-SemiBold.otf");
+}
+
+@font-face {
+  font-family: Metropolis-Thin;
+  src: url("../src/assets/font-family/metropolis/Metropolis-Thin.otf");
+}
+
 $white: #fff;
 $primary: #7718E3;
 
@@ -146,7 +186,7 @@ body {
 }
 .hero-section {
   .card-main {
-    margin-top: 50px;
+    box-shadow: none;
     @include tablet {
       margin-top: 30px;
     }

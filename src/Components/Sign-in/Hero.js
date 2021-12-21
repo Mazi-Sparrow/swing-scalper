@@ -6,7 +6,8 @@ import CardContent from "@mui/material/CardContent";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import Logo from "../../assets/images/logo.png";
 import SignIn from "./Login";
-
+import RightSideImage from '../../../src/assets/images/entry-page-right-side-image.png'
+import Slide from 'react-reveal/Slide';
 
 export default function Hero() {
   return (
@@ -16,29 +17,31 @@ export default function Hero() {
           <Grid item lg={6} mt={2} md={8} sm={8} xs={12}>
             <Card sx={{ maxWidth: 1000 }} className="card-main">
               <CardContent>
-                <Typography className="RELIABLE3">
-                </Typography>
                 <SignIn />
               </CardContent>
               <CardContent>
-                <Typography variant="body2" className="RELIABLE3">
-                The information contained in this site is provided for informational purposes only, and should not be construed as financial advice on any subject matter.
-                </Typography>
-                <Typography variant="body2" className="RELIABLE3">
-                </Typography>
+              <Box className="enter-pages-buttom-text">
+                <Slide bottom>
+                  The information contained in this site is provided for informational purposes only, and should not be construed as financial advice on any subject matter.
+                </Slide>
+              </Box>
               </CardContent>
             </Card>
           </Grid>
-          <Grid item lg={6} mt={2} md={12} sm={12} xs={12}>
-            <Box className="hero-reliable"></Box>
-            <img src={Logo} width="100%" height="auto" alt=""/> 
-            <Skeleton shape={"rectangle"} style={{ width: "100%", height: "auto", }} />
-            <Box className="hero-reliable"></Box>
-            </Grid>
-          <Typography variant="body2" className="RELIABLE2">
-              Always evaluate <span className="plan3"> RISK</span> before
-              <span className="plan"> REWARD.</span>
-            </Typography>
+          <Grid className="entry-page-right-side-grid" item lg={6} mt={2} md={6} sm={7} xs={12}>
+            <Slide right>
+              <Box className="entry-page-right-side-image-box" style={{backgroundImage:`url(${RightSideImage})`}}>
+                <Box></Box>
+                <Box className="entry-page-right-side-image-text">
+                  Smart Entry and Exit Setups for your swing trade
+                </Box>
+                <Typography variant="body2" className="entry-page-evaluate-risk-text">
+                    Always evaluate <span className="plan3"> RISK</span> before{" "}
+                    <span className="plan">REWARD.</span>
+                </Typography>
+              </Box>
+            </Slide>
+          </Grid>
         </Grid>
       </Container>
     </div>

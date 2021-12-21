@@ -33,6 +33,7 @@ const initialDataState = {
 export default function Index() {
   const {
     state: { token },
+    getToken
   } = React.useContext(AuthContext);
   const {
     listJournals,
@@ -62,6 +63,10 @@ export default function Index() {
     return () => {
       isMounted = false;
     };
+  }, []);
+  
+  React.useEffect(() => {
+    getToken();
   }, []);
 
   const CommandCell = (props) => (
@@ -201,19 +206,20 @@ export default function Index() {
   };
 
   // responsive columns on window resize
+  const columns = document.getElementsByClassName('k-header');
   const [columnWidth, setColumnWidth] = React.useState((window.innerWidth - 530)/9);
 
   React.useEffect(() => {
     window.addEventListener("resize", handleResize);
-    handleResize();
+    // handleResize();
   }, []);
 
   const handleResize = () => {
-    if (((window.innerWidth - 530)/9) > 100) {
-      setColumnWidth(((window.innerWidth - 530)/9) + 'px');
+    if (window.innerWidth < 1500) {
+      setColumnWidth('150px');
     }
     else {
-      setColumnWidth('100px');
+      setColumnWidth(((window.innerWidth)/columns.length) + 'px');
     }
   }
 
@@ -225,6 +231,32 @@ export default function Index() {
 
   const pageChange = (event) => {
     setPage(event.page);
+  };
+
+  const GreenRedTextCell = (props) => {
+    const profitLossPercentage = props.dataItem.profitLossPercentage;
+  
+    if (profitLossPercentage >= 0 ) {
+      return (
+        <td
+          style={{
+            color: "rgb(55, 180, 0)",
+          }}
+        >
+          {profitLossPercentage}%
+        </td>
+      );
+    }
+  
+    return (
+      <td
+        style={{
+          color: "rgb(243, 23, 0)",
+        }}
+      >
+        {profitLossPercentage}%
+      </td>
+    );
   };
 
   const cellRender = (tdElement, cellProps) => {
@@ -306,9 +338,15 @@ export default function Index() {
           </DialogActionsBar>
         </Dialog>
       )}      
-      <Box className="journal-page-content page-content" my={12} mb={15}>
+      <Box className="journal-page-content page-content" my={12} mb={8}>
         {errorMessage ? <Typography style={{ color: "red" }}>{errorMessage}</Typography> : null}
-        <Grid
+        {/* {Object.keys(data).length === 0 && <Box className="grid-loading-panel">Loading</Box> } */}
+        {Object.keys(data).length === 0 && 
+          <Box className="grid-loading-panel">
+            <Box className="spinner-loader"></Box>
+          </Box>
+        }
+        {Object.keys(data).length !== 0 && <Grid
           pageable={true}
           skip={page.skip}
           take={page.take}
@@ -352,6 +390,7 @@ export default function Index() {
           <Column
             cell={CommandCell}
             filterable={false}
+            // width={setWidth()}
             width="100px"
           />
 
@@ -361,7 +400,8 @@ export default function Index() {
             cell={CustomDate}
             filterable={false}
             editable={false}
-            width="150px"
+            // width={setWidth()}
+            width="100px"
           />
           <Column
             field="ticker"
@@ -402,7 +442,7 @@ export default function Index() {
             filterable={false}
             editable={true}
             // width={setWidth()}
-            width="150px"
+            width="130px"
           />
           <Column
             field="tradeRisk"
@@ -418,14 +458,15 @@ export default function Index() {
             format="{0:c}"
             filterable={false}
             editable={false}
-            width={setWidth()}
+            // width={setWidth()}
+            width="130px"
           />
           <Column
             field="profitLossPercentage"
             title="P/L"
-            format="{0:#.00\%}"
             filterable={false}
             editable={false}
+            cell={GreenRedTextCell}
             width={setWidth()}
           />
           <Column
@@ -433,7 +474,8 @@ export default function Index() {
             title="STATUS"
             filterable={false}
             editable={false}
-            width="120px"
+            // width={setWidth()}
+            width="100px"
           />
           <Column
             field="sellPrice"
@@ -443,7 +485,7 @@ export default function Index() {
             filterable={false}
             editable={setEditable()}
             // width={setWidth()}
-            width="150px"
+            width="130px"
           />
           <Column
             field="updatedAt"
@@ -453,9 +495,10 @@ export default function Index() {
             cell={CustomDate}
             filterable={false}
             editable={false}
-            width="150px"
+            // width={setWidth()}
+            width="100px"
           />
-        </Grid>
+        </Grid>}
       </Box>
 
       <Footer />

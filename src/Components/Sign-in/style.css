@@ -1,3 +1,16 @@
 .swing-scalp-logo:hover {
     background-color: none;
 }
+.remember-me-forgot-pass-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+.remember-me-forgot-pass-box svg {
+    color: #9C34B4;
+}
+.remember-me-forgot-pass-box a {
+    color: #9C34B4;
+}

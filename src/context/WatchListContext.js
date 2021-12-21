@@ -65,6 +65,7 @@ const getAnalyzer =
               previousClose
               priceChange
               volume
+              averageVolume
               vwap
               high
               low
@@ -101,15 +102,121 @@ const getAnalyzer =
     }
   };
 
+  const listWatchlist =
+  (dispatch) =>
+  async ({ token }) => {
+    try {
+      dispatch({ type: "add_loading" });
+      const response = await graphqlClient.request(
+        gql`
+          query{
+            listWatchlist {
+              items {
+                company {
+                  name
+                  logo
+                }
+                currentPrice
+                buyTrigger
+                buyZone
+                tradeReward
+                tradeRisk
+                rsi14
+                stopLoss
+                ticker
+                priceTargets
+              }
+              errors
+              success
+            }
+          }
+        `,
+        {},
+        { Authorization: `Bearer ${token}` }
+      );
+      dispatch({ type: "remove_loading" });
+      console.log(response);
+      if (response.listWatchlist) {
+        dispatch({ action: "add_watchList", payload: response.listWatchlist });
+        dispatch({ type: "clear_errorMessage" });
+        return response.listWatchlist;
+      }
+      return false;
+    } catch (error) {
+      dispatch({ type: "remove_loading" });
+
+      dispatch({
+        type: "add_error",
+        payload: `Invalid Request`,
+      });
+    }
+  };
+
+
 const clearErrorMessage = (dispatch) => () => {
   dispatch({ type: "clear_errorMessage" });
 };
+
+const listTrades =
+  (dispatch) =>
+  async ({ token, ticker, sortDirection, limit, sortBy }) => {
+    try {
+      dispatch({ type: "add_loading" });
+      const response = await graphqlClient.request(
+        gql`
+          query listTrades($ticker: String!, $sortDirection: ModelSortDirection!, $limit: Int!, $sortBy: ModelTradeSort!) {
+            listTrades (
+                ticker: $ticker,
+                sortDirection: $sortDirection,
+                limit: $limit, 
+                sortBy: $sortBy
+              ) {
+                items {
+                  ticker
+                  exchangeID
+                  tradeID
+                  price
+                  size
+                  tape
+                  time
+                  isSSR
+                  conditions {
+                    title
+                    description
+                  }
+                }
+                success
+                errors
+            }
+          }
+        `,
+        { ticker, sortDirection, limit, sortBy },
+        { Authorization: `Bearer ${token}` }
+      );
+      dispatch({ type: "remove_loading" });
+      if (response.listTrades && response.listTrades.success && !response.listTrades.errors) {
+        dispatch({ action: "add_watchList", payload: response.listTrades });
+        dispatch({ type: "clear_errorMessage" });
+        return response.listTrades.items;
+      }
+      return false;
+    } catch (error) {
+      dispatch({ type: "remove_loading" });
+
+      dispatch({
+        type: "add_error",
+        payload: `Invalid Request`,
+      });
+    }
+  };
 
 export const { Context, Provider } = createDataContext(
   watchListReducers,
   {
     clearErrorMessage,
     getAnalyzer,
+    listWatchlist,
+    listTrades,
   },
   { watchList: null, errorMessage: "", isLoading: false }
 );

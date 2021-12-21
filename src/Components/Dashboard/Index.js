@@ -58,6 +58,17 @@ export default function Index() {
   const { listJournals } = useContext(JournalContext);
   const [shouldDisplayPieChart, setShouldDisplayPieChart] = useState(false);
   const [pieData, setPieData] = useState([]);
+  const [journalNewsList, setJournalNewsList] = useState([]);
+
+  const setNews = (res) => {
+    let journalNews = [];
+    res.forEach(element => {
+      if (element.tradeStatus === 'Open') {
+        journalNews.push.apply(journalNews, element.news);
+      }
+    });
+    setJournalNewsList(journalNews);
+  }
 
   const [state, setState] = useState({
     loading: true,
@@ -74,6 +85,8 @@ export default function Index() {
   useEffect(() => {
     let isMounted = true;
     listJournals({ token }).then((res) => {
+      setNews(res);
+      console.log(res);
       if (isMounted) {
         const { profitLossSum, profit, loss, openTrades, riskValues, rewardValues, profitLossValues } = dashboardValues(res);
 
@@ -172,7 +185,7 @@ export default function Index() {
             <MobileNavbar />
           </Box>
 
-          <Box id="dashboard-page-content" my={10} mb={15}>
+          <Box id="dashboard-page-content" my={10} mb={8}>
             {/* <Box className="social-share-block">
               <span>Share: </span>
               <Box className="social-share-icons">
@@ -304,7 +317,9 @@ export default function Index() {
               </div>
             </div>
 
+          <Box className="dashboard-graph-news-box">
             <Chart
+              className="trend-line-chart"
               style={{
                 height: 350,
               }}
@@ -331,7 +346,7 @@ export default function Index() {
                     data={item.data}
                     name={item.name}
                     labels={{
-                      visible: true,
+                      visible: false,
                       padding: 3,
                       font: "bold 16px Arial, sans-serif",
                       format: "c2",
@@ -340,6 +355,37 @@ export default function Index() {
                 ))}
               </ChartSeries>
             </Chart>
+            <Box className="dashboard-news-block">
+              <Box className="dashboard-news-title">
+                  NEWS
+              </Box>
+              {(journalNewsList !== undefined) ?
+                <>
+                  {journalNewsList?.map((item, index) => {
+                        return (
+                                <Box key={index} className="dashboard-news-item-wrapper">
+                                    <a href={item.url} target="_blank" className="dashboard-news-item">
+                                        <Box className="dashboard-news-item-image">
+                                            <img src={item.image} alt="news"/>
+                                        </Box>
+                                        <Box className="dashboard-news-item-info">
+                                            <Box className="dashboard-news-item-title">{item.title}</Box>
+                                            <Box className="dashboard-news-item-description">{item.description?.length > 300 ? (item.description?.substring(0, 300) + '...') : item.description}</Box>
+                                        </Box>
+                                    </a>
+                                </Box>
+                            )
+                      })
+                  }
+                </>
+                :
+                <Box className="dashboard-news-title">
+                  No Open Trades
+                </Box>
+            }
+            </Box>
+          </Box>
+
           </Box>
           <Footer />
         </div>

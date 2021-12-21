@@ -1,0 +1,33 @@
+.page-content {
+    margin-top: 50px;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+.prompt-button {
+    background-color: #9c1265 !important;
+    color: white !important;
+    padding: 10px 10px !important;
+    border-radius: 5px !important;
+}
+
+.options-block {
+    margin-left: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.filter-option {
+    width: 20%;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.filter-option-name {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.options-block button {
+    font-size: 1rem !important;
+}

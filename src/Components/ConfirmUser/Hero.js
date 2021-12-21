@@ -6,6 +6,8 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import {Skeleton } from '@progress/kendo-react-indicators';
 import Logo from "../../assets/images/logo.png";
 import Confirm from "./Confirm";
+import RightSideImage from '../../../src/assets/images/entry-page-right-side-image.png'
+import Slide from 'react-reveal/Slide';
 
 export default function Hero() {
   return (
@@ -27,15 +29,20 @@ export default function Hero() {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item lg={6} mt={2} md={12} sm={12} xs={12}>
-            <Box className="hero-reliable"></Box>
-            <img src={Logo} width="100%" height="auto" alt=<Skeleton shape={"rectangle"} style={{ width: "100%", height: "auto", }} /> />
-            <Box className="hero-reliable"></Box>
+          <Grid className="entry-page-right-side-grid" item lg={6} mt={2} md={6} sm={7} xs={12}>
+            <Slide right>
+              <Box className="entry-page-right-side-image-box" style={{backgroundImage:`url(${RightSideImage})`}}>
+                <Box></Box>
+                <Box className="entry-page-right-side-image-text">
+                  Smart Entry and Exit Setups for your swing trade
+                </Box>
+                <Typography variant="body2" className="entry-page-evaluate-risk-text">
+                    Always evaluate <span className="plan3"> RISK</span> before{" "}
+                    <span className="plan">REWARD.</span>
+                </Typography>
+              </Box>
+            </Slide>
           </Grid>
-          <Typography variant="body2" className="RELIABLE2">
-              Always evaluate <span className="plan3"> RISK</span> before{" "}
-              <span className="plan">REWARD.</span>
-            </Typography>
         </Grid>
       </Container>
     </div>

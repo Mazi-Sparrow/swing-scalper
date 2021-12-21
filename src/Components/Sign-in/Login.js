@@ -1,6 +1,8 @@
 import * as React from "react";
 import { useHistory } from "react-router-dom";
-import Avatar from "@mui/material/Avatar";
+import Shake from 'react-reveal/Shake';
+import Slide from 'react-reveal/Slide';
+
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -13,8 +15,17 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import PersonIcon from '@mui/icons-material/Person';
+import PasswordIcon from '@mui/icons-material/Password';
+
 import { Context as AuthContext } from "../../context/AuthContext";
 import { CardActions } from "@mui/material";
+
+import './style.css';
 
 
 
@@ -24,6 +35,11 @@ export default function SignIn() {
 
   const { signin, state, clearErrorMessage } = React.useContext(AuthContext);
 
+  const [showPassword, setShowPassword] = React.useState(false);
+  const [showPasswordConfirm, setShowPasswordConfirm] = React.useState(false);
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
+  const handleMouseDownPassword = () => setShowPassword(!showPassword);
+
   React.useEffect(() => {
     let isMounted = true;
     if (isMounted) clearErrorMessage();
@@ -32,6 +48,7 @@ export default function SignIn() {
       isMounted = false;
     };
   }, []);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -55,75 +72,96 @@ export default function SignIn() {
           alignItems: "center",
         }}
       >
-        {state.errorMessage ? (
-          <Typography style={{ color: "red" }}>{state.errorMessage}</Typography>
-        ) : null}
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography variant="body2" className="RELIABLE2">
-          Login
-        </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <CardActions>
-            <Button className="primary-btn-color default-btn-hover default-button" type="submit">
-              Login
-            </Button>
-          </CardActions>
-
-          <Grid container>
-            <Grid item xs>
+          {state.errorMessage ? 
+            <Shake>
+              <Box className="enter-pages-error-message">
+                {state.errorMessage}
+              </Box> 
+            </Shake>
+            : 
+          null}
+        <Slide left>
+          <Box className="enter-pages-title">
+            Welcome Back!
+          </Box>
+          <Box className="enter-pages-subtitle">
+            Enter your Login ID
+          </Box>
+          <Box className="sign-in-form-controls" component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <TextField
+              className="enter-pages-text-field"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              // label="Email Address"
+              placeholder="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <PersonIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              className="enter-pages-text-field"
+              // margin="normal"
+              required
+              fullWidth
+              name="password"
+              // label="Password"
+              placeholder="Password"
+              type={showPassword ? "text" : "password"}
+              id="password"
+              autoComplete="current-password"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <PasswordIcon />
+                  </InputAdornment>
+                ),
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                )
+              }}
+            />
+            <Box className="remember-me-forgot-pass-box">
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me"
+              />
               <Link href="/forgotPassword" variant="body2">
                 Forgot password?
               </Link>
-            </Grid>
-            <Grid item>
-              <Link href="/signup" variant="body2">
-                {"Sign Up?"}
+            </Box>
+            <CardActions className="enter-pages-buttons-box">
+              <Button 
+                className="primary-btn-color default-btn-hover default-button" 
+                type="submit"
+              >
+                Login
+              </Button>
+            </CardActions>
+            <Box className="enter-pages-after-form-text">
+              Not register yet? 
+              <Link href="/signin" variant="body2">
+                Create Account
               </Link>
-            </Grid>
-          </Grid>
-          <Grid container>
-            <Grid item>
-              <Link href="/confirm" variant="body2">
-                {"Confirm Email"}
-              </Link>
-            </Grid>
-          </Grid>
-        </Box>
-
-        <Box
-          sx={{
-            marginTop: 0,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        ></Box>
+            </Box>
+          </Box>
+        </Slide>
       </Box>
     </Container>
   );

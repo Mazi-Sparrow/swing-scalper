@@ -205,6 +205,7 @@ export default function Index() {
                     // style={{ backgroundColor: "#9c27b0", color: "white" }}
                     variant="contained"
                     href="#"
+                    autoFocus
                     >
                     {isLoading ? <CircularProgress size={20} /> : null}
                     Analyze
@@ -223,8 +224,8 @@ export default function Index() {
                             {stateWatchList?.company?.name ? stateWatchList.company.name : ''}
                         </Box>
                         <Box className="analyzer-information-about-company-logo">
-                            {stateWatchList?.company?.logo ? 
-                                <img src={stateWatchList.company.logo} alt="company logo"/> 
+                            {stateWatchList?.company?.logo ?
+                                <img src={stateWatchList.company.logo} onError={(e) => {e.target.onerror = null; e.target.alt=stateWatchList?.ticker}} alt=""/> 
                             : ''}
                         </Box>
                     </Box>
@@ -233,7 +234,7 @@ export default function Index() {
                             <Box className="analyzer-information-about-company-title">
                                 PRICE
                             </Box>
-                            <Box className={"analyzer-information-about-company-price " + (stateWatchList?.currentPrice > stateWatchList?.open ? "positive-text" : "negative-text")}>
+                            <Box className={"analyzer-information-about-company-price analyzer-information-about-company-indicator " + (stateWatchList?.currentPrice > stateWatchList?.open ? "positive-text" : "negative-text")}>
                                 {stateWatchList?.currentPrice ? stateWatchList.currentPrice : ''}
                                 {stateWatchList?.currentPrice > stateWatchList?.open 
                                     ? 
@@ -247,7 +248,7 @@ export default function Index() {
                             <Box className="analyzer-information-about-company-title">
                                 OPENING PRICE
                             </Box>
-                            <Box className="analyzer-information-about-company-opening-price">
+                            <Box className="analyzer-information-about-company-opening-price analyzer-information-about-company-indicator">
                                 {stateWatchList?.open ? stateWatchList.open : ''}
                             </Box>
                         </Box>
@@ -255,7 +256,7 @@ export default function Index() {
                             <Box className="analyzer-information-about-company-title">
                                 PREVIOUS CLOSE
                             </Box>
-                            <Box className="analyzer-information-about-company-previous-close">
+                            <Box className="analyzer-information-about-company-previous-close analyzer-information-about-company-indicator">
                                 {stateWatchList?.previousClose ? stateWatchList.previousClose : ''}
                             </Box>
                         </Box>
@@ -265,7 +266,7 @@ export default function Index() {
                             <Box className="analyzer-information-about-company-title">
                                 PRICE CHANGE
                             </Box>
-                            <Box className="analyzer-information-about-company-price-change">
+                            <Box className="analyzer-information-about-company-price-change analyzer-information-about-company-indicator">
                                 {stateWatchList?.priceChange ? stateWatchList.priceChange : ''}
                             </Box>
                         </Box>
@@ -273,7 +274,7 @@ export default function Index() {
                             <Box className="analyzer-information-about-company-title">
                                 VOLUME
                             </Box>
-                            <Box className="analyzer-information-about-company-volume">
+                            <Box className="analyzer-information-about-company-volume analyzer-information-about-company-indicator">
                                 {stateWatchList?.volume ? stateWatchList.volume : ''}    
                             </Box>
                         </Box>
@@ -281,7 +282,7 @@ export default function Index() {
                             <Box className="analyzer-information-about-company-title">
                                 AVERAGE VOLUME
                             </Box>
-                            <Box className="analyzer-information-about-company-average-volume">
+                            <Box className="analyzer-information-about-company-average-volume analyzer-information-about-company-indicator">
                                 {stateWatchList?.averageVolume ? stateWatchList.averageVolume : ''}    
                             </Box>
                         </Box>
@@ -289,7 +290,7 @@ export default function Index() {
                             <Box className="analyzer-information-about-company-title">
                                 VWAP
                             </Box>
-                            <Box className={"analyzer-information-about-company-vwap " + (stateWatchList?.vwap > stateWatchList?.currentPrice ? "positive-text" : "negative-text")}>
+                            <Box className={"analyzer-information-about-company-vwap analyzer-information-about-company-indicator " + (stateWatchList?.vwap > stateWatchList?.currentPrice ? "positive-text" : "negative-text")}>
                                 {stateWatchList?.vwap ? stateWatchList.vwap : ''}
                                 {stateWatchList?.vwap > stateWatchList?.currentPrice 
                                     ? 
@@ -420,7 +421,7 @@ export default function Index() {
                                 <Box className="analyzer-block-indicator-title">
                                     STOP LOSS
                                 </Box>
-                                <Box className="analyzer-block-indicator-value">
+                                <Box className="analyzer-block-indicator-value analyzer-information-about-company-indicator">
                                     {stateWatchList ? (stateWatchList.stopLoss ? stateWatchList.stopLoss : '') : ''}
                                 </Box>
                             </Box>
@@ -428,7 +429,7 @@ export default function Index() {
                                 <Box className="analyzer-block-indicator-title">
                                     PRICE TARGET 1
                                 </Box>
-                                <Box className="analyzer-block-indicator-value">
+                                <Box className="analyzer-block-indicator-value analyzer-information-about-company-indicator">
                                     {stateWatchList ? (stateWatchList.priceTargets ? (stateWatchList.priceTargets[0] ? stateWatchList.priceTargets[0] : '') : '') : ''}
                                 </Box>
                             </Box>
@@ -436,7 +437,7 @@ export default function Index() {
                                 <Box className="analyzer-block-indicator-title">
                                     PRICE TARGET 2
                                 </Box>
-                                <Box className="analyzer-block-indicator-value">
+                                <Box className="analyzer-block-indicator-value analyzer-information-about-company-indicator">
                                     {stateWatchList ? (stateWatchList.priceTargets ? (stateWatchList.priceTargets[1] ? stateWatchList.priceTargets[1] : '') : '') : ''}
                                 </Box>
                             </Box>
@@ -446,7 +447,7 @@ export default function Index() {
                                 <Box className="analyzer-block-indicator-title">
                                     RISK
                                 </Box>
-                                <Box className="analyzer-block-indicator-value negative-text">
+                                <Box className="analyzer-block-indicator-value analyzer-information-about-company-indicator negative-text">
                                     {stateWatchList ? (stateWatchList.tradeRisk ? stateWatchList.tradeRisk : '') : ''}
                                 </Box>
                             </Box>
@@ -454,7 +455,7 @@ export default function Index() {
                                 <Box className="analyzer-block-indicator-title analyzer-block-indicator-reward">
                                     REWARD
                                 </Box>
-                                <Box className={"analyzer-block-indicator-value " + (stateWatchList?.tradeReward < 0 ? "negative-text" : (stateWatchList?.tradeReward < stateWatchList?.tradeRisk ? "negative-text" : "positive-text"))}>
+                                <Box className={"analyzer-block-indicator-value analyzer-information-about-company-indicator " + (stateWatchList?.tradeReward < 0 ? "negative-text" : (stateWatchList?.tradeReward < stateWatchList?.tradeRisk ? "negative-text" : "positive-text"))}>
                                     {stateWatchList ? (stateWatchList.tradeReward ? stateWatchList.tradeReward : '') : ''}
                                 </Box>
                             </Box>
@@ -470,7 +471,7 @@ export default function Index() {
                             if (index < 2) {
                                 return (
                                         <Box key={index} className="analyzer-news-item-wrapper">
-                                            <a href={item.url} className="analyzer-news-item">
+                                            <a href={item.url} target="_blank" className="analyzer-news-item">
                                                 <Box className="analyzer-news-item-image">
                                                     <img src={item.image} alt="news"/>
                                                 </Box>
@@ -496,13 +497,13 @@ export default function Index() {
         </Box>
     }
             
-            <Box className="homepage-bottom-block">
-                <Box className="homepage-bottom-info">
+            <Box className="analyzer-bottom-block">
+                <Box className="analyzer-bottom-info">
                     The information contained in this site is provided for
                     informational purposes only, and should not be construed as
                     financial advice on any subject matter.
                 </Box>
-                <Box className="homepage-bottom-advice">
+                <Box className="analyzer-bottom-advice">
                     PLEASE ALWAYS DO YOUR RESEARCH OR CONSULT A FINANCIAL ADVISER.
                 </Box>
             </Box>

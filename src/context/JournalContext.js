@@ -67,6 +67,12 @@ const listJournals =
                 tradeStatus
                 updatedAt
                 profitLoss
+                news {
+                  title
+                  url
+                  image
+                  description
+                }
               }
               success
               errors
