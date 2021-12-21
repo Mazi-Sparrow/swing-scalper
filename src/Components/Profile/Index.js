@@ -153,7 +153,7 @@ export default function Profile() {
                 }
               }
             >
-              UPGRADE FOR MORE
+              Upgrade For More
             </Button>
             <Button
               className="primary-btn-color default-btn-hover default-button entry-close-btn"
@@ -162,7 +162,7 @@ export default function Profile() {
                 }
               }
             >
-              CONTINUE
+              Continue to Free Plan
             </Button>
           </Box>
       </Modal>
