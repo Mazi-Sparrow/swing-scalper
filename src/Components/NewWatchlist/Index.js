@@ -116,15 +116,17 @@ export default function Index() {
 
   const prepareData = (response) => {
     let resultData = [];
-    if (showRewardHigherThanRisk) {
-      resultData = response.items.filter(item => item.tradeReward > item.tradeRisk)
-      setStateWatchList(resultData);
-    } else if (showRiskHigherThanReward) {
-      resultData = response.items.filter(item => item.tradeRisk > item.tradeReward)
-      setStateWatchList(resultData);  
-    } else {
-      resultData = response.items;
-      setStateWatchList(resultData);
+    if (response.items && response.items.length !== 0) {
+      if (showRewardHigherThanRisk) {
+        resultData = response.items.filter(item => item.tradeReward > item.tradeRisk)
+        setStateWatchList(resultData);
+      } else if (showRiskHigherThanReward) {
+        resultData = response.items.filter(item => item.tradeRisk > item.tradeReward)
+        setStateWatchList(resultData);  
+      } else {
+        resultData = response.items;
+        setStateWatchList(resultData);
+      }
     }
   }
 
@@ -213,7 +215,7 @@ export default function Index() {
                 {errorMessage}
               </h4>
             ) : null}
-            {Object.keys(stateWatchList).length === 0 ? (
+            {Object.keys(stateWatchList).length === 0 || stateWatchList.length === 0 ? (
               <Box my={5} mb={5}>
                 <Box className="grid-loading-panel">
                   <Box className="spinner-loader"></Box>
@@ -235,7 +237,7 @@ export default function Index() {
                     )}
                     skip={page.skip}
                     take={page.take}
-                    total={stateWatchList.length}
+                    total={stateWatchList?.length}
                     pageable={true}
                     onPageChange={pageChange}
                     sortable={true}
