@@ -89,6 +89,7 @@ const signin = (dispatch) => async (username, password) => {
         localStorage.setItem("isSubscribed", response.logIn.is_subscribed),
       ]);
     }
+    return response.logIn.success;
   } catch (error) {
     dispatch({ type: "remove_loading" });
     dispatch({

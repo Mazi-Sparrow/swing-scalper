@@ -57,7 +57,10 @@ export default function SignIn() {
     const email = data.get("email");
     const password = data.get("password");
 
-    signin(email, password);
+    const result = signin(email, password)
+    if (result) (
+      goToPage("profile")
+    )
   };
 
   return (
