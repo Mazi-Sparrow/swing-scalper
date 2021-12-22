@@ -340,7 +340,6 @@ export default function Index() {
       )}      
       <Box className="journal-page-content page-content" my={12} mb={8}>
         {errorMessage ? <Typography style={{ color: "red" }}>{errorMessage}</Typography> : null}
-        {/* {Object.keys(data).length === 0 && <Box className="grid-loading-panel">Loading</Box> } */}
         {Object.keys(data).length === 0 && 
           <Box className="grid-loading-panel">
             <Box className="spinner-loader"></Box>

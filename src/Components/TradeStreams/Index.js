@@ -64,10 +64,6 @@ export default function Index() {
   
   const [dataLoaded, setDataLoaded] = React.useState(true);
 
-
-  // const sortDirectionList = ["ASC", "DESC"];
-  // const sortByList = ["TICKER", "SIZE", "PRICE", "TIME"];
-
   const sortByList = [
     { value: 'TICKER', label: 'Ticker' },
     { value: 'SIZE', label: 'Size' },
@@ -162,65 +158,63 @@ export default function Index() {
       </Box>
 
       <div className="watchlist-page-content page-content">
-        {errorMessage ? <h4 style={{ color: "red", textAlign: "center" }}>{errorMessage}</h4> : null}
+        {errorMessage ? (
+          <h4 style={{ color: "red", textAlign: "center" }}>{errorMessage}</h4>
+        ) : null}
         <div className="options-block">
           <Box className="filter-option">
-            <Box className="filter-option-name">
-              Sort by
-            </Box>
-            <Select
-              options={sortByList}
-              onChange={handleOptionSortByChange} 
-            />
+            <Box className="filter-option-name">Sort by</Box>
+            <Select options={sortByList} onChange={handleOptionSortByChange} />
           </Box>
           <Box className="filter-option">
-            <Box className="filter-option-name">
-              Sort direction
-            </Box>
+            <Box className="filter-option-name">Sort direction</Box>
             <Select
               options={sortDirectionList}
               onChange={handleOptionSortDirectionChange}
             />
           </Box>
           <Button
-              className="primary-btn-color default-btn-hover default-button entry-close-btn"
-              onClick={updateData}
-            >
-              APPLY FILTERS
+            className="primary-btn-color default-btn-hover default-button entry-close-btn"
+            onClick={updateData}
+          >
+            APPLY FILTERS
           </Button>
-
         </div>
-      {dataLoaded && 
-      <>
-        <div
-          // style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%" }}
-        >
-          <Box my={3} mb={15}>
-            <Grid
-              style={{
-                textAlign: "justify",
-                fontSize: ".9rem",
-                width: "100%",
-                height: "100%",
-              }}
-              data={stateTrades.slice(page.skip, page.take + page.skip)}
-              skip={page.skip}
-              take={page.take}
-              total={stateTrades.length}
-              pageable={true}
-              onPageChange={pageChange}
-            >
-            <GridToolbar>
-              <Button
-                title="Refresh"
-                className="k-primary k-button k-grid-edit-command"
-                style={{ padding: "5px 10px" }}
-                onClick={updateData}
-              >
-                Refresh
-              </Button>
-            </GridToolbar>
-              {/* <Column 
+        {Object.keys(stateTrades).length === 0 ? (
+          <Box my={5} mb={5}>
+            <Box className="grid-loading-panel">
+              <Box className="spinner-loader"></Box>
+            </Box>
+          </Box>
+        ) : (
+          <>
+            <div>
+              <Box my={3} mb={15}>
+                <Grid
+                  style={{
+                    textAlign: "justify",
+                    fontSize: ".9rem",
+                    width: "100%",
+                    height: "100%",
+                  }}
+                  data={stateTrades.slice(page.skip, page.take + page.skip)}
+                  skip={page.skip}
+                  take={page.take}
+                  total={stateTrades.length}
+                  pageable={true}
+                  onPageChange={pageChange}
+                >
+                  <GridToolbar>
+                    <Button
+                      title="Refresh"
+                      className="k-primary k-button k-grid-edit-command"
+                      style={{ padding: "5px 10px" }}
+                      onClick={updateData}
+                    >
+                      Refresh
+                    </Button>
+                  </GridToolbar>
+                  {/* <Column 
                 field="exchangeID" 
                 title="Exchange ID" 
                 filterable={false} 
@@ -234,67 +228,67 @@ export default function Index() {
                 editable={false} 
                 width={setWidth()}
               /> */}
-              <Column
-                field="ticker"
-                title="Ticker"
-                filterable={false}
-                editable={false}
-                width={setWidth()}
-                // width="100px"
-              />
-              <Column
-                field="price"
-                title="Price $"
-                filterable={false}
-                editable={false}
-                width={setWidth()}
-                // width="150px"
-              />
-              <Column 
-                field="size" 
-                title="Size" 
-                filterable={false} 
-                editable={false}
-                width={setWidth()}
-                // width="125px"
-              />
-              <Column 
-                field="tape" 
-                title="Tape" 
-                filterable={false} 
-                editable={false} 
-                width={setWidth()}
-                // width="100px"
-              />
-              <Column 
-                field="time" 
-                title="Time" 
-                filterable={false} 
-                editable={false} 
-                width={setWidth()}
-                // width="150px"
-              />
-              <Column 
-                field="isSSR" 
-                title="is SSR"  
-                filterable={false} 
-                editable={false} 
-                width={setWidth()}
-                // width="100px"
-              />
-              <Column 
-                field="conditions" 
-                title="Conditions" 
-                filterable={false} 
-                editable={false}
-                // width={setWidth()}
-                width="750px"
-              />
-            </Grid>
-          </Box>
-        </div>
-      </>
-      }
+                  <Column
+                    field="ticker"
+                    title="Ticker"
+                    filterable={false}
+                    editable={false}
+                    width={setWidth()}
+                    // width="100px"
+                  />
+                  <Column
+                    field="price"
+                    title="Price $"
+                    filterable={false}
+                    editable={false}
+                    width={setWidth()}
+                    // width="150px"
+                  />
+                  <Column
+                    field="size"
+                    title="Size"
+                    filterable={false}
+                    editable={false}
+                    width={setWidth()}
+                    // width="125px"
+                  />
+                  <Column
+                    field="tape"
+                    title="Tape"
+                    filterable={false}
+                    editable={false}
+                    width={setWidth()}
+                    // width="100px"
+                  />
+                  <Column
+                    field="time"
+                    title="Time"
+                    filterable={false}
+                    editable={false}
+                    width={setWidth()}
+                    // width="150px"
+                  />
+                  <Column
+                    field="isSSR"
+                    title="is SSR"
+                    filterable={false}
+                    editable={false}
+                    width={setWidth()}
+                    // width="100px"
+                  />
+                  <Column
+                    field="conditions"
+                    title="Conditions"
+                    filterable={false}
+                    editable={false}
+                    // width={setWidth()}
+                    width="750px"
+                  />
+                </Grid>
+              </Box>
+            </div>
+          </>
+        )}
       </div>
       <Footer />
     </>

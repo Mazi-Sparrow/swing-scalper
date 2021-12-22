@@ -206,129 +206,144 @@ export default function Index() {
       </Box>
 
       <div className="watchlist-page-content page-content">
-        {dataLoaded && 
-        <>
-          {errorMessage ? <h4 style={{ color: "red", textAlign: "center" }}>{errorMessage}</h4> : null}
-            <div>
-              <Box my={12} mb={15}>
-                <Grid
-                  style={{
-                    textAlign: "justify",
-                    fontSize: ".9rem",
-                    width: "100%",
-                    height: "100%",
-                  }}
-                  data={orderBy(stateWatchList?.slice(page.skip, page.take + page.skip), sort)}
-                  skip={page.skip}
-                  take={page.take}
-                  total={stateWatchList.length}
-                  pageable={true}
-                  onPageChange={pageChange}
-                  sortable={true}
-                  sort={sort}
-                  onSortChange={(e) => {
-                    setSort(e.sort);
-                  }}
-                >
-                  <GridToolbar>
-                    <Button
-                      title="Refresh"
-                      className="k-primary k-button k-grid-edit-command"
-                      style={{ padding: "5px 10px" }}
-                      onClick={updateData}
-                    >
-                      Refresh
-                    </Button>
-                    <Checkbox
-                      className="reward-higher-than-risk-checkbox"
-                      checked={showRewardHigherThanRisk}
-                      onChange={handleShowRewardHigherThanRiskCheckboxChanged}
-                      label={"Reward > Risk"}
-                    />
-                    <Checkbox
-                      className="risk-higher-than-reward-checkbox"
-                      checked={showRiskHigherThanReward}
-                      onChange={handleShowRiskHigherThanRewardCheckboxChanged}
-                      label={"Risk > Reward"}
-                    />
-                  </GridToolbar>
-                  <Column 
-                    field="ticker" 
-                    title="Ticker" 
-                    filterable={false} 
-                    editable={false}
-                    width={setWidth()}
-                  />
-                  <Column 
-                    field="buyPrice" 
-                    title="Price $" 
-                    filterable={false} 
-                    editable={false} 
-                    width={setWidth()}
-                    format="{0:c}"
-                  />
-                  <Column 
-                    field="stopLoss" 
-                    title="Stop Loss $" 
-                    filterable={false} 
-                    editable={false} 
-                    width={setWidth()}
-                    format="{0:c}"
-                  />
-                  <Column
-                    field="priceTargets"
-                    title="Price Target $"
-                    filterable={false}
-                    editable={false}
-                    cell={priceTargetsCell}
-                    width={setWidth()}
-                  />
-                  <Column 
-                    field="rsi14" 
-                    title="RSI" 
-                    filterable={false} 
-                    editable={false} 
-                    width={setWidth()}
-                  />
-                  <Column 
-                    className="red-color-column"
-                    field="tradeRisk" 
-                    title="Risk $" 
-                    filterable={false} 
-                    editable={false} 
-                    width={setWidth()}
-                    format="{0:c}"
-                  />
-                  <Column 
-                    className="green-color-column"
-                    field="tradeReward" 
-                    title="Reward $" 
-                    filterable={false} 
-                    editable={false} 
-                    width={setWidth()}
-                    format="{0:c}"
-                  />
-                  <Column 
-                    field="buyZone" 
-                    title="Buy Zone" 
-                    cell={zoneBackGround} 
-                    filterable={false} 
-                    editable={false} 
-                    width={setWidth()}
-                  />
-                  <Column 
-                    field="buyTrigger" 
-                    title="Buy Trigger" 
-                    cell={triggerBackGround} 
-                    filterable={false} 
-                    editable={false}
-                    width={setWidth()}
-                  />
-                </Grid>
+        {dataLoaded && (
+          <>
+            {errorMessage ? (
+              <h4 style={{ color: "red", textAlign: "center" }}>
+                {errorMessage}
+              </h4>
+            ) : null}
+            {Object.keys(stateWatchList).length === 0 ? (
+              <Box my={5} mb={5}>
+                <Box className="grid-loading-panel">
+                  <Box className="spinner-loader"></Box>
+                </Box>
               </Box>
-            </div>
-        </>        
-        }
+            ) : (
+              <div>
+                <Box my={12} mb={15}>
+                  <Grid
+                    style={{
+                      textAlign: "justify",
+                      fontSize: ".9rem",
+                      width: "100%",
+                      height: "100%",
+                    }}
+                    data={orderBy(
+                      stateWatchList?.slice(page.skip, page.take + page.skip),
+                      sort
+                    )}
+                    skip={page.skip}
+                    take={page.take}
+                    total={stateWatchList.length}
+                    pageable={true}
+                    onPageChange={pageChange}
+                    sortable={true}
+                    sort={sort}
+                    onSortChange={(e) => {
+                      setSort(e.sort);
+                    }}
+                  >
+                    <GridToolbar>
+                      <Button
+                        title="Refresh"
+                        className="k-primary k-button k-grid-edit-command"
+                        style={{ padding: "5px 10px" }}
+                        onClick={updateData}
+                      >
+                        Refresh
+                      </Button>
+                      <Checkbox
+                        className="reward-higher-than-risk-checkbox"
+                        checked={showRewardHigherThanRisk}
+                        onChange={handleShowRewardHigherThanRiskCheckboxChanged}
+                        label={"Reward > Risk"}
+                      />
+                      <Checkbox
+                        className="risk-higher-than-reward-checkbox"
+                        checked={showRiskHigherThanReward}
+                        onChange={handleShowRiskHigherThanRewardCheckboxChanged}
+                        label={"Risk > Reward"}
+                      />
+                    </GridToolbar>
+                    <Column
+                      field="ticker"
+                      title="Ticker"
+                      filterable={false}
+                      editable={false}
+                      width={setWidth()}
+                    />
+                    <Column
+                      field="buyPrice"
+                      title="Price $"
+                      filterable={false}
+                      editable={false}
+                      width={setWidth()}
+                      format="{0:c}"
+                    />
+                    <Column
+                      field="stopLoss"
+                      title="Stop Loss $"
+                      filterable={false}
+                      editable={false}
+                      width={setWidth()}
+                      format="{0:c}"
+                    />
+                    <Column
+                      field="priceTargets"
+                      title="Price Target $"
+                      filterable={false}
+                      editable={false}
+                      cell={priceTargetsCell}
+                      width={setWidth()}
+                    />
+                    <Column
+                      field="rsi14"
+                      title="RSI"
+                      filterable={false}
+                      editable={false}
+                      width={setWidth()}
+                    />
+                    <Column
+                      className="red-color-column"
+                      field="tradeRisk"
+                      title="Risk $"
+                      filterable={false}
+                      editable={false}
+                      width={setWidth()}
+                      format="{0:c}"
+                    />
+                    <Column
+                      className="green-color-column"
+                      field="tradeReward"
+                      title="Reward $"
+                      filterable={false}
+                      editable={false}
+                      width={setWidth()}
+                      format="{0:c}"
+                    />
+                    <Column
+                      field="buyZone"
+                      title="Buy Zone"
+                      cell={zoneBackGround}
+                      filterable={false}
+                      editable={false}
+                      width={setWidth()}
+                    />
+                    <Column
+                      field="buyTrigger"
+                      title="Buy Trigger"
+                      cell={triggerBackGround}
+                      filterable={false}
+                      editable={false}
+                      width={setWidth()}
+                    />
+                  </Grid>
+                </Box>
+              </div>
+            )}
+          </>
+        )}
       </div>
       <Footer />
     </>
