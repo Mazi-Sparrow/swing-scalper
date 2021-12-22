@@ -63,6 +63,7 @@ export default function Index() {
                                                   <img src={item.image} alt="news"/>
                                               </Box>
                                               <Box className="information-news-item-info">
+                                                  <Box className="information-news-item-data">{new Date(item.published_at).toLocaleString("en-US")}</Box>
                                                   <Box className="information-news-item-title">{item.title}</Box>
                                                   <Box className="information-news-item-description">{item.description?.length > 150 ? (item.description?.substring(0, 150) + '...') : item.description}</Box>
                                               </Box>

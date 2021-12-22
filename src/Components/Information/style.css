@@ -72,6 +72,12 @@
     font-family: 'Metropolis-SemiBold';
 }
 
+.information-news-item-data {
+    color: rgb(10, 10, 10);
+    font-size: 14px;
+    font-family: 'Metropolis-Light';
+}
+
 .information-news-item-description {
     color: rgb(107, 107, 107);
     font-weight: 400;
