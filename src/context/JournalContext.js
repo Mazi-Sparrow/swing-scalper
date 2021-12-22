@@ -154,7 +154,7 @@ const createJournal =
             $ticker: String!
             $quantity: Int!
             $buyPrice: Float!
-            $priceTargets: [Float!]
+            $priceTargets: [Float!]!
             $stopLoss: Float!
           ) {
             createJournal(

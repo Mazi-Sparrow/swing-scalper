@@ -50,6 +50,7 @@ export default function Index() {
   const [promptDeletionVisible, setPromptDeletionVisible] = React.useState(false);
   const [currentDataItem, setCurrentDataItem] = React.useState(null);
   const [notificationVisible, setNotificationVisible] = React.useState(false);
+  const [addLoader, setAddLoader] = React.useState(false);
   
   const toggleDialog = () => {
     setPromptDeletionVisible(!promptDeletionVisible);
@@ -101,6 +102,7 @@ export default function Index() {
       const newData = insertItem(data, dataItem);
       setData([...newData]);
 
+      setAddLoader(true);
       const isSuccess = await createJournal({
         token,
         quantity: parseInt(dataItem.quantity),
@@ -108,6 +110,8 @@ export default function Index() {
         priceTargets: [parseFloat(dataItem.priceTargets)],
         ticker: dataItem.ticker,
         stopLoss: parseFloat(dataItem.stopLoss),
+      }).then(() => {
+        setAddLoader(false);
       });
     }
 
@@ -340,12 +344,23 @@ export default function Index() {
       )}      
       <Box className="journal-page-content page-content" my={12} mb={8}>
         {errorMessage ? <Typography style={{ color: "red" }}>{errorMessage}</Typography> : null}
-        {Object.keys(data).length === 0 && 
-          <Box className="grid-loading-panel">
-            <Box className="spinner-loader"></Box>
+        {addLoader && (
+              <Box my={5} mb={5} textAlign='center'>
+                Adding new Trade. PLease wait...
+                <Box className="grid-loading-panel">
+                  <Box className="spinner-loader"></Box>
+                </Box>
+              </Box>
+        )}
+        {Object.keys(data).length === 0 ? (
+          <Box my={5} mb={5} textAlign='center'>
+            <Box className="grid-loading-panel">
+              <Box className="spinner-loader"></Box>
+            </Box>
           </Box>
-        }
-        {Object.keys(data).length !== 0 && <Grid
+        ) :
+        (
+        <Grid
           pageable={true}
           skip={page.skip}
           take={page.take}
@@ -497,7 +512,7 @@ export default function Index() {
             // width={setWidth()}
             width="100px"
           />
-        </Grid>}
+        </Grid>)}
       </Box>
 
       <Footer />

@@ -205,7 +205,6 @@ export default function Profile() {
             </Box>
           </Box>
       </Modal>
-
       {user ? (
         <Container
           style={{
@@ -331,7 +330,15 @@ export default function Profile() {
             </Button>
           </div>
         </Container>
-      ) : null}
+      ) :
+      <>
+        <Box my={5} mb={5} textAlign='center'>
+          <Box className="grid-loading-panel">
+            <Box className="spinner-loader"></Box>
+          </Box>
+        </Box>
+      </> 
+    }
       <Footer />
     </div>
   );
