@@ -85,23 +85,20 @@ const LandingPage = () => {
           <Box className="homepage-content">
             {/* <ModalVideo channel='youtube' autoplay isOpen={isOpen} videoId="kUlffl8j3Es" onClose={() => setIntryModalOpen(false)} /> */}
             <Box className="homepage-background">
-              <h1>Trade What's Happening, Not What You Think Is Going To Happen!</h1>
+              <h1>We Do NOT Call Out Trades!</h1>
               <h2>
-                Potential For Gain and Risk Of Loss Are Basic Realities Of Every
-                Trade.
+                The Potential For Gain and Risk Of Loss Are Basic Realities Of Every
+                Trade. <b>SWINGSCALP</b> Exposes You To The Reality Of Losses Compared To Your Potential Gain On Every Trade In RealTime WITHOUT Emotional Bias. You Can Then Choose A Trade That Matches Your Desired RIsk/Reward Before You Put Your Money To Work.
               </h2>
               <article className="homepage-welcome-text">
                 <Box>
-                 <b>Who Is Our Customer? </b> Swing Traders. Swing Trading Is A Speculative Trading Strategy In Financial Markets Where A Tradable Asset Is Held For One Or More Days In An Effort To Profit From Price Changes Or 'Swings'.{" "}
+                 <b>Have You Ever Wanted To Swing Trade With Minimum Losses? </b> Swing Trading Is A Speculative Trading Strategy In Financial Markets Where A Tradable Asset Is Held For One Or More Days In An Effort To Profit From Price Changes Or 'Swings'. Swing Trading Is A High-Risk Endeavor. Entry & Exit Points Are Crucial, As Well As The Amount Of Risk Taken On For Each Trade. {" "}
                 </Box>
                 <Box>
-                  <b>What Do They Want? </b> To Make Profits From Holding Shares For The Shortest Term Possible.{" "}
+                  <b>Entry & Exit Are Important Aspects To Focus On When Trading, But Risk Management Can Be Difficult When Making Quick Decisions. </b> SwingScalp At The Click Of A Button Allows You To Take Advantage Of Safe Trade Opportunities In The Market Without Risking Too Much Capital At Any One Time.{" "}
                 </Box>
                 <Box>
-                  <b>Why Do They Need Us? </b> Ever Wondered Why Your Loses Outweigh Your Gains?, It Is Because You Jump Into Trades Blindly With No Risk Assessment. Not Every Trade Called Out By "Your Trade Guru" Will Match Your Risk Tolerance.{" "}
-                </Box>
-                <Box>
-                <b>How Do We Make Your Life Easier? </b> Our Tools Help You Mitigate Your Losses By Showing You A Safe Margin In Every Trade Setup. You Can Then Choose A Trade That Matches Your Desired RIsk/Reward Before You Put Your Money To Work. Our <b>Watchlist</b> Show Stocks At Stage One Breakout Price Action In Realtime For Your Daily Trade Setups. The <b>Swingscalp Analyzer</b> Analyzes Stock Prices And Points You To Trade Entries & Exits Within A SAFE MARGIN, Keeps Track Of Your Risk/Reward Before You Enter A Trade And Recommends Stop Loses And Price Targets. Our <b>Trade Streams</b> Gives You Access To <b>Block Institutional Trades</b> Executed Daily With Market Data from All 19 Exchanges Including Darkpools. You Also Get Complimentary Access To Our Easy To Use Trade Journal To Log Your Trades And Assess Your Progress. {" "}
+                <b>How Do We Make Your Life Easier? </b> Our Tools Help You Mitigate Your Losses By Showing You A Safe Margin In Every Trade Setup. You Can Then Choose A Trade That Matches Your Desired RIsk/Reward Before You Put Your Money To Work. Our <b>Watchlist</b> Show Stocks At Stage One Breakout Price Action In Realtime For Your Daily Trade Setups. The <b>Swingscalp Analyzer</b> Analyzes Stock Prices And Points You To Trade Entries & Exits Within A SAFE MARGIN, Keeps Track Of Your Risk/Reward Before You Enter A Trade And Recommends Stop Loses And Price Targets. Our <b>Trade Streams</b> Gives You Access To <b>Smart Money Trades</b> Executed Daily With Market Data from All 19 Exchanges Including Darkpools. You Also Get Complimentary Access To Our Easy To Use Trade Journal To Log Your Trades And Assess Your Progress. {" "}
                 </Box>
                 <Box>
                   <strong>
@@ -109,7 +106,7 @@ const LandingPage = () => {
                   </strong>{" "}
                   are just a few clicks from the easiest way to gain
                   extraordinary confidence in your trades with <b>AI</b>{" "}
-                  generated <b>Entries & Exits</b> to match your desired{" "}
+                  generated analysis on <b>Entries & Exits</b> to match your desired{" "}
                   <b>Risk to Reward</b>.{" "}
                 </Box>
                 <Box>
@@ -118,8 +115,8 @@ const LandingPage = () => {
                   <b>Close or Cut</b> a trade.
                 </Box>
                 <Box>
-                  For a <b>Limited Time</b>, We are giving you a $52.00/Monthly
-                  access value to try for <b>14 days at $12.99</b> which you can
+                  For a <b>Limited Time</b>, We are giving you a $52.00 (Premium) Monthly
+                  access value to try for <b>14 days at $12.99 respectively</b> which you can
                   cancel anytime.
                 </Box>
               </article>
