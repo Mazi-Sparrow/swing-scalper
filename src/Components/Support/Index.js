@@ -84,7 +84,7 @@ export default function Index() {
         <MobileNavbar />
       </Box>
 
-<Box className="information-page-content">
+<Box className="support-page-content">
       <Box className="information-page-main-content">
         <Box className="information-background">
         <Box className="information-page-leftside information-page-video-list">

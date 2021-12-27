@@ -1,0 +1,25 @@
+.GL-block-title {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.GL-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.GL-item div {
+    margin: 5px 0px;
+    width: 80px;
+    font-size: 16px;
+}
+
+.GL-ticker-name {
+    font-family: 'Metropolis-Light';
+}
+
+.GL-current-price, .GL-percentage {
+    font-family: 'Metropolis-SemiBold';
+}

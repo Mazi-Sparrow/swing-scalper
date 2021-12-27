@@ -154,7 +154,7 @@ const createJournal =
             $ticker: String!
             $quantity: Int!
             $buyPrice: Float!
-            $priceTargets: [Float!]
+            $priceTargets: [Float!]!
             $stopLoss: Float!
           ) {
             createJournal(
@@ -230,8 +230,151 @@ const createJournal =
       }
     };
 
+    const getNews =
+    (dispatch) =>
+    async ({ token, ticker, limit }) => {
+      try {
+        const response = await graphqlClient.request(
+          gql`
+            query getNews(
+                $ticker: String!
+                $limit: String!
+              ) {
+              getNews (
+                  ticker: $ticker
+                  limit: $limit
+                ) {
+                items {
+                  title
+                  url
+                  image
+                  description
+                  published_at
+                }
+                success
+                errors
+              }
+            }
+          `,
+          {ticker, limit},
+        );
+        if (response.getNews.success && !response.getNews.errors) {
+          dispatch({
+            type: "list_journals",
+            payload: response.getNews.items,
+          });
+          return response.getNews.items || [];
+        } else if (response.getNews.errors && response.getNews.errors[0]) {
+          dispatch({
+            type: "add_error",
+            payload: response.getNews.errors[0],
+          });
+          return [];
+        }
+        return [];
+      } catch (error) {
+        console.log(error);
+        dispatch({
+          type: "add_error",
+          payload: "Invalid Request",
+        });
+        return [];
+      }
+    };
+
+    const getGainer =
+    (dispatch) =>
+    async () => {
+      try {
+        const response = await graphqlClient.request(
+          gql`
+            query getGainer {
+              getGainer{
+                items {
+                  percentage
+                  currentPrice
+                  previousPrice
+                  ticker
+                }
+                success
+                errors
+              }
+            }
+          `,
+          {},
+        );
+        if (response.getGainer.success && !response.getGainer.errors) {
+          dispatch({
+            type: "list_journals",
+            payload: response.getGainer.items,
+          });
+          return response.getGainer.items || [];
+        } else if (response.getGainer.errors && response.getGainer.errors[0]) {
+          dispatch({
+            type: "add_error",
+            payload: response.getGainer.errors[0],
+          });
+          return [];
+        }
+        return [];
+      } catch (error) {
+        console.log(error);
+        dispatch({
+          type: "add_error",
+          payload: "Invalid Request",
+        });
+        return [];
+      }
+    };
+    
+    const getLoser =
+    (dispatch) =>
+    async () => {
+      try {
+        const response = await graphqlClient.request(
+          gql`
+            query getLoser {
+              getLoser{
+                items {
+                  percentage
+                  currentPrice
+                  previousPrice
+                  ticker
+                }
+                success
+                errors
+              }
+            }
+          `,
+          {},
+        );
+        if (response.getLoser.success && !response.getLoser.errors) {
+          dispatch({
+            type: "list_journals",
+            payload: response.getLoser.items,
+          });
+          return response.getLoser.items || [];
+        } else if (response.getLoser.errors && response.getLoser.errors[0]) {
+          dispatch({
+            type: "add_error",
+            payload: response.getLoser.errors[0],
+          });
+          return [];
+        }
+        return [];
+      } catch (error) {
+        console.log(error);
+        dispatch({
+          type: "add_error",
+          payload: "Invalid Request",
+        });
+        return [];
+      }
+    };
+    
+
 export const { Context, Provider } = createDataContext(
   journalReducers,
-  { listJournals, updateJournal, createJournal, deleteJournal },
+  { listJournals, updateJournal, createJournal, deleteJournal, getNews, getGainer, getLoser },
   { journals: [], errorMessage: "", isLoading: false }
 );
