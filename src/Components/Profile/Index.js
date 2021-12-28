@@ -31,6 +31,10 @@ export default function Profile() {
   const [deleteUserModalOpen, setDeleteUserModalOpen] = useState(false);
   const [callToActionSubscribeModalOpen, setCallToActionSubscribeModalOpen] = useState(false);
   // const [callToActionSubscribeModalOpen, setCallToActionSubscribeModalOpen] = useState(false);
+  const [premiumSubcription, setPremiumSubscription] = useState(false);
+  const [standardSubcription, setStandardSubscription] = useState(false);
+  const [freeSubcription, setFreeSubscription] = useState(false);
+
 
   useEffect(() => {
     if (token) {
@@ -39,8 +43,25 @@ export default function Profile() {
   }, []);
 
   useEffect(() => {
+    getUser({ token }).then((res) => {
+      if (res.subscriptions !== null) {
+        res.subscriptions.forEach(element => {
+          if (element.name.toLowerCase().indexOf('free') !== -1) {
+            setFreeSubscription(true);
+          }
+          if (element.name.toLowerCase().indexOf('standard') !== -1) {
+            setStandardSubscription(true);
+          }
+          if ((element.name.toLowerCase().indexOf('premium') !== -1) || (element.name.toLowerCase().indexOf('private') !== -1)) {
+            setPremiumSubscription(true);
+          }
+        });
+      }
+      // console.log(res)
+    })
     const choosenPlanId = localStorage.getItem('choosenPlanId');
     const freePlan = localStorage.getItem('freePlan');
+    const freePlanShown = localStorage.getItem('freePlanShown');
     async function handleProfileOpen() {
       if (choosenPlanId !== null) {
         if (choosenPlanId) {
@@ -50,8 +71,9 @@ export default function Profile() {
             window.location.replace(checkoutUrl);
           }
         }
-      } else if (freePlan !== null || !isSubscribed) {
+      } else if (!premiumSubcription && freePlanShown !== 'true') {
         setCallToActionSubscribeModalOpen(true);
+        localStorage.setItem('freePlanShown', 'true');
       }
     }
 
@@ -80,7 +102,7 @@ export default function Profile() {
     if (isSuccess) {
       getUser({ token }).then((res) => setUser(res));
     }
-    console.log(isSuccess);
+    // console.log(isSuccess);
   };
 
   const handleDeleteUserClick = async () => {
@@ -97,7 +119,7 @@ export default function Profile() {
   }
 
   const deleteUserHandler = async () => {
-    console.log("Deleting user")
+    // console.log("Deleting user")
   };
 
   // const modalRef=React.createRef();

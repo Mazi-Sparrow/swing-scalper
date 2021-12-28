@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useHistory } from "react-router-dom";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import Button from "@mui/material/Button";
@@ -92,6 +93,7 @@ const priceTargetsCell = (props) => {
 export default function Index() {
   const {
     state: { token },
+    getUser,
     getToken
   } = React.useContext(AuthContext);
   const {
@@ -105,6 +107,34 @@ export default function Index() {
   const [showRewardHigherThanRisk, setShowRewardHigherThanRisk] = React.useState(false);
   const [showRiskHigherThanReward, setShowRiskHigherThanReward] = React.useState(false);
 
+  const [premiumSubcription, setPremiumSubscription] = React.useState(false);
+  const [standardSubcription, setStandardSubscription] = React.useState(false);
+  const [freeSubcription, setFreeSubscription] = React.useState(false);
+
+
+  React.useEffect(() => {
+    if (token) {
+      getUser({ token }).then((res) => {
+        if (res.subscriptions !== null) {
+          res.subscriptions.forEach(element => {
+            if (element.name.toLowerCase().indexOf('free') !== -1) {
+              setFreeSubscription(true);
+            }
+            if (element.name.toLowerCase().indexOf('standard') !== -1) {
+              setStandardSubscription(true);
+            }
+            if ((element.name.toLowerCase().indexOf('premium') !== -1) || (element.name.toLowerCase().indexOf('private') !== -1)) {
+              setPremiumSubscription(true);
+            }
+          });
+        }
+        // console.log(res)
+      })
+    }
+  }, [token]);
+  
+  const history = useHistory();
+  const goToPage = React.useCallback((page) => history.push(`/${page}`), [history]);
   
   const initialSort = [
     {
@@ -207,6 +237,7 @@ export default function Index() {
         <MobileNavbar />
       </Box>
 
+      {(premiumSubcription || standardSubcription) ? 
       <div className="watchlist-page-content page-content">
         {dataLoaded && (
           <>
@@ -347,6 +378,19 @@ export default function Index() {
               </>
             )}
           </div>
+      : <Box className="permission-warning-block">
+      <Box className="permission-warning">You don't have permissions to view this page</Box>
+      <Button
+              className="primary-btn-color default-btn-hover default-button entry-close-btn"
+              onClick={() => {
+                  goToPage('subscription');
+                }
+              }
+            >
+              Upgrade subscription
+            </Button>
+        </Box>
+    }
           <Footer />
         </>
       );

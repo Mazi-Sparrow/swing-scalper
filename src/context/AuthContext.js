@@ -171,7 +171,7 @@ const getToken = (dispatch) => async () => {
 
     localExpiresAt.setHours(hours - offset);
 
-    if (localExpiresAt < new Date() && email && expiresAt && refreshToken) {
+    // if (localExpiresAt < new Date() && email && expiresAt && refreshToken) {
       const response = await graphqlClient.request(
         gql`
           mutation refreshToken($email: String!, $refreshToken: String!) {
@@ -200,7 +200,7 @@ const getToken = (dispatch) => async () => {
           localStorage.setItem("expiresAt", response.refreshToken.expiresAt),
           localStorage.setItem("email", email),
         ]);
-      }
+      // }
     }
   } catch (error) {
     console.log(error);

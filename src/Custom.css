@@ -1,3 +1,23 @@
+.primary-btn-color.not-allowed {
+    background-color: rgba(0, 0, 0, 0.12) !important;
+    color: rgba(0, 0, 0, 0.26) !important;
+}
+.primary-btn-color.not-allowed:hover {
+    background-color: rgba(0, 0, 0, 0.12) !important;
+    color: rgba(0, 0, 0, 0.26) !important;
+    transform: none;
+    box-shadow: none;
+}
+
+.permission-warning-block {
+    text-align: center;
+    margin: 50px 10px;
+}
+
+.permission-warning {
+    font-size: 20px;
+}
+
 .spinner-loader {
     width: 50px;
     height: 50px;

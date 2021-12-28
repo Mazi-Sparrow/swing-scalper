@@ -13,12 +13,10 @@ export default function GL(props) {
   useEffect(() => {
       if (props.name === 'Gainer') {
           getGainer({}).then((res) => {
-              console.log("Грузим гейнер")
               setData(res);
           })
       } else if (props.name === 'Loser') {
           getLoser({}).then((res) => {
-            console.log("Грузим лузер")
               setData(res);
           })
       }

@@ -86,7 +86,7 @@ export default function Index() {
     let isMounted = true;
     listJournals({ token }).then((res) => {
       setNews(res);
-      console.log(res);
+      // console.log(res);
       if (isMounted) {
         const { profitLossSum, profit, loss, openTrades, riskValues, rewardValues, profitLossValues } = dashboardValues(res);
 

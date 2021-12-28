@@ -1,6 +1,7 @@
 import * as React from "react";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
+import { useHistory } from "react-router-dom";
 import Button from "@mui/material/Button";
 // import { Box } from "@mui/system";
 import Box from "@mui/material/Box";
@@ -23,6 +24,7 @@ import './style.css'
 export default function Index() {
   const {
     state: { token },
+    getUser,
   } = React.useContext(AuthContext);
   const {
     state: { errorMessage, isLoading },
@@ -31,10 +33,9 @@ export default function Index() {
 
   async function loadData () {
     const response = await listTrades({ token, ticker, sortDirection, limit, sortBy });
-    console.log(response);
+    // console.log(response);
     if (response) {
-      console.log("Есть респонс");
-      console.log(response);
+      // console.log(response);
       prepareData(response);
     }
   }
@@ -63,6 +64,10 @@ export default function Index() {
 
   
   const [dataLoaded, setDataLoaded] = React.useState(true);
+  
+  const history = useHistory();
+  const goToPage = React.useCallback((page) => history.push(`/${page}`), [history]);
+  
 
   const sortByList = [
     { value: 'TICKER', label: 'Ticker' },
@@ -75,6 +80,31 @@ export default function Index() {
     { value: 'ASC', label: 'Ascending' },
     { value: 'DESC', label: 'Descending' },
   ];
+
+  const [premiumSubcription, setPremiumSubscription] = React.useState(false);
+  const [standardSubcription, setStandardSubscription] = React.useState(false);
+  const [freeSubcription, setFreeSubscription] = React.useState(false);
+
+  React.useEffect(() => {
+    if (token) {
+      getUser({ token }).then((res) => {
+        if (res.subscriptions !== null) {
+          res.subscriptions.forEach(element => {
+            if (element.name.toLowerCase().indexOf('free') !== -1) {
+              setFreeSubscription(true);
+            }
+            if (element.name.toLowerCase().indexOf('standard') !== -1) {
+              setStandardSubscription(true);
+            }
+            if ((element.name.toLowerCase().indexOf('premium') !== -1) || (element.name.toLowerCase().indexOf('private') !== -1)) {
+              setPremiumSubscription(true);
+            }
+          });
+        }
+        // console.log(res)
+      })
+    }
+  }, [token]);
 
 
   const prepareData = (data) => {
@@ -95,7 +125,7 @@ export default function Index() {
       let conditionString = conditions.join('; ');
       item.conditions = conditionString;
     });
-    console.log(trades)
+    // console.log(trades)
     setStateTrades(trades);
   };
 
@@ -157,6 +187,7 @@ export default function Index() {
         <MobileNavbar />
       </Box>
 
+      {premiumSubcription ? 
       <div className="watchlist-page-content page-content">
         {errorMessage ? (
           <h4 style={{ color: "red", textAlign: "center" }}>{errorMessage}</h4>
@@ -290,6 +321,19 @@ export default function Index() {
           </>
         )}
       </div>
+            : <Box className="permission-warning-block">
+            <Box className="permission-warning">You don't have permissions to view this page</Box>
+            <Button
+                    className="primary-btn-color default-btn-hover default-button entry-close-btn"
+                    onClick={() => {
+                        goToPage('subscription');
+                      }
+                    }
+                  >
+                    Upgrade subscription
+                  </Button>
+              </Box>
+          }
       <Footer />
     </>
   );

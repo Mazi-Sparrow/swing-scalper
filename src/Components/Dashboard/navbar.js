@@ -15,7 +15,7 @@ export default function ButtonAppBar() {
     state: { isSubscribed },
   } = React.useContext(AuthContext);
 
-  console.log(typeof isSubscribed);
+  // console.log(typeof isSubscribed);
   return (
     <>
       <AppBar>
