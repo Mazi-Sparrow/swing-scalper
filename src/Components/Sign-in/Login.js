@@ -59,7 +59,7 @@ export default function SignIn() {
 
     const result = signin(email, password)
     if (result) (
-      goToPage("profile")
+      goToPage("dashboard")
     )
   };
 
