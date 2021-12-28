@@ -340,14 +340,15 @@ export default function Index() {
                       editable={false}
                       width={setWidth()}
                     />
-                  </Grid>
-                </Box>
-              </div>
+                      </Grid>
+                    </Box>
+                  </div>
+                )}
+              </>
             )}
-          </>
-        )}
-      <Footer />
-    </>
-  );
-}
+          </div>
+          <Footer />
+        </>
+      );
+                  }
 
