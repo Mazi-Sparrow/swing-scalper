@@ -36,7 +36,7 @@ export default function GL(props) {
             {data.map((element, index) => {
               if (index < 5)
                 return (
-                  <Box className="GL-item">
+                  <Box className="GL-item" key={element.ticker}>
                     <Box className="GL-ticker-name">{element.ticker}</Box>
                     <Box className="GL-current-price ">
                       ${element.currentPrice}
