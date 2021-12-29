@@ -33,6 +33,15 @@ const authReducers = (state, action) => {
     case "set_token":
       return { ...state, token: action.payload };
 
+    case "set_freeSubscription":
+      return { ...state, freeSubscription: true };
+
+    case "set_standardSubscription":
+      return { ...state, standardSubscription: true };
+      
+    case "set_premiumSubscription":
+      return { ...state, premiumSubscription: true };
+
     case "logout":
       return { ...state, errorMessage: "", token: null, refreshToken: null, email: null };
 
@@ -156,6 +165,68 @@ const signup =
     }
   };
 
+  const getUser =
+  (dispatch) =>
+  async ({ token }) => {
+    try {
+      const response = await graphqlClient.request(
+        gql`
+          query getUser {
+            getUser {
+              id
+              firstname
+              lastname
+              email
+              phone
+              success
+              errors
+              subscriptions {
+                id
+                name
+                billing_period
+                description
+              }
+            }
+          }
+        `,
+        {},
+        { Authorization: `Bearer ${token}` }
+      );
+
+      if (!response.getUser.errors && response.getUser.success) {
+
+        if (response.getUser.subscriptions !== null) {
+          response.getUser.subscriptions.forEach(element => {
+            if (element.name.toLowerCase().indexOf('free') !== -1) {
+              dispatch({
+                type: "set_freeSubscription",
+                payload: true,
+              });
+            }
+            if (element.name.toLowerCase().indexOf('standard') !== -1) {
+              dispatch({
+                type: "set_standardSubscription",
+                payload: true,
+              });
+            }
+            if ((element.name.toLowerCase().indexOf('premium') !== -1) || (element.name.toLowerCase().indexOf('private') !== -1)) {
+              dispatch({
+                type: "set_premiumSubscription",
+                payload: true,
+              });
+            }
+          });
+        
+        }
+        return response.getUser;
+      }
+
+      return false;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 const getToken = (dispatch) => async () => {
   try {
     const refreshToken = await localStorage.getItem("refreshToken");
@@ -206,44 +277,6 @@ const getToken = (dispatch) => async () => {
     console.log(error);
   }
 };
-
-const getUser =
-  (dispatch) =>
-  async ({ token }) => {
-    try {
-      const response = await graphqlClient.request(
-        gql`
-          query getUser {
-            getUser {
-              id
-              firstname
-              lastname
-              email
-              phone
-              success
-              errors
-              subscriptions {
-                id
-                name
-                billing_period
-                description
-              }
-            }
-          }
-        `,
-        {},
-        { Authorization: `Bearer ${token}` }
-      );
-
-      if (!response.getUser.errors && response.getUser.success) {
-        return response.getUser;
-      }
-
-      return false;
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
 const confirmEmail =
   (dispatch) =>
@@ -459,5 +492,5 @@ export const { Context, Provider } = createDataContext(
     getToken,
     getUser,
   },
-  { token: null, refreshToken: null, isSubscribed: false, errorMessage: "", isLoading: false }
+  { token: null, refreshToken: null, isSubscribed: false, errorMessage: "", isLoading: false, freeSubscription: null, standardSubscription: null, premiumSubscription: null}
 );

@@ -14,9 +14,9 @@ export default function ButtonAppBar() {
   const history = useHistory();
   const goToPage = React.useCallback((page) => history.push(`/${page}`), [history]);
 
-  const [premiumSubcription, setPremiumSubscription] = useState(false);
-  const [standardSubcription, setStandardSubscription] = useState(false);
-  const [freeSubcription, setFreeSubscription] = useState(false);
+  const [premiumSubscription, setPremiumSubscription] = useState(false);
+  const [standardSubscription, setStandardSubscription] = useState(false);
+  const [freeSubscription, setFreeSubscription] = useState(false);
 
   const [notAllowedPageModal, setNotAllowedPageModal] = useState(false);
 
@@ -26,13 +26,17 @@ export default function ButtonAppBar() {
 
   const {
     logout,
-    state: { isSubscribed, token },
+    state: { isSubscribed, token, 
+      // freeSubscription, standardSubscription, premiumSubscription 
+    },
     getUser,
+    getToken,
   } = useContext(AuthContext);
 
   useEffect(() => {
     if (token) {
       getUser({ token }).then((res) => {
+        // console.log(res)
         if (res.subscriptions !== null) {
           res.subscriptions.forEach(element => {
             if (element.name.toLowerCase().indexOf('free') !== -1) {
@@ -130,15 +134,15 @@ export default function ButtonAppBar() {
                   <Button className="primary-btn-color default-btn-hover navbar-button" color="inherit" href="/analyzer">
                     ANALYZER
                   </Button>
-                  <Button className={"primary-btn-color default-btn-hover navbar-button " + (!premiumSubcription ? "not-allowed" : "")}  color="inherit" href={!premiumSubcription ? "" : "/trade-streams"}
-                  onClick={premiumSubcription ? () => {} : () => {
+                  <Button className={"primary-btn-color default-btn-hover navbar-button " + (!premiumSubscription ? "not-allowed" : "")}  color="inherit" href={!premiumSubscription ? "" : "/trade-streams"}
+                  onClick={premiumSubscription ? () => {} : () => {
                     setNotAllowedPageModal(true);
                   }}
                   >
                     TRADE STREAMS
                   </Button>
-                  <Button className={"primary-btn-color default-btn-hover navbar-button " + ((!premiumSubcription || !standardSubcription) ? "not-allowed" : "")} color="inherit" href={(!premiumSubcription || !standardSubcription) ? "" : "/watch-list"}
-                  onClick={(premiumSubcription || standardSubcription) ? () => {} : () => {
+                  <Button className={"primary-btn-color default-btn-hover navbar-button " + ((!premiumSubscription && !standardSubscription) ? "not-allowed" : "")} color="inherit" href={(!premiumSubscription && !standardSubscription) ? "" : "/watch-list"}
+                  onClick={(premiumSubscription || standardSubscription) ? () => {} : () => {
                     setNotAllowedPageModal(true);
                   }}
                   >
