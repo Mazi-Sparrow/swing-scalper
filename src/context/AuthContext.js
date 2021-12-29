@@ -440,43 +440,32 @@ const tryLocalSignin = (dispatch) => async () => {
   }
 };
 
-// const deleteUser =
-//   (dispatch) =>
-//   async ({ token }) => {
-//     try {
-//       const response = await graphqlClient.request(
-//         gql`
-//           query getUser {
-//             getUser {
-//               id
-//               firstname
-//               lastname
-//               email
-//               phone
-//               success
-//               errors
-//               subscriptions {
-//                 id
-//                 name
-//                 billing_period
-//                 description
-//               }
-//             }
-//           }
-//         `,
-//         {},
-//         { Authorization: `Bearer ${token}` }
-//       );
+const deleteUser =
+  (dispatch) =>
+  async ({ token }) => {
+    try {
+      const response = await graphqlClient.request(
+        gql`
+          query deleteUser {
+            deleteUser {
+              success
+              errors
+            }
+          }
+        `,
+        {},
+        { Authorization: `Bearer ${token}` }
+      );
 
-//       if (!response.getUser.errors && response.getUser.success) {
-//         return response.getUser;
-//       }
+      if (!response.deleteUser.errors && response.deleteUser.success) {
+        window.location.replace('/signup');
+      }
 
-//       return false;
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
+      return false;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 export const { Context, Provider } = createDataContext(
   authReducers,
@@ -491,6 +480,7 @@ export const { Context, Provider } = createDataContext(
     confirmForgotPassword,
     getToken,
     getUser,
+    deleteUser,
   },
   { token: null, refreshToken: null, isSubscribed: false, errorMessage: "", isLoading: false, freeSubscription: null, standardSubscription: null, premiumSubscription: null}
 );

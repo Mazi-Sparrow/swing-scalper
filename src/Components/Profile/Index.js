@@ -19,6 +19,7 @@ export default function Profile() {
   const {
     state: { token, isSubscribed },
     getUser,
+    deleteUser,
   } = useContext(AuthContext);
   const { createCheckout, cancelSubscription } = useContext(SubscriptionContext);
 
@@ -119,7 +120,9 @@ export default function Profile() {
   }
 
   const deleteUserHandler = async () => {
-    // console.log("Deleting user")
+    deleteUser({token}).then(() => {
+      window.location.replace('/signup');
+    });
   };
 
   // const modalRef=React.createRef();
